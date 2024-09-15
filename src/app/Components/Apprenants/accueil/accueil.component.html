@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
+    <title>Categories</title>
+
+    <style>
+      .offcanvas-start {
+        width: 250px; /* Ajustez cette largeur si nécessaire */
+      }
+
+      /* Couleur de fond pour la navbar */
+      .navbar {
+        background-color: #2E8B57;
+        border-bottom: 2px solid #FFF;
+        background: #2E8B57;
+      }
+
+      /* Texte blanc pour les liens et le nom de la marque dans la navbar */
+      .navbar .nav-link,
+      .navbar .navbar-brand {
+        color: #fff;
+      }
+
+      /* Icône du toggle (menu burger) en blanc sans encadrement */
+      .navbar-toggler {
+        background: none; /* Supprime le fond et la bordure */
+        border: none;     /* Supprime la bordure */
+      }
+
+      .navbar-toggler-icon {
+        background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' linecap='round' linejoin='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
+      }
+
+      .navbar-nav {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+      }
+
+      .navbar-nav .nav-item {
+        margin-left: 15px;
+      }
+
+      .navbar-nav .nav-item:last-child {
+        margin-right: 0; /* Supprime la marge à droite du dernier élément */
+      }
+
+      .connexion {
+        width: 120.921px;
+        height: 31.333px;
+        border-radius: 5px;
+        background: #D9D9D9;
+        box-shadow: 0px 4px 4px 0px rgba(46, 139, 87, 0.25);
+        color: #2E8B57;
+        font-family: "Playfair Display";
+        font-size: 18px;
+        font-weight: 400;
+        border: none;
+      }
+      .connexion svg {
+        display: none;
+        }
+     
+
+
+      .offcanvas-footer h2 {
+        display: none;
+      }
+
+
+      /* Alignement total à droite en mode bureau */
+      @media (min-width: 992px) {
+        .offcanvas-body {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-end;
+        }
+      }
+
+      /* Alignement de la liste à droite en mode mobile */
+      @media (max-width: 991px) {
+
+        .connexion svg {
+        display: block;
+        margin-right: 10px;
+        }
+
+        .offcanvas-footer h2 {
+        display: flex;
+      }
+        .navbar-nav {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .navbar-nav .nav-item {
+          margin-left: 0;
+          margin-bottom: 15px;
+        }
+
+        .container-fluid img {
+          display: block;
+          max-width: 100%;
+          height: auto;
+        }
+
+        .navbar-brand img {
+            display: none;
+        }
+
+        .navbar-nav .nav-link {
+            color: #000;
+            /* Button text */
+            font-family: Lato;
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+
+        .offcanvas-title img {
+            width: 60px;
+            height: 60px;
+            flex-shrink: 0;
+            border-radius: 60px;
+        }
+
+       .nom-profil{
+        color: #000;
+
+        /* H1,H2,H3 : titre */
+        font-family: "Playfair Display";
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+       }
+
+       .offcanvas-footer{
+        margin-top: 30px;
+        width: 220px;
+        height: 41px;
+        flex-shrink: 0;
+        border-radius: 5px;
+        background: #2E8B57;
+        color: #FFF;
+
+        /* Button text */
+        font-family: Lato;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        text-align: center;
+        justify-content: center;
+        display: flex;
+        align-items: center;
+       }
+
+       .connexion{
+        background-color: white;
+        color: #000;
+
+        display: flex;
+
+
+        /* Button text */
+        font-family: Lato;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        box-shadow: 0px 0px 0px 0px rgba(46, 139, 87, 0.25);
+
+        margin-top: 35px;
+       }
+
+        /* Ajout d'un trait horizontal sous chaque élément de la liste en mode mobile */
+  .navbar-nav .nav-item {
+    position: relative;
+  }
+
+  .navbar-nav .nav-item:not(:last-child)::after {
+    content: "";
+    display: block;
+    width: 210px;
+    height: 1px;
+    background: #ddd; /* Couleur de la ligne horizontale */
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    /* margin: 10px 0; */
+    margin-top: 15px;
+  }
+      }
+    </style>
+  </head>
+  
+  <body>
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid">
+        <!-- Bouton du menu toggle placé à gauche avec icône blanche sans encadrement -->
+        <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <!-- Logo à gauche -->
+        <a class="navbar-brand" href="#">
+          <img src="../../../../assets/images/logo.png" alt="logo" class="img-fluid">
+        </a>
+
+        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+          <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
+                <img src="../../../../assets/images/logo.png" alt="profil">
+            </h5>
+            <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
+             <p class="nom-profil">Serigne Fallou Niang</p>
+          </div>
+          <div class="offcanvas-body">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Accueil</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#">Xam-xam</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Xassida</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coran</a>
+              </li>
+              <li class="nav-item">
+                <button class="connexion">
+                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2.44444 22C1.77222 22 1.19696 21.7609 0.718667 21.2826C0.24037 20.8043 0.000814815 20.2286 0 19.5556V2.44444C0 1.77222 0.239556 1.19696 0.718667 0.718667C1.19778 0.24037 1.77304 0.000814815 2.44444 0H11V2.44444H2.44444V19.5556H11V22H2.44444ZM15.8889 17.1111L14.2083 15.3389L17.325 12.2222H7.33333V9.77778H17.325L14.2083 6.66111L15.8889 4.88889L22 11L15.8889 17.1111Z" fill="#FFD233"/>
+                      </svg>
+                      Connexion</button>
+              </li>
+            </ul>
+
+            <div class="offcanvas-footer">
+               <h2 class="" data-bs-dismiss="offcanvas" >Fermer</h2>
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+  </body>
+</html>
