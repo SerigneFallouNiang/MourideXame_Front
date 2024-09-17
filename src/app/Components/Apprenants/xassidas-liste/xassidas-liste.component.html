@@ -1,10 +1,3 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -98,10 +91,169 @@
   font-family: "Playfair Display", serif;
 }
 
+.liste-xassidas{
+  display: flex;
+}
+
+/* card 3D book  */
+
+        .book-card {
+            width: 250px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            /* box-shadow:
+                0 3px 6px rgba(0, 0, 0, 0.16),
+                0 3px 6px rgba(0, 0, 0, 0.23); */
+                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+                
+        }
+        .book-card__cover {
+            position: relative;
+            width: 200px;
+            height: 300px;
+            margin: 0 auto 8px auto;
+            perspective: 1000px;
+        }
+        .book-card__book {
+            height: 100%;
+            transform-style: preserve-3d;
+            transition: all 250ms ease;
+        }
+        .book-card__book-front {
+            position: absolute;
+            height: 100%;
+        }
+        .book-card__book-back {
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            transform: translateZ(-40px);
+        }
+        .book-card__book-side {
+            position: absolute;
+            top: 5px;
+            bottom: 2px;
+            right: -29px;
+            width: 40px;
+            background-size: 5px;
+            background-color: #e1e1e1;
+            background-image: linear-gradient(to right, #ccc 35%, #e1e1e1 35%);
+            opacity: 0;
+            transform: rotate3d(0, 1, 0, 90deg);
+        }
+        .book-card__img {
+            width: 100%;
+            height: 100%;
+            background-color: #e1e1e1;
+        }
+        .book-card__title {
+            /* font-size: 1.5em; */
+            margin-bottom: 8px;
+            color: #000;
+
+            /* Paragraphe description */
+            font-family: "Open Sans";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+        .book-card__author {
+            color: #757575;
+            font-size: 1em;
+        }
+        .book-card:hover .book-card__book {
+            transform: rotate3d(0, -1, 0, 30deg) translate(-15px, -30px);
+        }
+        .book-card:hover .book-card__book-back {
+            box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.35);
+        }
+        .book-card:hover .book-card__book-side {
+            opacity: 1;
+        }
+
+
+        .cards-nav{
+          display: none;
+        }
+
+      
+
+        @media (max-width: 991px) {
+         
+
+            .book-card {
+            width: 160px;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #fff;
+            box-shadow:
+                0 3px 6px rgba(0, 0, 0, 0.16),
+                0 3px 6px rgba(0, 0, 0, 0.23);
+        }
+
+        .book-card__cover {
+            position: relative;
+            width: 140px;
+            height: 200px;
+            margin: 0 auto 8px auto;
+            perspective: 1000px;
+        }
+        .raccourcis{
+          display: none;
+        }
+
+
+          /* button de navigation entre les livres  */
+          .cards-nav{
+          display: flex;
+          width: 165px;
+          height: 48px;
+          justify-content: center;
+          align-items: center;
+          flex-shrink: 0;
+          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
+          border: none;
+          margin: 5px;
+          border-radius: 5px;
+          background: #FFF;
+
+          /* format ecriture  */
+          color: #2E8B57;
+          font-family: Lato;
+          font-size: 18px;
+          font-style: normal;
+          font-weight: 700;
+          line-height: normal;
+        }
+
+
+        .cards-nav:hover {
+          color: #fff;
+          background: #2E8B57;
+        }
+        .button-nav-listes{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+
+        .categorie-titre{
+          text-align: center;
+          color: #2E8B57;
+
+          /* H1,H2,H3 : titre */
+          font-family: "Playfair Display";
+          font-size: 25px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+        }
+        }
     </style>
-  </head>
   
-  <body>
     <nav class="navbar navbar-expand-lg">
       <div class="container-fluid">
         <!-- Bouton du menu toggle placé à gauche avec icône blanche sans encadrement -->
@@ -158,7 +310,12 @@
 
 <!-- fin du nav-bar  -->
 
-<section class="liste-xassidas d-flex">
+<h1 class="categorie-titre">Xassidas</h1>
+<div class="button-nav-listes">
+  <button class="cards-nav" id="cartes" onclick="cartesClick()">Cartes</button>
+  <button class="cards-nav" onclick="listesClick()">Listes</button>
+</div>
+<section class="liste-xassidas">
     <div class="raccourcis">
       <h2 class="titre-h2">Xassida</h2>
       <input type="text" class="recherche">
@@ -172,46 +329,168 @@
       </div>
     </div>
     <div class="card-xassidas">
-      <div class="row row-cols-1 row-cols-md-4 g-4">
-        <div class="col">
-          <div class="card h-100">
-            <img src="https://img.freepik.com/photos-gratuite/composition-du-livre-livre-ouvert_23-2147690555.jpg?ga=GA1.2.1633719148.1721069217&semt=ais_hybrid" class="card-img-top" alt="Cover Image 1">
-            <div class="card-body">
-              <h5 class="card-title">Book Title 1</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+ 
+  <div class="container mt-5">
+        <div class="row row-cols-2 row-cols-md-5 g-4">
+            <div class="col">
+                <div class="book-card">
+                    <div class="book-card__cover">
+                        <div class="book-card__book">
+                            <div class="book-card__book-front">
+                                <img class="book-card__img" src="https://img.freepik.com/photos-gratuite/pages-du-livre-ouvert_23-2147690479.jpg?ga=GA1.1.1272467380.1720960746&semt=ais_hybrid" alt="Harry Potter book cover">
+                            </div>
+                            <div class="book-card__book-back"></div>
+                            <div class="book-card__book-side"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="book-card__title">Harry Potter e a Pedra Filosofal</div>
+                        <div class="book-card__author">J. K. Rowling</div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="https://img.freepik.com/photos-gratuite/composition-du-livre-livre-ouvert_23-2147690555.jpg?ga=GA1.2.1633719148.1721069217&semt=ais_hybrid" class="card-img-top" alt="Cover Image 2">
-            <div class="card-body">
-              <h5 class="card-title">Book Title 2</h5>
-              <p class="card-text">This is a short card.</p>
+
+
+            <div class="col">
+                <div class="book-card">
+                    <div class="book-card__cover">
+                        <div class="book-card__book">
+                            <div class="book-card__book-front">
+                                <img class="book-card__img" src="https://img.freepik.com/photos-gratuite/pages-du-livre-ouvert_23-2147690479.jpg?ga=GA1.1.1272467380.1720960746&semt=ais_hybrid" alt="Harry Potter book cover">
+                            </div>
+                            <div class="book-card__book-back"></div>
+                            <div class="book-card__book-side"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="book-card__title">Harry Potter e a Pedra Filosofal</div>
+                        <div class="book-card__author">J. K. Rowling</div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="https://img.freepik.com/photos-gratuite/composition-du-livre-livre-ouvert_23-2147690555.jpg?ga=GA1.2.1633719148.1721069217&semt=ais_hybrid" class="card-img-top" alt="Cover Image 3">
-            <div class="card-body">
-              <h5 class="card-title">Book Title 3</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+
+
+
+  <div class="col">
+                <div class="book-card">
+                    <div class="book-card__cover">
+                        <div class="book-card__book">
+                            <div class="book-card__book-front">
+                                <img class="book-card__img" src="https://img.freepik.com/photos-gratuite/pages-du-livre-ouvert_23-2147690479.jpg?ga=GA1.1.1272467380.1720960746&semt=ais_hybrid" alt="Harry Potter book cover">
+                            </div>
+                            <div class="book-card__book-back"></div>
+                            <div class="book-card__book-side"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="book-card__title">Harry Potter e a Pedra Filosofal</div>
+                        <div class="book-card__author">J. K. Rowling</div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-        <div class="col">
-          <div class="card h-100">
-            <img src="https://img.freepik.com/photos-gratuite/composition-du-livre-livre-ouvert_23-2147690555.jpg?ga=GA1.2.1633719148.1721069217&semt=ais_hybrid" class="card-img-top" alt="Cover Image 4">
-            <div class="card-body">
-              <h5 class="card-title">Book Title 4</h5>
-              <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+
+
+
+
+
+
+
+
+
+
+             <div class="col">
+                <div class="book-card">
+                    <div class="book-card__cover">
+                        <div class="book-card__book">
+                            <div class="book-card__book-front">
+                                <img class="book-card__img" src="https://img.freepik.com/photos-gratuite/pages-du-livre-ouvert_23-2147690479.jpg?ga=GA1.1.1272467380.1720960746&semt=ais_hybrid" alt="Harry Potter book cover">
+                            </div>
+                            <div class="book-card__book-back"></div>
+                            <div class="book-card__book-side"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="book-card__title">Harry Potter e a Pedra Filosofal</div>
+                        <div class="book-card__author">J. K. Rowling</div>
+                    </div>
+                </div>
             </div>
-          </div>
+
+
+
+
+
+
+
+
+
+
+              <div class="col">
+                <div class="book-card">
+                    <div class="book-card__cover">
+                        <div class="book-card__book">
+                            <div class="book-card__book-front">
+                                <img class="book-card__img" src="https://img.freepik.com/photos-gratuite/pages-du-livre-ouvert_23-2147690479.jpg?ga=GA1.1.1272467380.1720960746&semt=ais_hybrid" alt="Harry Potter book cover">
+                            </div>
+                            <div class="book-card__book-back"></div>
+                            <div class="book-card__book-side"></div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="book-card__title">Harry Potter e a Pedra Filosofal</div>
+                        <div class="book-card__author">J. K. Rowling</div>
+                    </div>
+                </div>
+            </div>
+
+
+
+
+
+
         </div>
-      </div>
     </div>
-  </section>
+
+
+  </div>
+</section>
+
+
+<script>
+
+
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Votre code JavaScript ici
+
+
+function listesClick() {
+  document.querySelector(".cartes-xassidas").style.display = "none";
+  console.log("Bouton cliqué !");
+}
+
+
+
+function listesClick() {
+  var cartesXassidas = document.querySelector(".card-xassidas");
+  var listes = document.querySelector(".raccourcis");
   
-  </body>
-</html>
+  if (cartesXassidas.style.display !== "none") {
+    cartesXassidas.style.display = "none";
+    listes.style.display = "block";
+  } else {
+    cartesXassidas.style.display = "flex";
+    listes.style.display = "none";
+  }
+  
+  console.log("Bouton cliqué !");
+}
+
+
+function cartesClick() {
+  document.querySelector(".card-xassidas").style.display = "flex";
+  document.querySelector(".raccourcis").style.display = "none";
+  console.log("Bouton Cartes cliqué !");
+}
+});
+</script>
