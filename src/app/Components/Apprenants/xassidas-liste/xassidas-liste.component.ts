@@ -9,7 +9,7 @@ import { Component, NgModule } from '@angular/core';
   styleUrl: './xassidas-liste.component.css'
 })
 export class XassidasListeComponent {
-  isListVisible: boolean = false;
+  isListVisible: boolean = true;
 
   showList() {
     this.isListVisible = true;
