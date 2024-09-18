@@ -24,7 +24,8 @@
     margin-top: 10px;
    }
 
-   .listes ul li {
+   /* listes de raccourcis  */
+   /* .listes ul li {
     color: #000;
     font-family: "Playfair Display";
     font-size: 16px;
@@ -33,7 +34,56 @@
     line-height: 30px;
     text-decoration: none;
     list-style: none;
-   }
+   } */
+
+   .listes ul {
+  padding: 1em;
+  margin: auto;
+  border-radius: 1em;
+  /* background-color: #2E8B57; */
+  background-color: rgba(46, 139, 87, 0.5);
+
+  list-style: none;
+  max-width: 20em;
+
+   /* Ajout de la hauteur maximale et du défilement vertical */
+   max-height: 500px; /* Vous pouvez ajuster cette hauteur selon vos besoins */
+  overflow-y: auto;
+}
+
+.listes li {
+  background-color: #ccc;
+  border-radius: .5em;
+  transition: all .2s;
+}
+
+.listes ul li a {
+  color: #2E8B57;
+
+/* H1,H2,H3 : titre */
+font-family: "Playfair Display";
+font-size: 18px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+text-decoration: none;
+}
+.listes li + li {
+  margin-top: 1em;
+}
+
+.listes li > a {
+  display: block;
+  padding: .5em;
+}
+
+.listes ul > li:hover {
+  background-color: #eee;
+}
+
+.listes ul:has(li:hover) > li:not(:hover) {
+  opacity: .5;
+}
 
    .titre-h2{
     color: #2E8B57;
@@ -93,12 +143,14 @@
 
 .liste-xassidas{
   display: flex;
+  width: 100%;
+  justify-content: space-around;
 }
 
 /* card 3D book  */
 
         .book-card {
-            width: 250px;
+            width: 200px;
             padding: 10px;
             border-radius: 5px;
             background-color: #fff;
@@ -110,8 +162,8 @@
         }
         .book-card__cover {
             position: relative;
-            width: 200px;
-            height: 300px;
+            width: 150px;
+            height: 200px;
             margin: 0 auto 8px auto;
             perspective: 1000px;
         }
@@ -179,7 +231,47 @@
           display: none;
         }
 
-      
+        .categorie-titre{
+        display: none;
+        }
+
+
+        /* rechercher un livre  */
+        .search {
+            width: 100%;
+            position: relative;
+            display: flex;
+          }
+
+          .searchTerm {
+            width: 100%;
+            border: 3px solid #2E8B57;
+            border-right: none;
+            padding: 5px;
+            height: 100%;
+            border-radius: 5px 0 0 5px;
+            outline: none;
+            color: #9DBFAF;
+          }
+
+          .searchTerm:focus{
+            color: #00B4CC;
+          }
+
+          .searchButton {
+            width: 40px;
+            height: 36px;
+            border: 1px solid #2E8B57;
+            background: #2E8B57;
+            text-align: center;
+            color: #fff;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+            font-size: 20px;
+          }
+
+
+          
 
         @media (max-width: 991px) {
          
@@ -201,9 +293,9 @@
             margin: 0 auto 8px auto;
             perspective: 1000px;
         }
-        .raccourcis{
+        /* .raccourcis{
           display: none;
-        }
+        } */
 
 
           /* button de navigation entre les livres  */
@@ -251,7 +343,21 @@
           font-weight: 400;
           line-height: normal;
         }
+
+
         }
+
+       
+
+
+
+        @media (min-width: 993px) {
+         
+         .container{
+         margin: 0;
+         padding: 0;
+        }
+     }
     </style>
   
     <nav class="navbar navbar-expand-lg">
@@ -312,26 +418,48 @@
 
 <h1 class="categorie-titre">Xassidas</h1>
 <div class="button-nav-listes">
-  <button class="cards-nav" id="cartes" onclick="cartesClick()">Cartes</button>
-  <button class="cards-nav" onclick="listesClick()">Listes</button>
+  <button class="cards-nav" id="cartes" (click)="showCards()">Cartes</button>
+  <button class="cards-nav" (click)="showList()">Listes</button>
 </div>
 <section class="liste-xassidas">
-    <div class="raccourcis">
+    <div *ngIf="isListVisible" class="raccourcis">
       <h2 class="titre-h2">Xassida</h2>
-      <input type="text" class="recherche">
+      <!-- <input type="text" class="recherche"> -->
+       <div class="wrap">
+   <div class="search">
+      <input type="text" class="searchTerm" placeholder="Rechercher un livre">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+     </button>
+   </div>
+</div>
       <div class="listes">
+        <!-- <ul>
+          <li>Alhamdou lilahi lazi youdiaassi</li>
+          <li>Alhamdou lilahi lazi youdiaassi</li>
+          <li>Alhamdou lilahi lazi youdiaassi</li>
+          <li>Alhamdou lilahi lazi youdiaassi</li>
+        </ul> -->
+
+        <!-- //Liste raccourcis  -->
         <ul>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
+          <li><a href="#">Touhfatou moutadarihine</a></li>
+          <li><a href="#">Matlaboul chifa</a></li>
+          <li><a href="#">Mafatihoul Bichri</a></li>
+          <li><a href="#">Mawahibou</a></li>
+          <li><a href="#">Massalikoul djinane</a></li>
+          <li><a href="#">link 4</a></li>
+          <li><a href="#">link 4</a></li>
+          <li><a href="#">link 4</a></li>
+          <li><a href="#">link 4</a></li>
+          <li><a href="#">link 4</a></li>
         </ul>
       </div>
     </div>
-    <div class="card-xassidas">
+    <div  *ngIf="!isListVisible" class="card-xassidas">
  
-  <div class="container mt-5">
-        <div class="row row-cols-2 row-cols-md-5 g-4">
+  <div class="container  mt-5">
+        <div class="row row-cols-2 row-cols-md-4 g-4">
             <div class="col">
                 <div class="book-card">
                     <div class="book-card__cover">
@@ -460,17 +588,7 @@
 
 
 
-document.addEventListener('DOMContentLoaded', function() {
-    // Votre code JavaScript ici
-
-
-function listesClick() {
-  document.querySelector(".cartes-xassidas").style.display = "none";
-  console.log("Bouton cliqué !");
-}
-
-
-
+ // Votre code JavaScript ici
 function listesClick() {
   var cartesXassidas = document.querySelector(".card-xassidas");
   var listes = document.querySelector(".raccourcis");
@@ -492,5 +610,4 @@ function cartesClick() {
   document.querySelector(".raccourcis").style.display = "none";
   console.log("Bouton Cartes cliqué !");
 }
-});
 </script>
