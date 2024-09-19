@@ -771,71 +771,42 @@ display: none;
 
 
 
-
-<div class="card-xassidas">
+<!-- <div class="card-xassidas">
     <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center ">
+        @for (categorie of tabCategorie; track categorie.id) {
       <div class="col">
         <div class="card h-100">
-          <img src="https://img.freepik.com/photos-gratuite/composition-du-livre-livre-ouvert_23-2147690555.jpg?ga=GA1.2.1633719148.1721069217&semt=ais_hybrid" class="card-img-top" alt="Cover Image 1">
+          <img *ngIf="categorie.image" [src]="categorie.image" alt="Image catégorie" class="card-img-top">
+          <img [src]="imageLivre" class="rounded-4" alt="">
           <div class="card-body">
-            <h5 class="card-title">Book Title 1</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
+            <h5 class="card-title">{{categorie.name}}</h5>
+            <p class="card-text">{{categorie.description || 'Aucune description disponible'}}</p>
           </div>
         </div>
       </div>
-
-      <div class="col">
-        <div class="card h-100">
-          <img src="https://img.freepik.com/photos-gratuite/composition-du-livre-livre-ouvert_23-2147690555.jpg?ga=GA1.2.1633719148.1721069217&semt=ais_hybrid" class="card-img-top" alt="Cover Image 1">
-          <div class="card-body">
-            <h5 class="card-title">Book Title 1</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col">
-        <div class="card h-100">
-          <img src="https://img.freepik.com/photos-gratuite/composition-du-livre-livre-ouvert_23-2147690555.jpg?ga=GA1.2.1633719148.1721069217&semt=ais_hybrid" class="card-img-top" alt="Cover Image 1">
-          <div class="card-body">
-            <h5 class="card-title">Book Title 1</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-      </div>
-
-
-      <div class="col">
-        <div class="card h-100">
-          <img src="https://img.freepik.com/photos-gratuite/composition-du-livre-livre-ouvert_23-2147690555.jpg?ga=GA1.2.1633719148.1721069217&semt=ais_hybrid" class="card-img-top" alt="Cover Image 2">
-          <div class="card-body">
-            <h5 class="card-title">Book Title 2</h5>
-            <p class="card-text">This is a short card.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="https://img.freepik.com/photos-gratuite/composition-du-livre-livre-ouvert_23-2147690555.jpg?ga=GA1.2.1633719148.1721069217&semt=ais_hybrid" class="card-img-top" alt="Cover Image 3">
-          <div class="card-body">
-            <h5 class="card-title">Book Title 3</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card h-100">
-          <img src="https://img.freepik.com/photos-gratuite/composition-du-livre-livre-ouvert_23-2147690555.jpg?ga=GA1.2.1633719148.1721069217&semt=ais_hybrid" class="card-img-top" alt="Cover Image 4">
-          <div class="card-body">
-            <h5 class="card-title">Book Title 4</h5>
-            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content.</p>
-          </div>
-        </div>
-      </div>
+    }
     </div>
-  </div>
+  </div> -->
 
+  <div class="card-xassidas">
+  <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
+    @for (categorie of tabCategorie; track categorie.id) {
+      <div class="col">
+        <div class="card h-100">
+          @if (categorie.image) {
+            <img [src]="categorie.image" class="card-img-top rounded-4" alt="{{categorie.name}}">
+          } @else {
+            <div class="text-center p-3">{{messageImage}}</div>
+          }
+          <div class="card-body">
+            <h5 class="card-title">{{categorie.name}}</h5>
+            <p class="card-text">{{categorie.description || 'Aucune description disponible'}}</p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
 
 
 
@@ -868,6 +839,7 @@ display: none;
               </li>
             </ul>
           </div> -->
+          
         </div>
         <div class="footer-content-column">
           <div class="footer-menu">
