@@ -9,7 +9,7 @@ import { QuizComponent } from './Components/Apprenants/quiz/quiz.component';
 export const routes: Routes = [
 
     //Route pour Uesr simple
-{path: "", pathMatch: "full", redirectTo: "accueil"},
+{path: "", pathMatch: "full", redirectTo: "login"},
 
 {path: "login", component : LoginComponent},
 {path: "register", component : SignupComponent},
