@@ -5,11 +5,13 @@ import { AccueilComponent } from './Components/Apprenants/accueil/accueil.compon
 import { XassidasListeComponent } from './Components/Apprenants/xassidas-liste/xassidas-liste.component';
 import { ReadPDFComponent } from './Components/Apprenants/read-pdf/read-pdf.component';
 import { QuizComponent } from './Components/Apprenants/quiz/quiz.component';
+import { DashbordComponent } from './Components/Admin/dashbord/dashbord.component';
+import { authGuard } from './auth/auth.guard';
 
 export const routes: Routes = [
 
     //Route pour Uesr simple
-{path: "", pathMatch: "full", redirectTo: "login"},
+{path: "", pathMatch: "full", redirectTo: "register"},
 
 {path: "login", component : LoginComponent},
 {path: "register", component : SignupComponent},
@@ -17,5 +19,6 @@ export const routes: Routes = [
 {path: "xassidas", component : XassidasListeComponent},
 {path: "lecture", component : ReadPDFComponent},
 {path: "quiz", component : QuizComponent},
+{path: "admin", component : DashbordComponent,canActivate: [authGuard] },
 
 ];

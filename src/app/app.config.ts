@@ -8,6 +8,8 @@ import { provideHttpClient, withFetch, withInterceptors } from '@angular/common/
 export const appConfig: ApplicationConfig = {
   providers: [
     provideRouter(routes), 
-    provideHttpClient(withFetch(), withInterceptors([])) // Ajouter withFetch() ici
+    // provideHttpClient()
+    provideHttpClient(withFetch()), 
+    // withInterceptors([])
   ]
 };

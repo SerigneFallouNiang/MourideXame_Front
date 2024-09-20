@@ -7,363 +7,7 @@
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
             rel="stylesheet">
-        <style>
-        body {
-            background-color: #1e5631;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            /* background: var(--vert-secondaire, rgba(46, 139, 87, 0.50)); */
-          
-        }
-        .login-card {
-            /* background-color: white; */
-            display: flex;
-            justify-content: center; /* Centrage horizontal */
-            align-items: center;     /* Centrage vertical */
-            border-radius: 15px;
-            padding: 2rem;
-            width: 100%;
-            max-width: 957px;
-            width: 957px;
-            height: 848px;
-            flex-shrink: 0;
-            border-radius: 15px;
-            text-align: left;
-            /* background: url('../../../../assets/images/fond-form.png') lightgray 50% / cover no-repeat; */
-            /* background-image: linear-gradient(rgba(76, 175, 80, 0.7), rgba(76, 175, 80, 0.7)), url('../../../../assets/images/fond-form.png'); */
-            background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
-        }
-        .wave-shape {
-            background-color: #4caf50;
-            height: 150px;
-            border-radius: 15px 15px 50% 50% / 15px 15px 25% 25%;
-        }
-        .btn-custom {
-            background-color: #4caf50;
-            border: none;
-            color: white;
-        }
-        .btn-custom:hover {
-            background-color: #45a049;
-        }
 
-        .form-login{
-            width: 558px;
-            height: 780px;
-            flex-shrink: 0;
-            border-radius: 30px;
-            background: #FFF;
-            box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.30);
-            /* text-align: center; */
-        }
-        /* Wave container to hold the SVG */
-.wave-container {
-  border-radius: 30px 30px 0 0;
-  overflow: hidden; 
-  position: relative;
-    width: 100%;
-    height: 450px;
-}
-
-.wave-top, .wave-bottom {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-.wave-top {
-    z-index: 1; 
-}
-
-.wave-bottom {
-    z-index: 0; 
-    top: 13px;
-}
-.formulaire {
-    margin-top: -100px;
-    padding: 25px;
-    display: flex;
-    flex-direction: column;
-   
-}
-
-.text-connexion {
-    color: #2E8B57;
-    font-family: "Playfair Display";
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-align: left; 
-}
-
-label {
-    color: #2E8B57;
-    font-family: Lato;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-input {
-    border-radius: 10px;
-    border: 1px solid #2E8B57;
-    background: rgba(47, 128, 237, 0.00);
-}
-
-button[type="submit"] {
-    width: 201.836px;
-    height: 60px;
-    flex-shrink: 0;
-    border-radius: 7px;
-    border: 1px solid #2E8B57;
-    background: rgba(47, 128, 237, 0.00); /* Fond transparent */
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    color: #2E8B57;
-    text-align: center;
-    font-family: Lato;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-.wave-footer {
-    border-radius:0 0 30px 30px ;
-    overflow: hidden; 
-    position: relative;
-    width: 100%;
-    height: 130px;
-    top: -130px;
-    z-index: 0; 
-}
-.nouveauCompte{
-    z-index: 1; 
-    float: right;
-    color: #FFF;
-    font-family: Lato;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.nouveauCompte a {
-    z-index: 1; 
-    float: right;
-    color: #FFF;
-    font-family: Lato;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin-left: 5px;
-}
-
-.password-forget{
-    color: #B7BF99;
-    font-family: Lato;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-
-
-
-/* Media Queries pour les appareils mobiles */
-@media screen and (max-width: 768px) {
-    body {
-            background-color: #1e5631;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 100%;
-            overflow-x: hidden;
-            overflow-y: hidden;
-            /* height: 100vh; */
-            /* background: var(--vert-secondaire, rgba(46, 139, 87, 0.50)); */
-          
-        }
-        .login-card {
-            /* background-color: white; */
-            display: flex;
-            justify-content: center; /* Centrage horizontal */
-            align-items: center;     /* Centrage vertical */
-            border-radius: 15px;
-            padding: 2rem;
-            width: 100%;
-            max-width: 957px;
-            width: 957px;
-            height: 848px;
-            flex-shrink: 0;
-            border-radius: 15px;
-            text-align: left;
-            /* background: url('../../../../assets/images/fond-form.png') lightgray 50% / cover no-repeat; */
-            /* background-image: linear-gradient(rgba(76, 175, 80, 0.7), rgba(76, 175, 80, 0.7)), url('../../../../assets/images/fond-form.png'); */
-            background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
-        }
-        .wave-shape {
-            background-color: #4caf50;
-            height: 150px;
-            border-radius: 15px 15px 50% 50% / 15px 15px 25% 25%;
-        }
-        .btn-custom {
-            background-color: #4caf50;
-            border: none;
-            color: white;
-        }
-        .btn-custom:hover {
-            background-color: #45a049;
-        }
-
-        .form-login{
-            width: 411px;
-            /* height: 823px; */
-            flex-shrink: 0;
-            border-radius: 30px;
-            background: #FFF;
-            box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.30);
-            overflow: hidden;
-            /* text-align: center; */
-        }
-        /* Wave container to hold the SVG */
-.wave-container {
-  border-radius: 30px 30px 0 0;
-  overflow: hidden; 
-  position: relative;
-    width: 100%;
-    height: 450px;
-}
-
-.wave-top, .wave-bottom {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-}
-.wave-top {
-    z-index: 1; 
-}
-.wave-top  svg {
-    z-index: 1; 
-    width: 411px;
-    height: 230px;
-    flex-shrink: 0;
-}
-
-.wave-bottom  svg{
-    z-index: 0; 
-    width: 411px;
-    height: 480px;
-    flex-shrink: 0;
-}
-
-.wave-bottom {
-    z-index: 0; 
-}
-.formulaire {
-    margin-top: -180px;
-    padding: 40px;
-    display: flex;
-    flex-direction: column;
-   
-}
-
-.text-connexion {
-    color: #2E8B57;
-    font-family: "Playfair Display";
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    text-align: left; 
-}
-
-label {
-    color: #2E8B57;
-    font-family: Lato;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-input {
-    border-radius: 10px;
-    border: 1px solid #2E8B57;
-    background: rgba(47, 128, 237, 0.00);
-}
-
-button[type="submit"] {
-    width: 144px;
-height: 60px;
-flex-shrink: 0;
-    border-radius: 7px;
-    border: 1px solid #2E8B57;
-    background: rgba(47, 128, 237, 0.00); /* Fond transparent */
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-    color: #2E8B57;
-    text-align: center;
-    font-family: Lato;
-    font-size: 24px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-.wave-footer {
-    border-radius:0 0 30px 30px ;
-    overflow: hidden; 
-    position: relative;
-    width: 100%;
-    height: 130px;
-    top: -100px;
-    z-index: 0; 
-}
-
-.wave-footer svg {
-    width: 411px;
-    height: 140px;
-    z-index: 0; 
-}
-
-.nouveauCompte{
-    z-index: 1; 
-    float: right;
-    color: #FFF;
-    font-family: Lato;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-
-.nouveauCompte a {
-    z-index: 1; 
-    float: right;
-    color: #FFF;
-    font-family: Lato;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: normal;
-    margin-left: 5px;
-}
-
-.password-forget{
-    color: #B7BF99;
-    font-family: Lato;
-    font-size: 14px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-}
-}
-
-    </style>
     </head>
     <body>
         <div class="container">
@@ -394,28 +38,72 @@ flex-shrink: 0;
                     </div>
                     <div class="formulaire">
                         <h2 class="text-connexion mb-4">Connexion</h2>
-                        <form>
-                            <div class="mb-3">
-                                <label for="email"
-                                    class="form-label">Email</label>
-                                <input type="email" class="form-control"
-                                    id="email" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Mot de
-                                    passe</label>
-                                <input type="password" class="form-control"
-                                    id="password" required>
-                            </div>
-                            <div class="mb-3">
-                                <a href="#"
-                                    class="password-forget text-decoration-none">mot
-                                    de passe oublié?</a>
-                            </div>
-                            <button type="submit"
-                                class="btn btn-custom">Connexion</button>
+                        <form  [formGroup]="signupForm" (ngSubmit)="onSubmit()" >
 
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Nom complet</label>
+                                  
+                                <input type="text" class="form-control" id="email" formControlName="name"  placeholder="Nom complet" required>
+                                    
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Téléphone</label>
+                                  
+                                <input type="string" class="form-control" id="email" formControlName="telephone"  placeholder="Téléphone" required>
+                                    
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email</label>
+                                  
+                                <input type="email" class="form-control" id="email" formControlName="email"  placeholder="Email" required>
+                                    
+                            </div>
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Mot de passe</label>
+                                    
+                                <input type="password" class="form-control"  id="password" formControlName="password" placeholder="Mot de passe"  required>
+                                   
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="password" class="form-label">confirmer mot de passe</label>
+                                    
+                                <input type="password" class="form-control"  id="password" formControlName="password_confirmation" placeholder="confirmer votre mot de passe"  required>
+                                   
+                            </div>
+                            <!-- <div class="mb-3">
+                                <a href="#"  class="password-forget text-decoration-none">mot de passe oublié?</a>
+                                    
+                                   
+                            </div> -->
+                            <button type="submit" class="btn btn-custom"  value="Signup">Inscription</button>
+                                
                         </form>
+
+                        <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                            <div class="mb-3">
+                              <label for="email">Email address</label>
+                              <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email">
+                              <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">
+                                <small class="text-danger">Please enter a valid email</small>
+                              </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                              <label for="password">Password</label>
+                              <input type="password" formControlName="password" class="form-control" id="password" autocomplete="email" placeholder="Mot de passe">
+                              <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">
+                                <small class="text-danger">Password is required</small>
+                              </div>
+                            </div>
+                          
+                            <button  class="btn btn-custom">Connexion</button>
+                          </form> -->
+
+
 
                         <p class="nouveauCompte mt-3 text-end">Nouveau compte?
                             <a href="#" class="text-decoration-none">
