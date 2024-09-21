@@ -16,9 +16,10 @@ export const routes: Routes = [
 {path: "login", component : LoginComponent},
 {path: "register", component : SignupComponent},
 {path: "accueil", component : AccueilComponent},
-{path: "xassidas", component : XassidasListeComponent},
+// {path: "xassidas", component : XassidasListeComponent},
 {path: "lecture", component : ReadPDFComponent},
 {path: "quiz", component : QuizComponent},
 {path: "admin", component : DashbordComponent,canActivate: [authGuard] },
 { path: "category/:id", component: XassidasListeComponent },
+{ path: "books/:id", component: ReadPDFComponent },
 ];

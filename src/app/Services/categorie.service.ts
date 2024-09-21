@@ -15,7 +15,7 @@ export class CategorieService {
   }
 
     // Methode pour recuperer les livres d'une categorie
-    getBooksByCategory(categoryId: string) {
-      return this.http.get(`${apiUrl}/categories/${categoryId}/books`);
-    }
+    // getBooksByCategory(categoryId: string) {
+    //   return this.http.get(`${apiUrl}/categories/${categoryId}/books`);
+    // }
 }

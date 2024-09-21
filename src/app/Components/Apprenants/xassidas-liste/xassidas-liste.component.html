@@ -400,7 +400,7 @@ text-decoration: none;
           <li><a href="#">link 4</a></li>
           <li><a href="#">link 4</a></li>
           <li><a href="#">link 4</a></li> -->
-          <li *ngFor="let book of books"><a href="#">{{ book.title }}</a></li>
+          <li *ngFor="let book of books"><a  (click)="onBookClick(book.id!)">{{ book.title }}</a></li>
         </ul>
       </div>
     </div>

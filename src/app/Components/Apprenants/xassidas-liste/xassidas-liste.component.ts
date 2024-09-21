@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, NgModule, OnInit } from '@angular/core';
 import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar-apprenant.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../../Services/book.service';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 
@@ -31,7 +31,8 @@ export class XassidasListeComponent implements OnInit{
 
   constructor(
     private route: ActivatedRoute,
-    private bookService: BookService
+    private bookService: BookService,
+    private router:Router
   ) {}
 
   ngOnInit() {
@@ -60,4 +61,16 @@ export class XassidasListeComponent implements OnInit{
       }
     );
   }
+
+//button redirect vers id chapter
+// onBookClick(bookId: number | string ): void {
+//     const idAsString = bookId.toString(); // Convertir en chaîne
+//     this.navigate.navigate(['/books', idAsString]);
+//   }
+
+onBookClick(bookId: number | string): void {
+  const idAsString = bookId.toString();
+  this.router.navigate(['/books', idAsString]);
+}
+
 }

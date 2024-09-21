@@ -384,6 +384,24 @@ text-decoration: none;
 
 <!-- fin du nav-bar  -->
 
+
+<div *ngIf="chapters.length > 0">
+  <h2>{{ bookName }}</h2>
+  <ul>
+    <li *ngFor="let chapter of chapters">
+      <h3>{{ chapter['Titre du chapitre'] }}</h3>
+      <p>{{ chapter.Description }}</p>
+      <a [href]="chapter.Lien" target="_blank">Voir la vidéo</a>
+      <a [href]="chapter.Fichier" target="_blank">Télécharger le PDF</a>
+    </li>
+  </ul>
+</div>
+<div *ngIf="chapters.length === 0">
+  <p>Aucun chapitre disponible pour ce livre.</p>
+</div>
+
+
+
 <h1 class="categorie-titre">Xassidas</h1>
 <div class="button-nav-listes">
   <button class="button-retour-chapitre" id="cartes" ><i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #fff;"></i></button>
@@ -401,14 +419,6 @@ text-decoration: none;
    </div>
 </div>
       <div class="listes">
-        <!-- <ul>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-        </ul> -->
-
-        <!-- //Liste raccourcis  -->
         <ul>
           <li><a href="#">Touhfatou moutadarihine</a></li>
           <li><a href="#">Matlaboul chifa</a></li>
