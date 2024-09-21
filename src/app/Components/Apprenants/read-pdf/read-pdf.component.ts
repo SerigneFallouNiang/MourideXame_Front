@@ -15,10 +15,13 @@ export class ReadPDFComponent implements OnInit {
   bookName: string = '';
   messageImage: string = "Aucune image pour ce chapitre";
   chapters: any[] = [];
+    // Chapitre actuellement sélectionné
+    selectedChapter: any = null;
+
 
   constructor(
     private route: ActivatedRoute,
-    private chapitreService: ChapitreService
+    private chapitreService: ChapitreService,
   ) {}
 
   ngOnInit() {
@@ -47,4 +50,9 @@ export class ReadPDFComponent implements OnInit {
       }
     );
   }
+
+    // Méthode pour sélectionner un chapitre
+    selectChapter(chapter: any) {
+      this.selectedChapter = chapter;
+    }
 }

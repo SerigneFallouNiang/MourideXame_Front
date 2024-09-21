@@ -385,20 +385,20 @@ text-decoration: none;
 <!-- fin du nav-bar  -->
 
 
-<div *ngIf="chapters.length > 0">
+<!-- <div *ngIf="chapters.length > 0">
   <h2>{{ bookName }}</h2>
   <ul>
     <li *ngFor="let chapter of chapters">
       <h3>{{ chapter['Titre du chapitre'] }}</h3>
       <p>{{ chapter.Description }}</p>
-      <a [href]="chapter.Lien" target="_blank">Voir la vidéo</a>
+      <a [href]="chapter.Lien" target="_blank">Voir la vidéo</a><br>
       <a [href]="chapter.Fichier" target="_blank">Télécharger le PDF</a>
     </li>
   </ul>
 </div>
 <div *ngIf="chapters.length === 0">
   <p>Aucun chapitre disponible pour ce livre.</p>
-</div>
+</div> -->
 
 
 
@@ -406,13 +406,13 @@ text-decoration: none;
 <div class="button-nav-listes">
   <button class="button-retour-chapitre" id="cartes" ><i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #fff;"></i></button>
 </div>
-<section class="liste-xassidas">
+<section class="liste-xassidas" *ngIf="chapters.length > 0">
     <div  class="raccourcis">
-      <h2 class="titre-h2">Xassida</h2>
+      <h2 class="titre-h2">{{ bookName }}</h2>
       <!-- <input type="text" class="recherche"> -->
        <div class="wrap">
    <div class="search">
-      <input type="text" class="searchTerm" placeholder="Rechercher un livre">
+      <input type="text" class="searchTerm" placeholder="Rechercher un chapitre">
       <button type="submit" class="searchButton">
         <i class="fa fa-search"></i>
      </button>
@@ -420,25 +420,17 @@ text-decoration: none;
 </div>
       <div class="listes">
         <ul>
-          <li><a href="#">Touhfatou moutadarihine</a></li>
-          <li><a href="#">Matlaboul chifa</a></li>
-          <li><a href="#">Mafatihoul Bichri</a></li>
-          <li><a href="#">Mawahibou</a></li>
-          <li><a href="#">Massalikoul djinane</a></li>
-          <li><a href="#">link 4</a></li>
-          <li><a href="#">link 4</a></li>
-          <li><a href="#">link 4</a></li>
-          <li><a href="#">link 4</a></li>
-          <li><a href="#">link 4</a></li>
+          <li  *ngFor="let chapter of chapters"><a  (click)="selectChapter(chapter)">{{ chapter['Titre du chapitre'] }}</a></li>
         </ul>
       </div>
     </div>
-    <div   class="card-xassidas mt-5">
+    <div *ngIf="selectedChapter"   class="card-xassidas mt-5">
  
         <div class="container">
    
             <div class="video-cours">
-                <iframe  src="https://www.youtube.com/embed/ZS0C5EwWIE4" 
+                <iframe  
+                [src]="selectedChapter.Lien"
                     title="YouTube video player" 
                     frameborder="0" 
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
@@ -448,13 +440,9 @@ text-decoration: none;
             
 
                 <div class="description-chapitre">
-                    <h2 class="titre-chapitre">PREAMBULE</h2>
+                    <h2 class="titre-chapitre">{{ selectedChapter['Titre du chapitre'] }}</h2>
                     <p class="description-chapitre">
-                        Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
-Pourquoi l'utiliser?
-
-On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte. Du texte.' est qu'il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour 'Lorem Ipsum' vous conduira vers de nombreux sites qui n'en sont encore qu'à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement (histoire d'y rajouter de petits clins d'oeil, voire des phrases embarassantes).
-
+                      {{ selectedChapter.Description }}
                     </p>
                 </div>
                 <button class="button-quiz">Commencer le Quiz</button>
