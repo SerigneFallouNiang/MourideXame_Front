@@ -47,7 +47,7 @@
   max-width: 20em;
 
    /* Ajout de la hauteur maximale et du défilement vertical */
-   max-height: 500px; /* Vous pouvez ajuster cette hauteur selon vos besoins */
+   max-height: 400px; /* Vous pouvez ajuster cette hauteur selon vos besoins */
   overflow-y: auto;
 }
 
@@ -387,7 +387,7 @@ text-decoration: none;
       <div class="listes">
       
         <ul>
-          <li><a href="#">Touhfatou moutadarihine</a></li>
+          <!-- <li><a href="#">Touhfatou moutadarihine</a></li>
           <li><a href="#">Matlaboul chifa</a></li>
           <li><a href="#">Mafatihoul Bichri</a></li>
           <li><a href="#">Mawahibou</a></li>
@@ -395,8 +395,8 @@ text-decoration: none;
           <li><a href="#">link 4</a></li>
           <li><a href="#">link 4</a></li>
           <li><a href="#">link 4</a></li>
-          <li><a href="#">link 4</a></li>
-          <li><a href="#">link 4</a></li>
+          <li><a href="#">link 4</a></li> -->
+          <li *ngFor="let book of books"><a href="#">{{ book.title }}</a></li>
         </ul>
       </div>
     </div>
@@ -406,116 +406,8 @@ text-decoration: none;
          <!-- fin de la section statique  -->
   <div class="container  mt-5">
         <div class="row row-cols-2 row-cols-md-4 g-4">
-            <div class="col">
-                <div class="book-card">
-                    <div class="book-card__cover">
-                        <div class="book-card__book">
-                            <div class="book-card__book-front">
-                                <img class="book-card__img" src="https://img.freepik.com/photos-gratuite/pages-du-livre-ouvert_23-2147690479.jpg?ga=GA1.1.1272467380.1720960746&semt=ais_hybrid" alt="Harry Potter book cover">
-                            </div>
-                            <div class="book-card__book-back"></div>
-                            <div class="book-card__book-side"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="book-card__title">Harry Potter e a Pedra Filosofal</div>
-                        <div class="book-card__author">J. K. Rowling</div>
-                    </div>
-                </div>
-            </div>
+          
 
-
-            <div class="col">
-                <div class="book-card">
-                    <div class="book-card__cover">
-                        <div class="book-card__book">
-                            <div class="book-card__book-front">
-                                <img class="book-card__img" src="https://img.freepik.com/photos-gratuite/pages-du-livre-ouvert_23-2147690479.jpg?ga=GA1.1.1272467380.1720960746&semt=ais_hybrid" alt="Harry Potter book cover">
-                            </div>
-                            <div class="book-card__book-back"></div>
-                            <div class="book-card__book-side"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="book-card__title">Harry Potter e a Pedra Filosofal</div>
-                        <div class="book-card__author">J. K. Rowling</div>
-                    </div>
-                </div>
-            </div>
-
-
-
-  <div class="col">
-                <div class="book-card">
-                    <div class="book-card__cover">
-                        <div class="book-card__book">
-                            <div class="book-card__book-front">
-                                <img class="book-card__img" src="https://img.freepik.com/photos-gratuite/pages-du-livre-ouvert_23-2147690479.jpg?ga=GA1.1.1272467380.1720960746&semt=ais_hybrid" alt="Harry Potter book cover">
-                            </div>
-                            <div class="book-card__book-back"></div>
-                            <div class="book-card__book-side"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="book-card__title">Harry Potter e a Pedra Filosofal</div>
-                        <div class="book-card__author">J. K. Rowling</div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-             <div class="col">
-                <div class="book-card">
-                    <div class="book-card__cover">
-                        <div class="book-card__book">
-                            <div class="book-card__book-front">
-                                <img class="book-card__img" src="https://img.freepik.com/photos-gratuite/pages-du-livre-ouvert_23-2147690479.jpg?ga=GA1.1.1272467380.1720960746&semt=ais_hybrid" alt="Harry Potter book cover">
-                            </div>
-                            <div class="book-card__book-back"></div>
-                            <div class="book-card__book-side"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="book-card__title">Harry Potter e a Pedra Filosofal</div>
-                        <div class="book-card__author">J. K. Rowling</div>
-                    </div>
-                </div>
-            </div>
-
-
-
-
-
-
-
-
-
-
-              <div class="col">
-                <div class="book-card">
-                    <div class="book-card__cover">
-                        <div class="book-card__book">
-                            <div class="book-card__book-front">
-                                <img class="book-card__img" src="https://img.freepik.com/photos-gratuite/pages-du-livre-ouvert_23-2147690479.jpg?ga=GA1.1.1272467380.1720960746&semt=ais_hybrid" alt="Harry Potter book cover">
-                            </div>
-                            <div class="book-card__book-back"></div>
-                            <div class="book-card__book-side"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <div class="book-card__title">Harry Potter e a Pedra Filosofal</div>
-                        <div class="book-card__author">J. K. Rowling</div>
-                    </div>
-                </div>
-            </div>
 
 
 
@@ -548,30 +440,6 @@ text-decoration: none;
         </div>
     </div>
 
-    <!-- fin de la section statique  -->
-<!-- 
-    <div class="container mt-5">
-      <h2>Books in {{ categoryName }}</h2>
-      <div class="row row-cols-1 row-cols-md-3 g-4">
-        <div class="col" *ngFor="let book of books">
-          <div class="book-card">
-            <div class="book-card__cover">
-              <div class="book-card__book">
-                <div class="book-card__book-front">
-                  <img class="book-card__img" [src]="book.coverImage" [alt]="book.title + ' cover'">
-                </div>
-                <div class="book-card__book-back"></div>
-                <div class="book-card__book-side"></div>
-              </div>
-            </div>
-            <div>
-              <div class="book-card__title">{{ book.title }}</div>
-              <div class="book-card__author">{{ book.author }}</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div> -->
 
   </div>
 </section>
