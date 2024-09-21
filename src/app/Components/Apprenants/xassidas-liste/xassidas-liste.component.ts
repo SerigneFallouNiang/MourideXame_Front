@@ -13,6 +13,8 @@ import { apiUrlStockage } from '../../../Services/apiUrlStockage';
   styleUrl: './xassidas-liste.component.css'
 })
 export class XassidasListeComponent implements OnInit{
+
+  // les variable déclarer 
   isListVisible: boolean = true;
 
   showList() {
