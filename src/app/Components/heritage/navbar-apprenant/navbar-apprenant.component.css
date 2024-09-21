@@ -2,6 +2,11 @@
     width: 250px; /* Ajustez cette largeur si nécessaire */
   }
 
+  /* Ajoutez ceci au début de votre fichier CSS */
+body {
+  padding-top: 300px; 
+}
+
   /* Couleur de fond pour la navbar */
   .navbar {
     background-color: #2E8B57;
