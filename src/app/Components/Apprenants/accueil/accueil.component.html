@@ -712,7 +712,7 @@ display: none;
   <div class="row row-cols-1 row-cols-md-3 g-4 justify-content-center">
     @for (categorie of tabCategorie; track categorie.id) {
       <div class="col">
-        <div class="card h-100">
+        <div class="card h-100" (click)="onCategoryClick(categorie.id!)">
           @if (categorie.image) {
             <img [src]="categorie.image" class="card-img-top rounded-4" alt="{{categorie.name}}">
           } @else {
