@@ -20,5 +20,5 @@ export const routes: Routes = [
 {path: "lecture", component : ReadPDFComponent},
 {path: "quiz", component : QuizComponent},
 {path: "admin", component : DashbordComponent,canActivate: [authGuard] },
-
+{ path: "category/:id", component: XassidasListeComponent },
 ];

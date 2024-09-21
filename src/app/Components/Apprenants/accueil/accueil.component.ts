@@ -5,11 +5,13 @@ import { ModelCategorie } from '../../../Models/categorie.model';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { CommonModule } from '@angular/common';
 import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar-apprenant.component';
+// import { Router } from 'express';
+import { Router, RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-accueil',
   standalone: true,
-  imports: [FormsModule,CommonModule,NavbarApprenantComponent],
+  imports: [FormsModule,CommonModule,NavbarApprenantComponent,RouterModule],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.css'
 })
@@ -18,7 +20,8 @@ export class AccueilComponent implements OnInit{
   // Injection de dependance 
   private categorieService = inject(CategorieService);
 
-
+  // private router : Router;
+  private router = inject(Router);
 
     // Declaration des variables 
     tabCategorie:ModelCategorie[] = [];
@@ -68,5 +71,14 @@ export class AccueilComponent implements OnInit{
 }
 
 
-  
+
+// onCategoryClick(categoryId: numbernumber) {
+//   this.router.navigate(['/category', categoryId]);
+// }
+
+onCategoryClick(categoryId: number | string ): void {
+  const idAsString = categoryId.toString(); // Convertir en chaîne
+  this.router.navigate(['/category', idAsString]);
+}
+
 }

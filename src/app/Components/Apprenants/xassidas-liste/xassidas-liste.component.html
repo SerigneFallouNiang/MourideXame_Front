@@ -402,7 +402,7 @@ text-decoration: none;
     </div>
     <div  *ngIf="isListVisible" class="card-xassidas">
  
-  <div class="container  mt-5">
+  <!-- <div class="container  mt-5">
         <div class="row row-cols-2 row-cols-md-4 g-4">
             <div class="col">
                 <div class="book-card">
@@ -521,8 +521,29 @@ text-decoration: none;
 
 
         </div>
+    </div> -->
+    <div class="container mt-5">
+      <h2>Books in {{ categoryName }}</h2>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div class="col" *ngFor="let book of books">
+          <div class="book-card">
+            <div class="book-card__cover">
+              <div class="book-card__book">
+                <div class="book-card__book-front">
+                  <img class="book-card__img" [src]="book.coverImage" [alt]="book.title + ' cover'">
+                </div>
+                <div class="book-card__book-back"></div>
+                <div class="book-card__book-side"></div>
+              </div>
+            </div>
+            <div>
+              <div class="book-card__title">{{ book.title }}</div>
+              <div class="book-card__author">{{ book.author }}</div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
 
   </div>
 </section>
