@@ -25,22 +25,56 @@ export class LoginComponent {
   })
 
 
-  onSubmit(){
-    if(this.loginForm.valid){
+  // onSubmit(){
+  //   console.log('Bouton cliqué'); 
+  //   if(this.loginForm.valid){
+  //     console.log(this.loginForm.value);
+  //     this.authService.login(this.loginForm.value)
+  //     .subscribe((data: any) => {
+  //       if(this.authService.isLoggedIn()){
+  //         this.router.navigate(['/admin']);
+  //       }
+  //       console.log(data);
+  //     });
+  //   }
+  // }
+
+
+
+  onSubmit() {
+    console.log('Bouton cliqué');
+    
+    if (this.loginForm.valid) {
       console.log(this.loginForm.value);
-      this.authService.login(this.loginForm.value)
-      .subscribe((data: any) => {
-        if(this.authService.isLoggedIn()){
-          this.router.navigate(['/admin']);
+      
+      this.authService.login(this.loginForm.value).subscribe(
+        (data: any) => {
+          if (this.authService.isLoggedIn()) {
+            // Assurez-vous que `data` contient les informations de l'utilisateur, y compris le rôle
+            const user = data.user; // Supposons que le rôle soit stocké dans `user.role.name` ou une structure similaire
+            const userRole = user.role.name; // Si le rôle est dans une relation, vous pouvez y accéder via `user.role`
+            console.log(userRole)
+            // Stocker les informations de l'utilisateur et du rôle dans localStorage ou dans un service
+            localStorage.setItem('user', JSON.stringify(user));
+            
+            // Redirection basée sur le rôle récupéré depuis la table des rôles
+            if (userRole === 'admin') {
+              this.router.navigate(['/admin-dashboard']);  // Redirection vers le tableau de bord admin
+            } else if (userRole === 'membre') {
+              this.router.navigate(['/accueilMembre']);   // Redirection vers la page d'accueil des membres
+            } else {
+              this.router.navigate(['/livres']);          // Redirection par défaut pour les utilisateurs normaux
+            }
+          }
+        },
+        (error) => {
+          console.error('Erreur de connexion:', error);
+          // Gérer l'erreur ici, par exemple afficher un message d'alerte
         }
-        console.log(data);
-      });
+      );
     }
   }
-
-
-
-
+  
 
 
 
