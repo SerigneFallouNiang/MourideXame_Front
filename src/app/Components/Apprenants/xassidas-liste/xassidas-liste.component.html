@@ -275,6 +275,11 @@ text-decoration: none;
 
         @media (max-width: 991px) {
          
+          .retourButton{
+        width: 20.833px;
+        margin-bottom: 10px;
+        
+     }
           .raccourcis{
             display: none;
           }
@@ -363,7 +368,20 @@ text-decoration: none;
      }
 
      .container-all{
-      margin-top: 95px;
+      margin-top: 100px;
+     }
+
+     .retourButton{
+        width: 20.833px;
+        height: 17.708px;
+        flex-shrink: 0;
+        fill: #2E8B57;
+        stroke-width: 2.083px;
+        stroke: #2E8B57;
+        margin-left: 50px;
+        /* margin-top: 20px; */
+        margin-bottom: 10px;
+        
      }
     </style>
   
@@ -371,6 +389,11 @@ text-decoration: none;
     <app-navbar-apprenant></app-navbar-apprenant>
     <!-- heritage du navbar end  -->
 <section class="container-all">
+  <div class="retourButton">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M22.8333 19.6229C20.2847 16.5118 18.0215 14.7465 16.0437 14.3271C14.066 13.9076 12.183 13.8443 10.3948 14.137V19.7083L2 10.6172L10.3948 2V7.29531C13.7014 7.32135 16.5125 8.50764 18.8281 10.8542C21.1434 13.2007 22.4785 16.1236 22.8333 19.6229Z" fill="#2E8B57" stroke="#2E8B57" stroke-width="2.08333" stroke-linejoin="round"/>
+    </svg>
+  </div>
 <h1 class="categorie-titre">Xassidas</h1>
 <div class="button-nav-listes">
   <button class="cards-nav" id="cartes" (click)="showCards()">Cartes</button>
@@ -415,7 +438,7 @@ text-decoration: none;
 
 
 
-            <div class="col" *ngFor="let book of books">
+            <div class="col" *ngFor="let book of books" (click)="onBookClick(book.id!)">
               <div class="book-card">
                 <div class="book-card__cover">
                   <div class="book-card__book">

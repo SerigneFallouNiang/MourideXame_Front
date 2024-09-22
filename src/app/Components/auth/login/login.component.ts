@@ -25,20 +25,44 @@ export class LoginComponent {
   })
 
 
-  onSubmit(){
-    if(this.loginForm.valid){
-      console.log(this.loginForm.value);
-      this.authService.login(this.loginForm.value)
-      .subscribe((data: any) => {
-        if(this.authService.isLoggedIn()){
-          this.router.navigate(['/accueil']);
+  // onSubmit(){
+  //   if(this.loginForm.valid){
+  //     console.log(this.loginForm.value);
+  //     this.authService.login(this.loginForm.value)
+  //     .subscribe((data: any) => {
+  //       if(this.authService.isLoggedIn()){
+  //         this.router.navigate(['/accueil']);
+  //       }
+  //       console.log(data);
+  //     });
+  //   }
+  // }
+
+
+  onSubmit() {
+    if (this.loginForm.valid) {
+      this.authService.login(this.loginForm.value).subscribe(
+        (data: any) => {
+          if (data.status) {
+            const roles = data.roles;  // Récupérer les rôles depuis la réponse API
+            
+            // Redirection en fonction du rôle
+            if (roles.includes('apprenant')) {
+              this.router.navigate(['/accueil']);
+            } else if (roles.includes('visiteur')) {
+              this.router.navigate(['/login']);
+            } else {
+              this.router.navigate(['/default-page']);  // Par défaut, si aucun rôle spécifique
+            }
+          }
+        },
+        (error) => {
+          console.error('Erreur de connexion:', error);
         }
-        console.log(data);
-      });
+      );
     }
   }
-
-
+  
 
 
 

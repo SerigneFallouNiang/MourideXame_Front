@@ -8,23 +8,39 @@ body {
   
 }
 .login-card {
-    /* background-color: white; */
     display: flex;
-    justify-content: center; /* Centrage horizontal */
-    align-items: center;     /* Centrage vertical */
+    justify-content: center; 
+    align-items: center;  
+    border-radius: 15px;
+    padding: 2rem;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 957px;
+    width: 957px;
+    height: 44.17%;
+    flex-shrink: 0;
+    border-radius: 15px;
+    text-align: left;
+    background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
+}
+
+/* .login-card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     border-radius: 15px;
     padding: 2rem;
     width: 100%;
     max-width: 957px;
-    width: 957px;
-    height: 848px;
+    height: 44.17vh; 
+    margin: 0 auto;
     flex-shrink: 0;
-    border-radius: 15px;
     text-align: left;
-    /* background: url('../../../../assets/images/fond-form.png') lightgray 50% / cover no-repeat; */
-    /* background-image: linear-gradient(rgba(76, 175, 80, 0.7), rgba(76, 175, 80, 0.7)), url('../../../../assets/images/fond-form.png'); */
     background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
-}
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+} */
 .wave-shape {
     background-color: #4caf50;
     height: 150px;
@@ -359,4 +375,66 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
+
+
+
+
+
+
+/* Media Queries pour MacBook Air */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+    body {
+      background-color: #1e5631;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  
+    .login-card {
+      width: 75%; /* Adapter la largeur pour un MacBook Air */
+      max-width: 900px;
+      height: auto;
+      padding: 3rem;
+      background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
+    }
+  
+    .form-login {
+      width: 75%; /* Ajuster la largeur */
+      max-width: 450px;
+      padding: 30px;
+    }
+  
+    .wave-container {
+      height: 400px;
+    }
+  
+    .wave-top svg,
+    .wave-bottom svg {
+      width: 100%; /* S'adapter à la largeur de l'écran */
+      height: auto;
+    }
+  
+    .wave-footer {
+      height: 130px;
+    }
+  
+    .wave-footer svg {
+      width: 100%; /* Ajuster la largeur */
+      height: auto;
+    }
+  
+    .text-connexion {
+      font-size: 34px; /* Ajuster légèrement la taille de police */
+    }
+  
+    button[type="submit"] {
+      width: 130px;
+      height: 55px;
+      font-size: 22px;
+    }
+  }
+  
 }
