@@ -29,6 +29,12 @@ export class AuthService {
       isLoggedIn() {
         return localStorage.getItem('authUser') !== null;
       }
+
+      // AuthService
+      getProfile() {
+        return this.http.get(`${apiUrl}/profile`);
+      }
+
     // // Methode pour s'authetifier 
     // login(identifiant:any){
     //     return this.http.post(`${apiUrl}/login`, identifiant);
