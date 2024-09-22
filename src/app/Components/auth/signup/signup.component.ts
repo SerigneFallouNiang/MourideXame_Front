@@ -3,12 +3,13 @@ import { inject } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../../../Services/auth.service';
+import { CommonModule } from '@angular/common';
 
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [ReactiveFormsModule,RouterModule],
+  imports: [ReactiveFormsModule,RouterModule,CommonModule],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'
 })
@@ -20,9 +21,9 @@ export class SignupComponent {
   public signupForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('', [Validators.required]),
+    password: new FormControl('', [Validators.required, Validators.minLength(4)]),
     password_confirmation: new FormControl('', [Validators.required]),
-    telephone: new FormControl('', [Validators.required])
+    telephone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10,15}$')])
   })
 
 
@@ -37,6 +38,10 @@ export class SignupComponent {
           },
           error: (err) => console.log(err)
         });
+    }else {
+      this.signupForm.markAllAsTouched();  // This will mark all fields as touched to show errors
     }
   }
+
+  
 }

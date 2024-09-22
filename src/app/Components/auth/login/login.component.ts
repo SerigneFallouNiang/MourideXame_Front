@@ -19,6 +19,9 @@ export class LoginComponent {
   authService = inject(AuthService);
   router = inject(Router);
 
+  // Propriété pour stocker le message d'erreur
+  errorMessage: string = '';  
+
   protected loginForm = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required])
@@ -54,12 +57,19 @@ export class LoginComponent {
             } else {
               this.router.navigate(['/default-page']);  // Par défaut, si aucun rôle spécifique
             }
+          }else {
+            // Si la réponse n'a pas de statut valide, afficher un message d'erreur
+            this.errorMessage = 'Identifiants incorrects.';
           }
         },
         (error) => {
           console.error('Erreur de connexion:', error);
+          this.errorMessage = 'Email ou mot de passe incorrect';  // Message d'erreur personnalisé
         }
       );
+    }else {
+      // Si le formulaire est invalide, afficher un message d'erreur
+      this.errorMessage = 'Veuillez remplir tous les champs correctement.';
     }
   }
   
