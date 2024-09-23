@@ -428,7 +428,7 @@ text-decoration: none;
  
         <div class="container">
    
-            <div class="video-cours">
+            <!-- <div class="video-cours">
                 <iframe  
                 [src]="selectedChapter.Lien"
                     title="YouTube video player" 
@@ -436,6 +436,15 @@ text-decoration: none;
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
                     allowfullscreen>
                 </iframe>
+            </div> -->
+            <div class="video-cours" *ngIf="selectedChapter.safeVideoUrl">
+              <iframe 
+                [src]="selectedChapter.safeVideoUrl"
+                title="YouTube video player" 
+                frameborder="0" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                allowfullscreen>
+              </iframe>
             </div>
             
 
