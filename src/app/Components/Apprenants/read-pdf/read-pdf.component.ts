@@ -4,11 +4,12 @@ import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { ChapitreService } from '../../../Services/chapitre.service';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer } from '@angular/platform-browser';
+import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar-apprenant.component';
 
 @Component({
   selector: 'app-read-pdf',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule,NavbarApprenantComponent],
   templateUrl: './read-pdf.component.html',
   styleUrl: './read-pdf.component.css'
 })

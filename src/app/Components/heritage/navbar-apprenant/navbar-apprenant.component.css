@@ -66,6 +66,9 @@ body {
     display: none;
   }
 
+.offcanvas-body ul li a {
+  cursor: pointer;
+}
 
   /* Alignement total à droite en mode bureau */
   @media (min-width: 992px) {
