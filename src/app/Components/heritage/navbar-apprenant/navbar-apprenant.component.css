@@ -66,28 +66,53 @@ body {
     display: none;
   }
 
-.offcanvas-body ul li a {
-  cursor: pointer;
-  color: #FFF;
-  font-family: "Playfair Display";
-  font-size: 18px;
-  font-style: normal;
-  font-weight: 400;
-  line-height: normal;
-}
+
 
   /* Alignement total à droite en mode bureau */
-  @media (min-width: 992px) {
+  @media (min-width: 768px) {
     .offcanvas-body {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
     }
+
+    .dropdown-menu li a{
+      cursor: pointer;
+      color: #000;
+      font-family: "Playfair Display";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
+
+    .dropdown-item{
+      color: #000;
+    }
+
+    .offcanvas-body ul li a {
+      cursor: pointer;
+      color: #fff;
+      font-family: "Playfair Display";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
   }
 
   /* Alignement de la liste à droite en mode mobile */
-  @media (max-width: 991px) {
+  @media (max-width: 768px) {
 
+    .offcanvas-body ul li a {
+      cursor: pointer;
+      color: #000;
+      font-family: "Playfair Display";
+      font-size: 18px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+    }
     .connexion svg {
     display: block;
     margin-right: 10px;
@@ -135,7 +160,6 @@ body {
 
    .nom-profil{
     color: #000;
-
     /* H1,H2,H3 : titre */
     font-family: "Playfair Display";
     font-size: 18px;
