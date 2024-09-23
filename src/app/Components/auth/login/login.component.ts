@@ -47,7 +47,11 @@ export class LoginComponent {
       this.authService.login(this.loginForm.value).subscribe(
         (data: any) => {
           if (data.status) {
+            const user = data.user;  // Récupérer les informations de l'utilisateur
             const roles = data.roles;  // Récupérer les rôles depuis la réponse API
+
+            // Stocker les informations de l'utilisateur dans le localStorage
+            localStorage.setItem('authUser', JSON.stringify({ user, roles }));  
             
             // Redirection en fonction du rôle
             if (roles.includes('apprenant')) {

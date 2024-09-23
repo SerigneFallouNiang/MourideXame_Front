@@ -68,6 +68,12 @@ body {
 
 .offcanvas-body ul li a {
   cursor: pointer;
+  color: #FFF;
+  font-family: "Playfair Display";
+  font-size: 18px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
 }
 
   /* Alignement total à droite en mode bureau */

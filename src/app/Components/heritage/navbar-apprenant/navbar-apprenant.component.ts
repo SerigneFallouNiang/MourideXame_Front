@@ -122,15 +122,54 @@ tabCategorie: ModelCategorie[] = [];
   messageImage: string = "Aucune image pour cette catégorie";
   loading: boolean = true;
   error: string | null = null;
+  userConnected: UserModel | null = null;
 
   constructor(
     private categorieService: CategorieService,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {}
 
   ngOnInit(): void {
     this.fetchCategorie();
+    this.loadUserInfo();
   }
+
+
+  // loadUserInfo() {
+  //   const authUser = localStorage.getItem("authUser");
+  //   if (authUser) {
+  //     this.userConnected = JSON.parse(authUser).user;
+  //   } else {
+  //     this.authService.getProfile().subscribe(
+  //       (user: UserModel) => {
+  //         this.userConnected = user;
+  //         localStorage.setItem("authUser", JSON.stringify({ user }));
+  //       },
+  //       error => {
+  //         console.error("Erreur lors de la récupération des informations de l'utilisateur", error);
+  //       }
+  //     );
+  //   }
+  // }
+
+  loadUserInfo() {
+    const authUser = localStorage.getItem("authUser");
+    if (authUser) {
+      this.userConnected = JSON.parse(authUser).user;
+    } else {
+      this.authService.getProfile().subscribe(
+        (user: UserModel) => {
+          this.userConnected = user;
+          localStorage.setItem("authUser", JSON.stringify({ user }));
+        },
+        error => {
+          console.error("Erreur lors de la récupération des informations de l'utilisateur", error);
+        }
+      );
+    }
+  }
+
 
   fetchCategorie() {
     this.loading = true;
@@ -161,8 +200,23 @@ tabCategorie: ModelCategorie[] = [];
     const idAsString = categoryId.toString();
     this.router.navigate(['/category', idAsString]);
   }
+
   trackByCategorieId(index: number, categorie: ModelCategorie): number {
     return categorie.id!;
   }
   
+
+
+  logout() {
+    this.authService.logout();
+    localStorage.removeItem("authUser");
+    this.userConnected = null;
+    this.router.navigateByUrl("/login");
+  }
+
+  
+  editProfile() {
+    // Naviguer vers la page de modification du profil
+    this.router.navigateByUrl("/edit-profile");
+  }
 }
