@@ -76,7 +76,7 @@ body {
       align-items: flex-end;
     }
 
-    .dropdown-menu li a{
+    /* .dropdown-menu li a{
       cursor: pointer;
       color: #000;
       font-family: "Playfair Display";
@@ -88,8 +88,13 @@ body {
 
     .dropdown-item{
       color: #000;
-    }
+    } */
 
+      /* Ajouter une classe spécifique pour plus de contrôle */
+  .custom-dropdown .dropdown-menu li a,
+  .custom-dropdown .dropdown-item {
+    color: #000 !important;
+  }
     .offcanvas-body ul li a {
       cursor: pointer;
       color: #fff;

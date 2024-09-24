@@ -271,18 +271,60 @@ text-decoration: none;
           }
 
 
+        @media (max-width: 768px) {
+          .container-all{
+      margin-top: 80px;
+     }
+     .container-button-return-toggle{
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 20px;
+      padding-right: 20px;
+     }
+      
+     .retourButton{
+        width: 20.833px;
+        height: 17.708px;
+        flex-shrink: 0;
+        fill: #2E8B57;
+        stroke-width: 2.083px;
+        stroke: #2E8B57;
+     }
+
+     .list-card-toggle{
+      /* margin-right: 20px; */
+        width: 25px;
+        height: 25px;
+        flex-shrink: 0;
+        fill: #2E8B57;
+     }
+    }
+
           
 
         @media (max-width: 991px) {
-         
-          .retourButton{
+          .container-all{
+      margin-top: 80px;
+     }
+
+   
+      
+     .retourButton{
         width: 20.833px;
-        margin-bottom: 10px;
+        height: 17.708px;
+        flex-shrink: 0;
+        fill: #2E8B57;
+        stroke-width: 2.083px;
+        stroke: #2E8B57;
+        /* margin-left: 10px; */
+        /* margin-top: 20px; */
+        /* margin-bottom: 10px; */
         
      }
-          .raccourcis{
+          /* .raccourcis{
             display: none;
-          }
+          } */
 
             .book-card {
             width: 160px;
@@ -365,14 +407,16 @@ text-decoration: none;
          margin: 0;
          padding: 0;
         }
-     }
+        .list-card-toggle{
+          display: none;
+        }
 
-     .container-all{
-      margin-top: 100px;
-     }
+        .container-all{
+            margin-top: 100px;
+          }
 
-     .retourButton{
-        width: 20.833px;
+        .retourButton{
+        /* width: 20.833px; */
         height: 17.708px;
         flex-shrink: 0;
         fill: #2E8B57;
@@ -383,24 +427,47 @@ text-decoration: none;
         margin-bottom: 10px;
         
      }
+     }
+
+    
+
+   
     </style>
   
     <!-- heritage du navbar start  -->
     <app-navbar-apprenant></app-navbar-apprenant>
     <!-- heritage du navbar end  -->
 <section class="container-all">
+  <div class="container-button-return-toggle">
+
   <div class="retourButton">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M22.8333 19.6229C20.2847 16.5118 18.0215 14.7465 16.0437 14.3271C14.066 13.9076 12.183 13.8443 10.3948 14.137V19.7083L2 10.6172L10.3948 2V7.29531C13.7014 7.32135 16.5125 8.50764 18.8281 10.8542C21.1434 13.2007 22.4785 16.1236 22.8333 19.6229Z" fill="#2E8B57" stroke="#2E8B57" stroke-width="2.08333" stroke-linejoin="round"/>
     </svg>
   </div>
+  <!-- <button class="cards-nav" id="cartes" (click)="showCards()">Cartes</button> -->
+ 
+  <button class="list-card-toggle"  (click)="toggleView()">
+    <svg *ngIf="!isListView" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+      <rect width="25" height="25" fill="#2E8B57"/>
+      <path d="M20.3125 3.125H4.6875C4.2731 3.125 3.87567 3.28962 3.58265 3.58265C3.28962 3.87567 3.125 4.2731 3.125 4.6875V20.3125C3.125 20.7269 3.28962 21.1243 3.58265 21.4174C3.87567 21.7104 4.2731 21.875 4.6875 21.875H20.3125C20.7269 21.875 21.1243 21.7104 21.4174 21.4174C21.7104 21.1243 21.875 20.7269 21.875 20.3125V4.6875C21.875 4.2731 21.7104 3.87567 21.4174 3.58265C21.1243 3.28962 20.7269 3.125 20.3125 3.125ZM18.75 17.9688H6.25C6.0428 17.9688 5.84409 17.8864 5.69757 17.7399C5.55106 17.5934 5.46875 17.3947 5.46875 17.1875C5.46875 16.9803 5.55106 16.7816 5.69757 16.6351C5.84409 16.4886 6.0428 16.4062 6.25 16.4062H18.75C18.9572 16.4062 19.1559 16.4886 19.3024 16.6351C19.4489 16.7816 19.5312 16.9803 19.5312 17.1875C19.5312 17.3947 19.4489 17.5934 19.3024 17.7399C19.1559 17.8864 18.9572 17.9688 18.75 17.9688ZM18.75 13.2812H6.25C6.0428 13.2812 5.84409 13.1989 5.69757 13.0524C5.55106 12.9059 5.46875 12.7072 5.46875 12.5C5.46875 12.2928 5.55106 12.0941 5.69757 11.9476C5.84409 11.8011 6.0428 11.7188 6.25 11.7188H18.75C18.9572 11.7188 19.1559 11.8011 19.3024 11.9476C19.4489 12.0941 19.5312 12.2928 19.5312 12.5C19.5312 12.7072 19.4489 12.9059 19.3024 13.0524C19.1559 13.1989 18.9572 13.2812 18.75 13.2812ZM18.75 8.59375H6.25C6.0428 8.59375 5.84409 8.51144 5.69757 8.36493C5.55106 8.21841 5.46875 8.0197 5.46875 7.8125C5.46875 7.6053 5.55106 7.40659 5.69757 7.26007C5.84409 7.11356 6.0428 7.03125 6.25 7.03125H18.75C18.9572 7.03125 19.1559 7.11356 19.3024 7.26007C19.4489 7.40659 19.5312 7.6053 19.5312 7.8125C19.5312 8.0197 19.4489 8.21841 19.3024 8.36493C19.1559 8.51144 18.9572 8.59375 18.75 8.59375Z" fill="#F5F5F5"/>
+    </svg>
+  <!-- </button>
+
+  <button class="list-card-toggle" id="card-toggle"> -->
+    <svg *ngIf="isListView" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
+      <rect width="25" height="25" fill="#2E8B57"/>
+      <path d="M11.4531 4.875V8.91667C11.4531 9.25132 11.387 9.58268 11.2586 9.89173C11.1303 10.2008 10.9421 10.4814 10.705 10.7176C10.4679 10.9537 10.1864 11.1407 9.87687 11.2679C9.5673 11.395 9.23567 11.4597 8.90101 11.4583H4.88018C4.54643 11.4604 4.21571 11.395 3.90784 11.2661C3.59997 11.1372 3.3213 10.9475 3.08851 10.7083C2.85218 10.474 2.66502 10.1948 2.53802 9.88709C2.41102 9.57943 2.34673 9.2495 2.34893 8.91667V4.88542C2.34893 4.21313 2.61528 3.56822 3.08968 3.09186C3.56409 2.6155 4.2079 2.34651 4.88018 2.34375H8.91143C9.24483 2.34407 9.57486 2.41052 9.8824 2.53926C10.1899 2.668 10.4689 2.85647 10.7031 3.09375C10.9401 3.32602 11.1284 3.60315 11.2572 3.90897C11.386 4.21479 11.4526 4.54318 11.4531 4.875ZM22.651 4.88542V8.91667C22.6456 9.58729 22.3775 10.2291 21.9043 10.7043C21.431 11.1794 20.7904 11.4502 20.1198 11.4583H16.0781C15.4043 11.4542 14.7584 11.1891 14.276 10.7187C14.0403 10.4818 13.8536 10.2006 13.7267 9.89137C13.5998 9.58214 13.5352 9.25092 13.5364 8.91667V4.88542C13.5356 4.55184 13.6015 4.22147 13.7303 3.91377C13.8591 3.60607 14.0482 3.32725 14.2864 3.09375C14.5206 2.85647 14.7996 2.668 15.1071 2.53926C15.4147 2.41052 15.7447 2.34407 16.0781 2.34375H20.1093C20.7818 2.34919 21.4251 2.61872 21.9006 3.0942C22.376 3.56968 22.6456 4.21301 22.651 4.88542ZM22.651 16.0833V20.1146C22.6456 20.7852 22.3775 21.427 21.9043 21.9022C21.431 22.3774 20.7904 22.6481 20.1198 22.6562H16.0781C15.4001 22.6631 14.7461 22.4053 14.2552 21.9375C14.0185 21.7012 13.8313 21.4202 13.7043 21.1108C13.5773 20.8014 13.5132 20.4698 13.5156 20.1354V16.1042C13.5148 15.7706 13.5807 15.4402 13.7095 15.1325C13.8383 14.8248 14.0274 14.546 14.2656 14.3125C14.4998 14.0752 14.7788 13.8868 15.0863 13.758C15.3938 13.6293 15.7239 13.5628 16.0573 13.5625H20.0885C20.7609 13.5679 21.4042 13.8375 21.8797 14.313C22.3552 14.7884 22.6247 15.4318 22.6302 16.1042L22.651 16.0833ZM11.4531 16.0937V20.125C11.4449 20.7974 11.1727 21.4396 10.6953 21.9131C10.2179 22.3867 9.57345 22.6536 8.90101 22.6562H4.88018C4.54739 22.6576 4.21761 22.5931 3.90989 22.4664C3.60216 22.3397 3.32257 22.1533 3.08724 21.9179C2.85192 21.6826 2.66552 21.403 2.5388 21.0953C2.41209 20.7876 2.34755 20.4578 2.34893 20.125V16.0937C2.35162 15.4213 2.61851 14.7769 3.09204 14.2995C3.56557 13.822 4.20779 13.5499 4.88018 13.5417H8.91143C9.58664 13.5486 10.2328 13.8175 10.7135 14.2917C11.1886 14.7709 11.4545 15.4189 11.4531 16.0937Z" fill="#F5F5F5"/>
+    </svg>
+  </button>
+</div>
 <h1 class="categorie-titre">Xassidas</h1>
-<div class="button-nav-listes">
+<!-- <div class="button-nav-listes">
   <button class="cards-nav" id="cartes" (click)="showCards()">Cartes</button>
   <button class="cards-nav" (click)="showList()">Listes</button>
-</div>
+</div> -->
 <section class="liste-xassidas">
-    <div *ngIf="isListVisible" class="raccourcis">
+    <div *ngIf="isListView"  class="raccourcis">
       <h2 class="titre-h2">Xassida</h2>
       <!-- <input type="text" class="recherche"> -->
        <div class="wrap">
@@ -414,29 +481,16 @@ text-decoration: none;
       <div class="listes">
       
         <ul>
-          <!-- <li><a href="#">Touhfatou moutadarihine</a></li>
-          <li><a href="#">Matlaboul chifa</a></li>
-          <li><a href="#">Mafatihoul Bichri</a></li>
-          <li><a href="#">Mawahibou</a></li>
-          <li><a href="#">Massalikoul djinane</a></li>
-          <li><a href="#">link 4</a></li>
-          <li><a href="#">link 4</a></li>
-          <li><a href="#">link 4</a></li>
-          <li><a href="#">link 4</a></li> -->
           <li *ngFor="let book of books"><a  (click)="onBookClick(book.id!)">{{ book.title }}</a></li>
         </ul>
       </div>
     </div>
-    <div  *ngIf="isListVisible" class="card-xassidas">
+    <div  *ngIf="!isListView"   class="card-xassidas">
  
 
          <!-- fin de la section statique  -->
   <div class="container  mt-5">
         <div class="row row-cols-2 row-cols-md-4 g-4">
-          
-
-
-
 
             <div class="col" *ngFor="let book of books" (click)="onBookClick(book.id!)">
               <div class="book-card">
@@ -462,10 +516,11 @@ text-decoration: none;
             </div>
 
 
-
+        
 
         </div>
     </div>
+
 
 
   </div>

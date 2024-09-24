@@ -15,15 +15,13 @@ import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 export class XassidasListeComponent implements OnInit{
 
   // les variable déclarer 
-  isListVisible: boolean = true;
-
-  showList() {
-    this.isListVisible = true;
+  isListView: boolean = true;
+  //fonction toggle des deux button
+  toggleView(){
+    this.isListView = !this.isListView
   }
 
-  showCards() {
-    this.isListVisible = false;
-  } 
+ 
 
   books: any[] = [];
   categoryName: string = '';
