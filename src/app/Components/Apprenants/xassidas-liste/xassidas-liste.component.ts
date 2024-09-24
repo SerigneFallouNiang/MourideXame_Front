@@ -4,11 +4,12 @@ import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../../Services/book.service';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-xassidas-liste',
   standalone: true,
-  imports: [CommonModule,NavbarApprenantComponent],
+  imports: [CommonModule,NavbarApprenantComponent,FormsModule],
   templateUrl: './xassidas-liste.component.html',
   styleUrl: './xassidas-liste.component.css'
 })
@@ -24,8 +25,10 @@ export class XassidasListeComponent implements OnInit{
  
 
   books: any[] = [];
+  filteredBooks: any[] = []; // Pour stocker les résultats filtrés
   categoryName: string = '';
   messageImage: string = "Aucune image pour ce categorie";
+  searchTerm: string = ''; // Variable pour le terme de recherche
 
   constructor(
     private route: ActivatedRoute,
@@ -37,6 +40,7 @@ export class XassidasListeComponent implements OnInit{
     this.route.params.subscribe(params => {
       const categoryId = params['id'];
       this.loadBooks(categoryId);
+      this.filteredBooks = this.books;
     });
   }
 
@@ -44,6 +48,8 @@ export class XassidasListeComponent implements OnInit{
     this.bookService.getBooksByCategory(categoryId).subscribe(
       (data: any) => {
         this.books = data.books;
+        //mettre les livre dans le variable filteredBooks
+        this.filteredBooks = this.books; 
         this.categoryName = data.categoryName;
          // Met à jour l'URL de l'image pour chaque catégorie
          this.books.forEach(books => {
@@ -60,15 +66,24 @@ export class XassidasListeComponent implements OnInit{
     );
   }
 
-//button redirect vers id chapter
-// onBookClick(bookId: number | string ): void {
-//     const idAsString = bookId.toString(); // Convertir en chaîne
-//     this.navigate.navigate(['/books', idAsString]);
-//   }
+   // la méthode pour rediriger vers la page d'accueil
+   goToAccueil(): void {
+    this.router.navigate(['/accueil']);
+  }
 
+//redirection pa id vers la lecture du livre
 onBookClick(bookId: number | string): void {
   const idAsString = bookId.toString();
   this.router.navigate(['/books', idAsString]);
 }
+
+
+
+  // Fonction de recherche pour filtrer les livres
+  searchBooks() {
+    this.filteredBooks = this.books.filter(book =>
+      book.title.toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+  }
 
 }

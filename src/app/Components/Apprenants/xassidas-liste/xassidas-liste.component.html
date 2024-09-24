@@ -14,7 +14,7 @@
    }
 
    .listes{
-    width: 265px;
+    width: 100%;
     height: auto;
     flex-shrink: 0;
 
@@ -36,23 +36,11 @@
     list-style: none;
    } */
 
-   .listes ul {
-  padding: 1em;
-  margin: auto;
-  border-radius: 1em;
-  /* background-color: #2E8B57; */
-  background-color: rgba(46, 139, 87, 0.5);
-
-  list-style: none;
-  max-width: 20em;
-
-   /* Ajout de la hauteur maximale et du défilement vertical */
-   max-height: 400px; /* Vous pouvez ajuster cette hauteur selon vos besoins */
-  overflow-y: auto;
-}
+ 
 
 .listes li {
-  background-color: #ccc;
+  /* background-color: #ccc; */
+  background-color: #FFD233;
   border-radius: .5em;
   transition: all .2s;
 }
@@ -96,7 +84,7 @@ text-decoration: none;
     line-height: normal;
    }
 .raccourcis{
-   margin: 20px;
+   margin: 10px;
 }
 .card-xassidas .card {
   position: relative;
@@ -245,26 +233,34 @@ text-decoration: none;
 
           .searchTerm {
             width: 100%;
-            border: 3px solid #2E8B57;
+            border: 3px solid #FFD233;
             border-right: none;
             padding: 5px;
             height: 100%;
             border-radius: 5px 0 0 5px;
             outline: none;
             color: #9DBFAF;
+            font-family: "Playfair Display";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
           }
 
           .searchTerm:focus{
-            color: #00B4CC;
+            color: #2E8B57;
+            font-family: "Playfair Display";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
           }
 
           .searchButton {
             width: 40px;
             height: 36px;
-            border: 1px solid #2E8B57;
-            background: #2E8B57;
+            border: 1px solid #FFD233;
+            background: #FFD233;
             text-align: center;
-            color: #fff;
+            color: #2E8B57;
             border-radius: 0 5px 5px 0;
             cursor: pointer;
             font-size: 20px;
@@ -275,6 +271,22 @@ text-decoration: none;
           .container-all{
       margin-top: 80px;
      }
+
+     .listes ul {
+  padding: 1em;
+  margin: auto;
+  border-radius: 1em;
+  /* background-color: #2E8B57; */
+  /* background-color: rgba(46, 139, 87, 0.5); */
+  background-color: #2E8B57;
+
+  list-style: none;
+  max-width: 30em;
+
+   /* Ajout de la hauteur maximale et du défilement vertical */
+   max-height: 400px; /* Vous pouvez ajuster cette hauteur selon vos besoins */
+  overflow-y: auto;
+}
      .container-button-return-toggle{
       display: flex;
       justify-content: space-between;
@@ -283,6 +295,9 @@ text-decoration: none;
       padding-right: 20px;
      }
       
+     .titre-h2{
+      display: none;
+     }
      .retourButton{
         width: 20.833px;
         height: 17.708px;
@@ -299,6 +314,13 @@ text-decoration: none;
         flex-shrink: 0;
         fill: #2E8B57;
      }
+
+     .raccourcis{
+        /* margin: 10px; */
+        margin-top: 50px;
+        width: 100%;
+      }
+      
     }
 
           
@@ -308,6 +330,15 @@ text-decoration: none;
       margin-top: 80px;
      }
 
+     .categorie-mobile{
+          color: #2E8B57;
+          /* H1,H2,H3 : titre */
+          font-family: "Playfair Display";
+          font-size: 25px;
+          font-style: normal;
+          font-weight: 400;
+          line-height: normal;
+         }
    
       
      .retourButton{
@@ -317,14 +348,7 @@ text-decoration: none;
         fill: #2E8B57;
         stroke-width: 2.083px;
         stroke: #2E8B57;
-        /* margin-left: 10px; */
-        /* margin-top: 20px; */
-        /* margin-bottom: 10px; */
-        
      }
-          /* .raccourcis{
-            display: none;
-          } */
 
             .book-card {
             width: 160px;
@@ -398,11 +422,28 @@ text-decoration: none;
         }
 
        
-
+       
 
 
         @media (min-width: 993px) {
-         
+
+          .listes ul {
+  padding: 1em;
+  margin: auto;
+  border-radius: 1em;
+  /* background-color: rgba(46, 139, 87, 0.5); */
+  background-color: #2E8B57;
+
+  list-style: none;
+  max-width: 20em;
+
+   /* Ajout de la hauteur maximale et du défilement vertical */
+   max-height: 400px; /* Vous pouvez ajuster cette hauteur selon vos besoins */
+  overflow-y: auto;
+}
+         .categorie-mobile{
+          display: none;
+         }
          .container{
          margin: 0;
          padding: 0;
@@ -441,12 +482,14 @@ text-decoration: none;
   <div class="container-button-return-toggle">
 
   <div class="retourButton">
+     <a (click)="goToAccueil()">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
       <path fill-rule="evenodd" clip-rule="evenodd" d="M22.8333 19.6229C20.2847 16.5118 18.0215 14.7465 16.0437 14.3271C14.066 13.9076 12.183 13.8443 10.3948 14.137V19.7083L2 10.6172L10.3948 2V7.29531C13.7014 7.32135 16.5125 8.50764 18.8281 10.8542C21.1434 13.2007 22.4785 16.1236 22.8333 19.6229Z" fill="#2E8B57" stroke="#2E8B57" stroke-width="2.08333" stroke-linejoin="round"/>
     </svg>
+  </a>
   </div>
   <!-- <button class="cards-nav" id="cartes" (click)="showCards()">Cartes</button> -->
- 
+ <h2 class="categorie-mobile" *ngIf="categoryName">{{categoryName}}</h2>
   <button class="list-card-toggle"  (click)="toggleView()">
     <svg *ngIf="!isListView" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
       <rect width="25" height="25" fill="#2E8B57"/>
@@ -462,18 +505,14 @@ text-decoration: none;
   </button>
 </div>
 <h1 class="categorie-titre">Xassidas</h1>
-<!-- <div class="button-nav-listes">
-  <button class="cards-nav" id="cartes" (click)="showCards()">Cartes</button>
-  <button class="cards-nav" (click)="showList()">Listes</button>
-</div> -->
 <section class="liste-xassidas">
     <div *ngIf="isListView"  class="raccourcis">
       <h2 class="titre-h2">Xassida</h2>
-      <!-- <input type="text" class="recherche"> -->
        <div class="wrap">
    <div class="search">
-      <input type="text" class="searchTerm" placeholder="Rechercher un livre">
-      <button type="submit" class="searchButton">
+      <input type="text" class="searchTerm" placeholder="Rechercher un livre" [(ngModel)]="searchTerm"  (input)="searchBooks()">
+     
+      <button type="submit" class="searchButton"  (click)="searchBooks()">
         <i class="fa fa-search"></i>
      </button>
    </div>
@@ -481,7 +520,7 @@ text-decoration: none;
       <div class="listes">
       
         <ul>
-          <li *ngFor="let book of books"><a  (click)="onBookClick(book.id!)">{{ book.title }}</a></li>
+          <li *ngFor="let book of filteredBooks"><a  (click)="onBookClick(book.id!)">{{ book.title }}</a></li>
         </ul>
       </div>
     </div>

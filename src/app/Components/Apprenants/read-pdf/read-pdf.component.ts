@@ -14,49 +14,6 @@ import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar
   styleUrl: './read-pdf.component.css'
 })
 export class ReadPDFComponent implements OnInit {
-  // bookName: string = '';
-  // messageImage: string = "Aucune image pour ce chapitre";
-  // chapters: any[] = [];
-  //   // Chapitre actuellement sélectionné
-  //   selectedChapter: any = null;
-
-
-  // constructor(
-  //   private route: ActivatedRoute,
-  //   private chapitreService: ChapitreService,
-  // ) {}
-
-  // ngOnInit() {
-  //   this.route.params.subscribe(params => {
-  //     const bookId = params['id'];
-  //     this.loadChapters(bookId);
-  //   });
-  // }
-
-  // loadChapters(bookId: string) {
-  //   this.chapitreService.getBooksByBook(bookId).subscribe(
-  //     (data: any) => {
-  //       this.chapters = data.Chapitres;
-  //       this.bookName = data.Livre;
-  //       this.chapters.forEach(chapter => {
-  //         if (chapter.Fichier) {
-  //           chapter.Fichier = `${apiUrlStockage}/${chapter.Fichier}`;
-  //         } else {
-  //           this.messageImage = "Aucune image pour ce chapitre";
-  //         }
-  //       });
-  //       console.log(this.chapters)
-  //     },
-  //     error => {
-  //       console.error('Error loading chapters:', error);
-  //     }
-  //   );
-  // }
-
-  //   // Méthode pour sélectionner un chapitre
-  //   selectChapter(chapter: any) {
-  //     this.selectedChapter = chapter;
-  //   }
 
   bookName: string = '';
   messageImage: string = "Aucune image pour ce chapitre";
