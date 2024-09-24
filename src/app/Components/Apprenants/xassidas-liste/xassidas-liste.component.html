@@ -426,7 +426,9 @@ text-decoration: none;
 
 
         @media (min-width: 993px) {
-
+.card-xassidas{
+  display: flex;
+}
           .listes ul {
   padding: 1em;
   margin: auto;
@@ -489,7 +491,7 @@ text-decoration: none;
   </a>
   </div>
   <!-- <button class="cards-nav" id="cartes" (click)="showCards()">Cartes</button> -->
- <h2 class="categorie-mobile" *ngIf="categoryName">{{categoryName}}</h2>
+ <h2 class="categorie-mobile">Categorie</h2>
   <button class="list-card-toggle"  (click)="toggleView()">
     <svg *ngIf="!isListView" xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25" fill="none">
       <rect width="25" height="25" fill="#2E8B57"/>

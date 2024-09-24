@@ -5,6 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../../Services/book.service';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { FormsModule } from '@angular/forms';
+import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
+
 
 @Component({
   selector: 'app-xassidas-liste',
@@ -17,12 +19,18 @@ export class XassidasListeComponent implements OnInit{
 
   // les variable déclarer 
   isListView: boolean = true;
+  isMobile: boolean = false;
   //fonction toggle des deux button
-  toggleView(){
-    this.isListView = !this.isListView
-  }
+  // toggleView(){
+  //   this.isListView = !this.isListView
+  // }
 
- 
+  toggleView(): void {
+    // Appliquer la bascule seulement si l'appareil est mobile
+    if (this.isMobile) {
+      this.isListView = !this.isListView;
+    }
+  }
 
   books: any[] = [];
   filteredBooks: any[] = []; // Pour stocker les résultats filtrés
@@ -33,7 +41,8 @@ export class XassidasListeComponent implements OnInit{
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
-    private router:Router
+    private router:Router,
+    private breakpointObserver: BreakpointObserver
   ) {}
 
   ngOnInit() {
@@ -41,6 +50,12 @@ export class XassidasListeComponent implements OnInit{
       const categoryId = params['id'];
       this.loadBooks(categoryId);
       this.filteredBooks = this.books;
+    });
+
+    //manipulation de l'affichage en mode mobile
+    this.breakpointObserver.observe([Breakpoints.Handset])
+    .subscribe(result => {
+      this.isMobile = result.matches;
     });
   }
 
