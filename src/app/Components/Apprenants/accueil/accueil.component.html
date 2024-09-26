@@ -159,7 +159,7 @@ html, body {
 }
 
 .context-contenu p {
-  width: 715px;
+  width: 800px;
   height: 220px;
   flex-shrink: 0;
 
@@ -568,7 +568,7 @@ overflow: hidden;
 overflow: hidden; 
 position: relative;
 /* width: 100%; */
-height: 250px;
+height: 300px;
 }
 
 .wave-top,
@@ -587,12 +587,18 @@ height: 301px;
 flex-shrink: 0;
 }
 
+.wave-top svg{
+
+height: 501px;
+
+}
+
 
 .wave-bottom {
 top: 5px;
 z-index: 0;
 width: 530px;
-height: 383px;
+height: 483px;
 transform: rotate(30deg);
 flex-shrink: 0;
 }
@@ -601,7 +607,7 @@ flex-shrink: 0;
 /* Ajustement pour les SVG dans wave-top et wave-bottom */
 .wave-container svg {
 width: 100%; /* S'assurer que les SVG occupent la largeur complète */
-height: auto;
+height: 400px;
 display: block; /* Supprime les espaces blancs inattendus */
 }
 
@@ -663,7 +669,9 @@ display: none;
 
 
 /* _____________________________________________fin_partie_responsive___________________________________________________________ */
-
+.col{
+  cursor: pointer;
+}
 
     </style>
   </head>
@@ -692,15 +700,7 @@ display: none;
       <div class="context-contenu">
         <h1 class="titre-contenu-main">À Propos de MourideXam</h1>
         <p>
-          <svg width="24" height="29" viewBox="0 0 24 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M2.74238 28.124C2.01506 28.124 1.31752 27.7821 0.803225 27.1735C0.288929 26.565 0 25.7396 0 24.8789V8.65354C0 6.35848 0.770477 4.15742 2.14193 2.53457C3.51339 0.911713 5.37349 4.52995e-06 7.31302 4.52995e-06V2.16339C5.85837 2.16339 4.4633 2.84717 3.43471 4.06431C2.40611 5.28145 1.82825 6.93224 1.82825 8.65354V15.1437H8.22715C8.95447 15.1437 9.65201 15.4856 10.1663 16.0942C10.6806 16.7027 10.9695 17.5281 10.9695 18.3888V24.8789C10.9695 25.7396 10.6806 26.565 10.1663 27.1735C9.65201 27.7821 8.95447 28.124 8.22715 28.124H2.74238ZM15.5402 28.124C14.8128 28.124 14.1153 27.7821 13.601 27.1735C13.0867 26.565 12.7978 25.7396 12.7978 24.8789V8.65354C12.7978 6.35848 13.5683 4.15742 14.9397 2.53457C16.3112 0.911713 18.1713 4.52995e-06 20.1108 4.52995e-06V2.16339C18.6562 2.16339 17.2611 2.84717 16.2325 4.06431C15.2039 5.28145 14.626 6.93224 14.626 8.65354V15.1437H21.0249C21.7523 15.1437 22.4498 15.4856 22.9641 16.0942C23.4784 16.7027 23.7673 17.5281 23.7673 18.3888V24.8789C23.7673 25.7396 23.4784 26.565 22.9641 27.1735C22.4498 27.7821 21.7523 28.124 21.0249 28.124H15.5402Z" fill="#FFD233"/>
-          </svg>
-          Essaies toujours de te cacher toi qui es à la quête du savoir. Ainsi tu
-          t’épargneras les épreuves et les peines. Aies de la détermination, ainsi tu
-          dépasseras ta génération
-          <svg width="24" height="29" viewBox="0 0 24 29" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <path d="M21.025 0C21.7523 0 22.4498 0.341891 22.9641 0.950461C23.4784 1.55903 23.7673 2.38443 23.7673 3.24508V19.4705C23.7673 21.7655 22.9969 23.9666 21.6254 25.5894C20.2539 27.2123 18.3938 28.124 16.4543 28.124V25.9606C17.909 25.9606 19.304 25.2768 20.3326 24.0597C21.3612 22.8425 21.9391 21.1917 21.9391 19.4705V12.9803H15.5402C14.8129 12.9803 14.1153 12.6384 13.601 12.0298C13.0867 11.4213 12.7978 10.5959 12.7978 9.73523V3.24508C12.7978 2.38443 13.0867 1.55903 13.601 0.950461C14.1153 0.341891 14.8129 0 15.5402 0H21.025ZM8.22717 0C8.95449 0 9.65203 0.341891 10.1663 0.950461C10.6806 1.55903 10.9696 2.38443 10.9696 3.24508V19.4705C10.9696 21.7655 10.1991 23.9666 8.82762 25.5894C7.45616 27.2123 5.59606 28.124 3.65653 28.124V25.9606C5.11118 25.9606 6.50625 25.2768 7.53485 24.0597C8.56344 22.8425 9.1413 21.1917 9.1413 19.4705V12.9803H2.7424C2.01508 12.9803 1.31754 12.6384 0.803246 12.0298C0.28895 11.4213 2.13385e-05 10.5959 2.13385e-05 9.73523V3.24508C2.13385e-05 2.38443 0.28895 1.55903 0.803246 0.950461C1.31754 0.341891 2.01508 0 2.7424 0H8.22717Z" fill="#FFD233"/>
-          </svg>
+          Cette plateforme vous accompagne dans l'apprentissage des enseignements de Cheikh Ahmadou Bamba Mbacké. Les cours sont structurés en classes et validés par des quiz pour renforcer vos connaissances. Chaque apprenant dispose d'un compte personnel pour suivre sa progression. Les cartes ci-dessous présentent les différentes catégories de livres, vous permettant d'accéder aux ouvrages classés par thème.
         </p>
       </div>
        <div class="image-contenu">
