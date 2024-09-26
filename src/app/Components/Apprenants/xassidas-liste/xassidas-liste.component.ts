@@ -21,6 +21,20 @@ export class XassidasListeComponent implements OnInit{
   isListView: boolean = true;
   isMobile: boolean = false;
   isDesktop: boolean = true;
+// la declaration des variables 
+books: any[] = [];
+pagedBooks: any[] = []; // Pour stocker les livres de la page actuelle
+filteredBooks: any[] = []; // Pour stocker les résultats filtrés
+categoryName: string = '';
+messageImage: string = "Aucune image pour ce categorie";
+searchTerm: string = ''; // Variable pour le terme de recherche
+
+ // Pagination variables
+ currentPage: number = 1;
+ itemsPerPage: number = 12; // Adjust as needed
+ totalItems: number = 0;
+
+
 
 // fonction toggle pour l'affichage des section et des card en mobile 
   toggleView(): void {
@@ -29,12 +43,7 @@ export class XassidasListeComponent implements OnInit{
       this.isListView = !this.isListView;
     }
   }
-// la declaration des variables 
-  books: any[] = [];
-  filteredBooks: any[] = []; // Pour stocker les résultats filtrés
-  categoryName: string = '';
-  messageImage: string = "Aucune image pour ce categorie";
-  searchTerm: string = ''; // Variable pour le terme de recherche
+
 
   constructor(
     private route: ActivatedRoute,
@@ -73,6 +82,9 @@ export class XassidasListeComponent implements OnInit{
         //mettre les livre dans le variable filteredBooks
         this.filteredBooks = this.books; 
         this.categoryName = data.category;
+        this.totalItems = this.books.length;
+        this.applyPagination();
+
          // Met à jour l'URL de l'image pour chaque catégorie
          this.books.forEach(books => {
           if (books.image) {
@@ -81,12 +93,41 @@ export class XassidasListeComponent implements OnInit{
             this.messageImage = "Aucune image pour cette catégorie";
           }
         });
+        
       },
       error => {
         console.error('Error loading books:', error);
       }
     );
   }
+
+  //les methode de la pagination
+  applyPagination() {
+    const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+    const endIndex = startIndex + this.itemsPerPage;
+    this.pagedBooks = this.books.slice(startIndex, endIndex);
+  }
+
+  get totalPages(): number {
+    return Math.ceil(this.totalItems / this.itemsPerPage);
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+      this.applyPagination();
+    }
+  }
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+      this.applyPagination();
+    }
+  }
+
+  // fin methode pagination 
+
 
    // la méthode pour rediriger vers la page d'accueil
    goToAccueil(): void {
@@ -106,6 +147,8 @@ onBookClick(bookId: number | string): void {
     this.filteredBooks = this.books.filter(book =>
       book.title.toLowerCase().includes(this.searchTerm.toLowerCase())
     );
+
   }
+  
 
 }
