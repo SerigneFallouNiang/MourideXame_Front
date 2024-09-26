@@ -61,6 +61,8 @@ export class ReadPDFComponent implements OnInit {
 
   // affichageage du chapitre selectionner 
   selectChapter(chapter: any) {
+    this.selectedFichier = false;
+    this.selectedChapter = chapter;
     this.selectedChapter = chapter;
   }
 
@@ -70,6 +72,9 @@ export class ReadPDFComponent implements OnInit {
   // }
 
   selectFichier(fichier: string) {
+    this.selectedFichier = true;
+    this.selectedChapter = null;
+
     this.selectedFichier = fichier;
     // Sanitize the URL to prevent XSS attacks
     this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fichier);
@@ -87,5 +92,11 @@ export class ReadPDFComponent implements OnInit {
     
     // Si l'URL n'est pas reconnue, retourne l'URL originale
     return url;
+  }
+// si aucun fichier n'est selectionner par un utilisateur 
+  resetSelection() {
+    this.selectedFichier = false;
+    this.selectedChapter = null;
+    this.pdfUrl = null;
   }
 }
