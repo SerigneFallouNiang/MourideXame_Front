@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { ChapitreService } from '../../../Services/chapitre.service';
 import { CommonModule } from '@angular/common';
-import { DomSanitizer } from '@angular/platform-browser';
+import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar-apprenant.component';
 
 @Component({
@@ -19,6 +19,8 @@ export class ReadPDFComponent implements OnInit {
   messageImage: string = "Aucune image pour ce chapitre";
   chapters: any[] = [];
   selectedChapter: any = null;
+  selectedFichier: any = null;
+  pdfUrl: SafeResourceUrl | null = null;
 
   constructor(
     private route: ActivatedRoute,
@@ -57,8 +59,20 @@ export class ReadPDFComponent implements OnInit {
     );
   }
 
+  // affichageage du chapitre selectionner 
   selectChapter(chapter: any) {
     this.selectedChapter = chapter;
+  }
+
+  //  // affichageage du chapitre selectionner 
+  //  selectFichier(chapter: any) {
+  //   this.selectedFichier= chapter.Fichier;
+  // }
+
+  selectFichier(fichier: string) {
+    this.selectedFichier = fichier;
+    // Sanitize the URL to prevent XSS attacks
+    this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fichier);
   }
 
   getYouTubeEmbedUrl(url: string): string {

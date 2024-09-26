@@ -20,18 +20,15 @@ export class XassidasListeComponent implements OnInit{
   // les variable déclarer 
   isListView: boolean = true;
   isMobile: boolean = false;
-  //fonction toggle des deux button
-  // toggleView(){
-  //   this.isListView = !this.isListView
-  // }
 
+// fonction toggle pour l'affichage des section et des card en mobile 
   toggleView(): void {
     // Appliquer la bascule seulement si l'appareil est mobile
     if (this.isMobile) {
       this.isListView = !this.isListView;
     }
   }
-
+// la declaration des variables 
   books: any[] = [];
   filteredBooks: any[] = []; // Pour stocker les résultats filtrés
   categoryName: string = '';
@@ -65,7 +62,7 @@ export class XassidasListeComponent implements OnInit{
         this.books = data.books;
         //mettre les livre dans le variable filteredBooks
         this.filteredBooks = this.books; 
-        this.categoryName = data.categoryName;
+        this.categoryName = data.category;
          // Met à jour l'URL de l'image pour chaque catégorie
          this.books.forEach(books => {
           if (books.image) {

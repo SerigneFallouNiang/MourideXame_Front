@@ -40,8 +40,7 @@
   padding: 1em;
   margin: auto;
   border-radius: 1em;
-  /* background-color: #2E8B57; */
-  background-color: rgba(46, 139, 87, 0.5);
+  background-color: #2E8B57;
 
   list-style: none;
   max-width: 20em;
@@ -52,7 +51,7 @@
 }
 
 .listes li {
-  background-color: #ccc;
+  background-color: #FFD233;
   border-radius: .5em;
   transition: all .2s;
 }
@@ -400,10 +399,21 @@ text-decoration: none;
 </div>
       <div class="listes">
         <ul>
-          <li  *ngFor="let chapter of chapters"><a  (click)="selectChapter(chapter)">{{ chapter['Titre du chapitre'] }}</a></li>
+          <li  *ngFor="let chapter of chapters">
+            @if(chapter.Fichier){
+              <a (click)="selectFichier(chapter.Fichier)">Document pdf</a>
+            }@else {
+              <p>Le document de cette fichier n'est pas encore disonible</p>
+            }
+            <a  (click)="selectChapter(chapter)">{{ chapter['Titre du chapitre'] }}</a>
+          </li>
         </ul>
       </div>
     </div>
+    <!-- Ajout d'un élément pour afficher le PDF -->
+@if(selectedFichier){
+  <iframe [src]="pdfUrl" width="100%" height="600px"></iframe>
+}
     <div *ngIf="selectedChapter"   class="card-xassidas mt-5">
  
         <div class="container">
