@@ -20,6 +20,7 @@ export class XassidasListeComponent implements OnInit{
   // les variable déclarer 
   isListView: boolean = true;
   isMobile: boolean = false;
+  isDesktop: boolean = true;
 
 // fonction toggle pour l'affichage des section et des card en mobile 
   toggleView(): void {
@@ -47,6 +48,8 @@ export class XassidasListeComponent implements OnInit{
       const categoryId = params['id'];
       this.loadBooks(categoryId);
       this.filteredBooks = this.books;
+      //pour suivre la taille de l'ecran s'il est desktop
+    
     });
 
     //manipulation de l'affichage en mode mobile
@@ -54,7 +57,14 @@ export class XassidasListeComponent implements OnInit{
     .subscribe(result => {
       this.isMobile = result.matches;
     });
+    this.checkIfDesktop();
+    window.addEventListener('resize', () => this.checkIfDesktop());
   }
+
+  checkIfDesktop() {
+    this.isDesktop = window.innerWidth > 1024;
+  }
+
 
   loadBooks(categoryId: string) {
     this.bookService.getBooksByCategory(categoryId).subscribe(

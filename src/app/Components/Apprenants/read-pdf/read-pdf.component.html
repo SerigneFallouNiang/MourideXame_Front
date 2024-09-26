@@ -374,7 +374,9 @@ text-decoration: none;
   background-color: #2E8B57;
 }
 
-
+ul li a {
+  cursor: pointer;
+}
     </style>
   
      <!-- heritage du navbar start  -->
@@ -382,32 +384,10 @@ text-decoration: none;
      <!-- heritage du navbar end  -->
 
 
-<!-- <div *ngIf="chapters.length > 0">
-  <h2>{{ bookName }}</h2>
-  <ul>
-    <li *ngFor="let chapter of chapters">
-      <h3>{{ chapter['Titre du chapitre'] }}</h3>
-      <p>{{ chapter.Description }}</p>
-      <a [href]="chapter.Lien" target="_blank">Voir la vidéo</a><br>
-      <a [href]="chapter.Fichier" target="_blank">Télécharger le PDF</a>
-    </li>
-  </ul>
-</div>
-<div *ngIf="chapters.length === 0">
-  <p>Aucun chapitre disponible pour ce livre.</p>
-</div> -->
-
 <section class="all-container">
-  <!-- <div class="retourButton">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
-      <path fill-rule="evenodd" clip-rule="evenodd" d="M22.8333 19.6229C20.2847 16.5118 18.0215 14.7465 16.0437 14.3271C14.066 13.9076 12.183 13.8443 10.3948 14.137V19.7083L2 10.6172L10.3948 2V7.29531C13.7014 7.32135 16.5125 8.50764 18.8281 10.8542C21.1434 13.2007 22.4785 16.1236 22.8333 19.6229Z" fill="#2E8B57" stroke="#2E8B57" stroke-width="2.08333" stroke-linejoin="round"/>
-    </svg>
-  </div> -->
+
 <h1 class="categorie-titre">Xassidas</h1>
 
-<!-- <div class="button-nav-listes">
-  <button class="button-retour-chapitre" id="cartes" ><i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #fff;"></i></button>
-</div> -->
 <section class="liste-xassidas" *ngIf="chapters.length > 0">
     <div  class="raccourcis">
       <h2 class="titre-h2">{{ bookName }}</h2>
@@ -421,17 +401,6 @@ text-decoration: none;
    </div>
 </div>
       <div class="listes">
-        <!-- <ul>
-          <li>
-            
-          </li>
-          <li  *ngFor="let chapter of chapters">
-            @if(chapter.Fichier){
-              <a (click)="selectFichier(chapter.Fichier)">Document pdf</a>}
-      
-            <a  (click)="selectChapter(chapter)">{{ chapter['Titre du chapitre'] }}</a>
-          </li>
-        </ul> -->
         <ul>
           @if (chapters.length > 0 && chapters[0].Fichier) {
             <li>
@@ -444,43 +413,7 @@ text-decoration: none;
         </ul>
       </div>
     </div>
-    <!-- Ajout d'un élément pour afficher le PDF -->
-<!-- @if(selectedFichier){
-  <iframe [src]="pdfUrl" width="100%" height="800px"></iframe>
-}@else{
-  @if (selectedChapter) {
-    <div *ngIf="selectedChapter"   class="card-xassidas mt-5">
  
-      <div class="container">
-        <div class="retourButton">
-          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
-            <path fill-rule="evenodd" clip-rule="evenodd" d="M22.8333 19.6229C20.2847 16.5118 18.0215 14.7465 16.0437 14.3271C14.066 13.9076 12.183 13.8443 10.3948 14.137V19.7083L2 10.6172L10.3948 2V7.29531C13.7014 7.32135 16.5125 8.50764 18.8281 10.8542C21.1434 13.2007 22.4785 16.1236 22.8333 19.6229Z" fill="#2E8B57" stroke="#2E8B57" stroke-width="2.08333" stroke-linejoin="round"/>
-          </svg>
-        </div>
-          <div class="video-cours" *ngIf="selectedChapter.safeVideoUrl">
-            <iframe 
-              [src]="selectedChapter.safeVideoUrl"
-              title="YouTube video player" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen>
-            </iframe>
-          </div>
-          
-  
-              <div class="description-chapitre">
-                  <h2 class="titre-chapitre">{{ selectedChapter['Titre du chapitre'] }}</h2>
-                  <p class="description-chapitre">
-                    {{ selectedChapter.Description }}
-                  </p>
-              </div>
-              <button class="button-quiz">Commencer le Quiz</button>
-      </div>
-  </div>
-  }
-
-} -->
-
 @if(selectedFichier) {
   <div class="card-xassidas mt-5">
       <div class="container">
