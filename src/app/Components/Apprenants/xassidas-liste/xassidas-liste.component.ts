@@ -21,6 +21,7 @@ export class XassidasListeComponent implements OnInit{
   isListView: boolean = true;
   isMobile: boolean = false;
   isDesktop: boolean = true;
+  isPaginate: boolean = true;
 // la declaration des variables 
 books: any[] = [];
 pagedBooks: any[] = []; // Pour stocker les livres de la page actuelle
@@ -31,7 +32,7 @@ searchTerm: string = ''; // Variable pour le terme de recherche
 
  // Pagination variables
  currentPage: number = 1;
- itemsPerPage: number = 8; // Adjust as needed
+ itemsPerPage: number = 8;
  totalItems: number = 0;
 
 
@@ -68,11 +69,23 @@ searchTerm: string = ''; // Variable pour le terme de recherche
     });
     this.checkIfDesktop();
     window.addEventListener('resize', () => this.checkIfDesktop());
+    //nombreElementPagination
+    this.paginateNomber();
+    window.addEventListener('resize', () => this.paginateNomber());
   }
 
   checkIfDesktop() {
     this.isDesktop = window.innerWidth > 1024;
   }
+
+  paginateNomber() {
+    //   this.isDesktop = window.innerWidth > 1024;
+    //  this.itemsPerPage = 10;
+      const isLargeScreen = window.innerWidth > 1400;
+      this.isPaginate = isLargeScreen;
+      this.itemsPerPage = isLargeScreen ? 10 : 8;
+      this.applyPagination(); 
+    }
 
 
   loadBooks(categoryId: string) {

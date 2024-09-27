@@ -83,14 +83,7 @@ text-decoration: none;
     font-weight: 400;
     line-height: normal;
    }
-.raccourcis{
-   /* margin: 10px; */
-   position: fixed;
-  /* bottom: 20px;
-  right: 20px; */
-  left: 20px;
-  top: 150px;
-}
+
 .card-xassidas .card {
   position: relative;
   overflow: hidden;
@@ -440,6 +433,22 @@ text-decoration: none;
 
         @media (min-width: 993px) {
 
+          .raccourcis{
+            position: fixed;
+            left: 20px;
+            top: 180px;
+          }
+
+          .buttonRetournRaccoursis{
+            position: fixed;
+            left: 20px;
+            top: 120px;
+          }
+
+          .card-xassidas{
+            display: block;
+            margin-left: 350px;
+          }
           .retourButton a svg {
             display: none;
           }
@@ -447,9 +456,7 @@ text-decoration: none;
             text-align: center;
             color: #2E8B57;
           }
-.card-xassidas{
-  display: block;
-}
+
           .listes ul {
   padding: 1em;
   margin: auto;
@@ -552,8 +559,8 @@ text-decoration: none;
    <!--  section liste livre  -->
     <div *ngIf="isListView"  class="raccourcis">
       <!-- <h2 class="titre-h2">Xassidaaaa</h2> -->
-      <a (click)="goToAccueil()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
+      <a (click)="goToAccueil()" class="buttonRetournRaccoursis">
+        <svg xmlns="http://www.w3.org/2000/svg" width="27" height="24" viewBox="0 0 24 21" fill="none">
           <path fill-rule="evenodd" clip-rule="evenodd" d="M22.8333 19.6229C20.2847 16.5118 18.0215 14.7465 16.0437 14.3271C14.066 13.9076 12.183 13.8443 10.3948 14.137V19.7083L2 10.6172L10.3948 2V7.29531C13.7014 7.32135 16.5125 8.50764 18.8281 10.8542C21.1434 13.2007 22.4785 16.1236 22.8333 19.6229Z" fill="#2E8B57" stroke="#2E8B57" stroke-width="2.08333" stroke-linejoin="round"/>
         </svg>
       </a>
@@ -579,9 +586,8 @@ text-decoration: none;
     <div  *ngIf="(isDesktop && isListView) || (!isDesktop && !isListView)"  class="card-xassidas">
       <h1 class="categorieName">{{categoryName}}</h1>
 
-         <!-- fin de la section statique  -->
-  <div class="container">
-        <div class="row row-cols-2 row-cols-md-4 g-4">
+  <div class="container container-fluid px-4">
+        <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 row-cols-xl-4 row-cols-xxl-5 g-4">
 
             <div class="col" *ngFor="let book of pagedBooks" (click)="onBookClick(book.id!)">
               <div class="book-card">

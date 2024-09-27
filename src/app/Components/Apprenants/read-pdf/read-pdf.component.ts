@@ -25,7 +25,7 @@ export class ReadPDFComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private chapitreService: ChapitreService,
-    private sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer
   ) {}
 
   ngOnInit() {
@@ -41,13 +41,26 @@ export class ReadPDFComponent implements OnInit {
         this.chapters = data.Chapitres;
         this.bookName = data.Livre;
         this.chapters.forEach(chapter => {
+          //récupération du fichier pdf
           if (chapter.Fichier) {
             chapter.Fichier = `${apiUrlStockage}/${chapter.Fichier}`;
           }
-          if (chapter.Lien) {
-            const embedUrl = this.getYouTubeEmbedUrl(chapter.Lien);
-            chapter.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+          //récupération du video
+          // if (chapter.Video) {
+          //   chapter.Video = `${apiUrlStockage}/${chapter.Video}`;
+          // }
+         // récupération de la vidéo
+          if (chapter.Video) {
+            chapter.Video = `${apiUrlStockage}/${chapter.Video}`;
+          } else {
+            this.messageImage = "Aucune vidéo pour ce chapitre";
           }
+          
+          // //récupération du lien youtube
+          // if (chapter.Lien) {
+          //   const embedUrl = this.getYouTubeEmbedUrl(chapter.Lien);
+          //   chapter.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
+          // }
         });
         if (this.chapters.length > 0) {
           this.selectChapter(this.chapters[0]);
