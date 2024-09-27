@@ -88,6 +88,7 @@ tabCategorie: ModelCategorie[] = [];
     );
   }
 
+  //Fonction pour la selection par categorie
   onCategoryClick(categoryId: number | string): void {
     const idAsString = categoryId.toString();
     this.router.navigate(['/category', idAsString]);
@@ -98,7 +99,7 @@ tabCategorie: ModelCategorie[] = [];
   }
   
 
-
+//Fonction de la déconnexion
   logout() {
     this.authService.logout();
     localStorage.removeItem("authUser");
@@ -106,9 +107,18 @@ tabCategorie: ModelCategorie[] = [];
     this.router.navigateByUrl("/login");
   }
 
-  
+  //fonction pour la modification du profil utilisateur
   editProfile() {
     // Naviguer vers la page de modification du profil
     this.router.navigateByUrl("/edit-profile");
+  }
+//fonctio poir la redirection vers la page de connexion
+  navigateToLogin() {
+    this.router.navigate(['/login']);
+  }
+
+  //fonctio poir la redirection vers la page d'accueil
+  navigateToAccueil() {
+    this.router.navigate(['/accueil']);
   }
 }
