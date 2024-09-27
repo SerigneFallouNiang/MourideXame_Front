@@ -5,11 +5,12 @@ import { ChapitreService } from '../../../Services/chapitre.service';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar-apprenant.component';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-read-pdf',
   standalone: true,
-  imports: [CommonModule,NavbarApprenantComponent],
+  imports: [CommonModule,NavbarApprenantComponent,FormsModule],
   templateUrl: './read-pdf.component.html',
   styleUrl: './read-pdf.component.css'
 })
@@ -18,6 +19,8 @@ export class ReadPDFComponent implements OnInit {
   bookName: string = '';
   messageImage: string = "Aucune image pour ce chapitre";
   chapters: any[] = [];
+  searchTerm: string = ''; 
+  filteredChapiters: any[] = [];
   selectedChapter: any = null;
   selectedFichier: any = null;
   pdfUrl: SafeResourceUrl | null = null;
@@ -33,6 +36,7 @@ export class ReadPDFComponent implements OnInit {
       const bookId = params['id'];
       this.loadChapters(bookId);
     });
+    this.filteredChapiters = this.chapters;
   }
 
   loadChapters(bookId: string) {
@@ -40,6 +44,7 @@ export class ReadPDFComponent implements OnInit {
       (data: any) => {
         this.chapters = data.Chapitres;
         this.bookName = data.Livre;
+        this.filteredChapiters = this.chapters; 
         this.chapters.forEach(chapter => {
           //récupération du fichier pdf
           if (chapter.Fichier) {
@@ -111,5 +116,13 @@ export class ReadPDFComponent implements OnInit {
     this.selectedFichier = false;
     this.selectedChapter = null;
     this.pdfUrl = null;
+  }
+
+   // Fonction de recherche pour filtrer les chapitre
+   searchBooks() {
+    this.filteredChapiters = this.chapters.filter(chapiter =>
+      chapiter['Titre du chapitre'].toLowerCase().includes(this.searchTerm.toLowerCase())
+    );
+
   }
 }
