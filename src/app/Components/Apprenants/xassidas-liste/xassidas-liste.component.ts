@@ -31,7 +31,7 @@ searchTerm: string = ''; // Variable pour le terme de recherche
 
  // Pagination variables
  currentPage: number = 1;
- itemsPerPage: number = 12; // Adjust as needed
+ itemsPerPage: number = 8; // Adjust as needed
  totalItems: number = 0;
 
 
