@@ -24,11 +24,14 @@ export class XassidasListeComponent implements OnInit{
   isPaginate: boolean = true;
 // la declaration des variables 
 books: any[] = [];
-pagedBooks: any[] = []; // Pour stocker les livres de la page actuelle
-filteredBooks: any[] = []; // Pour stocker les résultats filtrés
+ // Pour stocker les livres de la page actuelle
+pagedBooks: any[] = [];
+// Pour stocker les résultats filtrés
+filteredBooks: any[] = []; 
 categoryName: string = '';
 messageImage: string = "Aucune image pour ce categorie";
-searchTerm: string = ''; // Variable pour le terme de recherche
+// Variable pour le terme de recherche
+searchTerm: string = ''; 
 
  // Pagination variables
  currentPage: number = 1;
@@ -159,7 +162,7 @@ onBookClick(bookId: number | string): void {
   searchBooks() {
     this.filteredBooks = this.books.filter(book =>
       book.title.toLowerCase().includes(this.searchTerm.toLowerCase())
-    );
+  );
 
   }
   

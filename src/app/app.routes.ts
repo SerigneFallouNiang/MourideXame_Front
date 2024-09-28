@@ -21,4 +21,6 @@ export const routes: Routes = [
 {path: "admin", component : DashbordComponent,canActivate: [authGuard] },
 { path: "category/:id", component: XassidasListeComponent },
 { path: "books/:id", component: ReadPDFComponent },
+{ path: "quiz/:id", component: QuizComponent },
+
 ];

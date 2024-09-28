@@ -66,7 +66,22 @@ body {
     display: none;
   }
 
-
+  .navbar-nav .nav-link.active-link {
+    color: #FFD233 !important;
+  }
+  
+  .navbar-nav .nav-link:hover {
+    color: #FFD233 !important;
+  }
+  
+  .custom-dropdown .dropdown-item.active-link {
+    background-color: #FFD233 !important;
+  }
+  
+  .custom-dropdown .dropdown-item:hover {
+    background-color: #FFD233 !important;
+  }
+  
 
   /* Alignement total à droite en mode bureau */
   @media (min-width: 768px) {

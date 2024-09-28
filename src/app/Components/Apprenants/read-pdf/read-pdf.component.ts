@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { ChapitreService } from '../../../Services/chapitre.service';
 import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar-apprenant.component';
 import { FormsModule } from '@angular/forms';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-read-pdf',
@@ -28,7 +29,9 @@ export class ReadPDFComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private chapitreService: ChapitreService,
-    public sanitizer: DomSanitizer
+    public sanitizer: DomSanitizer,
+    public location:Location,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -125,4 +128,19 @@ export class ReadPDFComponent implements OnInit {
     );
 
   }
+  
+  //fonction pour le retour précédé
+  goBack(): void {
+    this.location.back();
+  }
+
+    // Method to navigate to the quiz page for the selected chapter
+   startQuiz(chapterId: string) {
+  if (!chapterId) {
+    console.error('ID de chapitre invalide :', chapterId);
+    return;
+  }
+  this.router.navigate(['/quiz', chapterId]); 
+}
+
 }

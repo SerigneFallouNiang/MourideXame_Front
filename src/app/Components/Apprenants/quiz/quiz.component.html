@@ -542,7 +542,7 @@ text-decoration: none;
                           <h1 class="titre-chapitre">PREAMBULE</h1>
                           <p>teste du chapitre <strong>préambule</strong></p>
                         </header>
-                        <section>
+                        <!-- <section>
                           <form name="quizForm" >
                             <h3>1. In which HTML element do we put in JavaScript code?</h3>
                             <input type="radio" name="q1" value="a" id="q1a">a. &lt;js&gt;<br>
@@ -575,7 +575,23 @@ text-decoration: none;
                             <input type="submit" value="Soumettre la réponse">
                           </form>
                           <div id="results"></div>
-                        </section>
+                        </section> -->
+                        <div class="container" *ngIf="quiz">
+                          <h2>{{ quiz.title }}</h2>
+                          <form #quizForm="ngForm" (ngSubmit)="submitQuiz()">
+                            <div *ngFor="let question of questions">
+                              <h3>{{ question.text }}</h3>
+                              <div *ngFor="let answer of question.answers">
+                                <input type="radio" [name]="'q' + question.id" [value]="answer.id" (change)="selectAnswer(question.id, answer.id)">
+                                {{ answer.text }}
+                              </div>
+                            </div>
+                            <input type="submit" value="Soumettre le quiz">
+                          </form>
+                        </div>
+                        
+                        
+                        <!-- fin test quiz  -->
                       </div>
                 </div>
                 <!-- <button class="button-quiz">Commencer le Quiz</button> -->
@@ -583,43 +599,5 @@ text-decoration: none;
     </div>
 </section>
 
-<script>
-    var formElement = document.forms['quizForm'];
 
-formElement.onsubmit = function submitAnswers(){
-	var total = 5;
-	var score = 0;
-	
-	// Get User Input
-	var q1 = document.forms["quizForm"]["q1"].value,
-	    q2 = document.forms["quizForm"]["q2"].value,
-	    q3 = document.forms["quizForm"]["q3"].value,
-	    q4 = document.forms["quizForm"]["q4"].value,
-	    q5 = document.forms["quizForm"]["q5"].value;
-	
-	// Validation
-	for(i = 1; i <= total;i++){
-		if(eval('q'+i) === null || eval('q'+i) === ''){
-			alert('You missed question '+ i);
-			return false;
-		}
-	}
-	
-	// Set Correct Answers
-	var answers = ["b","a","d","b","d"];
-	
-	// Check Answers
-	for(i = 1; i <= total;i++){
-		if(eval('q'+i) === answers[i - 1]){
-			score++;
-		}
-	}
-	
-	// Display Results
-	var results = document.getElementById('results');
-	results.innerHTML = '<h3>You scored <span>'+score+'</span> out of <span>'+total+'</span></h3>';
-	
-	return false;
-}
-</script>
 

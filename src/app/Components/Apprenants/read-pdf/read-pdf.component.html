@@ -223,6 +223,16 @@ text-decoration: none;
           /* //responsive en version mobile  */
           @media (max-width: 768px) {
             .raccourcis{
+              /* display: none; */
+              width: 100%;
+              display: block;
+              height: 100vh;
+          position: fixed;
+              left:0;
+              top: 17%;
+            }
+
+            .card-xassidas {
               display: none;
             }
 
@@ -251,6 +261,26 @@ text-decoration: none;
                 overflow-x: hidden;
             }
 
+            /* css responsive de la partie cours  */
+  
+    .categorie-titre{
+      position: fixed;
+            left: 35%;
+            top: 4.875rem;
+            text-align: center;
+            color: #2E8B57;
+    }
+
+    .buttonRetournRaccoursis{
+      position: fixed;
+            left: 1.5%;
+            top: 4.875rem;
+            text-align: center;
+            color: #2E8B57;
+            cursor: pointer;
+    }
+
+
           }
 
 
@@ -274,9 +304,6 @@ text-decoration: none;
             display: block;
           }
 
-        .raccourcis{
-          display: none;
-        }
 
         /* Partie video d'un cours  */
         .card-xassidas{
@@ -437,9 +464,18 @@ ul li a {
     .categorie-titre{
       position: fixed;
             left: 50%;
-            top: 100px;
+            top: 6.875rem;
             text-align: center;
             color: #2E8B57;
+    }
+
+    .buttonRetournRaccoursis{
+      position: fixed;
+            left: 1.5%;
+            top: 6.875rem;
+            text-align: center;
+            color: #2E8B57;
+            cursor: pointer;
     }
 
      }
@@ -455,6 +491,11 @@ ul li a {
 
 <section class="all-container container-fluid">
 
+  <a  class="buttonRetournRaccoursis"  (click)="goBack()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="24" viewBox="0 0 24 21" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M22.8333 19.6229C20.2847 16.5118 18.0215 14.7465 16.0437 14.3271C14.066 13.9076 12.183 13.8443 10.3948 14.137V19.7083L2 10.6172L10.3948 2V7.29531C13.7014 7.32135 16.5125 8.50764 18.8281 10.8542C21.1434 13.2007 22.4785 16.1236 22.8333 19.6229Z" fill="#2E8B57" stroke="#2E8B57" stroke-width="2.08333" stroke-linejoin="round"/>
+    </svg>
+  </a>
 <h1 class="categorie-titre">{{ bookName }}</h1>
 
 <section class="liste-xassidas row" *ngIf="chapters.length > 0">
@@ -494,11 +535,6 @@ ul li a {
 } @else if (selectedChapter) {
   <div class="col-12 col-md-8 bg-white card-xassidas">
     <div class="container">
-      <!-- <div class="retourButton">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="21" viewBox="0 0 24 21" fill="none">
-          <path fill-rule="evenodd" clip-rule="evenodd" d="M22.8333 19.6229C20.2847 16.5118 18.0215 14.7465 16.0437 14.3271C14.066 13.9076 12.183 13.8443 10.3948 14.137V19.7083L2 10.6172L10.3948 2V7.29531C13.7014 7.32135 16.5125 8.50764 18.8281 10.8542C21.1434 13.2007 22.4785 16.1236 22.8333 19.6229Z" fill="#2E8B57" stroke="#2E8B57" stroke-width="2.08333" stroke-linejoin="round"/>
-        </svg>
-      </div> -->
       <div class="video-cours" *ngIf="selectedChapter.Video">
         <iframe 
           [src]="sanitizer.bypassSecurityTrustResourceUrl(selectedChapter.Video)"
@@ -514,7 +550,7 @@ ul li a {
           {{ selectedChapter.Description }}
         </p>
       </div>
-      <button class="button-quiz">Commencer le Quiz</button>
+      <button class="button-quiz"  (click)="startQuiz(selectedChapter.id!)">Commencer le Quiz</button>
     </div>
   </div>
 } @else {
