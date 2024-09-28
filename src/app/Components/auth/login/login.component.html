@@ -114,8 +114,12 @@
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Mot de passe</label>
-                                    
-                                <input type="password" class="form-control"  id="password" formControlName="password" placeholder="Mot de passe"  required>
+                                <div class="input-group">
+                                    <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" formControlName="password" placeholder="Mot de passe" required>
+                                    <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+                                        <i class="fa" [ngClass]="{'fa-eye-slash': showPassword, 'fa-eye': !showPassword}"></i>
+                                    </button>
+                                </div>
                                 <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="text-danger">
                                     Le mot de passe est requis.
                                 </div>
@@ -130,41 +134,11 @@
                                 
                         </form>
 
-                        <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                            <div class="mb-3">
-                              <label for="email">Email address</label>
-                              <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email">
-                              <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">
-                                <small class="text-danger">Please enter a valid email</small>
-                              </div>
-                            </div>
-                            
-                            <div class="mb-3">
-                              <label for="password">Password</label>
-                              <input type="password" formControlName="password" class="form-control" id="password" autocomplete="email" placeholder="Mot de passe">
-                              <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">
-                                <small class="text-danger">Password is required</small>
-                              </div>
-                            </div>
-                          
-                            <button  class="btn btn-custom">Connexion</button>
-                          </form> -->
-
-
-
-                        <p class="nouveauCompte mt-3 text-end">Nouveau compte?
-                            <a href="#" class="text-decoration-none">
+                        <p class="nouveauCompte mt-3 text-end">Pas de compte?
+                            <a class="text-decoration-none"   routerLink="/register">
                                 Inscription</a></p>
                     </div>
 
-                    <!-- <div class="wave-footer">
-                        <svg width="558" height="162" viewBox="0 0 558 162"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M565.239 352.224C564.962 356.08 561.61 358.981 557.754 358.703L-97.0183 311.521C-100.874 311.243 -103.775 307.892 -103.497 304.036L-81.928 4.70951C-81.6053 0.231284 -75.32 -0.473918 -74.0129 3.82144C-44.0516 102.283 68.4665 148.758 159.179 100.14L277.44 36.757C370.462 -7.16188 477.371 -11.2429 573.47 25.4567L587.634 30.8659C588.075 31.034 588.353 31.4708 588.319 31.9408L565.239 352.224Z"
-                                fill="#2E8B57" />
-                        </svg>
-                    </div> -->
                 </div>
             </div>
         </div>

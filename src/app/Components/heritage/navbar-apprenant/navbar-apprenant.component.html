@@ -29,10 +29,8 @@
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                Catégories
               </a>
-              <ul class="dropdown-menu custom-dropdown">
+              <ul class="dropdown-menu custom-dropdown fade">
                 <li><a (click)="onCategoryClick(categorie.id!)"  class="dropdown-item"  *ngFor="let categorie of tabCategorie; trackBy: trackByCategorieId">{{categorie.name}}</a></li>
-                <!-- <li><hr class="dropdown-divider"></li> -->
-                <!-- <li><a class="dropdown-item" (click)="logout()">Déconnexion</a></li> -->
               </ul>
             </li>
             <li class="nav-item" *ngIf="!userConnected">

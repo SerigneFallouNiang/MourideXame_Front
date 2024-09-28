@@ -42,7 +42,9 @@ body {
 
 .form-login{
     width: 558px;
-    height: 780px;
+    min-height: 750px;
+    height: auto;
+    transition: height 0.3s ease-in-out;
     flex-shrink: 0;
     border-radius: 30px;
     background: #FFF;

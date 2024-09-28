@@ -65,29 +65,7 @@ body {
     box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.30);
     /* text-align: center; */
 }
-/* Wave container to hold the SVG */
-/* .wave-container {
-border-radius: 30px 30px 0 0;
-overflow: hidden; 
-position: relative;
-width: 100%;
-height: 450px;
-}
 
-.wave-top, .wave-bottom {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-}
-.wave-top {
-z-index: 1; 
-}
-
-.wave-bottom {
-z-index: 0; 
-top: 13px;
-} */
 .formulaire {
 margin-top: -100px;
 padding: 25px;
@@ -147,27 +125,27 @@ top: -130px;
 z-index: 0; 
 }
 .nouveauCompte{
-z-index: 1; 
-float: right;
-color: #000;
-font-family: Lato;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
-
-.nouveauCompte a {
-z-index: 1; 
-float: right;
-color: #FFF;
-font-family: Lato;
-font-size: 16px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-margin-left: 5px;
-}
+  z-index: 1; 
+  float: right;
+  color: #2E8B57;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  }
+  
+  .nouveauCompte a {
+  z-index: 1; 
+  float: right;
+  color: #2E8B57;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 5px;
+  }
 
 .password-forget{
 color: #B7BF99;

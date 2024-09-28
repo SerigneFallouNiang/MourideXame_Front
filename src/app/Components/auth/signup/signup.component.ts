@@ -17,7 +17,10 @@ export class SignupComponent {
 
   authService  =  inject(AuthService);
   router  =  inject(Router);
+  showPassword = false;
+  showConfirmPassword = false;
 
+  // Fonction d'inscription 
   public signupForm = new FormGroup({
     name: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -43,5 +46,15 @@ export class SignupComponent {
     }
   }
 
+
+//fonction de visualisation du mot de passe
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
+
+  //fonction de visualisation du confirmation mot de passe
+  toggleConfirmPasswordVisibility() {
+    this.showConfirmPassword = !this.showConfirmPassword;
+  }
   
 }

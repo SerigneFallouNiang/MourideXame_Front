@@ -11,12 +11,11 @@ import { authGuard } from './auth/auth.guard';
 export const routes: Routes = [
 
     //Route pour Uesr simple
-{path: "", pathMatch: "full", redirectTo: "register"},
+{path: "", pathMatch: "full", redirectTo: "accueil"},
 
 {path: "login", component : LoginComponent},
 {path: "register", component : SignupComponent},
 {path: "accueil", component : AccueilComponent},
-// {path: "xassidas", component : XassidasListeComponent},
 {path: "lecture", component : ReadPDFComponent},
 {path: "quiz", component : QuizComponent},
 {path: "admin", component : DashbordComponent,canActivate: [authGuard] },
