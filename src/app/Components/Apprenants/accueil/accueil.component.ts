@@ -72,9 +72,6 @@ export class AccueilComponent implements OnInit{
 
 
 
-// onCategoryClick(categoryId: numbernumber) {
-//   this.router.navigate(['/category', categoryId]);
-// }
 
 onCategoryClick(categoryId: number | string ): void {
   const idAsString = categoryId.toString(); // Convertir en chaîne

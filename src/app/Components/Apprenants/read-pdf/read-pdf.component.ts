@@ -84,7 +84,8 @@ export class ReadPDFComponent implements OnInit {
   selectChapter(chapter: any) {
     this.selectedFichier = false;
     this.selectedChapter = chapter;
-    this.selectedChapter = chapter;
+    // this.selectedChapter = chapter;
+    console.log('Selected chapter:', this.selectedChapter); 
   }
 
   //  // affichageage du chapitre selectionner 

@@ -37,9 +37,10 @@ export class LoginComponent {
           if (data.status) {
             const user = data.user;  // Récupérer les informations de l'utilisateur
             const roles = data.roles;  // Récupérer les rôles depuis la réponse API
+            const token = data.token;  // Récupérer les rôles depuis la réponse API
 
             // Stocker les informations de l'utilisateur dans le localStorage
-            localStorage.setItem('authUser', JSON.stringify({ user, roles }));  
+            localStorage.setItem('authUser', JSON.stringify({ user, roles , token}));  
             
             // Redirection en fonction du rôle
             if (roles.includes('apprenant')) {
