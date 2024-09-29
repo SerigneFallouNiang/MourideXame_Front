@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar-apprenant.component';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-quiz',
@@ -24,7 +25,10 @@ export class QuizComponent implements OnInit {
   selectedAnswers: { question_id: number, answer_id: number }[] = [];
   quizId: string | null = '4'; // Quiz ID (à adapter dynamiquement)
 
-  constructor(private quizzservice: QuizzService, private route: ActivatedRoute) {}
+  constructor(
+    private quizzservice: QuizzService,
+     private route: ActivatedRoute,
+    public location:Location) {}
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -44,12 +48,6 @@ export class QuizComponent implements OnInit {
     });
   }
 
-  // Update answers object whenever an answer is selected
-  // selectAnswer(questionId: string, answerId: string) {
-  //   this.answers[questionId] = answerId;
-  // }
-
-  // selectedAnswers: { question_id: number, answer_id: number }[] = [];
 
 selectAnswer(questionId: number, answerId: number) {
   const existingAnswerIndex = this.selectedAnswers.findIndex(a => a.question_id === questionId);
@@ -64,26 +62,7 @@ selectAnswer(questionId: number, answerId: number) {
 }
 
 
-  // submitQuiz() {
-  //   const quizId = this.quiz.id;
-  //   this.quizzservice.submitQuizz(quizId, this.answers).subscribe((result: any) => {
-  //     console.log('Quiz result:', result);
-  //     // Display the result in the component
-  //   });
-  // }
 
-  // submitQuiz() {
-  //   this.quizzservice.submitQuizz(this.quizId, this.selectedAnswers)
-  //     .subscribe(
-  //       (response: any) => {
-  //         console.log('Quiz soumis avec succès', response);
-  //       },
-  //       (error:{error:any}) => {
-  //         console.error(error.error.message);
-  //         console.error('Erreur lors de la soumission du quiz', error);
-  //       }
-  //     );
-  // }
 
   submitQuiz() {
     this.quizzservice.submitQuizz(this.quizId, this.selectedAnswers)
@@ -93,7 +72,7 @@ selectAnswer(questionId: number, answerId: number) {
           this.score = response.score;
           this.isPassed = response.isPassed;
           
-          // Update questions to show correct/incorrect answers
+          // Mettre à jour les questions pour afficher les réponses correctes/incorrectes
           this.questions.forEach((question, index) => {
             const result = response.detailedResults.find((r: any) => r.question.id === question.id);
             if (result) {
@@ -111,4 +90,10 @@ selectAnswer(questionId: number, answerId: number) {
       );
   }
   
+
+
+    //fonction pour le retour précédé
+    goToCourse(): void {
+      this.location.back();
+    }
 }

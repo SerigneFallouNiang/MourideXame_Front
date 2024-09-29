@@ -552,21 +552,25 @@ text-decoration: none;
                               <!-- After submitting the quiz, show the results -->
                               <div *ngIf="submitted">
                                 <p *ngIf="question.is_correct; else wrongAnswer">
-                                  ✅ Correct! The right answer is: {{ question.correctAnswer.text }}
+                                  ✅ Correct! La bonne réponse est :{{ question.correctAnswer.text }}
                                 </p>
                                 <ng-template #wrongAnswer>
-                                  ❌ Incorrect. The correct answer was: {{ question.correctAnswer.text }}
+                                  ❌ Incorrect. La réponse correcte était : {{ question.correctAnswer.text }}
                                 </ng-template>
                               </div>
                             </div>
-                            <input type="submit" value="Soumettre le quiz">
+                                <!-- Afficher le bouton "Soumettre le quiz" avant la soumission -->
+                              <input *ngIf="!submitted" type="submit" value="Soumettre le quiz">
+
+                             <!-- Afficher le bouton "Retour au cours" après la soumission -->
+                              <button *ngIf="submitted" class="retourQuiz" (click)="goToCourse()">Retour au cours</button>
                           </form>
                         
-                          <!-- Show the final result after quiz submission -->
+                         <!-- Afficher le résultat final après la soumission du quiz -->
                           <div *ngIf="submitted">
                             <h3>Score: {{ score }}%</h3>
-                            <p *ngIf="isPassed">You passed! 🎉</p>
-                            <p *ngIf="!isPassed">You did not pass. Try again!</p>
+                            <p *ngIf="isPassed">Tu as réussi !🎉</p>
+                            <p *ngIf="!isPassed">Tu n'as pas réussi. Réessaie !</p>
                           </div>
                         </div>
                         
