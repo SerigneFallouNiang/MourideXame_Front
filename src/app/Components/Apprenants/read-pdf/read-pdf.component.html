@@ -50,15 +50,24 @@
   overflow-y: auto;
 }
 
-.listes li {
-  /* background-color: #FFD233; */
-  /* border: #FFD233; */
-  /* border-radius: .5em; */
+/* .listes li {
   transition: all .2s;
-  /* border-top: 1px solid #FFD233; */
-  /* border-right: 3px solid #f8a100; */
   border-bottom: 2px solid #FFD233;
+} */
+/* .listes li {
+  transition: all .2s;
+  border-bottom: 2px solid #FFD233; 
+} */
+
+.lu-chapter {
+  border-bottom: 2px solid black; /* Couleur verte pour les chapitres lus */
 }
+
+/* Quand un chapitre est sélectionné, la bordure devient verte */
+.selected-chapter {
+  border-bottom: 2px solid #2E8B57;
+}
+
 
 .listes ul li a {
   color: #2E8B57;
@@ -517,7 +526,7 @@ ul li a {
               <a (click)="selectFichier(chapters[0].Fichier)">Document PDF</a>
             </li>
           }
-          <li *ngFor="let chapter of filteredChapiters">
+          <li *ngFor="let chapter of filteredChapiters"   [ngClass]="{'selected-chapter': chapter.isSelected, 'lu-chapter': chapter.lue}">
             <a (click)="selectChapter(chapter)">{{ chapter['Titre du chapitre'] }}</a>
           </li>
         </ul>

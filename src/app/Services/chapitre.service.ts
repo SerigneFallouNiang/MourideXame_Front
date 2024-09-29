@@ -21,4 +21,9 @@ export class ChapitreService {
   }
 
 
+  // Methode pour marquer un chapitre comme lu
+  markChapterAsRead(chapterId: string): Observable<any> {
+    return this.http.post(`${apiUrl}/chapters/${chapterId}/mark-read`, {});
+  }
+
 }

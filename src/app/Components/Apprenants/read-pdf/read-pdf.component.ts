@@ -86,8 +86,23 @@ export class ReadPDFComponent implements OnInit {
     this.selectedChapter = chapter;
     // this.selectedChapter = chapter;
     console.log('Selected chapter:', this.selectedChapter); 
+
+     // Appel pour marquer le chapitre comme lu
+     if (chapter.id) {
+      this.chapitreService.markChapterAsRead(chapter.id).subscribe(
+        (response: any) => {
+          console.log('Chapitre marqué comme lu:', response);
+          // Optionnel: Mettez à jour l'UI localement, si nécessaire
+          chapter.lue = true;
+        },
+        (error: any) => {
+          console.error('Erreur lors de la mise à jour du chapitre:', error);
+        }
+      );
+    }
   }
 
+  
   //  // affichageage du chapitre selectionner 
   //  selectFichier(chapter: any) {
   //   this.selectedFichier= chapter.Fichier;
