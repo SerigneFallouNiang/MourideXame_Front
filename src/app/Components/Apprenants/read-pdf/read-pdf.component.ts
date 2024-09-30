@@ -49,27 +49,26 @@ export class ReadPDFComponent implements OnInit {
         this.bookName = data.Livre;
         this.filteredChapiters = this.chapters; 
         this.chapters.forEach(chapter => {
+           // Si le chapitre est marqué comme "lu", ajouter une propriété 'lue' à true
+           chapter.lue = chapter.lue || false;
+
+           chapter.terminer = chapter.terminer || 0;
+
+ 
+           // Récupérer le fichier PDF et la vidéo s'ils existent
           //récupération du fichier pdf
           if (chapter.Fichier) {
             chapter.Fichier = `${apiUrlStockage}/${chapter.Fichier}`;
           }
-          //récupération du video
-          // if (chapter.Video) {
-          //   chapter.Video = `${apiUrlStockage}/${chapter.Video}`;
-          // }
-         // récupération de la vidéo
           if (chapter.Video) {
             chapter.Video = `${apiUrlStockage}/${chapter.Video}`;
           } else {
             this.messageImage = "Aucune vidéo pour ce chapitre";
           }
-          
-          // //récupération du lien youtube
-          // if (chapter.Lien) {
-          //   const embedUrl = this.getYouTubeEmbedUrl(chapter.Lien);
-          //   chapter.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(embedUrl);
-          // }
         });
+
+
+      // Si des chapitres existent, sélectionnez le premier chapitre
         if (this.chapters.length > 0) {
           this.selectChapter(this.chapters[0]);
         }
@@ -82,17 +81,27 @@ export class ReadPDFComponent implements OnInit {
 
   // affichageage du chapitre selectionner 
   selectChapter(chapter: any) {
+    // Réinitialiser l'état sélectionné pour tous les chapitres
+  this.chapters.forEach(chap => chap.isSelected = false);
+
+    // Définir l'état sélectionné pour le chapitre cliqué
+    chapter.isSelected = true;
     this.selectedFichier = false;
-    this.selectedChapter = chapter;
+    this.selectedChapter = chapter;  
+
     // this.selectedChapter = chapter;
     console.log('Selected chapter:', this.selectedChapter); 
 
+      // Vérifier si le chapitre est déjà marqué comme lu
+  if (chapter.lue) {
+    console.log('Ce chapitre a déjà été lu.');
+  } else {
      // Appel pour marquer le chapitre comme lu
      if (chapter.id) {
       this.chapitreService.markChapterAsRead(chapter.id).subscribe(
         (response: any) => {
           console.log('Chapitre marqué comme lu:', response);
-          // Optionnel: Mettez à jour l'UI localement, si nécessaire
+          // Mettre à jour l'état dans le frontend
           chapter.lue = true;
         },
         (error: any) => {
@@ -100,6 +109,7 @@ export class ReadPDFComponent implements OnInit {
         }
       );
     }
+  }
   }
 
   
@@ -117,19 +127,19 @@ export class ReadPDFComponent implements OnInit {
     this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fichier);
   }
 
-  getYouTubeEmbedUrl(url: string): string {
-    // Extrait l'ID de la vidéo YouTube de l'URL
-    const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-    const match = url.match(regExp);
+  // getYouTubeEmbedUrl(url: string): string {
+  //   // Extrait l'ID de la vidéo YouTube de l'URL
+  //   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+  //   const match = url.match(regExp);
     
-    if (match && match[2].length === 11) {
-      // Retourne l'URL d'incorporation
-      return `https://www.youtube.com/embed/${match[2]}`;
-    }
+  //   if (match && match[2].length === 11) {
+  //     // Retourne l'URL d'incorporation
+  //     return `https://www.youtube.com/embed/${match[2]}`;
+  //   }
     
-    // Si l'URL n'est pas reconnue, retourne l'URL originale
-    return url;
-  }
+  //   // Si l'URL n'est pas reconnue, retourne l'URL originale
+  //   return url;
+  // }
 // si aucun fichier n'est selectionner par un utilisateur 
   resetSelection() {
     this.selectedFichier = false;
