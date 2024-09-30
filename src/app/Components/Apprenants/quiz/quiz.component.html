@@ -24,17 +24,22 @@
     margin-top: 10px;
    }
 
-   /* listes de raccourcis  */
-   /* .listes ul li {
-    color: #000;
+   .all-container{
+    margin-top: 100px;
+   }
+
+   .titre-question{
+    font-size: 18px;
+    font-weight: bold;
     font-family: "Playfair Display";
+    margin-top: 30px;
+   }
+
+   .input-reponse{
     font-size: 16px;
-    font-style: normal;
     font-weight: 400;
-    line-height: 30px;
-    text-decoration: none;
-    list-style: none;
-   } */
+    font-family: "Playfair Display";
+   }
 
    .listes ul {
   padding: 1em;
@@ -436,7 +441,7 @@ text-decoration: none;
  <!-- heritage du navbar start  -->
  <app-navbar-apprenant></app-navbar-apprenant>
  <!-- heritage du navbar end  -->
-
+<section class="all-container">
 <h1 class="categorie-titre">Xassidas</h1>
 <div class="button-nav-listes">
   <button class="button-retour-chapitre" id="cartes" ><i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #fff;"></i></button>
@@ -454,12 +459,6 @@ text-decoration: none;
    </div>
 </div>
       <div class="listes">
-        <!-- <ul>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-        </ul> -->
 
         <!-- //Liste raccourcis  -->
         <ul>
@@ -487,65 +486,16 @@ text-decoration: none;
                     <!-- <h2 class="titre-chapitre">PREAMBULE</h2> -->
                     <div id="bordure">
                         <header>
-                          <h1 class="titre-chapitre">PREAMBULE</h1>
-                          <p>teste du chapitre <strong>préambule</strong></p>
+                          <h1 class="titre-chapitre">{{ quiz.title }}</h1>
                         </header>
-                        <!-- <section>
-                          <form name="quizForm" >
-                            <h3>1. In which HTML element do we put in JavaScript code?</h3>
-                            <input type="radio" name="q1" value="a" id="q1a">a. &lt;js&gt;<br>
-                            <input type="radio" name="q1" value="b" id="q1b">b. &lt;script&gt;<br>
-                            <input type="radio" name="q1" value="c" id="q1c">c. &lt;body&gt;<br>
-                            <input type="radio" name="q1" value="d" id="q1d">d. &lt;link&gt;<br>
-                      
-                            <h3>2. Which HTML attribute is used to reference an external JavaScript file?</h3>
-                            <input type="radio" name="q2" value="a" id="q2a">a. src<br>
-                            <input type="radio" name="q2" value="b" id="q2b">b. rel<br>
-                            <input type="radio" name="q2" value="c" id="q2c">c. type<br>
-                            <input type="radio" name="q2" value="d" id="q2d">d. href<br>
-                      
-                            <h3>3. How would you write "Hello" in an alert box?</h3>
-                            <input type="radio" name="q3" value="a" id="q3a">a. msg("Hello");<br>
-                            <input type="radio" name="q3" value="b" id="q3b">b. alertBox("Hello");<br>
-                            <input type="radio" name="q3" value="c" id="q3c">c. document.write("Hello");<br>
-                            <input type="radio" name="q3" value="d" id="q3d">d. alert("Hello");<br>
-                      
-                            <h3>4. JavaScript is directly related to the "Java" programming language</h3>
-                            <input type="radio" name="q4" value="a" id="q4a">a. True<br>
-                            <input type="radio" name="q4" value="b" id="q4b">b. False<br>
-                      
-                            <h3>5. A variable in JavaScript must start with which special character</h3>
-                            <input type="radio" name="q5" value="a" id="q5a">a. i<br>
-                            <input type="radio" name="q5" value="b" id="q5b">b. $<br>
-                            <input type="radio" name="q5" value="c" id="q5c">c. #<br>
-                            <input type="radio" name="q5" value="d" id="q5d">d. No Special Character<br>
-                            <br><br>
-                            <input type="submit" value="Soumettre la réponse">
-                          </form>
-                          <div id="results"></div>
-                        </section> -->
-                        <!-- <div class="container" *ngIf="quiz">
-                          <h2>{{ quiz.title }}</h2>
-                          <form #quizForm="ngForm" (ngSubmit)="submitQuiz()">
-                            <div *ngFor="let question of questions">
-                              <h3>{{ question.text }}</h3>
-                              <div *ngFor="let answer of question.answers">
-                                <input type="radio" [name]="'q' + question.id" [value]="answer.id" (change)="selectAnswer(question.id, answer.id)">
-                                {{ answer.text }}
-                              </div>
-                            </div>
-                            <input type="submit" value="Soumettre le quiz">
-                          </form>
-                        </div> -->
                         
-
                         <div class="container" *ngIf="quiz">
-                          <h2>{{ quiz.title }}</h2>
+                          <!-- <h2>{{ quiz.title }}</h2> -->
                           <form #quizForm="ngForm" (ngSubmit)="submitQuiz()">
                             <div *ngFor="let question of questions">
-                              <h3>{{ question.text }}</h3>
+                              <h3 class="titre-question">{{ question.text }}</h3>
                               <div *ngFor="let answer of question.answers">
-                                <input type="radio" [name]="'q' + question.id" [value]="answer.id" (change)="selectAnswer(question.id, answer.id)">
+                                <input type="radio" [name]="'q' + question.id" [value]="answer.id" (change)="selectAnswer(question.id, answer.id)" class="input-reponse">
                                 {{ answer.text }}
                               </div>
                         
@@ -583,5 +533,5 @@ text-decoration: none;
     </div>
 </section>
 
-
+</section>
 

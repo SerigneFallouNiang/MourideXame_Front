@@ -7,11 +7,13 @@ import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar-apprenant.component';
 import { FormsModule } from '@angular/forms';
 import { Location } from '@angular/common';
+import { ChaptersListComponent } from '../../heritage/chapters-list/chapters-list.component';
+import { QuizzService } from '../../../Services/quizz.service';
 
 @Component({
   selector: 'app-read-pdf',
   standalone: true,
-  imports: [CommonModule,NavbarApprenantComponent,FormsModule],
+  imports: [CommonModule,NavbarApprenantComponent,FormsModule,ChaptersListComponent],
   templateUrl: './read-pdf.component.html',
   styleUrl: './read-pdf.component.css'
 })
@@ -23,23 +25,60 @@ export class ReadPDFComponent implements OnInit {
   searchTerm: string = ''; 
   filteredChapiters: any[] = [];
   selectedChapter: any = null;
+  selectedQuiz: any = null;
   selectedFichier: any = null;
   pdfUrl: SafeResourceUrl | null = null;
+  bookId: any;
 
   constructor(
     private route: ActivatedRoute,
     private chapitreService: ChapitreService,
     public sanitizer: DomSanitizer,
     public location:Location,
-    private router: Router
+    private router: Router,
+
+    // information quiz 
+      private quizzservice: QuizzService,
+    //  private route: ActivatedRoute,
+    // public location:Location
   ) {}
+
+  // ngOnInit() {
+  //   this.route.params.subscribe(params => {
+  //     this.bookId = params['id'];
+  //     this.loadChapters(this.bookId);
+  //   });
+  //   this.filteredChapiters = this.chapters;
+
+  //   // information quiz 
+
+  //   this.route.params.subscribe(params => {
+  //     const chapterId = params['id'];
+  //     if (chapterId) {
+  //       this.startQuiz(chapterId);
+  //     } else {
+  //       console.error('Aucun ID de chapitre trouvé');
+  //     }
+  //   });
+
+  // }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const bookId = params['id'];
-      this.loadChapters(bookId);
+      this.bookId = params['id'];
+      this.loadChapters(this.bookId);
     });
     this.filteredChapiters = this.chapters;
+  
+    // information quiz 
+    this.route.params.subscribe(params => {
+      const chapterId = params['id'];
+      if (chapterId) {
+        this.startQuiz(chapterId);
+      } else {
+        console.error('Aucun ID de chapitre trouvé');
+      }
+    });
   }
 
   loadChapters(bookId: string) {
@@ -87,6 +126,7 @@ export class ReadPDFComponent implements OnInit {
     // Définir l'état sélectionné pour le chapitre cliqué
     chapter.isSelected = true;
     this.selectedFichier = false;
+    this.selectedQuiz = false;
     this.selectedChapter = chapter;  
 
     // this.selectedChapter = chapter;
@@ -110,6 +150,24 @@ export class ReadPDFComponent implements OnInit {
       );
     }
   }
+
+
+   // Récupérer le quiz associé au chapitre
+   if (chapter.id) {
+    this.quizzservice.getQuizz(chapter.id).subscribe(
+      (quizData: any) => {
+        if (quizData && quizData.quiz) {
+          this.selectedQuiz = quizData.quiz;
+          this.questions = quizData.questions;
+        } else {
+          console.log('Aucun quiz disponible pour ce chapitre');
+        }
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération du quiz:', error);
+      }
+    );
+  }
   }
 
   
@@ -121,12 +179,19 @@ export class ReadPDFComponent implements OnInit {
   selectFichier(fichier: string) {
     this.selectedFichier = true;
     this.selectedChapter = null;
+    this.selectedQuiz = null;
 
     this.selectedFichier = fichier;
     // Sanitize the URL to prevent XSS attacks
     this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fichier);
   }
 
+
+  selectQuiz(fichier: string) {
+    this.selectedFichier = true;
+    this.selectedChapter = null;
+    this.selectedQuiz = this.quizId;
+  }
   // getYouTubeEmbedUrl(url: string): string {
   //   // Extrait l'ID de la vidéo YouTube de l'URL
   //   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
@@ -144,6 +209,7 @@ export class ReadPDFComponent implements OnInit {
   resetSelection() {
     this.selectedFichier = false;
     this.selectedChapter = null;
+    this.selectedQuiz = null;
     this.pdfUrl = null;
   }
 
@@ -161,12 +227,147 @@ export class ReadPDFComponent implements OnInit {
   }
 
     // Method to navigate to the quiz page for the selected chapter
-   startQuiz(chapterId: string) {
-  if (!chapterId) {
-    console.error('ID de chapitre invalide :', chapterId);
-    return;
+//    startQuiz(chapterId: string) {
+//   if (!chapterId) {
+//     console.error('ID de chapitre invalide :', chapterId);
+//     return;
+//   }
+//   this.router.navigate(['/quiz', chapterId]); 
+// }
+
+// information de la soumission d'un quiz 
+quiz: any;
+  questions: any[] = [];
+  answers: any = {}; // Store selected answers
+
+  submitted = false;
+  score = 0;
+  isPassed = false;
+
+  selectedAnswers: { question_id: number, answer_id: number }[] = [];
+  quizId: string | null = '4'; // Quiz ID (à adapter dynamiquement)
+
+  // constructor(
+  //   private quizzservice: QuizzService,
+  //    private route: ActivatedRoute,
+  //   public location:Location) {}
+
+  // ngOnInit(): void {
+  //   this.route.params.subscribe(params => {
+  //     const chapterId = params['id'];
+  //     if (chapterId) {
+  //       this.startQuiz(chapterId);
+  //     } else {
+  //       console.error('Aucun ID de chapitre trouvé');
+  //     }
+  //   });
+  // }
+
+  // startQuiz(chapterId: string | null) {
+  //   this.quizzservice.getQuizz(chapterId).subscribe((data: any) => {
+  //     this.quiz = data.quiz;
+  //     this.questions = data.questions;
+  //   });
+  // }
+
+  startQuiz(chapterId?: string) {
+    this.selectedFichier = null;
+    this.selectedChapter = null;
+    // Réinitialiser les variables du quiz
+    this.submitted = false;
+    this.score = 0;
+    this.isPassed = false;
+    this.selectedAnswers = [];
+  
+    if (chapterId) {
+      this.quizzservice.getQuizz(chapterId).subscribe(
+        (data: any) => {
+          this.quiz = data.quiz;
+          this.questions = data.questions;
+          this.selectedQuiz = this.quiz;
+        },
+        (error) => {
+          console.error('Erreur lors de la récupération du quiz:', error);
+        }
+      );
+    }
   }
-  this.router.navigate(['/quiz', chapterId]); 
+
+  
+
+selectAnswer(questionId: number, answerId: number) {
+  const existingAnswerIndex = this.selectedAnswers.findIndex(a => a.question_id === questionId);
+  
+  if (existingAnswerIndex > -1) {
+    // Mettre à jour la réponse existante
+    this.selectedAnswers[existingAnswerIndex].answer_id = answerId;
+  } else {
+    // Ajouter une nouvelle réponse
+    this.selectedAnswers.push({ question_id: questionId, answer_id: answerId });
+  }
 }
 
+
+
+
+  // submitQuiz() {
+  //   this.quizzservice.submitQuizz(this.quizId, this.selectedAnswers)
+  //     .subscribe(
+  //       (response: any) => {
+  //         console.log('Quiz submitted successfully', response);
+  //         this.score = response.score;
+  //         this.isPassed = response.isPassed;
+          
+  //         // Mettre à jour les questions pour afficher les réponses correctes/incorrectes
+  //         this.questions.forEach((question, index) => {
+  //           const result = response.detailedResults.find((r: any) => r.question.id === question.id);
+  //           if (result) {
+  //             question.is_correct = result.is_correct;
+  //             question.correctAnswer = result.answers.find((ans: any) => ans.is_correct);
+  //           }
+  //         });
+          
+  //         this.submitted = true;
+  //       },
+  //       (error: { error: any }) => {
+  //         console.error(error.error.message);
+  //         console.error('Error submitting quiz', error);
+  //       }
+  //     );
+  // }
+  
+
+
+    //fonction pour le retour précédé
+    goToCourse(): void {
+      this.location.back();
+    }
+
+    submitQuiz() {
+      if (this.selectedQuiz && this.selectedQuiz.id) {
+        this.quizzservice.submitQuizz(this.selectedQuiz.id, this.selectedAnswers)
+          .subscribe(
+            (response: any) => {
+              console.log('Quiz submitted successfully', response);
+              this.score = response.score;
+              this.isPassed = response.isPassed;
+              
+              this.questions.forEach((question, index) => {
+                const result = response.detailedResults.find((r: any) => r.question.id === question.id);
+                if (result) {
+                  question.is_correct = result.is_correct;
+                  question.correctAnswer = result.answers.find((ans: any) => ans.is_correct);
+                }
+              });
+              
+              this.submitted = true;
+            },
+            (error: { error: any }) => {
+              console.error('Error submitting quiz', error);
+            }
+          );
+      } else {
+        console.error('No quiz selected or invalid quiz ID');
+      }
+    }
 }

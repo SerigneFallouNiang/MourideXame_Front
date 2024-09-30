@@ -526,9 +526,14 @@ ul li a {
 <h1 class="categorie-titre">{{ bookName }}</h1>
 
 <section class="liste-xassidas row" *ngIf="chapters.length > 0">
+  <!-- <app-chapters-list 
+  [bookId]= "bookId"
+  [chapters]="chapters"
+  [bookName]="bookName" 
+  (chapterSelected)="selectChapter($event)">
+</app-chapters-list> -->
+
     <div  class="col-3 bg-light raccourcis">
-      <!-- <h2 class="titre-h2">{{ bookName }}</h2> -->
-      <!-- <input type="text" class="recherche"> -->
        <div class="wrap">
    <div class="search">
       <input type="text" class="searchTerm" placeholder="Rechercher un chapitre"  [(ngModel)]="searchTerm"  (input)="searchBooks()">
@@ -550,6 +555,8 @@ ul li a {
         </ul>
       </div>
     </div>
+    <!-- <app-chapters-list [bookId]="selectedChapter" (chapterSelected)="selectChapter($event)"></app-chapters-list> -->
+
  
 @if(selectedFichier) {
   <div class="col-12 col-md-8 bg-white card-xassidas">
@@ -584,8 +591,59 @@ ul li a {
       
     </div>
   </div>
-} @else {
-  <p>Aucun contenu sélectionné</p>
+} @else if(selectedQuiz){
+  <div class="col-12 col-md-8 bg-white card-xassidas">
+    <div class="container">
+  <div class="description-chapitre">
+    <!-- <h2 class="titre-chapitre">PREAMBULE</h2> -->
+    <div id="bordure">
+        <header>
+          <h1 class="titre-chapitre">{{ quiz.title }}</h1>
+        </header>
+        
+        <div class="container" *ngIf="quiz">
+          <!-- <h2>{{ quiz.title }}</h2> -->
+          <form #quizForm="ngForm" (ngSubmit)="submitQuiz()">
+            <div *ngFor="let question of questions">
+              <h3 class="titre-question">{{ question.text }}</h3>
+              <div *ngFor="let answer of question.answers">
+                <input type="radio" [name]="'q' + question.id" [value]="answer.id" (change)="selectAnswer(question.id, answer.id)" class="input-reponse">
+                {{ answer.text }}
+              </div>
+        
+              <!-- After submitting the quiz, show the results -->
+              <div *ngIf="submitted">
+                <p *ngIf="question.is_correct; else wrongAnswer">
+                  ✅ Correct! La bonne réponse est :{{ question.correctAnswer.text }}
+                </p>
+                <ng-template #wrongAnswer>
+                  ❌ Incorrect. La réponse correcte était : {{ question.correctAnswer.text }}
+                </ng-template>
+              </div>
+            </div>
+                <!-- Afficher le bouton "Soumettre le quiz" avant la soumission -->
+              <!-- <input *ngIf="!submitted" type="submit" value="Soumettre le quiz"> -->
+                <!-- Afficher le bouton "Soumettre le quiz" avant la soumission -->
+                <input *ngIf="!submitted" type="submit" value="Soumettre le quiz">
+
+             <!-- Afficher le bouton "Retour au cours" après la soumission -->
+              <button *ngIf="submitted" class="retourQuiz" (click)="goToCourse()">Retour au cours</button>
+          </form>
+        
+         <!-- Afficher le résultat final après la soumission du quiz -->
+          <div *ngIf="submitted">
+            <h3>Score: {{ score }}%</h3>
+            <p *ngIf="isPassed">Tu as réussi !🎉</p>
+            <p *ngIf="!isPassed">Tu n'as pas réussi. Réessaie !</p>
+          </div>
+        </div>
+        
+        
+        <!-- fin test quiz  -->
+      </div>
+</div>
+</div>
+</div>
 }
    
 </section>
