@@ -29,6 +29,7 @@ export class ReadPDFComponent implements OnInit {
   selectedFichier: any = null;
   pdfUrl: SafeResourceUrl | null = null;
   bookId: any;
+  errorMessage: string = '';
 
   constructor(
     private route: ActivatedRoute,
@@ -36,32 +37,9 @@ export class ReadPDFComponent implements OnInit {
     public sanitizer: DomSanitizer,
     public location:Location,
     private router: Router,
-
-    // information quiz 
-      private quizzservice: QuizzService,
-    //  private route: ActivatedRoute,
-    // public location:Location
+    private quizzservice: QuizzService,
   ) {}
 
-  // ngOnInit() {
-  //   this.route.params.subscribe(params => {
-  //     this.bookId = params['id'];
-  //     this.loadChapters(this.bookId);
-  //   });
-  //   this.filteredChapiters = this.chapters;
-
-  //   // information quiz 
-
-  //   this.route.params.subscribe(params => {
-  //     const chapterId = params['id'];
-  //     if (chapterId) {
-  //       this.startQuiz(chapterId);
-  //     } else {
-  //       console.error('Aucun ID de chapitre trouvé');
-  //     }
-  //   });
-
-  // }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
@@ -172,9 +150,6 @@ export class ReadPDFComponent implements OnInit {
 
   
   //  // affichageage du chapitre selectionner 
-  //  selectFichier(chapter: any) {
-  //   this.selectedFichier= chapter.Fichier;
-  // }
 
   selectFichier(fichier: string) {
     this.selectedFichier = true;
@@ -192,19 +167,7 @@ export class ReadPDFComponent implements OnInit {
     this.selectedChapter = null;
     this.selectedQuiz = this.quizId;
   }
-  // getYouTubeEmbedUrl(url: string): string {
-  //   // Extrait l'ID de la vidéo YouTube de l'URL
-  //   const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
-  //   const match = url.match(regExp);
-    
-  //   if (match && match[2].length === 11) {
-  //     // Retourne l'URL d'incorporation
-  //     return `https://www.youtube.com/embed/${match[2]}`;
-  //   }
-    
-  //   // Si l'URL n'est pas reconnue, retourne l'URL originale
-  //   return url;
-  // }
+
 // si aucun fichier n'est selectionner par un utilisateur 
   resetSelection() {
     this.selectedFichier = false;
@@ -226,15 +189,6 @@ export class ReadPDFComponent implements OnInit {
     this.location.back();
   }
 
-    // Method to navigate to the quiz page for the selected chapter
-//    startQuiz(chapterId: string) {
-//   if (!chapterId) {
-//     console.error('ID de chapitre invalide :', chapterId);
-//     return;
-//   }
-//   this.router.navigate(['/quiz', chapterId]); 
-// }
-
 // information de la soumission d'un quiz 
 quiz: any;
   questions: any[] = [];
@@ -247,28 +201,6 @@ quiz: any;
   selectedAnswers: { question_id: number, answer_id: number }[] = [];
   quizId: string | null = '4'; // Quiz ID (à adapter dynamiquement)
 
-  // constructor(
-  //   private quizzservice: QuizzService,
-  //    private route: ActivatedRoute,
-  //   public location:Location) {}
-
-  // ngOnInit(): void {
-  //   this.route.params.subscribe(params => {
-  //     const chapterId = params['id'];
-  //     if (chapterId) {
-  //       this.startQuiz(chapterId);
-  //     } else {
-  //       console.error('Aucun ID de chapitre trouvé');
-  //     }
-  //   });
-  // }
-
-  // startQuiz(chapterId: string | null) {
-  //   this.quizzservice.getQuizz(chapterId).subscribe((data: any) => {
-  //     this.quiz = data.quiz;
-  //     this.questions = data.questions;
-  //   });
-  // }
 
   startQuiz(chapterId?: string) {
     this.selectedFichier = null;
@@ -298,6 +230,7 @@ quiz: any;
 selectAnswer(questionId: number, answerId: number) {
   const existingAnswerIndex = this.selectedAnswers.findIndex(a => a.question_id === questionId);
   
+  this.errorMessage = '';
   if (existingAnswerIndex > -1) {
     // Mettre à jour la réponse existante
     this.selectedAnswers[existingAnswerIndex].answer_id = answerId;
@@ -307,34 +240,6 @@ selectAnswer(questionId: number, answerId: number) {
   }
 }
 
-
-
-
-  // submitQuiz() {
-  //   this.quizzservice.submitQuizz(this.quizId, this.selectedAnswers)
-  //     .subscribe(
-  //       (response: any) => {
-  //         console.log('Quiz submitted successfully', response);
-  //         this.score = response.score;
-  //         this.isPassed = response.isPassed;
-          
-  //         // Mettre à jour les questions pour afficher les réponses correctes/incorrectes
-  //         this.questions.forEach((question, index) => {
-  //           const result = response.detailedResults.find((r: any) => r.question.id === question.id);
-  //           if (result) {
-  //             question.is_correct = result.is_correct;
-  //             question.correctAnswer = result.answers.find((ans: any) => ans.is_correct);
-  //           }
-  //         });
-          
-  //         this.submitted = true;
-  //       },
-  //       (error: { error: any }) => {
-  //         console.error(error.error.message);
-  //         console.error('Error submitting quiz', error);
-  //       }
-  //     );
-  // }
   
 
 
@@ -344,6 +249,8 @@ selectAnswer(questionId: number, answerId: number) {
     }
 
     submitQuiz() {
+   
+
       if (this.selectedQuiz && this.selectedQuiz.id) {
         this.quizzservice.submitQuizz(this.selectedQuiz.id, this.selectedAnswers)
           .subscribe(
@@ -357,10 +264,30 @@ selectAnswer(questionId: number, answerId: number) {
                 if (result) {
                   question.is_correct = result.is_correct;
                   question.correctAnswer = result.answers.find((ans: any) => ans.is_correct);
+                }   // Vérifie si toutes les questions ont une réponse
+                if (Object.keys(this.selectedAnswers).length !== this.questions.length) {
+                  this.errorMessage = 'Veuillez répondre à toutes les questions avant de soumettre le quiz.';
+                  return; // Stopper la soumission
                 }
               });
               
+
+
+              // Vérifie si toutes les questions ont une réponse
+              if (Object.keys(this.selectedAnswers).length !== this.questions.length) {
+                this.errorMessage = 'Veuillez répondre à toutes les questions avant de soumettre le quiz.';
+              
+                // Faire disparaître le message d'erreur après 2 secondes
+                setTimeout(() => {
+                  this.errorMessage = ''; // Réinitialiser le message d'erreur
+                }, 3000); // 2000 millisecondes = 2 secondes
+              
+                return; // Stopper la soumission
+              }
+              
+
               this.submitted = true;
+              this.errorMessage = '';
             },
             (error: { error: any }) => {
               console.error('Error submitting quiz', error);

@@ -624,11 +624,18 @@ ul li a {
                 <!-- Afficher le bouton "Soumettre le quiz" avant la soumission -->
               <!-- <input *ngIf="!submitted" type="submit" value="Soumettre le quiz"> -->
                 <!-- Afficher le bouton "Soumettre le quiz" avant la soumission -->
+                <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+                  {{ errorMessage }}
+                </div>
+                
                 <input *ngIf="!submitted" type="submit" value="Soumettre le quiz">
 
              <!-- Afficher le bouton "Retour au cours" après la soumission -->
               <button *ngIf="submitted" class="retourQuiz" (click)="goToCourse()">Retour au cours</button>
           </form>
+
+            <!-- Afficher un message d'erreur si toutes les questions ne sont pas répondues -->
+    
         
          <!-- Afficher le résultat final après la soumission du quiz -->
           <div *ngIf="submitted">
