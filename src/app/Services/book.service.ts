@@ -35,4 +35,20 @@ export class BookService {
   }
 
 
+
+  getHistoryUser(): Observable<any> {
+    const authUser = localStorage.getItem('authUser'); 
+    let headers = new HttpHeaders();
+    
+    if (authUser) {
+      const parsedUser = JSON.parse(authUser);
+      const token = parsedUser.token;
+      
+      if (token) {
+        headers = headers.set('Authorization', `Bearer ${token}`);
+      }
+    }
+    return this.http.get(`${apiUrl}/books/read-chapters/user`, { headers });
+  }
+
 }

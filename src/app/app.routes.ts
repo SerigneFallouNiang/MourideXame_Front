@@ -7,6 +7,7 @@ import { ReadPDFComponent } from './Components/Apprenants/read-pdf/read-pdf.comp
 import { QuizComponent } from './Components/Apprenants/quiz/quiz.component';
 import { DashbordComponent } from './Components/Admin/dashbord/dashbord.component';
 import { authGuard } from './auth/auth.guard';
+import { HistoriqueComponent } from './Components/Apprenants/historique/historique.component';
 
 export const routes: Routes = [
 
@@ -18,6 +19,7 @@ export const routes: Routes = [
 {path: "accueil", component : AccueilComponent},
 {path: "lecture", component : ReadPDFComponent},
 {path: "quiz", component : QuizComponent},
+{path: "historique", component : HistoriqueComponent},
 {path: "admin", component : DashbordComponent,canActivate: [authGuard] },
 { path: "category/:id", component: XassidasListeComponent },
 { path: "books/:id", component: ReadPDFComponent },

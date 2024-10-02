@@ -121,4 +121,9 @@ tabCategorie: ModelCategorie[] = [];
   navigateToAccueil() {
     this.router.navigate(['/accueil']);
   }
+
+   //fonctio poir la redirection vers la page historique
+   navigateToHistorique() {
+    this.router.navigate(['/historique']);
+  }
 }
