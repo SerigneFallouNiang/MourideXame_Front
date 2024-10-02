@@ -11,7 +11,18 @@ export class QuizzService {
 
   // Method to get quiz based on chapterId
   getQuizz(chapterId: string | null) {
-    return this.http.get(`${apiUrl}/quiz/start/${chapterId}`);
+    const authUser = localStorage.getItem('authUser'); 
+    let headers = new HttpHeaders();
+    
+    if (authUser) {
+      const parsedUser = JSON.parse(authUser); // Parse the stored JSON object
+      const token = parsedUser.token; // Extract the token
+      
+      if (token) {
+        headers = headers.set('Authorization', `Bearer ${token}`);
+      }
+    }
+    return this.http.get(`${apiUrl}/quiz/start/${chapterId}`, { headers });
   }
 
   // // Method to submit quiz answers
