@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { apiUrl } from './apiUrl';
 
@@ -13,14 +13,26 @@ export class BookService {
     return this.http.get(`${apiUrl}/categories/${categoryId}/books`);
   }
 
+  
+
   getAllBooks(): Observable<any> {
     return this.http.get(`${apiUrl}/books`);
   }
 
   getBookById(bookId: string): Observable<any> {
-    return this.http.get(`${apiUrl}/books/${bookId}/chapters`);
+    const authUser = localStorage.getItem('authUser'); 
+    let headers = new HttpHeaders();
+    
+    if (authUser) {
+      const parsedUser = JSON.parse(authUser); // Parse the stored JSON object
+      const token = parsedUser.token; // Extract the token
+      
+      if (token) {
+        headers = headers.set('Authorization', `Bearer ${token}`);
+      }
+    }
+    return this.http.get(`${apiUrl}/books/${bookId}/chapters`, { headers });
   }
 
-  
 
 }

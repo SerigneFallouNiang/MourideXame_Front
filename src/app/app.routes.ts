@@ -23,4 +23,27 @@ export const routes: Routes = [
 { path: "books/:id", component: ReadPDFComponent },
 { path: "quiz/:id", component: QuizComponent },
 
+
+// Les routes du dashbord 
+{
+    path: 'dashboard',
+    component: DashbordComponent,
+    children: [
+      // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+      // { path: 'dashboard', component: DashbordComponent },
+    //   {path: "dashboard-admin", component: DashboardAdminComponent},
+    //   { path: 'communes', component: CommunesCrudComponent},
+    //   { path: 'communes/:id', component: ListCommuneComponent },
+    //   { path: 'populations/:id', component: PopulationComponent }, 
+    //   { path: 'projets-admin', component: ProjetsComponent }, 
+    //   // { path: 'communes', component: CommunesCrudComponent },
+    //   // { path: 'communes/:id', component: ListCommuneComponent }, 
+    //   // { path: 'populations/:id', component: PopulationComponent }, 
+    //   // { path: 'projets', component: ProjetsComponent }, 
+    //    { path: 'villes', component: VillesComponent },
+    //   // { path: 'roles', component: RolesComponent },
+    //   // Ajoutez d'autres routes enfaliste-projet-mairents ici
+    ]
+  }
+
 ];
