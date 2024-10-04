@@ -16,10 +16,6 @@ export class ChapitreService {
   }
 
   // Methode pour recuperer les chapitre d'une book
-  // getBooksByBook(bookId: string) {
-  //   return this.http.get(`${apiUrl}/books/${bookId}/chapters`);
-  // }
-
   getBooksByBook(bookId: string): Observable<any> {
     const authUser = localStorage.getItem('authUser'); 
     let headers = new HttpHeaders();

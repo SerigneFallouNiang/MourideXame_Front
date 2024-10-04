@@ -8,12 +8,19 @@ import { QuizComponent } from './Components/Apprenants/quiz/quiz.component';
 import { DashbordComponent } from './Components/Admin/dashbord/dashbord.component';
 import { authGuard } from './auth/auth.guard';
 import { HistoriqueComponent } from './Components/Apprenants/historique/historique.component';
+import { SidebarAdminComponent } from './Components/heritage/sidebar-admin/sidebar-admin.component';
+import { Role } from './Components/Admin/roles/roles.component';
+import { AddRolesComponent } from './Components/Admin/add-roles/add-roles.component';
+import { CategoriesComponent } from './Components/Admin/categories/categories.component';
+import { LivreAdminComponent } from './Components/Admin/livres/livres.component';
+import { AddLivresComponent } from './Components/Admin/addLivre/addLivre.component';
 
 export const routes: Routes = [
 
     //Route pour Uesr simple
 {path: "", pathMatch: "full", redirectTo: "accueil"},
 
+// {path: "sidebar", component : SidebarAdminComponent},
 {path: "login", component : LoginComponent},
 {path: "register", component : SignupComponent},
 {path: "accueil", component : AccueilComponent},
@@ -27,25 +34,29 @@ export const routes: Routes = [
 
 
 // Les routes du dashbord 
+// {
+//     path: 'dashboard',
+//     component: DashbordComponent,
+//     children: [
+//       // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+//     ]
+//   },
+
+
+  // Les routes du dashbord 
 {
-    path: 'dashboard',
-    component: DashbordComponent,
-    children: [
-      // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-      // { path: 'dashboard', component: DashbordComponent },
-    //   {path: "dashboard-admin", component: DashboardAdminComponent},
-    //   { path: 'communes', component: CommunesCrudComponent},
-    //   { path: 'communes/:id', component: ListCommuneComponent },
-    //   { path: 'populations/:id', component: PopulationComponent }, 
-    //   { path: 'projets-admin', component: ProjetsComponent }, 
-    //   // { path: 'communes', component: CommunesCrudComponent },
-    //   // { path: 'communes/:id', component: ListCommuneComponent }, 
-    //   // { path: 'populations/:id', component: PopulationComponent }, 
-    //   // { path: 'projets', component: ProjetsComponent }, 
-    //    { path: 'villes', component: VillesComponent },
-    //   // { path: 'roles', component: RolesComponent },
-    //   // Ajoutez d'autres routes enfaliste-projet-mairents ici
-    ]
-  }
+  path: '',
+  component: SidebarAdminComponent,
+  children: [
+    // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
+    {path: "roles", component : Role},
+    // {path: "categorieEdit: id", component : AddRolesComponent},
+    { path: 'categorieEdit/:id', component: AddRolesComponent },
+    { path: 'ajouterCategorie', component: AddRolesComponent },
+    {path: "categories", component : CategoriesComponent},
+    {path: "livres", component : LivreAdminComponent},
+    {path: "add-livre", component : AddLivresComponent},
+  ]
+}
 
 ];

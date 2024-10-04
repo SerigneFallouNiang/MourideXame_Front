@@ -1,37 +1,136 @@
-<div class="menu-btn" (click)="openSidebar()">
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark">
     <i class="fas fa-bars"></i>
-  </div>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">MouridEdu</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+            alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">Serigne Fallou
+            <strong>Niang</strong>
+          </span>
+          <span class="user-role">Administrateur</span>
+        </div>
+      </div>
   
-  <div class="side-bar" [class.active]="isSidebarActive">
-    <header>
-      <div class="close-btn" (click)="closeSidebar()">
-        <i class="fas fa-times"></i>
+      <div class="sidebar-menu">
+        <ul>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Dashboard 1
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Dashboard 2</a>
+                </li>
+                <li>
+                  <a href="#">Dashboard 3</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa-sharp fa-solid fa-users"></i>
+              <span>Gestion Utilisateurs</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Permissions
+
+                  </a>
+                </li>
+                <li>
+                  <a href="#">Roles</a>
+                </li>
+                <li>
+                  <a href="#">Utilisateurs</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <!-- <i class="far fa-gem"></i> -->
+              <i class="fa-solid fa-question"></i>
+              <span>Gestion Quiz</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Quizs</a>
+                </li>
+                <li>
+                  <a href="#">Questions</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa-duotone fa-solid fa-book"></i>
+              <span>Gestion Livres</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a href="#">Categories</a>
+                </li>
+                <li>
+                  <a href="#">Livres</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
       </div>
-      <img src="https://lh3.googleusercontent.com/a-/AOh14Gj99VObFyE8W_h8RrcwZO_aYiIHu5AAa_XpnOym=s600-k-no-rp-mo" alt="">
-      <h1>Mystery Code</h1>
-    </header>
-    <div class="menu">
-      <div class="item"><a href="#"><i class="fas fa-desktop"></i>Dashboard</a></div>
-      <div class="item">
-        <a class="sub-btn" (click)="toggleSubMenu('tables')"><i class="fas fa-table"></i>Tables<i class="fas fa-angle-right dropdown" [class.rotate]="isSubMenuActive('tables')"></i></a>
-        <div class="sub-menu" *ngIf="isSubMenuActive('tables')">
-          <a href="#" class="sub-item">Sub Item 01</a>
-          <a href="#" class="sub-item">Sub Item 02</a>
-          <a href="#" class="sub-item">Sub Item 03</a>
-        </div>
-      </div>
-      <div class="item"><a href="#"><i class="fas fa-th"></i>Forms</a></div>
-      <div class="item">
-        <a class="sub-btn" (click)="toggleSubMenu('settings')"><i class="fas fa-cogs"></i>Settings<i class="fas fa-angle-right dropdown" [class.rotate]="isSubMenuActive('settings')"></i></a>
-        <div class="sub-menu" *ngIf="isSubMenuActive('settings')">
-          <a href="#" class="sub-item">Sub Item 01</a>
-          <a href="#" class="sub-item">Sub Item 02</a>
-        </div>
-      </div>
-      <div class="item"><a href="#"><i class="fas fa-info-circle"></i>About</a></div>
+      <!-- sidebar-menu  -->
     </div>
-  </div>
-  <section class="main">
-    <h1>Sidebar Menu With<br>Sub-Menus</h1>
-  </section>
-  
+    <!-- sidebar-content  -->
+    <div class="sidebar-footer">
+
+      <a href="#">
+        <i class="fa fa-cog"></i>
+      </a>
+      <a href="#">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </a>
+    </div>
+  </nav>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+    <div class="container-fluid">
+      <h2>MouridEdu</h2>
+      <hr>
+
+      <div class="row">
+
+            <!-- contenue de la platforme  -->
+            <router-outlet></router-outlet>
+            <!-- fin du contenue de la platforme  -->
+
+          </div>          
+        </div>
+
+  </main>
+  <!-- page-content" -->
+</div>
+<!-- page-wrapper -->
