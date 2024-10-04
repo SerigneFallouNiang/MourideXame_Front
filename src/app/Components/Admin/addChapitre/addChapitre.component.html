@@ -1,0 +1,86 @@
+<style>
+    .titre-form {
+        color: #2E8B57;
+        font-family: "Playfair Display";
+        font-size: 18px;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .btn {
+        background-color: #2E8B57;
+        border: #2E8B57;
+    }
+
+    .file-preview {
+        width: 200px;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="card shadow">
+        <div class="card-header">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="titre-form h3 mb-0 text-gray-800">{{ isEditMode ? 'Modifier le chapitre' : 'Chapitre' }}</h1>
+                <a [routerLink]="['/chapitres']" class="btn btn-primary btn-sm shadow-sm">Retour</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div *ngIf="errors.length > 0" class="alert alert-danger">
+                <ul>
+                    <li *ngFor="let error of errors">{{ error }}</li>
+                </ul>
+            </div>
+
+            <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="title">Chapitre</label>
+                    <input type="text" class="form-control" id="title" placeholder="Nom du Chapitre" formControlName="title"
+                        [ngClass]="{'is-invalid': bookForm.get('title')?.invalid && bookForm.get('title')?.touched}" />
+                    <div class="invalid-feedback" *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched">
+                        Nom est requis et doit avoir au moins 3 caractères.
+                    </div>
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" placeholder="Description" formControlName="description"></textarea>
+                </div>
+
+                <div class="mb-3">
+                    <label for="video" class="form-label">Vidéo</label>
+                    <input type="file" class="form-control" id="video" (change)="onVideoSelected($event)" />
+                    <div *ngIf="videoUrl" class="mt-3">
+                        <video [src]="videoUrl" controls class="file-preview"></video>
+                      </div>
+                    <div *ngIf="bookForm.get('video')?.invalid && bookForm.get('video')?.touched" class="invalid-feedback">
+                      La vidéo est obligatoire.
+                    </div>
+                  </div>
+
+                  <div class="mb-3">
+                    <label for="pdf" class="form-label">Fichier PDF</label>
+                    <input type="file" class="form-control" id="pdf" (change)="onFileSelected($event)" />
+                    <div *ngIf="bookForm.get('pdf')?.invalid && bookForm.get('pdf')?.touched" class="invalid-feedback">
+                      Le fichier PDF est obligatoire.
+                    </div>
+                  </div>
+
+                <div class="mb-3">
+                    <label for="category_id" class="form-label">Sélectionner une catégorie</label>
+                    <select class="form-select form-select-sm" formControlName="book_id">
+                        <option value="" disabled selected>Sélectionner une catégorie</option>
+                        <option *ngFor="let book of books" [value]="book.id">{{ book.title }}</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="bookForm.get('book_id')?.invalid && bookForm.get('book_id')?.touched">
+                        Veuillez sélectionner une catégorie.
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="bookForm.invalid">
+                    {{ isEditMode ? 'Modifier' : 'Enregistrer' }}
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

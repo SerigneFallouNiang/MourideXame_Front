@@ -16,6 +16,8 @@ import { LivreAdminComponent } from './Components/Admin/livres/livres.component'
 import { AddLivresComponent } from './Components/Admin/addLivre/addLivre.component';
 import { QuestionComponent } from './Components/Admin/questions/questions.component';
 import { AddQuestionsComponent } from './Components/Admin/addQuestion/addQuestion.component';
+import { ChapitreAdminComponent } from './Components/Admin/chapitres/chapitres.component';
+import { AddChapitresComponent } from './Components/Admin/addChapitre/addChapitre.component';
 
 export const routes: Routes = [
 
@@ -63,6 +65,10 @@ export const routes: Routes = [
     // questions 
     {path: "questions", component : QuestionComponent},
     {path: "add-questions", component : AddQuestionsComponent},
+    // chapitres 
+    {path: "chapitres", component : ChapitreAdminComponent},
+    {path: "add-chapitres", component : AddChapitresComponent},
+    {path: 'chapitreEdit/:id', component : AddChapitresComponent},
   ]
 }
 

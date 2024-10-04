@@ -73,6 +73,10 @@ export class QuestionssService {
       return this.http.put(`${apiUrl}/questions/${id}`, questionData, { headers });
     }
 
+    deleteQuestion(questionId: string) {
+      return this.http.delete(`${apiUrl}/questions/${questionId}`);
+    }
+
      // Méthode pour récupérer les headers avec le token
   private getAuthHeaders(): HttpHeaders {
     const authUser = localStorage.getItem('authUser');
@@ -86,4 +90,6 @@ export class QuestionssService {
     }
     return headers;
   }
+
+
 }

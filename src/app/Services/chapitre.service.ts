@@ -53,5 +53,42 @@ export class ChapitreService {
   }
 
 
-  
+  deleteChapitre(questionId: string) {
+    return this.http.delete(`${apiUrl}/questions/${questionId}`);
+  }
+
+
+
+  // Créer une nouvelle question
+  createChapitre(chapitreData: any): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.post(`${apiUrl}/chapters`, chapitreData, { headers });
+  }
+
+  // Mettre à jour une question existante
+  updateChapitre(chapitreId: string, chapitreData: any): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.post(`${apiUrl}/chapters/${chapitreId}`, chapitreData, { headers });
+  }
+
+  //edit chapiter
+  getChapitreById(chapitreId: string): Observable<any> {
+    const headers = this.getAuthHeaders();
+    return this.http.get(`${apiUrl}/chapters/${chapitreId}`, { headers });
+  }
+
+
+   // Méthode pour récupérer les headers avec le token
+private getAuthHeaders(): HttpHeaders {
+  const authUser = localStorage.getItem('authUser');
+  let headers = new HttpHeaders();
+  if (authUser) {
+    const parsedUser = JSON.parse(authUser);
+    const token = parsedUser.token;
+    if (token) {
+      headers = headers.set('Authorization', `Bearer ${token}`);
+    }
+  }
+  return headers;
+}
 }
