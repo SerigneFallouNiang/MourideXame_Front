@@ -58,8 +58,8 @@
 
                 <div class="images-input mb-3">
                     <label for="category_id" class="form-label">Sélectionner une catégorie</label>
-                    <select class="form-select form-select-sm" formControlName="category_id" aria-label="Sélectionner une catégorie" >
-                        <option value="" >Sélectionner une catégorie </option>
+                    <select class="form-select form-select-sm" formControlName="category_id">
+                        <option value="" disabled selected>Sélectionner une catégorie</option>
                         <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="bookForm.get('category_id')?.invalid && bookForm.get('category_id')?.touched">

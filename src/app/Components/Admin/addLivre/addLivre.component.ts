@@ -73,7 +73,7 @@ loadCategories() {
 
 
  loadbook(): void {
-  this.bookService.getBookById(this.bookId!).subscribe({
+  this.bookService.getEditById(this.bookId!).subscribe({
      next: (data: any) => {
         setTimeout(() => {
            this.bookForm.patchValue({
@@ -137,7 +137,7 @@ loadCategories() {
         this.bookService.updateBook(this.bookId!, formData).subscribe({
           next: () => {
             this.toastr.success('Catégorie modifiée avec succès');
-            this.router.navigate(['/categories']);
+            this.router.navigate(['/livres']);
           },
           error: (err) => {
             this.handleErrors(err);
@@ -149,7 +149,7 @@ loadCategories() {
           next: () => {
             this.toastr.success('Catégorie créée avec succès');
             this.resetForm();
-            this.router.navigate(['/categories']);
+            this.router.navigate(['/livres']);
           },
           error: (err) => {
             this.handleErrors(err);

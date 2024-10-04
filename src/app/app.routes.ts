@@ -54,8 +54,10 @@ export const routes: Routes = [
     { path: 'categorieEdit/:id', component: AddRolesComponent },
     { path: 'ajouterCategorie', component: AddRolesComponent },
     {path: "categories", component : CategoriesComponent},
+    // livres 
     {path: "livres", component : LivreAdminComponent},
     {path: "add-livre", component : AddLivresComponent},
+    { path: 'livreEdit/:id', component: AddLivresComponent },
   ]
 }
 

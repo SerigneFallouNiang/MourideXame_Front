@@ -107,11 +107,27 @@ export class BookService {
         headers = headers.set('Authorization', `Bearer ${token}`);
       }
     }
-    return this.http.post(`${apiUrl}/categories/${id}`, bookData, { headers });
+    return this.http.post(`${apiUrl}/books/${id}`, bookData, { headers });
   }
 
   deleteBook(bookId: string) {
     return this.http.delete(`${apiUrl}/books/${bookId}`);
   }
 
+
+
+  getEditById(bookId: string): Observable<any> {
+    const authUser = localStorage.getItem('authUser'); 
+    let headers = new HttpHeaders();
+    
+    if (authUser) {
+      const parsedUser = JSON.parse(authUser); // Parse the stored JSON object
+      const token = parsedUser.token; // Extract the token
+      
+      if (token) {
+        headers = headers.set('Authorization', `Bearer ${token}`);
+      }
+    }
+    return this.http.get(`${apiUrl}/books/${bookId}`, { headers });
+  }
 }
