@@ -1,11 +1,11 @@
    <style>
     .titre-tableau{
         color: #2E8B57;
-font-family: Inter;
-font-size: 18px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
+        font-family: Inter;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
     }
     .text-ajout{
         color: #FFF;
@@ -32,7 +32,7 @@ line-height: normal;
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <h6 class="titre-tableau m-0 font-weight-bold ">Livres</h6>
             <div class="ml-auto">
-                <a routerLink="/ajouterCategorie" class="button-add btn btn-primary">
+                <a routerLink="/add-livre" class="button-add btn btn-primary">
                     <span class="icon text-white-50">
                         <i class="fa fa-plus"></i>
                     </span>
@@ -65,7 +65,7 @@ line-height: normal;
                                 <a [routerLink]="['/livreEdit', livre.id]" class="button-edit btn btn-info">
                                   <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
                                 </a>
-                                <button (click)="deleteLivre(livre.id?.toString())" class="btn btn-danger">
+                                <button (click)="deleteBook(livre.id?.toString())" class="btn btn-danger">
                                   <i class="fa fa-trash"></i>
                                 </button>
                               </div>

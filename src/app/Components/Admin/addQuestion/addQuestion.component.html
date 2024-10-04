@@ -1,0 +1,164 @@
+<!-- <div class="container-fluid">
+    <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+      <div class="form-group">
+        <label for="text">{{ 'Question Text' }}</label>
+        <input
+          type="text"
+          id="text"
+          formControlName="text"
+          placeholder="Entrer ta question"
+          class="form-control"
+        />
+      </div>
+  
+  
+      <div formArrayName="answers" *ngFor="let answer of answers().controls; let i=index">
+        <div [formGroupName]="i" class="form-group option-group">
+          <label>{{ 'Réponse ' }} {{ i + 1 }}</label>
+          <div class="input-group">
+            <input
+              type="text"
+              formControlName="text"
+              class="form-control"
+              placeholder="Enter une réponse"
+              required
+            />
+            <div class="input-group-append">
+              <div class="input-group-text">
+                <input
+                  type="radio"
+                  formControlName="correct_one"
+                  [value]="true"
+                />
+                {{ 'Correct' }}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <button type="button" (click)="addOption()" class="btn btn-secondary mb-3">
+        {{ 'Add Option' }}
+      </button>
+  
+      <button type="submit" class="btn btn-primary btn-block">
+        {{ 'Enregistrer' }}
+      </button>
+    </form>
+  </div>
+   -->
+
+   <style>
+    .titre-form {
+        color: #2E8B57;
+        font-family: "Playfair Display";
+        font-size: 18px;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    /* .btn {
+        background-color: #2E8B57;
+        border: #2E8B57;
+    } */
+    .images-input img{
+        width: 200px;
+    }
+
+    .addOption{
+        color: #2E8B57;
+        background-color: #FFD233;
+    }
+    .buttonSave{
+        background-color: #2E8B57;
+    }
+    .shadow-sm{
+        background-color: #2E8B57;
+        border: #2E8B57;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="card shadow">
+        <div class="card-header">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="titre-form h3 mb-0 text-gray-800">{{ isEditMode ? 'Modifier le livre' : 'Ajouter un livre' }}</h1>
+                <a [routerLink]="['/categories']" class="btn btn-primary btn-sm shadow-sm">{{ 'Retour' }}</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Affichage des erreurs -->
+            <div *ngIf="errors.length > 0" class="alert alert-danger">
+                <ul>
+                    <li *ngFor="let error of errors">{{ error }}</li>
+                </ul>
+            </div>
+
+            <!-- Formulaire de création/modification de catégorie -->
+            <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                  <label for="text">{{ 'Question Text' }}</label>
+                  <input
+                    type="text"
+                    id="text"
+                    formControlName="text"
+                    placeholder="Entrer ta question"
+                    class="form-control"
+                  />
+                </div>
+            
+            
+                <div formArrayName="answers" *ngFor="let answer of answers().controls; let i=index">
+                  <div [formGroupName]="i" class="form-group option-group mt-3">
+                    <label>{{ 'Réponse ' }} {{ i + 1 }}</label>
+                    <div class="input-group">
+
+                        <!-- Bouton pour supprimer l'option si ce n'est pas la première -->
+                    <div *ngIf="i > 0" class="input-group-append">
+                        <button type="button" class="btn btn-light" (click)="removeOption(i)">
+                        <i class="fa fa-minus" style="color: red;"></i> <!-- Icône de suppression -->
+                        </button>
+                    </div>
+
+                      <input
+                        type="text"
+                        formControlName="text"
+                        class="form-control"
+                        placeholder="Enter une réponse"
+                        required
+                      />
+                      <div class="input-group-append">
+                        <div class="input-group-text">
+                          <input
+                            type="radio"
+                            formControlName="correct_one"
+                            [value]="true"
+                          />
+                          {{ 'Correct' }}
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+                </div>
+
+                
+                
+                    <div class="containerButton d-block mt-2">
+                        <button type="button" (click)="addOption()" class="btn btn-warning addOption d-block mb-3">
+                            <!-- {{ 'Ajouter Option' }} -->
+                            <span class="icon text-white-50">
+                                <i class="fa fa-plus" style="color: #2E8B57;"></i>
+                            </span>
+                            {{ 'Ajouter champ' }}
+                        </button>
+                    
+                        <button type="submit" class="btn btn-success buttonSave d-block">
+                            {{ 'Enregistrer' }}
+                        </button>
+                    </div>
+              </form>
+        </div>
+    </div>
+</div>
+

@@ -43,15 +43,21 @@ export class LivreAdminComponent implements OnInit {
     );
   }
 
-  deleteLivre(livreId: string | undefined): void {
-    if (livreId) {
-      if (confirm('Êtes-vous sûr de vouloir supprimer ce livre ?')) {
-        console.log('Suppression du livre avec l\'ID:', livreId);
-        // Implémentez la logique de suppression ici et actualisez la liste
-        // this.fetchLivre();
+  deleteBook(livreId: string | undefined): void {
+    if (livreId) {  // Vérifiez si l'ID n'est pas undefined
+      if (confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')) {
+        this.bookService.deleteBook(livreId).subscribe({
+          next: () => {
+            this.books = this.books.filter(livre => livre.id?.toString() !== livreId);
+            console.log('Catégorie supprimée avec succès');
+          },
+          error: (err) => {
+            console.error('Erreur lors de la suppression de la catégorie :', err);
+          }
+        });
       }
     } else {
-      console.error('ID du livre est undefined');
+      console.error('ID de la catégorie est undefined');
     }
-  }
+}
 }

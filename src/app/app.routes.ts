@@ -14,6 +14,8 @@ import { AddRolesComponent } from './Components/Admin/add-roles/add-roles.compon
 import { CategoriesComponent } from './Components/Admin/categories/categories.component';
 import { LivreAdminComponent } from './Components/Admin/livres/livres.component';
 import { AddLivresComponent } from './Components/Admin/addLivre/addLivre.component';
+import { QuestionComponent } from './Components/Admin/questions/questions.component';
+import { AddQuestionsComponent } from './Components/Admin/addQuestion/addQuestion.component';
 
 export const routes: Routes = [
 
@@ -58,6 +60,9 @@ export const routes: Routes = [
     {path: "livres", component : LivreAdminComponent},
     {path: "add-livre", component : AddLivresComponent},
     { path: 'livreEdit/:id', component: AddLivresComponent },
+    // questions 
+    {path: "questions", component : QuestionComponent},
+    {path: "add-questions", component : AddQuestionsComponent},
   ]
 }
 
