@@ -76,4 +76,42 @@ export class BookService {
     return this.http.get(`${apiUrl}/books/read-chapters/user`, { headers });
   }
 
+
+
+
+
+  createBook(bookData: FormData) {
+    const authUser = localStorage.getItem('authUser'); 
+    let headers = new HttpHeaders();
+    
+    if (authUser) {
+      const parsedUser = JSON.parse(authUser); // Parse the stored JSON object
+      const token = parsedUser.token; // Extract the token
+      
+      if (token) {
+        headers = headers.set('Authorization', `Bearer ${token}`);
+      }
+    }
+    return this.http.post(`${apiUrl}/books`, bookData, { headers });
+  }
+
+  updateBook(id: string, bookData: FormData) {
+    const authUser = localStorage.getItem('authUser'); 
+    let headers = new HttpHeaders();
+    
+    if (authUser) {
+      const parsedUser = JSON.parse(authUser); // Parse the stored JSON object
+      const token = parsedUser.token; // Extract the token
+      
+      if (token) {
+        headers = headers.set('Authorization', `Bearer ${token}`);
+      }
+    }
+    return this.http.post(`${apiUrl}/categories/${id}`, bookData, { headers });
+  }
+
+  deleteBook(bookId: string) {
+    return this.http.delete(`${apiUrl}/books/${bookId}`);
+  }
+
 }

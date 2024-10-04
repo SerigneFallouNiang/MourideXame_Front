@@ -5,6 +5,8 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CategorieService } from '../../../Services/categorie.service';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { ToastrService } from 'ngx-toastr';
+import { BookService } from '../../../Services/book.service';
+import { title } from 'process';
 
 
 @Component({
@@ -15,12 +17,13 @@ import { ToastrService } from 'ngx-toastr';
   styleUrl: './addLivre.component.css',
 })
 export class AddLivresComponent implements OnInit {
-  categoryForm: FormGroup;
+  bookForm: FormGroup;
   errors: string[] = [];
   isEditMode: boolean = false;
-  categoryId: string | null = null;
+  bookId: string | null = null;
   selectedFile: File | null = null;
   existingImageUrl: string | null = null;
+  categories: any[] = []; 
 
   constructor(
     private fb: FormBuilder,
@@ -28,43 +31,69 @@ export class AddLivresComponent implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private toastr: ToastrService,
+    private bookService: BookService,
   ) {
-    this.categoryForm = this.fb.group({
-      name: ['', [Validators.required, Validators.minLength(3)]],
+    this.bookForm = this.fb.group({
+      title: ['', [Validators.required, Validators.minLength(3)]],
       description: [''],
-      image: [null]
+      image: [null],
+      category_id: [null, Validators.required] 
     });
   }
 
   ngOnInit(): void {
-    this.categoryId = this.route.snapshot.paramMap.get('id');
-    if (this.categoryId) {
+    this.bookId = this.route.snapshot.paramMap.get('id');
+    this.loadCategories();
+
+    if (this.bookId) {
       this.isEditMode = true;
-      this.loadCategory();
+      this.loadbook();
     }
   }
 
-  loadCategory(): void {
-    this.categorieService.getCategoryById(this.categoryId!).subscribe({
-      next: (data: any) => {
-        setTimeout(() => {
-          this.categoryForm.patchValue({
-            name: data.category.name,
-            description: data.category.description,
-          });
-        
-          if (data.category.image) {
-            this.existingImageUrl = `${apiUrlStockage}/${data.category.image}`;
-          }
-        });
-        // this.toastr.success('Catégorie chargée avec succès');
-      },
-      error: (err) => {
-        this.handleErrors(err);
-        this.toastr.error('Erreur lors du chargement de la catégorie');
+loadCategories() {
+  console.log('Tentative de récupération des catégories...');
+  this.categorieService.getAllCategorie().subscribe(
+    (response: any) => {
+      console.log('Réponse de l\'API:', response);
+      if (response['Catégorie']) {
+        this.categories = response['Catégorie'].reverse();
+  
+        console.log('Catégories:', this.categories);
+  
+      } else {
+        console.log('Aucune catégorie trouvée dans la réponse.');
       }
-    });
-  }
+    },
+    (error) => {
+      console.error('Erreur lors de la récupération des catégories:', error);
+    }
+  );
+}
+
+
+ loadbook(): void {
+  this.bookService.getBookById(this.bookId!).subscribe({
+     next: (data: any) => {
+        setTimeout(() => {
+           this.bookForm.patchValue({
+              title: data.book.title,
+              description: data.book.description,
+              category_id: data.book.category_id
+           });
+
+           if (data.book.image) {
+              this.existingImageUrl = `${apiUrlStockage}/${data.book.image}`;
+           }
+        });
+     },
+     error: (err) => {
+        this.handleErrors(err);
+        this.toastr.error('Erreur lors du chargement du livre');
+     }
+  });
+}
+
 
   onFileSelected(event: any): void {
     this.selectedFile = event.target.files[0];
@@ -87,15 +116,16 @@ export class AddLivresComponent implements OnInit {
   }
 
   resetForm(): void {
-    this.categoryForm.reset();
+    this.bookForm.reset();
     this.selectedFile = null;
   }
 
   onSubmit(): void {
-    if (this.categoryForm.valid) {
+    if (this.bookForm.valid) {
       const formData = new FormData();
-      formData.append('name', this.categoryForm.get('name')?.value);
-      formData.append('description', this.categoryForm.get('description')?.value);
+      formData.append('title', this.bookForm.get('title')?.value);
+      formData.append('description', this.bookForm.get('description')?.value);
+      formData.append('category_id', this.bookForm.get('category_id')?.value);
       
       if (this.selectedFile) {
         formData.append('image', this.selectedFile);
@@ -104,7 +134,7 @@ export class AddLivresComponent implements OnInit {
       }
   
       if (this.isEditMode) {
-        this.categorieService.updateCategory(this.categoryId!, formData).subscribe({
+        this.bookService.updateBook(this.bookId!, formData).subscribe({
           next: () => {
             this.toastr.success('Catégorie modifiée avec succès');
             this.router.navigate(['/categories']);
@@ -115,7 +145,7 @@ export class AddLivresComponent implements OnInit {
           }
         });
       } else {
-        this.categorieService.createCategory(formData).subscribe({
+        this.bookService.createBook(formData).subscribe({
           next: () => {
             this.toastr.success('Catégorie créée avec succès');
             this.resetForm();

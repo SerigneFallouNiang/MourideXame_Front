@@ -33,12 +33,12 @@
             </div>
 
             <!-- Formulaire de création/modification de catégorie -->
-            <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+            <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
-                    <label for="name">{{ 'Livre' }}</label>
-                    <input type="text" class="form-control" id="name" placeholder="Nom du Livre" formControlName="name"
-                        [ngClass]="{'is-invalid': categoryForm.get('name')?.invalid && categoryForm.get('name')?.touched}" />
-                    <div class="invalid-feedback" *ngIf="categoryForm.get('name')?.invalid && categoryForm.get('name')?.touched">
+                    <label for="title">{{ 'Livre' }}</label>
+                    <input type="text" class="form-control" id="tite" placeholder="Nom du Livre" formControlName="title"
+                        [ngClass]="{'is-invalid': bookForm.get('title')?.invalid && bookForm.get('title')?.touched}" />
+                    <div class="invalid-feedback" *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched">
                         Nom est requis et doit avoir au moins 3 caractères.
                     </div>
                 </div>
@@ -57,17 +57,18 @@
                 </div>
 
                 <div class="images-input mb-3">
-                    <label for="image" class="form-label">Selectioner une categorie</label>
-                    <select class="form-select form-select-sm" aria-label=".form-select-sm example">
-                        <option selected>Open this select menu</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                      </select>
+                    <label for="category_id" class="form-label">Sélectionner une catégorie</label>
+                    <select class="form-select form-select-sm" formControlName="category_id" aria-label="Sélectionner une catégorie" >
+                        <option value="" >Sélectionner une catégorie </option>
+                        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="bookForm.get('category_id')?.invalid && bookForm.get('category_id')?.touched">
+                        Veuillez sélectionner une catégorie.
+                    </div>
                 </div>
                 
 
-                <button type="submit" class="btn btn-primary btn-block" [disabled]="categoryForm.invalid">
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="bookForm.invalid">
                     {{ isEditMode ? 'Modifier' : 'Enregistrer' }}
                 </button>
             </form>
