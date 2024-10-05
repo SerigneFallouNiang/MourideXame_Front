@@ -84,15 +84,15 @@ loadChapitre(): void {
               title: data.Chapitre.title,
               description: data.Chapitre.description,
               book_id: data.Chapitre.book_id,
-              // video: data.Chapitre.video,
-              // pdf: data.Chapitre.pdf,
+              video: data.Chapitre.video_path,
+              pdf: data.Chapitre.file_path,
            });
 
-           if (data.Chapitre.pdf) {
-            this.pdfUrl = `${apiUrlStockage}/${data.Chapitre.pdf}`;
+           if (data.Chapitre.file_path) {
+            this.pdfUrl = `${apiUrlStockage}/${data.Chapitre.file_path}`;
            }
-           if (data.Chapitre.pdf) {
-            this.videoUrl = `${apiUrlStockage}/${data.Chapitre.video}`;
+           if (data.Chapitre.video_path) {
+            this.videoUrl = `${apiUrlStockage}/${data.Chapitre.video_path}`;
            }
         });
      },
