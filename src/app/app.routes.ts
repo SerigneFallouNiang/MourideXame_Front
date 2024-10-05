@@ -18,6 +18,7 @@ import { QuestionComponent } from './Components/Admin/questions/questions.compon
 import { AddQuestionsComponent } from './Components/Admin/addQuestion/addQuestion.component';
 import { ChapitreAdminComponent } from './Components/Admin/chapitres/chapitres.component';
 import { AddChapitresComponent } from './Components/Admin/addChapitre/addChapitre.component';
+import { UtilisateurComponent } from './Components/Admin/Utilisateurs/utilisateurs.component';
 
 export const routes: Routes = [
 
@@ -70,6 +71,9 @@ export const routes: Routes = [
     {path: "chapitres", component : ChapitreAdminComponent},
     {path: "add-chapitres", component : AddChapitresComponent},
     {path: 'chapitreEdit/:id', component : AddChapitresComponent},
+    // gestion utilisateurs 
+    {path: "utilisateurs", component : UtilisateurComponent},
+
   ]
 }
 
