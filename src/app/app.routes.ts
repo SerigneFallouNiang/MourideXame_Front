@@ -65,6 +65,7 @@ export const routes: Routes = [
     // questions 
     {path: "questions", component : QuestionComponent},
     {path: "add-questions", component : AddQuestionsComponent},
+    {path: 'questionEdit/:id', component : AddQuestionsComponent},
     // chapitres 
     {path: "chapitres", component : ChapitreAdminComponent},
     {path: "add-chapitres", component : AddChapitresComponent},

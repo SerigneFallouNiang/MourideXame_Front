@@ -48,7 +48,7 @@
                             <th>ID</th>
                             <th>Titre</th>
                             <th>Description</th>
-                            <th>Image</th>
+                            <!-- <th>Image</th> -->
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -57,9 +57,9 @@
                             <td>{{ chapitre.id }}</td>
                             <td>{{ chapitre.title }}</td>
                             <td>{{ chapitre.description }}</td>
-                            <td>
+                            <!-- <td>
                               <img [src]="chapitre.video" alt="Image du livre" style="max-width: 100px; max-height: 100px;">
-                            </td>
+                            </td> -->
                             <td>
                               <div class="btn-group btn-group-sm">
                                 <a [routerLink]="['/chapitreEdit', chapitre.id]" class="button-edit btn btn-info">

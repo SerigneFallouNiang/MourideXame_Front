@@ -17,17 +17,7 @@ export class ChapitreService {
 
   // Methode pour recuperer les chapitre d'une book
   getBooksByBook(bookId: string): Observable<any> {
-    const authUser = localStorage.getItem('authUser'); 
-    let headers = new HttpHeaders();
-    
-    if (authUser) {
-      const parsedUser = JSON.parse(authUser); // Parse the stored JSON object
-      const token = parsedUser.token; // Extract the token
-      
-      if (token) {
-        headers = headers.set('Authorization', `Bearer ${token}`);
-      }
-    }
+    const headers = this.getAuthHeaders();
     return this.http.get(`${apiUrl}/books/${bookId}/chapters`, { headers });
   }
 
@@ -37,24 +27,13 @@ export class ChapitreService {
   // }
 
   markChapterAsRead(chapterId: number): Observable<any> {
-    const authUser = localStorage.getItem('authUser'); 
-    let headers = new HttpHeaders();
-    
-    if (authUser) {
-      const parsedUser = JSON.parse(authUser); // Parse the stored JSON object
-      const token = parsedUser.token; // Extract the token
-      
-      if (token) {
-        headers = headers.set('Authorization', `Bearer ${token}`);
-      }
-    }
-
+    const headers = this.getAuthHeaders();
     return this.http.post(`${apiUrl}/chapters/${chapterId}/mark-read`, {}, { headers });
   }
 
 
-  deleteChapitre(questionId: string) {
-    return this.http.delete(`${apiUrl}/questions/${questionId}`);
+  deleteChapitre(chapterId: string) {
+    return this.http.delete(`${apiUrl}/chapters/${chapterId}`);
   }
 
 

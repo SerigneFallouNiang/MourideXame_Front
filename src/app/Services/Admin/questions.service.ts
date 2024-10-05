@@ -66,7 +66,13 @@ export class QuestionssService {
       const headers = this.getAuthHeaders();
       return this.http.post(`${apiUrl}/questions`, questionData, { headers });
     }
-  
+
+  // récupération des question et réponse par id 
+    getChapitreAndAnswerbyId(id: string): Observable<any> {
+      const headers = this.getAuthHeaders();
+      return this.http.post(`${apiUrl}/questions/${id}`, {}, { headers });
+    }
+
     // Mettre à jour une question existante
     updateQuestion(id: string, questionData: any): Observable<any> {
       const headers = this.getAuthHeaders();
@@ -75,6 +81,11 @@ export class QuestionssService {
 
     deleteQuestion(questionId: string) {
       return this.http.delete(`${apiUrl}/questions/${questionId}`);
+    }
+
+
+    deleteAnswer(answerId: number): Observable<any> {
+      return this.http.delete(`${apiUrl}/answers/${answerId}`);
     }
 
      // Méthode pour récupérer les headers avec le token

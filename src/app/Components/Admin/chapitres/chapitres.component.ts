@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { BookService } from '../../../Services/book.service';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { ChapitreService } from '../../../Services/chapitre.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-livres',
@@ -16,7 +17,10 @@ export class ChapitreAdminComponent implements OnInit {
   messageImage: string = "Aucune image pour ce livre";
   chapitres: any[] = [];
 
-  constructor(private chapitreService: ChapitreService) {}
+  constructor(
+    private chapitreService: ChapitreService,
+    private toastr: ToastrService
+  ) {}
 
   ngOnInit(): void {
     console.log("Chargement de la liste des livres");
@@ -51,6 +55,7 @@ export class ChapitreAdminComponent implements OnInit {
           next: () => {
             this.chapitres = this.chapitres.filter(livre => livre.id?.toString() !== livreId);
             console.log('Catégorie supprimée avec succès');
+            this.toastr.success('Catégorie supprimée avec succès');
           },
           error: (err) => {
             console.error('Erreur lors de la suppression de la catégorie :', err);
