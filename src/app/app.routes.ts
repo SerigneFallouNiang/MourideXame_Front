@@ -19,6 +19,8 @@ import { AddQuestionsComponent } from './Components/Admin/addQuestion/addQuestio
 import { ChapitreAdminComponent } from './Components/Admin/chapitres/chapitres.component';
 import { AddChapitresComponent } from './Components/Admin/addChapitre/addChapitre.component';
 import { UtilisateurComponent } from './Components/Admin/Utilisateurs/utilisateurs.component';
+import { QuizAdminComponent } from './Components/Admin/quizzes/quizzes.component';
+import { AddQuizComponent } from './Components/Admin/addQuiz/add-quiz.component';
 
 export const routes: Routes = [
 
@@ -30,7 +32,7 @@ export const routes: Routes = [
 {path: "register", component : SignupComponent},
 {path: "accueil", component : AccueilComponent},
 {path: "lecture", component : ReadPDFComponent},
-{path: "quiz", component : QuizComponent},
+// {path: "quiz", component : QuizComponent},
 {path: "historique", component : HistoriqueComponent},
 {path: "admin", component : DashbordComponent,canActivate: [authGuard] },
 { path: "category/:id", component: XassidasListeComponent },
@@ -73,6 +75,10 @@ export const routes: Routes = [
     {path: 'chapitreEdit/:id', component : AddChapitresComponent},
     // gestion utilisateurs 
     {path: "utilisateurs", component : UtilisateurComponent},
+    //listes quizzes
+    {path: "quiz-admin", component : QuizAdminComponent},
+    {path: "add-quiz", component : AddQuizComponent},
+    {path: 'quizEdit/:id', component : AddQuizComponent},
 
   ]
 }
