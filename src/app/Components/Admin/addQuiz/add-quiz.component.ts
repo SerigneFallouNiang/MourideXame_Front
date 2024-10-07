@@ -54,9 +54,9 @@ export class AddQuizComponent implements OnInit {
       next: (data: any) => {
         setTimeout(() => {
           this.quizForm.patchValue({
-            title: data.quiz.title,
-            chapter_id: data.quiz.chapter_id,
-            questions: data.quiz.questions.map((q: any) => q.id) // Récupération des IDs des questions
+            title: data.title,
+            chapter_id: data.chapter_id,
+            questions: data.questions.map((q: any) => q.id) // Récupération des IDs des questions
           });
         });
       },

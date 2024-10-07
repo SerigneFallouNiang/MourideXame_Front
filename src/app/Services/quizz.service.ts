@@ -25,10 +25,7 @@ export class QuizzService {
     return this.http.get(`${apiUrl}/quiz/start/${chapterId}`, { headers });
   }
 
-  // // Method to submit quiz answers
-  // submitQuizz(quizId: string | null, answers: any) {
-  //   return this.http.post(`${apiUrl}/quiz/submit/${quizId}`, { answers });
-  // }
+ 
 
    // Soumettre les réponses au quiz avec le token JWT
   //  submitQuizz(quizId: string | null, answers: any) {

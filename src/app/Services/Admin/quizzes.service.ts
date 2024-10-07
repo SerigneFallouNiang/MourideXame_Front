@@ -46,6 +46,11 @@ export class QuizzesService {
         return this.http.put(`${apiUrl}/quizzes/${id}`, questionData, { headers });
       }
 
+       // Method to submit quiz answers
+      deleteQuiz(quizId: string) {
+        return this.http.delete(`${apiUrl}/quizzes/${quizId}`);
+      }
+
 
         // Méthode pour récupérer les headers avec le token
   private getAuthHeaders(): HttpHeaders {

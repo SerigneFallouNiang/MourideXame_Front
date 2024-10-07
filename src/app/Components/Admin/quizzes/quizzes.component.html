@@ -24,6 +24,9 @@
         background-color: #FFD233;
         border: #FFD233;
     }
+    a i {
+        cursor: pointer;
+    }
 </style>
 
 <div class="container-fluid">
@@ -53,8 +56,6 @@
                     </thead>
                     <tbody>
                         <tr *ngFor="let quizz of pageQuestions; let i = index">
-                            <!-- Calculer le numéro de ligne -->
-                            <!-- <td>{{ (currentPage - 1) * 5 + i + 1 }}</td>  -->
                             <td>{{ quizz.id }}</td> 
                             <td>{{ quizz.title }}</td>
                             <td>{{ quizz.chapter.title }}</td>
@@ -64,9 +65,14 @@
                                         <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
                                     </a>
  
-                                    <!-- <button (click)="deletequizz(categorie.id?.toString())" class="btn btn-danger">
-                                        <i class="fa fa-trash"></i>
-                                      </button> -->
+                                    <a (click)="deleteQuiz(quizz.id?.toString())">
+                                        <i class="fa fa-trash" style="color: red;margin-left: 15px;"></i>
+                                    </a>
+
+                                    <a (click)="deleteQuiz(quizz.id?.toString())">
+                                        <!-- <i class="fa fa-trash" style="color: red;margin-left: 15px;"></i> -->
+                                        <i class="fa-solid fa-eye" style="color: #000;margin-left: 15px;"></i>
+                                    </a>
                                       
                                 </div>
                             </td>

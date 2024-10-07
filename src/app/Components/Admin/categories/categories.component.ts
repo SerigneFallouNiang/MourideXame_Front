@@ -19,17 +19,6 @@ export class CategoriesComponent {
 
   constructor(private categorieService: CategorieService) {}
 
-  // ngOnInit(): void {
-  //   this.loadRoles(); // Charger les rôles de la page actuelle
-  // }
-
-  // loadRoles(): void {
-  //   this.categorieService.getCategorieAdmin().subscribe((data: any) => {
-  //     this.categories = data;
-  //     console.log(data)
-  //   });
-  // }
-
 
     // Declaration des variables 
     tabCategorie:ModelCategorie[] = [];

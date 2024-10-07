@@ -24,6 +24,9 @@
         background-color: #FFD233;
         border: #FFD233;
     }
+    a {
+        cursor: pointer;
+    }
 </style>
 
 <div class="container-fluid">
@@ -61,14 +64,28 @@
                               <img [src]="chapitre.video" alt="Image du livre" style="max-width: 100px; max-height: 100px;">
                             </td> -->
                             <td>
-                              <div class="btn-group btn-group-sm">
+                              <!-- <div class="btn-group btn-group-sm">
                                 <a [routerLink]="['/chapitreEdit', chapitre.id]" class="button-edit btn btn-info">
                                   <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
                                 </a>
                                 <button (click)="deleteChapitre(chapitre.id?.toString())" class="btn btn-danger">
                                   <i class="fa fa-trash"></i>
                                 </button>
-                              </div>
+                              </div> -->
+                              <div class="btn-group btn-group-sm">
+                                <a [routerLink]="['/chapitreEdit', chapitre.id]" class="">
+                                    <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
+                                </a>
+
+                                <a (click)="deleteChapitre(chapitre.id?.toString())"  >
+                                    <i class="fa fa-trash" style="color: red;margin-left: 15px;"></i>
+                                </a>
+
+                                <a (click)="openChapterDetails(chapitre)">
+                                    <i class="fa-solid fa-eye" style="color: #000;margin-left: 15px;"></i>
+                                </a>
+                                  
+                            </div>
                             </td>
                           </tr>
                         <!-- <tr *ngIf="categories.length === 0">
@@ -78,13 +95,7 @@
                 </table>
             </div>
             <!-- Pagination -->
-            <!-- <div class="pagination">
-                <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
-                <span>Page {{ currentPage }} of {{ totalPages }}</span>
-                <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
-            </div> -->
+           
         </div>
     </div>
 </div>
-
-<!-- la section html des formulaire  pour l'ajout et de la  modification  -->

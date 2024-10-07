@@ -33,6 +33,6 @@ export const appConfig: ApplicationConfig = {
       positionClass: 'toast-top-right',
       preventDuplicates: true,
       progressBar: true
-    })
+    }), provideAnimationsAsync()
   ]
 };

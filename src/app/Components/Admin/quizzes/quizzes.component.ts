@@ -56,23 +56,47 @@ export class QuizAdminComponent {
     );
   }
 
-//   deleteQuestion(questionId: string | undefined): void {
-//     if (questionId) {  // Vérifiez si l'ID n'est pas undefined
+//   deleteQuiz(quizId: string | undefined): void {
+//     if (quizId) {  // Vérifiez si l'ID n'est pas undefined
 //       if (confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')) {
-//         this.questionService.deleteQuestion(questionId).subscribe({
+//         this.quizServices.deleteQuiz(quizId).subscribe({
 //           next: () => {
-//             this.questions = this.questions.filter(question => question.id?.toString() !== questionId);
-//             console.log('Catégorie supprimée avec succès');
+//             this.quizzes = this.quizzes.filter(question => question.id?.toString() !== quizId);
+//             console.log('Quiz supprimée avec succès');
 //           },
 //           error: (err) => {
-//             console.error('Erreur lors de la suppression de la catégorie :', err);
+//             console.error('Erreur lors de la suppression du Quiz :', err);
 //           }
 //         });
 //       }
 //     } else {
-//       console.error('ID de la catégorie est undefined');
+//       console.error('ID de la Quiz est undefined');
 //     }
 // }
+deleteQuiz(quizId: string | undefined): void {
+  if (quizId) {  // Vérifiez si l'ID n'est pas undefined
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')) {
+      this.quizServices.deleteQuiz(quizId).subscribe({
+        next: () => {
+          // Supprimer le quiz localement
+          this.quizzes = this.quizzes.filter(question => question.id?.toString() !== quizId);
+          console.log('Quiz supprimée avec succès');
+          
+          // Mettre à jour le nombre total d'items
+          this.totalItems = this.quizzes.length;
+          
+          // Réappliquer la pagination pour mettre à jour l'affichage
+          this.applyPagination();
+        },
+        error: (err) => {
+          console.error('Erreur lors de la suppression du Quiz :', err);
+        }
+      });
+    }
+  } else {
+    console.error('ID de la Quiz est undefined');
+  }
+}
 
 
   //les methode de la pagination

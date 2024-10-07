@@ -24,6 +24,9 @@ line-height: normal;
         background-color: #FFD233;
         border: #FFD233;
     }
+    a {
+        cursor: pointer;
+    }
 </style>
 
 <div class="container-fluid">
@@ -48,6 +51,7 @@ line-height: normal;
                             <th>id</th>
                             <th>Categories</th>
                             <th>Descriptions</th>
+                            <th>Images</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -59,7 +63,10 @@ line-height: normal;
                             <td>{{ categorie.name }}</td>
                             <td>{{ categorie.description }}</td>
                             <td>
-                                <div class="btn-group btn-group-sm">
+                                <img [src]="categorie.image" alt="Image du livre" style="max-width: 100px; max-height: 100px;">
+                              </td>
+                            <td>
+                                <!-- <div class="btn-group btn-group-sm">
                                     <a [routerLink]="['/categorieEdit', categorie.id]" class="button-edit btn btn-info">
                                         <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
                                     </a>
@@ -67,6 +74,20 @@ line-height: normal;
                                     <button (click)="deletecategorie(categorie.id?.toString())" class="btn btn-danger">
                                         <i class="fa fa-trash"></i>
                                       </button>
+                                      
+                                </div> -->
+                                <div class="btn-group btn-group-sm">
+                                    <a [routerLink]="['/categorieEdit', categorie.id]" class="">
+                                        <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
+                                    </a>
+ 
+                                    <a (click)="deletecategorie(categorie.id?.toString())" >
+                                        <i class="fa fa-trash" style="color: red;margin-left: 15px;"></i>
+                                    </a>
+
+                                    <!-- <a>
+                                        <i class="fa-solid fa-eye" style="color: #000;margin-left: 15px;"></i>
+                                    </a> -->
                                       
                                 </div>
                             </td>

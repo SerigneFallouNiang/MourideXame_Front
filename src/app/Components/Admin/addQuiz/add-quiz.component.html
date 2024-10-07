@@ -31,7 +31,7 @@ option {
         <div class="card-header">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h1 class="titre-form h3 mb-0 text-gray-800">{{ isEditMode ? 'Modifier le Quiz' : 'Ajouter un Quiz' }}</h1>
-                <a [routerLink]="['/quizzes']" class="btn btn-primary btn-sm shadow-sm">{{ 'Retour' }}</a>
+                <a [routerLink]="['/quiz-admin']" class="btn btn-primary btn-sm shadow-sm">{{ 'Retour' }}</a>
             </div>
         </div>
         <div class="card-body">
@@ -56,7 +56,7 @@ option {
                 <div class="form-group mt-3">
                     <label for="chapter">Chapitre associé</label>
                     <select class="form-control" id="chapter" formControlName="chapter_id">
-                        <option *ngFor="let chapter of chapters" [value]="chapter.id">{{ chapter.name }}</option>
+                        <option *ngFor="let chapter of chapters" [value]="chapter.id">{{ chapter.title }}</option>
                     </select>
                 </div>
 
