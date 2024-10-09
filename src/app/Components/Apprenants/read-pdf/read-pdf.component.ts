@@ -212,6 +212,21 @@ quiz: any;
   quizId: string | null = '4'; // Quiz ID (à adapter dynamiquement)
 
 
+  checkAndStartQuiz(chapterId: string) {
+    const authUser = localStorage.getItem("authUser"); // Récupérer les informations de l'utilisateur dans le local storage
+    
+    if (authUser) {
+      // Si l'utilisateur est connecté, démarrer le quiz
+      this.startQuiz(chapterId);
+    } else {
+      // Si l'utilisateur n'est pas connecté, le rediriger vers la page de login
+      this.router.navigate(['/login']);
+    }
+  }
+  
+
+
+
   startQuiz(chapterId?: string) {
     this.selectedFichier = null;
     this.selectedChapter = null;

@@ -106,10 +106,10 @@ loadChapitre(): void {
 onVideoSelected(event: any): void {
   const file = event.target.files[0];
   if (file && file.type.startsWith('video/')) {
-    if (file.size <= 30 * 1024 * 1024) { // Vérification de la taille (30MB max)
+    if (file.size <= 50 * 1024 * 1024) { // Vérification de la taille (30MB max)
       this.bookForm.patchValue({ video: file });
     } else {
-      this.toastr.error('La taille du fichier vidéo ne doit pas dépasser 30MB');
+      this.toastr.error('La taille du fichier vidéo ne doit pas dépasser 50MB');
     }
   } else {
     this.toastr.error('Veuillez sélectionner un fichier vidéo valide');

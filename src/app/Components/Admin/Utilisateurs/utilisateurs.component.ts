@@ -4,11 +4,12 @@ import { RouterLink } from '@angular/router';
 import { QuestionssService } from '../../../Services/Admin/questions.service';
 import { RolesService } from '../../../Services/Admin/roles.service';
 import { FormsModule } from '@angular/forms';
+import { UserHistoryModalComponent } from './user-history-modal.component';
 
 @Component({
   selector: 'app-livres',
   standalone: true,
-  imports: [CommonModule, RouterLink, FormsModule],
+  imports: [CommonModule, RouterLink, FormsModule,UserHistoryModalComponent],
   templateUrl: './utilisateurs.component.html',
   styleUrls: ['./utilisateurs.component.css']
 })
@@ -24,6 +25,12 @@ export class UtilisateurComponent implements OnInit {
     itemsPerPage: number = 18;
     totalItems: number = 0;
 
+
+     // Ajout des variables pour gérer le modal
+  isModalVisible: boolean = false;
+  selectedUserId: string | null = null;
+
+  
   constructor(private roleService: RolesService) {}
 
   ngOnInit(): void {
@@ -123,5 +130,16 @@ export class UtilisateurComponent implements OnInit {
       }
     });
   }
+
+//popup détail utilisateur
+showUserHistory(userId: string) {
+  this.selectedUserId = userId;
+  this.isModalVisible = true;
+}
+
+hideModal() {
+  this.isModalVisible = false;
+  this.selectedUserId = null;
+}
 }
   

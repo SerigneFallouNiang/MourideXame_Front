@@ -86,7 +86,7 @@
                             </td> -->
                             <td>
                                 <div class="btn-group btn-group-sm">
-                                    <a class="">
+                                    <a class="" (click)="showUserHistory(utilisateur.id)">
                                         <!-- <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i> -->
                                         <i class="fa-solid fa-eye" style="color: #2E8B57;"></i>
                                     </a>
@@ -112,3 +112,4 @@
     </div>
 </div>
 
+<app-user-history-modal id="userHistoryModal"></app-user-history-modal>

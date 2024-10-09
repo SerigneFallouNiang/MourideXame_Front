@@ -43,49 +43,39 @@ export const routes: Routes = [
 { path: "quiz/:id", component: QuizComponent },
 
 
-// Les routes du dashbord 
-// {
-//     path: 'dashboard',
-//     component: DashbordComponent,
-//     children: [
-//       // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-//     ]
-//   },
-
-
   // Les routes du dashbord 
 {
   path: '',
   component: SidebarAdminComponent,
   children: [
     // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-    {path: "roles", component : RoleUserComponent},
-    {path: "add-roles", component : AddUserRoleComponent},
-    {path: "rolesEdit/:id", component : AddUserRoleComponent},
+    {path: "roles", component : RoleUserComponent,canActivate: [authGuard]},
+    {path: "add-roles", component : AddUserRoleComponent,canActivate: [authGuard]},
+    {path: "rolesEdit/:id", component : AddUserRoleComponent,canActivate: [authGuard]},
     // {path: "categorieEdit: id", component : AddRolesComponent},
-    { path: 'categorieEdit/:id', component: AddRolesComponent },
-    { path: 'ajouterCategorie', component: AddRolesComponent },
-    {path: "categories", component : CategoriesComponent},
+    { path: 'categorieEdit/:id', component: AddRolesComponent,canActivate: [authGuard] },
+    { path: 'ajouterCategorie', component: AddRolesComponent ,canActivate: [authGuard]},
+    {path: "categories", component : CategoriesComponent ,canActivate: [authGuard]},
     // livres 
-    {path: "livres", component : LivreAdminComponent},
-    {path: "add-livre", component : AddLivresComponent},
-    { path: 'livreEdit/:id', component: AddLivresComponent },
+    {path: "livres", component : LivreAdminComponent ,canActivate: [authGuard]},
+    {path: "add-livre", component : AddLivresComponent ,canActivate: [authGuard]},
+    { path: 'livreEdit/:id', component: AddLivresComponent ,canActivate: [authGuard]},
     // questions 
-    {path: "questions", component : QuestionComponent},
-    {path: "add-questions", component : AddQuestionsComponent},
-    {path: 'questionEdit/:id', component : AddQuestionsComponent},
+    {path: "questions", component : QuestionComponent ,canActivate: [authGuard]},
+    {path: "add-questions", component : AddQuestionsComponent ,canActivate: [authGuard]},
+    {path: 'questionEdit/:id', component : AddQuestionsComponent ,canActivate: [authGuard]},
     // chapitres 
-    {path: "chapitres", component : ChapitreAdminComponent},
-    {path: "add-chapitres", component : AddChapitresComponent},
-    {path: 'chapitreEdit/:id', component : AddChapitresComponent},
+    {path: "chapitres", component : ChapitreAdminComponent ,canActivate: [authGuard]},
+    {path: "add-chapitres", component : AddChapitresComponent ,canActivate: [authGuard]},
+    {path: 'chapitreEdit/:id', component : AddChapitresComponent ,canActivate: [authGuard]},
     // gestion utilisateurs 
-    {path: "utilisateurs", component : UtilisateurComponent},
+    {path: "utilisateurs", component : UtilisateurComponent ,canActivate: [authGuard]},
     //listes quizzes
-    {path: "quiz-admin", component : QuizAdminComponent},
-    {path: "add-quiz", component : AddQuizComponent},
-    {path: 'quizEdit/:id', component : AddQuizComponent},
+    {path: "quiz-admin", component : QuizAdminComponent ,canActivate: [authGuard]},
+    {path: "add-quiz", component : AddQuizComponent ,canActivate: [authGuard]},
+    {path: 'quizEdit/:id', component : AddQuizComponent ,canActivate: [authGuard]},
     //dashbord Admin
-    {path: 'dashbord-admin', component : DashbordComponent},
+    {path: 'dashbord-admin', component : DashbordComponent ,canActivate: [authGuard]},
 
 
   ]
