@@ -1,0 +1,24 @@
+<div class="col-3 bg-light raccourcis">
+  <div class="wrap">
+    <div class="search">
+      <input type="text" class="searchTerm" placeholder="Rechercher un chapitre" [(ngModel)]="searchTerm" (input)="searchBooks()">
+      <button type="submit" class="searchButton">
+        <i class="fa fa-search"></i>
+      </button>
+    </div>
+  </div>
+
+  <div class="listes">
+    <ul>
+      <li *ngIf="chapters.length > 0 && chapters[0].Fichier">
+        <a (click)="selectFichier(chapters[0].Fichier)">Document PDF</a>
+      </li>
+      <li *ngFor="let chapter of filteredChapiters"
+          [ngClass]="{'selected-chapter': chapter.isSelected, 'lu-chapter': chapter.lue, 'chapter': !chapter.lue}">
+        <a (click)="selectChapter(chapter)">
+          {{ chapter['Titre du chapitre'] }}
+        </a>
+      </li>
+    </ul>
+  </div>
+</div>

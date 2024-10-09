@@ -1,1 +1,120 @@
-<p>sidebar-admin works!</p>
+<div class="page-wrapper chiller-theme toggled">
+  <a id="show-sidebar" class="btn btn-sm btn-dark">
+    <i class="fas fa-bars"></i>
+  </a>
+  <nav id="sidebar" class="sidebar-wrapper">
+    <div class="sidebar-content">
+      <div class="sidebar-brand">
+        <a href="#">MouridEdu</a>
+        <div id="close-sidebar">
+          <i class="fas fa-times"></i>
+        </div>
+      </div>
+      <div class="sidebar-header">
+        <div class="user-pic">
+          <img class="img-responsive img-rounded" src="https://img.freepik.com/vecteurs-libre/cercle-bleu-utilisateur-blanc_78370-4707.jpg?uid=R147170837&ga=GA1.2.1272467380.1720960746&semt=ais_hybrid"
+            alt="User picture">
+        </div>
+        <div class="user-info">
+          <span class="user-name">{{ userConnected?.name }}
+            <!-- <strong>Niang</strong> -->
+          </span>
+          <span class="user-role">Administrateur</span>
+        </div>
+      </div>
+  
+      <div class="sidebar-menu">
+        <ul>
+          <li>
+            <a routerLink="/dashbord-admin">
+              <i class="fa fa-tachometer-alt"></i>
+              <span>Dashboard</span>
+            </a>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa-sharp fa-solid fa-users"></i>
+              <span>Gestion Utilisateurs</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a routerLink="/roles">Roles</a>
+                </li>
+                <li>
+                  <a routerLink="/utilisateurs">Utilisateurs</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <!-- <i class="far fa-gem"></i> -->
+              <i class="fa-solid fa-question"></i>
+              <span>Gestion Quiz</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a routerLink="/quiz-admin">Quizs</a>
+                </li>
+                <li>
+                  <a routerLink="/questions">Questions</a>
+                </li>
+                
+              </ul>
+            </div>
+          </li>
+          <li class="sidebar-dropdown">
+            <a href="#">
+              <i class="fa-duotone fa-solid fa-book"></i>
+              <span>Gestion Livres</span>
+            </a>
+            <div class="sidebar-submenu">
+              <ul>
+                <li>
+                  <a routerLink="/categories">Categories</a>
+                </li>
+                <li>
+                  <a routerLink="/livres">Livres</a>
+                </li>
+                <li>
+                  <a routerLink="/chapitres">Chapitres</a>
+                </li>
+              </ul>
+            </div>
+          </li>
+        </ul>
+      </div>
+      <!-- sidebar-menu  -->
+    </div>
+    <!-- sidebar-content  -->
+    <div class="sidebar-footer">
+
+      <a href="#">
+        <i class="fa fa-cog"></i>
+      </a>
+      <a (click)="logout()">
+        <i class="fa-solid fa-right-from-bracket"></i>
+      </a>
+    </div>
+  </nav>
+  <!-- sidebar-wrapper  -->
+  <main class="page-content">
+    <div class="container-fluid">
+      <h2>MouridEdu</h2>
+      <hr>
+
+      <div class="row">
+
+            <!-- contenue de la platforme  -->
+            <router-outlet></router-outlet>
+            <!-- fin du contenue de la platforme  -->
+
+          </div>          
+        </div>
+
+  </main>
+  <!-- page-content" -->
+</div>
+<!-- page-wrapper -->

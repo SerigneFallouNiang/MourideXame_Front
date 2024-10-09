@@ -1,28 +1,24 @@
-body {
+/* body {
     background-color: #1e5631;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    /* background: var(--vert-secondaire, rgba(46, 139, 87, 0.50)); */
-  
-}
+    height: 100vh;  
+} */
 .login-card {
-    /* background-color: white; */
     display: flex;
-    justify-content: center; /* Centrage horizontal */
-    align-items: center;     /* Centrage vertical */
+    justify-content: center; 
+    align-items: center;  
     border-radius: 15px;
     padding: 2rem;
     width: 100%;
+    margin: 0 auto;
     max-width: 957px;
     width: 957px;
-    height: 848px;
+    height: 44.17%;
     flex-shrink: 0;
     border-radius: 15px;
     text-align: left;
-    /* background: url('../../../../assets/images/fond-form.png') lightgray 50% / cover no-repeat; */
-    /* background-image: linear-gradient(rgba(76, 175, 80, 0.7), rgba(76, 175, 80, 0.7)), url('../../../../assets/images/fond-form.png'); */
     background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
 }
 .wave-shape {
@@ -37,6 +33,7 @@ body {
 }
 .btn-custom:hover {
     background-color: #45a049;
+    color: white;
 }
 
 .form-login{
@@ -46,39 +43,13 @@ body {
     border-radius: 30px;
     background: #FFF;
     box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.30);
-    /* text-align: center; */
-}
-/* Wave container to hold the SVG */
-.wave-container {
-border-radius: 30px 30px 0 0;
-overflow: hidden; 
-position: relative;
-width: 100%;
-height: 450px;
-}
-
-.wave-top, .wave-bottom {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-}
-.wave-top {
-z-index: 1; 
-}
-
-.wave-bottom {
-z-index: 0; 
-top: 13px;
 }
 .formulaire {
 margin-top: -100px;
 padding: 25px;
 display: flex;
 flex-direction: column;
-
 }
-
 .text-connexion {
 color: #2E8B57;
 font-family: "Playfair Display";
@@ -88,7 +59,6 @@ font-weight: 700;
 line-height: normal;
 text-align: left; 
 }
-
 label {
 color: #2E8B57;
 font-family: Lato;
@@ -97,13 +67,11 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
-
 input {
 border-radius: 10px;
 border: 1px solid #2E8B57;
 background: rgba(47, 128, 237, 0.00);
 }
-
 button[type="submit"] {
 width: 201.836px;
 height: 60px;
@@ -130,27 +98,27 @@ top: -130px;
 z-index: 0; 
 }
 .nouveauCompte{
-z-index: 1; 
-float: right;
-color: #FFF;
-font-family: Lato;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
-
-.nouveauCompte a {
-z-index: 1; 
-float: right;
-color: #FFF;
-font-family: Lato;
-font-size: 16px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-margin-left: 5px;
-}
+  z-index: 1; 
+  float: right;
+  color: #2E8B57;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  }
+  
+  .nouveauCompte a {
+  z-index: 1; 
+  float: right;
+  color: #2E8B57;
+  font-family: Lato;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  margin-left: 5px;
+  }
 
 .password-forget{
 color: #B7BF99;
@@ -160,8 +128,6 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
-
-
 .btn-custom {
     background-color: #4caf50;
     border: none;
@@ -171,8 +137,6 @@ line-height: normal;
     background-color: #45a049;
 }
 
-
-/* Media Queries pour les appareils mobiles */
 @media screen and (max-width: 768px) {
 body {
     background-color: #1e5631;
@@ -182,15 +146,11 @@ body {
     width: 100%;
     overflow-x: hidden;
     overflow-y: hidden;
-    /* height: 100vh; */
-    /* background: var(--vert-secondaire, rgba(46, 139, 87, 0.50)); */
-  
 }
 .login-card {
-    /* background-color: white; */
     display: flex;
-    justify-content: center; /* Centrage horizontal */
-    align-items: center;     /* Centrage vertical */
+    justify-content: center; 
+    align-items: center;  
     border-radius: 15px;
     padding: 2rem;
     width: 100%;
@@ -200,8 +160,6 @@ body {
     flex-shrink: 0;
     border-radius: 15px;
     text-align: left;
-    /* background: url('../../../../assets/images/fond-form.png') lightgray 50% / cover no-repeat; */
-    /* background-image: linear-gradient(rgba(76, 175, 80, 0.7), rgba(76, 175, 80, 0.7)), url('../../../../assets/images/fond-form.png'); */
     background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
 }
 .wave-shape {
@@ -220,15 +178,12 @@ body {
 
 .form-login{
     width: 411px;
-    /* height: 823px; */
     flex-shrink: 0;
     border-radius: 30px;
     background: #FFF;
     box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.30);
     overflow: hidden;
-    /* text-align: center; */
 }
-/* Wave container to hold the SVG */
 .wave-container {
 border-radius: 30px 30px 0 0;
 overflow: hidden; 
@@ -359,4 +314,65 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
+
+
+
+
+
+
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+    body {
+      background-color: #1e5631;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      overflow-x: hidden;
+      overflow-y: auto;
+    }
+  
+    .login-card {
+      width: 75%; /* Adapter la largeur pour un MacBook Air */
+      max-width: 900px;
+      height: auto;
+      padding: 3rem;
+      background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
+    }
+  
+    .form-login {
+      width: 75%; /* Ajuster la largeur */
+      max-width: 450px;
+      padding: 30px;
+    }
+  
+    .wave-container {
+      height: 400px;
+    }
+  
+    .wave-top svg,
+    .wave-bottom svg {
+      width: 100%; /* S'adapter à la largeur de l'écran */
+      height: auto;
+    }
+  
+    .wave-footer {
+      height: 130px;
+    }
+  
+    .wave-footer svg {
+      width: 100%; /* Ajuster la largeur */
+      height: auto;
+    }
+  
+    .text-connexion {
+      font-size: 34px; /* Ajuster légèrement la taille de police */
+    }
+  
+    button[type="submit"] {
+      width: 130px;
+      height: 55px;
+      font-size: 22px;
+    }
+  }
+  
 }

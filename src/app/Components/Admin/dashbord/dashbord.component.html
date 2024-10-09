@@ -1,1 +1,350 @@
-<p>dashbord works!</p>
+<style>
+  .side-bar{
+      width: 260px;
+      height: 950px;
+      flex-shrink: 0;
+      border-radius: 0px 12px 12px 0px;
+      background: #6D9773;
+  }
+  .logo{
+      width: 176px;
+      height: 150px;
+      flex-shrink: 0;
+      border-radius: 12px;
+      background: url("images/image 3.png") #6D9773 50% / cover no-repeat;
+      margin: auto;
+      /* margin-top: 75px; */
+  }
+  ul li{
+      color: #FFF;
+      font-family: Montserrat;
+      font-size: 25px;
+      font-style: normal;
+      font-weight: 400;
+      line-height: 40px;
+      display: flex;
+      width: 225px;
+      padding: 10px;
+      align-items: center;
+      gap: 10px;
+  }
+  ul li:hover{
+      display: flex;
+      width: 225px;
+      padding: 10px;
+      align-items: center;
+      gap: 10px;
+      border-radius: 4px;
+      background: #FFF;
+      color: #000;
+      margin: auto;
+  }
+  
+  #search-input {
+  width: 700px;
+  height: 50px;
+  margin-left: 100px;
+  margin-top: 10px;
+  padding: 0 15px;
+  border: 1px solid #ced4da;
+  border-radius: 20px;
+  font-size: 16px;
+  outline: none;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#search-input:focus {
+  border-color: #6D9773;
+  box-shadow: 0 0 0 3px rgba(109, 151, 115, 0.25);
+}
+
+.profil i{
+  width: 53px;
+  height: 53px;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-left: 100px;
+}
+.profil img{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-left: 100px;
+  margin-top: 10px;
+  padding: 5px;
+  background-color: #FFF;
+}
+body{
+  background-color: #D8D8D8;
+}
+.statistique{
+  width: 371px;
+  height: 133px;
+  flex-shrink: 0;
+  border-radius: 15px;
+  background: #FFF;
+  /* margin-left: 9%; */
+  justify-content: space-between;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+.icone{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: -30px;
+  padding: 5px;
+  background-color: #3C95EE;
+}
+/* hr{
+  width: 330px;
+  justify-content: center;
+  align-items: center;
+  margin-left: 20px;
+} */
+.hr_nom p{
+  color: #000;
+  font-family: Montserrat;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  text-align: center;
+}
+.ville{
+  width: 1163px;
+  height: 572px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #D9D9D9;
+}
+.icone_card{
+  width: 100%;
+  height: 287px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  margin-top: -30px;
+  background-color: #3C95EE;
+}
+
+.statistique_card{
+  width: 371px;
+  height: 411px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #FFF;
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+
+
+
+/* les responsivités  */
+
+@media only screen and (min-width: 1366px) and (max-width: 1600px) {
+  .side-bar {
+      width: 220px; /* Adjusted for a slightly smaller width */
+      height: 900px;
+  }
+
+  .logo {
+      width: 150px; /* Adjusted for a smaller logo */
+      height: 120px;
+  }
+
+  ul li {
+      font-size: 22px; /* Slightly smaller font size */
+      width: 200px;
+  }
+
+  #search-input {
+      width: 600px; /* Adjusted for a narrower input field */
+      height: 45px;
+  }
+
+  .profil img {
+      width: 45px;
+      height: 45px;
+  }
+
+  .statistique {
+      width: 350px;
+      height: 120px; /* Adjusted for a smaller card size */
+  }
+
+  .ville {
+      width: 1000px; /* Adjusted for the main content area */
+      height: 500px;
+  }
+
+  .statistique_card {
+      width: 350px;
+      height: 380px;
+  }
+}
+
+.card img{
+  padding: 10px;
+  border-radius: 25px;
+  margin-top: -40px;
+  height: 340px;
+}
+
+.card img:hover{
+  margin-top: -60px;
+  cursor: pointer;
+}
+.card-body h5{
+  color: #8E8989;
+font-family: Montserrat;
+font-size: 32px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-align: center;
+}
+
+.card-footer small{
+  color: #8E8989;
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+text-align: center;
+}
+.card{
+  box-shadow: 0px 8px 4px -4px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+}
+.container{
+  text-align: center;
+  margin: auto;
+}
+.paginate{
+  background-color: #FFF;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  padding:20px;
+  margin-top: 40px;
+  padding-bottom: 10px;
+  border-radius: 15px;
+
+}
+
+.paginate .profil {
+  margin-top: 200px;
+}
+.list_statistique{
+  justify-content: space-between;
+  display: flex;
+  gap: 30px;
+}
+/* Style pour chaque élément statistique */
+.stat-item {
+width: 371px;
+}
+</style>
+<div class="container">
+    
+  <!-- <div class="main-container"> -->
+  
+
+      <!-- section statistique -->
+      <div class="list_statistique mt-5 flex-wrap justify-content-between col-sm-12 col-md-12 col-lg-12">
+          <!-- statistique -->
+          <div class="stat-item col-sm-12 col-md-3 mb-3" style="background-color: white; border-radius: 15px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="chiffre d-flex justify-content-between p-3">
+              <div class="icone" style="background-color: #007bff;">
+                <span class="mingcute--user-add-fill">
+                  <i class="fa-solid fa-user-plus fa-lg" style="color: #FFF;"></i>
+                </span>
+              </div>
+              <div class="nombre"><h2><strong>{{ totalUsers }}</strong></h2></div>
+            </div>
+            <div class="hr_nom">
+              <hr>
+              <p>Utilisateurs</p>
+            </div>
+          </div>
+        
+          <!-- statistique -->
+          <div class="stat-item col-sm-12 col-md-3 mb-3" style="background-color: white; border-radius: 15px;box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="chiffre d-flex justify-content-between p-3">
+              <div class="icone" style="background-color: #6D9773;">
+                <span class="mingcute--user-add-fill">
+                  <!-- <i class="fa-solid fa-city fa-lg" style="color: #FFF;"></i> -->
+                  <i class="fa-solid fa-layer-group fa-lg" style="color: #FFF;"></i>
+                </span>
+              </div>
+              <div class="nombre"><h2><strong>{{totalCategories}}</strong></h2></div>
+            </div>
+            <div class="hr_nom">
+              <hr>
+              <p>Catégories</p>
+            </div>
+          </div>
+        
+          <!-- statistique -->
+          <div class="stat-item col-sm-12 col-md-3 mb-3" style="background-color: white; border-radius: 15px; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;">
+            <div class="chiffre d-flex justify-content-between p-3">
+              <div class="icone" style="background-color: #FEB906;">
+                <span class="mingcute--user-add-fill">
+                  <!-- <i class="fa-solid fa-coins fa-lg" style="color: #FFF;"></i> -->
+                  <i class="fa-solid fa-book fa-lg" style="color: #FFF;"></i>
+                </span>
+              </div>
+              <div class="nombre"><h2><strong>{{totalLivres}}</strong></h2></div>
+            </div>
+            <div class="hr_nom">
+              <hr>
+              <p>Livres</p>
+            </div>
+          </div>
+        </div>
+        
+<!-- </div> -->
+<!-- card des villes  -->
+<div class="paginate">
+  <div class="row row-cols-1 row-cols-md-3 g-4 mt-5">
+      <div class="col" *ngFor="let categorie of pagedCategories">
+        <!-- *ngFor="let categorie of tabCategorie; let i = index" -->
+        <div class="card h-100">
+          <img [src]="categorie.image" class="card-img-top" alt="ville image"  [routerLink]="['/communes/', categorie.id]">
+          <div class="card-body">
+            <h5 class="card-title">{{categorie.name}}</h5>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="d-flex align-items-center justify-content-end mt-5">
+      <i class="fa-solid fa-chevron-left" (click)="prevPage()" [class.disabled]="currentPage === 1" style="cursor: pointer; color: #D8D8D8; font-size: 32px;"></i>
+      <div class="icone d-flex align-items-center justify-content-center" style="background-color: #FFF; padding: 10px; border-radius: 5px; margin: 0 10px;">
+        <span class="mingcute--user-add-fill" style="font-weight: bold;">{{currentPage}}</span>
+      </div>
+      <i class="fa-solid fa-chevron-right" (click)="nextPage()" [class.disabled]="currentPage === totalPages" style="cursor: pointer; color: #D8D8D8; font-size: 32px;"></i>
+    </div>
+
+
+
+</div>
+<!-- card des villes  -->
+
+</div>

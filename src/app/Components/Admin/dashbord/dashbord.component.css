@@ -1,0 +1,18 @@
+.paginate .fa-chevron-left,
+.paginate .fa-chevron-right {
+  color: #D8D8D8;
+}
+
+.paginate .fa-chevron-left:hover,
+.paginate .fa-chevron-right:hover {
+  color: #000;
+  cursor: pointer;
+}
+
+.paginate .icone {
+  background-color: #FFF;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+

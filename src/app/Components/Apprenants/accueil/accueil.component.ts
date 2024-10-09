@@ -7,6 +7,7 @@ import { CommonModule } from '@angular/common';
 import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar-apprenant.component';
 // import { Router } from 'express';
 import { Router, RouterModule } from '@angular/router';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-accueil',
@@ -19,7 +20,7 @@ export class AccueilComponent implements OnInit{
 
   // Injection de dependance 
   private categorieService = inject(CategorieService);
-
+  public location = inject(Location);
   // private router : Router;
   private router = inject(Router);
 
@@ -72,13 +73,15 @@ export class AccueilComponent implements OnInit{
 
 
 
-// onCategoryClick(categoryId: numbernumber) {
-//   this.router.navigate(['/category', categoryId]);
-// }
 
 onCategoryClick(categoryId: number | string ): void {
   const idAsString = categoryId.toString(); // Convertir en chaîne
   this.router.navigate(['/category', idAsString]);
 }
 
+  
+  //fonction pour le retour précédé
+  goBack(): void {
+    this.location.back();
+  }
 }

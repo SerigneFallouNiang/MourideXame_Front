@@ -62,6 +62,32 @@
   }
 
 
+  /* boutton de retoure vers les quiz  */
+  .retourQuiz {
+    background-color: #FFD233;
+    color: #2E8B57; /* Texte noir pour un bon contraste */
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-weight: bold;
+    text-transform: uppercase;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .retourQuiz:hover {
+    background-color: #E6BD2E; /* Version légèrement plus foncée pour l'effet hover */
+  }
+  
+  .retourQuiz:active {
+    background-color: #CCAA29; /* Encore plus foncé pour l'effet de clic */
+  }
+   /* fin boutton de retoure vers les quiz  */
+
+
+
+   
   /* Alignement total à droite en mode bureau */
   @media (min-width: 992px) {
     .offcanvas-body {

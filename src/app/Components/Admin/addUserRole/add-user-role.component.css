@@ -1,0 +1,25 @@
+.checkbox-list {
+    max-height: 300px;
+    overflow-y: auto;
+    border: 1px solid #ced4da;
+    border-radius: 0.25rem;
+    padding: 10px;
+  }
+  
+  .form-check {
+    margin-bottom: 10px;
+  }
+  
+  .form-check-input {
+    margin-right: 10px;
+  }
+  
+  .btn-primary {
+    background-color: #2E8B57;
+    border-color: #2E8B57;
+  }
+  
+  .btn-primary:hover {
+    background-color: #267349;
+    border-color: #267349;
+  }

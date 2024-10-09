@@ -1,0 +1,77 @@
+<style>
+    .titre-form {
+        color: #2E8B57;
+        font-family: "Playfair Display";
+        font-size: 18px;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .btn {
+        background-color: #2E8B57;
+        border: #2E8B57;
+    }
+    .images-input img{
+        width: 200px;
+    }
+</style>
+
+<div class="container-fluid">
+    <div class="card shadow">
+        <div class="card-header">
+            <div class="d-flex align-items-center justify-content-between mb-4">
+                <h1 class="titre-form h3 mb-0 text-gray-800">{{ isEditMode ? 'Modifier le livre' : 'Ajouter un livre' }}</h1>
+                <a [routerLink]="['/livres']" class="btn btn-primary btn-sm shadow-sm">{{ 'Retour' }}</a>
+            </div>
+        </div>
+        <div class="card-body">
+            <!-- Affichage des erreurs -->
+            <div *ngIf="errors.length > 0" class="alert alert-danger">
+                <ul>
+                    <li *ngFor="let error of errors">{{ error }}</li>
+                </ul>
+            </div>
+
+            <!-- Formulaire de création/modification de catégorie -->
+            <form [formGroup]="bookForm" (ngSubmit)="onSubmit()">
+                <div class="form-group">
+                    <label for="title">{{ 'Livre' }}</label>
+                    <input type="text" class="form-control" id="tite" placeholder="Nom du Livre" formControlName="title"
+                        [ngClass]="{'is-invalid': bookForm.get('title')?.invalid && bookForm.get('title')?.touched}" />
+                    <div class="invalid-feedback" *ngIf="bookForm.get('title')?.invalid && bookForm.get('title')?.touched">
+                        Nom est requis et doit avoir au moins 3 caractères.
+                    </div>
+                </div>
+
+                <div class="mb-3 mt-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea class="form-control" id="description" placeholder="Description" formControlName="description"></textarea>
+                </div>
+
+                <div class="images-input mb-3">
+                    <label for="image" class="form-label">Image</label>
+                    <input type="file" class="form-control" id="image" (change)="onFileSelected($event)" />
+                    @if (existingImageUrl) {
+                        <img [src]="existingImageUrl" class="card-img-top mt-3" alt="{{existingImageUrl}}">
+                    }
+                </div>
+
+                <div class="images-input mb-3">
+                    <label for="category_id" class="form-label">Sélectionner une catégorie</label>
+                    <select class="form-select form-select-sm" formControlName="category_id">
+                        <option value="" disabled selected>Sélectionner une catégorie</option>
+                        <option *ngFor="let category of categories" [value]="category.id">{{ category.name }}</option>
+                    </select>
+                    <div class="invalid-feedback" *ngIf="bookForm.get('category_id')?.invalid && bookForm.get('category_id')?.touched">
+                        Veuillez sélectionner une catégorie.
+                    </div>
+                </div>
+                
+
+                <button type="submit" class="btn btn-primary btn-block" [disabled]="bookForm.invalid">
+                    {{ isEditMode ? 'Modifier' : 'Enregistrer' }}
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
