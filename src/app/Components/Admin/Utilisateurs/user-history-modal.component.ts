@@ -2,42 +2,39 @@ import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from
 import { CommonModule } from '@angular/common';
 import { RolesService } from '../../../Services/Admin/roles.service';
 
+interface Book {
+  title: string;
+  description: string;
+}
+
 @Component({
   selector: 'app-user-history-modal',
   standalone: true,
   imports: [CommonModule],
   template: `
     <div class="modal" [class.show]="isVisible">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Historique de lecture</h5>
-            <button type="button" class="close" (click)="onClose()">
-              <span>&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-            <div *ngIf="loading" class="text-center">
-              <div class="spinner-border" role="status">
-                <span class="sr-only">Chargement...</span>
-              </div>
-            </div>
-            <div *ngIf="!loading && books.length === 0">
-              Aucun livre lu par cet utilisateur.
-            </div>
-            <div *ngIf="!loading && books.length > 0">
-              <div class="list-group">
-                <div *ngFor="let book of books" class="list-group-item">
-                  <h6 class="mb-1">{{book.title}}</h6>
-                  <p class="mb-1">{{book.description}}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="onClose()">Fermer</button>
-          </div>
-        </div>
+      <div class="modal-content">
+        <header>
+          <h2>Historique de lecture</h2>
+          <button (click)="onClose()" aria-label="Fermer">×</button>
+        </header>
+        <main>
+          <ng-container *ngIf="loading; else content">
+            <p class="loading">Chargement...</p>
+          </ng-container>
+          <ng-template #content>
+            <p *ngIf="books.length === 0">Aucun livre lu par cet utilisateur.</p>
+            <ul *ngIf="books.length > 0">
+              <li *ngFor="let book of books">
+                <h3>{{ book.title }}</h3>
+                <p>{{ book.description }}</p>
+              </li>
+            </ul>
+          </ng-template>
+        </main>
+        <footer>
+          <button (click)="onClose()">Fermer</button>
+        </footer>
       </div>
     </div>
   `,
@@ -45,40 +42,54 @@ import { RolesService } from '../../../Services/Admin/roles.service';
     .modal {
       display: none;
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
+      inset: 0;
       background-color: rgba(0,0,0,0.5);
       z-index: 1050;
     }
-    .modal.show {
-      display: block;
+    .modal.show { display: flex; }
+    .modal-content {
+      background: white;
+      margin: auto;
+      padding: 1rem;
+      border-radius: 8px;
+      max-width: 500px;
+      width: 100%;
     }
-    .modal-dialog {
-      margin: 1.75rem auto;
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
     }
+    ul { padding: 0; list-style-type: none; }
+    li { margin-bottom: 1rem; }
+    .loading { text-align: center; }
+    button {
+      padding: 0.5rem 1rem;
+      border: none;
+      background-color: #f0f0f0;
+      cursor: pointer;
+    }
+    footer { text-align: right; margin-top: 1rem; }
   `]
 })
 export class UserHistoryModalComponent implements OnChanges {
-  @Input() isVisible: boolean = false;
+  @Input() isVisible = false;
   @Input() userId: string | null = null;
   @Output() closeModal = new EventEmitter<void>();
-  
-  loading: boolean = false;
-  books: any[] = [];
+
+  loading = false;
+  books: Book[] = [];
 
   constructor(private rolesService: RolesService) {}
 
   ngOnChanges(changes: SimpleChanges) {
-    if (changes['userId'] && changes['userId'].currentValue && this.isVisible) {
+    if (changes['userId']?.currentValue && this.isVisible) {
       this.loadHistory();
     }
   }
 
   loadHistory() {
     if (!this.userId) return;
-    
     this.loading = true;
     this.rolesService.getUserHistory(this.userId).subscribe({
       next: (response) => {

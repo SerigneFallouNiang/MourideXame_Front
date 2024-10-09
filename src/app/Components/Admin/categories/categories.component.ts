@@ -15,9 +15,10 @@ import { ModelCategorie } from '../../../Models/categorie.model';
 export class CategoriesComponent {
 
   categories: any[] = [];
-
-
-  constructor(private categorieService: CategorieService) {}
+  isBrowser: boolean;
+  constructor(private categorieService: CategorieService) {
+    this.isBrowser = typeof window !== 'undefined' && typeof localStorage !== 'undefined';
+  }
 
 
     // Declaration des variables 

@@ -1,12 +1,10 @@
-body {
+/* body {
     background-color: #1e5631;
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    /* background: var(--vert-secondaire, rgba(46, 139, 87, 0.50)); */
-  
-}
+    height: 100vh;  
+} */
 .login-card {
     display: flex;
     justify-content: center; 
@@ -23,24 +21,6 @@ body {
     text-align: left;
     background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
 }
-
-/* .login-card {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 15px;
-    padding: 2rem;
-    width: 100%;
-    max-width: 957px;
-    height: 44.17vh; 
-    margin: 0 auto;
-    flex-shrink: 0;
-    text-align: left;
-    background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-} */
 .wave-shape {
     background-color: #4caf50;
     height: 150px;
@@ -63,17 +43,13 @@ body {
     border-radius: 30px;
     background: #FFF;
     box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.30);
-    /* text-align: center; */
 }
-
 .formulaire {
 margin-top: -100px;
 padding: 25px;
 display: flex;
 flex-direction: column;
-
 }
-
 .text-connexion {
 color: #2E8B57;
 font-family: "Playfair Display";
@@ -83,7 +59,6 @@ font-weight: 700;
 line-height: normal;
 text-align: left; 
 }
-
 label {
 color: #2E8B57;
 font-family: Lato;
@@ -92,13 +67,11 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
-
 input {
 border-radius: 10px;
 border: 1px solid #2E8B57;
 background: rgba(47, 128, 237, 0.00);
 }
-
 button[type="submit"] {
 width: 201.836px;
 height: 60px;
@@ -155,8 +128,6 @@ font-style: normal;
 font-weight: 400;
 line-height: normal;
 }
-
-
 .btn-custom {
     background-color: #4caf50;
     border: none;
@@ -166,8 +137,6 @@ line-height: normal;
     background-color: #45a049;
 }
 
-
-/* Media Queries pour les appareils mobiles */
 @media screen and (max-width: 768px) {
 body {
     background-color: #1e5631;
@@ -177,15 +146,11 @@ body {
     width: 100%;
     overflow-x: hidden;
     overflow-y: hidden;
-    /* height: 100vh; */
-    /* background: var(--vert-secondaire, rgba(46, 139, 87, 0.50)); */
-  
 }
 .login-card {
-    /* background-color: white; */
     display: flex;
-    justify-content: center; /* Centrage horizontal */
-    align-items: center;     /* Centrage vertical */
+    justify-content: center; 
+    align-items: center;  
     border-radius: 15px;
     padding: 2rem;
     width: 100%;
@@ -195,8 +160,6 @@ body {
     flex-shrink: 0;
     border-radius: 15px;
     text-align: left;
-    /* background: url('../../../../assets/images/fond-form.png') lightgray 50% / cover no-repeat; */
-    /* background-image: linear-gradient(rgba(76, 175, 80, 0.7), rgba(76, 175, 80, 0.7)), url('../../../../assets/images/fond-form.png'); */
     background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
 }
 .wave-shape {
@@ -215,15 +178,12 @@ body {
 
 .form-login{
     width: 411px;
-    /* height: 823px; */
     flex-shrink: 0;
     border-radius: 30px;
     background: #FFF;
     box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.30);
     overflow: hidden;
-    /* text-align: center; */
 }
-/* Wave container to hold the SVG */
 .wave-container {
 border-radius: 30px 30px 0 0;
 overflow: hidden; 
@@ -360,7 +320,6 @@ line-height: normal;
 
 
 
-/* Media Queries pour MacBook Air */
 @media screen and (min-width: 1025px) and (max-width: 1440px) {
     body {
       background-color: #1e5631;

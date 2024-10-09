@@ -1,29 +1,23 @@
 .offcanvas-start {
-    width: 250px; /* Ajustez cette largeur si nécessaire */
+    width: 250px; 
   }
-
-  /* Ajoutez ceci au début de votre fichier CSS */
 body {
   padding-top: 300px; 
 }
-
-  /* Couleur de fond pour la navbar */
   .navbar {
     background-color: #2E8B57;
     border-bottom: 2px solid #FFF;
     background: #2E8B57;
   }
-
-  /* Texte blanc pour les liens et le nom de la marque dans la navbar */
   .navbar .nav-link,
   .navbar .navbar-brand {
     color: #fff;
   }
 
-  /* Icône du toggle (menu burger) en blanc sans encadrement */
+ 
   .navbar-toggler {
-    background: none; /* Supprime le fond et la bordure */
-    border: none;     /* Supprime la bordure */
+    background: none; 
+    border: none;     
   }
 
   .navbar-toggler-icon {
@@ -35,15 +29,12 @@ body {
     flex-direction: row;
     align-items: center;
   }
-
   .navbar-nav .nav-item {
     margin-left: 15px;
   }
-
   .navbar-nav .nav-item:last-child {
-    margin-right: 0; /* Supprime la marge à droite du dernier élément */
+    margin-right: 0;
   }
-
   .connexion {
     width: 120.921px;
     height: 31.333px;
@@ -60,39 +51,12 @@ body {
     display: none;
     }
  
-
-
-  .offcanvas-footer h2 {
-    display: none;
-  }
-
-  .navbar-nav .nav-link.active-link {
-    color: #FFD233 !important;
-  }
-  
-  .navbar-nav .nav-link:hover {
-    color: #FFD233 !important;
-  }
-  
-  .custom-dropdown .dropdown-item.active-link {
-    background-color: #FFD233 !important;
-  }
-  
-  .custom-dropdown .dropdown-item:hover {
-    background-color: #FFD233 !important;
-  }
-  
-
-  /* Alignement total à droite en mode bureau */
   @media (min-width: 768px) {
     .offcanvas-body {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
     }
-
-
-      /* Ajouter une classe spécifique pour plus de contrôle */
   .custom-dropdown .dropdown-menu li a,
   .custom-dropdown .dropdown-item {
     color: #000 !important;
@@ -107,8 +71,6 @@ body {
       line-height: normal;
     }
   }
-
-  /* Alignement de la liste à droite en mode mobile */
   @media (max-width: 768px) {
 
     .offcanvas-body ul li a {
@@ -213,8 +175,6 @@ body {
 
     margin-top: 35px;
    }
-
-    /* Ajout d'un trait horizontal sous chaque élément de la liste en mode mobile */
 .navbar-nav .nav-item {
 position: relative;
 }
@@ -224,17 +184,15 @@ content: "";
 display: block;
 width: 210px;
 height: 1px;
-background: #ddd; /* Couleur de la ligne horizontale */
+background: #ddd;
 position: absolute;
 bottom: 0;
 left: 0;
-/* margin: 10px 0; */
 margin-top: 15px;
 }
   }
   
 
-  /* css du liste deroulat des categories  */
   #menu-demo2, #menu-demo2 ul{
     padding:0;
     margin:0;

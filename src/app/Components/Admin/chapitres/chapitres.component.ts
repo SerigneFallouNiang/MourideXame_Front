@@ -32,7 +32,9 @@ export class ChapitreAdminComponent implements OnInit {
     private chapitreService: ChapitreService,
     private dialog: MatDialog,
     private toastr: ToastrService
-  ) {}
+  ) {
+    
+  }
 
   ngOnInit(): void {
     this.fetchChapitre();
