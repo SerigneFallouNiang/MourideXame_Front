@@ -69,10 +69,9 @@
                                         <i class="fa fa-trash" style="color: red;margin-left: 15px;"></i>
                                     </a>
 
-                                    <a (click)="deleteQuiz(quizz.id?.toString())">
-                                        <!-- <i class="fa fa-trash" style="color: red;margin-left: 15px;"></i> -->
+                                    <a (click)="ouvrirDetailsQuiz(quizz)">
                                         <i class="fa-solid fa-eye" style="color: #000;margin-left: 15px;"></i>
-                                    </a>
+                                      </a>
                                       
                                 </div>
                             </td>
@@ -100,3 +99,35 @@
 </div>
 
 <!-- la section html des formulaire  pour l'ajout et de la  modification  -->
+<!-- Modal Détails Quiz -->
+<!-- Modal Détails Quiz -->
+<div class="modal-overlay" [ngClass]="{'show': afficherModal}" (click)="fermerModal()">
+    <div class="modal-dialog" role="document" (click)="$event.stopPropagation()">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">{{ quizSelectionne?.quiz?.title }}</h5>
+          <button type="button" class="close" (click)="fermerModal()">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <h6 class="section-title">Questions et Réponses :</h6>
+          <ul class="question-list">
+            <li *ngFor="let question of quizSelectionne?.questions; let i = index" class="question-item">
+              <div class="question-text">
+                <span class="question-number">{{ i + 1 }}.</span> {{ question.text }}
+              </div>
+              <ul class="answer-list">
+                <li *ngFor="let reponse of question.answers" class="answer-item">
+                  {{ reponse.text }}
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="fermerModal()">Fermer</button>
+        </div>
+      </div>
+    </div>
+  </div>

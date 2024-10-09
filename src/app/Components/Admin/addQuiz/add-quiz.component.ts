@@ -34,7 +34,7 @@ export class AddQuizComponent implements OnInit {
     this.quizForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
       chapter_id: ['', Validators.required],
-      questions: [[]] // Tableau pour les questions sélectionnées
+      questions: [[], Validators.required]
     });
   }
 
@@ -49,16 +49,33 @@ export class AddQuizComponent implements OnInit {
     }
   }
 
+
+
+  // loadQuiz(): void {
+  //   this.quizService.getQuizById(this.quizId!).subscribe({
+  //     next: (data: any) => {
+  //       this.quizForm.patchValue({
+  //         title: data.title,
+  //         chapter_id: data.chapter_id,
+  //         questions: data.questions.map((q: any) => q.id)
+  //       });
+  //     },
+  //     error: (err) => {
+  //       this.handleErrors(err);
+  //       this.toastr.error('Erreur lors du chargement du quiz');
+  //     }
+  //   });
+  // }
   loadQuiz(): void {
     this.quizService.getQuizById(this.quizId!).subscribe({
       next: (data: any) => {
-        setTimeout(() => {
-          this.quizForm.patchValue({
-            title: data.title,
-            chapter_id: data.chapter_id,
-            questions: data.questions.map((q: any) => q.id) // Récupération des IDs des questions
-          });
+        console.log('Données du quiz:', data);
+        this.quizForm.patchValue({
+          title: data.title,
+          chapter_id: data.chapter_id,
+          questions: data.questions.map((q: any) => q.id.toString())
         });
+        console.log('Valeur du formulaire après mise à jour:', this.quizForm.value);
       },
       error: (err) => {
         this.handleErrors(err);
@@ -66,6 +83,9 @@ export class AddQuizComponent implements OnInit {
       }
     });
   }
+  
+  
+
 
 //pour récupérer les chapitre à choisis
   loadChapters() {
@@ -84,9 +104,13 @@ export class AddQuizComponent implements OnInit {
   loadQuestions() {
     this.questionService.getAllQuestions().subscribe(
       (data: any) => {
+        console.log('Toutes les questions:', data);
         console.log('Réponse de l\'API:', data);
         // Récupération de la propriété 'Livres' de la réponse
         this.questions = data || [];
+        console.log(data);
+        console.log('Questions chargées:', this.questions);
+        
       },
       error => {
         console.error('Erreur lors de la récupération des livres:', error);
@@ -103,7 +127,7 @@ export class AddQuizComponent implements OnInit {
         this.quizService.updateQuiz(this.quizId!, formData).subscribe({
           next: () => {
             this.toastr.success('Quiz modifié avec succès');
-            this.router.navigate(['/quizzes']);
+            this.router.navigate(['/quiz-admin']);
           },
           error: (err) => {
             this.handleErrors(err);
@@ -114,7 +138,7 @@ export class AddQuizComponent implements OnInit {
         this.quizService.createQuiz(formData).subscribe({
           next: () => {
             this.toastr.success('Quiz créé avec succès');
-            this.router.navigate(['/quizzes']);
+            this.router.navigate(['/quiz-admin']);
           },
           error: (err) => {
             this.handleErrors(err);
@@ -133,5 +157,25 @@ export class AddQuizComponent implements OnInit {
     this.errors.forEach(error => {
       this.toastr.error(error as string);
     });
+  }
+
+  isQuestionSelected(questionId: string): boolean {
+    const selectedQuestions = this.quizForm.get('questions')?.value || [];
+    return selectedQuestions.includes(questionId.toString());
+  }
+
+  onQuestionChange(questionId: string, event: any): void {
+    const selectedQuestions = this.quizForm.get('questions')?.value || [];
+    if (event.target.checked) {
+      if (!selectedQuestions.includes(questionId.toString())) {
+        selectedQuestions.push(questionId.toString());
+      }
+    } else {
+      const index = selectedQuestions.indexOf(questionId.toString());
+      if (index > -1) {
+        selectedQuestions.splice(index, 1);
+      }
+    }
+    this.quizForm.patchValue({ questions: selectedQuestions });
   }
 }

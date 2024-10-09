@@ -53,7 +53,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let livre of books">
+                        <tr *ngFor="let livre of pageBooks">
                             <td>{{ livre.id }}</td>
                             <td>{{ livre.title }}</td>
                             <td>{{ livre.description }}</td>
@@ -62,12 +62,19 @@
                             </td>
                             <td>
                               <div class="btn-group btn-group-sm">
-                                <a [routerLink]="['/livreEdit', livre.id]" class="button-edit btn btn-info">
+                                <!-- <a [routerLink]="['/livreEdit', livre.id]" class="button-edit btn btn-info">
                                   <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
                                 </a>
                                 <button (click)="deleteBook(livre.id?.toString())" class="btn btn-danger">
                                   <i class="fa fa-trash"></i>
-                                </button>
+                                </button> -->
+                                <a [routerLink]="['/livreEdit', livre.id]"  class="">
+                                    <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
+                                </a>
+
+                                <a (click)="deleteBook(livre.id?.toString())">
+                                    <i class="fa fa-trash" style="color: red;margin-left: 15px;"></i>
+                                </a>
                               </div>
                             </td>
                           </tr>
@@ -76,13 +83,18 @@
                         </tr> -->
                     </tbody>
                 </table>
+                  <!-- section de la pagination  -->
+                  <div class="pagination-container">
+                    <div class="d-flex align-items-center justify-content-end mt-5">
+                      <i class="fa-solid fa-chevron-left" (click)="prevPage()" [class.disabled]="currentPage === 1" style="cursor: pointer; color: #FFD233; font-size: 32px;"></i>
+                      <div class="icone d-flex align-items-center justify-content-center" style="background-color: #FFF; padding: 10px; border-radius: 5px; margin: 0 10px;">
+                        <span class="mingcute--user-add-fill" style="font-weight: bold;">{{currentPage}} / {{totalPages}}</span>
+                      </div>
+                      <i class="fa-solid fa-chevron-right" (click)="nextPage()" [class.disabled]="currentPage === totalPages" style="cursor: pointer; color: #FFD233; font-size: 32px;"></i>
+                    </div>
+                  </div>
+                 <!-- fin section de la pagination  -->
             </div>
-            <!-- Pagination -->
-            <!-- <div class="pagination">
-                <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
-                <span>Page {{ currentPage }} of {{ totalPages }}</span>
-                <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
-            </div> -->
         </div>
     </div>
 </div>

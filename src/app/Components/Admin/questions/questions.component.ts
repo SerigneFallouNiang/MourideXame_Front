@@ -13,14 +13,11 @@ import { QuestionssService } from '../../../Services/Admin/questions.service';
 export class QuestionComponent implements OnInit {
   messageImage: string = "Aucune image pour ce livre";
   questions: any[] = [];
+  pageQuestions: any[] = [];
 
-   // Pour stocker les livres de la page actuelle
-   pageQuestions: any[] = [];
-
-   // Pagination variables
-    currentPage: number = 1;
-    itemsPerPage: number = 6;
-    totalItems: number = 0;
+  currentPage: number = 1;
+  itemsPerPage: number = 6;
+  totalItems: number = 0;
 
   constructor(private questionService: QuestionssService) {}
 
@@ -33,14 +30,9 @@ export class QuestionComponent implements OnInit {
     this.questionService.getAllQuestions().subscribe(
       (data: any) => {
         console.log('Réponse de l\'API:', data);
-        // Récupération de la propriété 'Livres' de la réponse
         this.questions = data || [];
-
-         // récuoération du nombre de page
-         this.totalItems = this.questions.length;
-
-         // appel à la fonction de pagination
-         this.applyPagination();
+        this.totalItems = this.questions.length;
+        this.applyPagination();
       },
       error => {
         console.error('Erreur lors de la récupération des livres:', error);
@@ -49,25 +41,40 @@ export class QuestionComponent implements OnInit {
   }
 
   deleteQuestion(questionId: string | undefined): void {
-    if (questionId) {  // Vérifiez si l'ID n'est pas undefined
-      if (confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')) {
-        this.questionService.deleteQuestion(questionId).subscribe({
-          next: () => {
-            this.questions = this.questions.filter(question => question.id?.toString() !== questionId);
-            console.log('Catégorie supprimée avec succès');
-          },
-          error: (err) => {
-            console.error('Erreur lors de la suppression de la catégorie :', err);
-          }
-        });
-      }
-    } else {
-      console.error('ID de la catégorie est undefined');
+    if (!questionId) {
+      console.error('ID de la question est undefined');
+      return;
     }
-}
 
+    if (confirm('Êtes-vous sûr de vouloir supprimer cette question ?')) {
+      this.questionService.deleteQuestion(questionId).subscribe({
+        next: () => {
+          // Mettre à jour la liste principale
+          this.questions = this.questions.filter(question => 
+            question.id?.toString() !== questionId
+          );
+          
+          // Mettre à jour le nombre total d'éléments
+          this.totalItems = this.questions.length;
+          
+          // Ajuster la page courante si nécessaire
+          const maxPage = Math.ceil(this.totalItems / this.itemsPerPage);
+          if (this.currentPage > maxPage && maxPage > 0) {
+            this.currentPage = maxPage;
+          }
+          
+          // Réappliquer la pagination
+          this.applyPagination();
+          
+          console.log('Question supprimée avec succès');
+        },
+        error: (err) => {
+          console.error('Erreur lors de la suppression de la question :', err);
+        }
+      });
+    }
+  }
 
-  //les methode de la pagination
   applyPagination() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;

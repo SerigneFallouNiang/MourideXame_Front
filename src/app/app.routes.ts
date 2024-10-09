@@ -21,6 +21,9 @@ import { AddChapitresComponent } from './Components/Admin/addChapitre/addChapitr
 import { UtilisateurComponent } from './Components/Admin/Utilisateurs/utilisateurs.component';
 import { QuizAdminComponent } from './Components/Admin/quizzes/quizzes.component';
 import { AddQuizComponent } from './Components/Admin/addQuiz/add-quiz.component';
+import { RoleUserComponent } from './Components/Admin/rolesUser/roleUser.component';
+import { AddUserRoleComponent } from './Components/Admin/addUserRole/add-user-role.component';
+// import { RoleUserComponent } from './Components/Admin/roleUser.component';
 
 export const routes: Routes = [
 
@@ -56,7 +59,9 @@ export const routes: Routes = [
   component: SidebarAdminComponent,
   children: [
     // { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
-    {path: "roles", component : Role},
+    {path: "roles", component : RoleUserComponent},
+    {path: "add-roles", component : AddUserRoleComponent},
+    {path: "rolesEdit/:id", component : AddUserRoleComponent},
     // {path: "categorieEdit: id", component : AddRolesComponent},
     { path: 'categorieEdit/:id', component: AddRolesComponent },
     { path: 'ajouterCategorie', component: AddRolesComponent },
@@ -79,6 +84,9 @@ export const routes: Routes = [
     {path: "quiz-admin", component : QuizAdminComponent},
     {path: "add-quiz", component : AddQuizComponent},
     {path: 'quizEdit/:id', component : AddQuizComponent},
+    //dashbord Admin
+    {path: 'dashbord-admin', component : DashbordComponent},
+
 
   ]
 }

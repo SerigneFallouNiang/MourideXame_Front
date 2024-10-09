@@ -1,7 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-// import { CategorieService } from '../../../Services/categorie.service';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { ModelCategorie } from '../../../Models/categorie.model';
 import { QuizzesService } from '../../../Services/Admin/quizzes.service';
@@ -14,78 +13,44 @@ import { QuizzesService } from '../../../Services/Admin/quizzes.service';
   styleUrl: './quizzes.component.css'
 })
 export class QuizAdminComponent {
-
   categories: any[] = [];
   messageImage: string = "Aucune image pour ce livre";
   quizzes: any[] = [];
-
-   // Pour stocker les livres de la page actuelle
-   pageQuestions: any[] = [];
-
-   // Pagination variables
-    currentPage: number = 1;
-    itemsPerPage: number = 6;
-    totalItems: number = 0;
+  pageQuestions: any[] = [];
+  currentPage: number = 1;
+  itemsPerPage: number = 6;
+  totalItems: number = 0;
+  afficherModal: boolean = false;
+  quizSelectionne: any = null;
 
   constructor(private quizServices: QuizzesService) {}
 
-
-    ngOnInit(): void {
-      console.log("La liste des categorie");
-      
-      this.fetchQuiz();
-    }
-
+  ngOnInit(): void {
+    console.log("La liste des catégories");
+    this.fetchQuiz();
+  }
 
   fetchQuiz() {
     this.quizServices.getAllQuiz().subscribe(
       (data: any) => {
         console.log('Réponse de l\'API:', data);
-        // Récupération de la propriété 'Livres' de la réponse
         this.quizzes = data.data || [];
-
-         // récuoération du nombre de page
-         this.totalItems = this.quizzes.length;
-
-         // appel à la fonction de pagination
-         this.applyPagination();
+        this.totalItems = this.quizzes.length;
+        this.applyPagination();
       },
       error => {
-        console.error('Erreur lors de la récupération des livres:', error);
+        console.error('Erreur lors de la récupération des quizzes:', error);
       }
     );
   }
 
-//   deleteQuiz(quizId: string | undefined): void {
-//     if (quizId) {  // Vérifiez si l'ID n'est pas undefined
-//       if (confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')) {
-//         this.quizServices.deleteQuiz(quizId).subscribe({
-//           next: () => {
-//             this.quizzes = this.quizzes.filter(question => question.id?.toString() !== quizId);
-//             console.log('Quiz supprimée avec succès');
-//           },
-//           error: (err) => {
-//             console.error('Erreur lors de la suppression du Quiz :', err);
-//           }
-//         });
-//       }
-//     } else {
-//       console.error('ID de la Quiz est undefined');
-//     }
-// }
-deleteQuiz(quizId: string | undefined): void {
-  if (quizId) {  // Vérifiez si l'ID n'est pas undefined
-    if (confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')) {
+  deleteQuiz(quizId: string | undefined): void {
+    if (quizId && confirm('Êtes-vous sûr de vouloir supprimer ce quiz ?')) {
       this.quizServices.deleteQuiz(quizId).subscribe({
         next: () => {
-          // Supprimer le quiz localement
           this.quizzes = this.quizzes.filter(question => question.id?.toString() !== quizId);
-          console.log('Quiz supprimée avec succès');
-          
-          // Mettre à jour le nombre total d'items
+          console.log('Quiz supprimé avec succès');
           this.totalItems = this.quizzes.length;
-          
-          // Réappliquer la pagination pour mettre à jour l'affichage
           this.applyPagination();
         },
         error: (err) => {
@@ -93,13 +58,8 @@ deleteQuiz(quizId: string | undefined): void {
         }
       });
     }
-  } else {
-    console.error('ID de la Quiz est undefined');
   }
-}
 
-
-  //les methode de la pagination
   applyPagination() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
     const endIndex = startIndex + this.itemsPerPage;
@@ -124,6 +84,24 @@ deleteQuiz(quizId: string | undefined): void {
     }
   }
 
+  ouvrirDetailsQuiz(quiz: any) {
+    if (quiz && quiz.chapter && quiz.chapter.id) {
+      this.quizServices.getQuizDetails(quiz.chapter.id).subscribe(
+        (data: any) => {
+          this.quizSelectionne = data;
+          this.afficherModal = true;
+        },
+        error => {
+          console.error('Erreur lors de la récupération des détails du quiz:', error);
+        }
+      );
+    } else {
+      console.error('Impossible de récupérer les détails du quiz : ID du chapitre manquant');
+    }
+  }
+
+  fermerModal() {
+    this.afficherModal = false;
+    this.quizSelectionne = null;
+  }
 }
-
-

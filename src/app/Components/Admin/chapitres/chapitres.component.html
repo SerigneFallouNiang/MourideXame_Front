@@ -35,7 +35,7 @@
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <h6 class="titre-tableau m-0 font-weight-bold ">Chapitres</h6>
             <div class="ml-auto">
-                <a routerLink="/add-livre" class="button-add btn btn-primary">
+                <a routerLink="/add-chapitres" class="button-add btn btn-primary">
                     <span class="icon text-white-50">
                         <i class="fa fa-plus"></i>
                     </span>
@@ -56,7 +56,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr *ngFor="let chapitre of chapitres">
+                        <tr *ngFor="let chapitre of pageChapitres">
                             <td>{{ chapitre.id }}</td>
                             <td>{{ chapitre.title }}</td>
                             <td>{{ chapitre.description }}</td>
@@ -64,14 +64,7 @@
                               <img [src]="chapitre.video" alt="Image du livre" style="max-width: 100px; max-height: 100px;">
                             </td> -->
                             <td>
-                              <!-- <div class="btn-group btn-group-sm">
-                                <a [routerLink]="['/chapitreEdit', chapitre.id]" class="button-edit btn btn-info">
-                                  <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
-                                </a>
-                                <button (click)="deleteChapitre(chapitre.id?.toString())" class="btn btn-danger">
-                                  <i class="fa fa-trash"></i>
-                                </button>
-                              </div> -->
+
                               <div class="btn-group btn-group-sm">
                                 <a [routerLink]="['/chapitreEdit', chapitre.id]" class="">
                                     <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
@@ -94,8 +87,17 @@
                     </tbody>
                 </table>
             </div>
-            <!-- Pagination -->
-           
+             <!-- section de la pagination  -->
+             <div class="pagination-container">
+                <div class="d-flex align-items-center justify-content-end mt-5">
+                  <i class="fa-solid fa-chevron-left" (click)="prevPage()" [class.disabled]="currentPage === 1" style="cursor: pointer; color: #FFD233; font-size: 32px;"></i>
+                  <div class="icone d-flex align-items-center justify-content-center" style="background-color: #FFF; padding: 10px; border-radius: 5px; margin: 0 10px;">
+                    <span class="mingcute--user-add-fill" style="font-weight: bold;">{{currentPage}} / {{totalPages}}</span>
+                  </div>
+                  <i class="fa-solid fa-chevron-right" (click)="nextPage()" [class.disabled]="currentPage === totalPages" style="cursor: pointer; color: #FFD233; font-size: 32px;"></i>
+                </div>
+              </div>
+             <!-- fin section de la pagination  -->
         </div>
     </div>
 </div>

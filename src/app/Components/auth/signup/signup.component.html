@@ -58,7 +58,9 @@
 }
 
 
-
+.custom-select-width {
+        width: 80px; /* Ajustez la largeur selon vos besoins */
+    }
 
     </style>
     <body>
@@ -137,8 +139,16 @@
                                     Le mot de passe doit contenir au moins 4 caractères.
                                 </div>
                             </div>
-
-                            <button type="submit" class="btn btn-custom"  value="Signup">Inscription</button>
+                            <div class="d-flex justify-content-between">
+                                <button type="submit" class="btn btn-custom" value="Signup">Inscription</button>
+                                <select class="form-select w-auto" formControlName="locale" aria-label="Choisir une langue">
+                                    <option value="fr">Français</option>
+                                    <option value="en">Anglais</option>
+                                    <option value="ar">Arabe</option>
+                                    <option value="wo">Wolof</option>
+                                  </select>
+                            </div>
+                            
                                 
                         </form>
 

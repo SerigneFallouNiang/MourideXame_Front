@@ -86,8 +86,12 @@ export class ReadPDFComponent implements OnInit {
 
 
       // Si des chapitres existent, sélectionnez le premier chapitre
-        if (this.chapters.length > 0) {
-          this.selectChapter(this.chapters[0]);
+        // if (this.chapters.length < 2) {
+        //   // this.selectChapter(this.chapters[0]);
+        //   this.selectedFichier();
+        // }
+        if (this.chapters.length > 0 && this.chapters[0].Fichier) {
+          this.selectFichier(this.chapters[0].Fichier);
         }
       },
       error => {
@@ -186,7 +190,13 @@ export class ReadPDFComponent implements OnInit {
   
   //fonction pour le retour précédé
   goBack(): void {
-    this.location.back();
+    if (this.bookId) {
+      // Navigue vers la page des livres avec l'ID du livre
+      this.router.navigate(['/books', this.bookId]);
+    } else {
+      // Fallback vers la page des livres si pas d'ID
+      this.router.navigate(['/books']);
+    }
   }
 
 // information de la soumission d'un quiz 

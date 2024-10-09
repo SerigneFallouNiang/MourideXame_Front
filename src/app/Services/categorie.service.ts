@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { apiUrl } from './apiUrl';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -80,5 +81,10 @@ export class CategorieService {
 
   deleteCategorie(categoryId: string) {
     return this.http.delete(`${apiUrl}/categories/${categoryId}`);
+  }
+
+
+  countCategories(): Observable<any> {
+    return this.http.get(`${apiUrl}/categories/count`);
   }
 }

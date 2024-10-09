@@ -32,18 +32,12 @@
     <div class="card shadow">
         <div class="card-header">
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h1 class="titre-form h3 mb-0 text-gray-800">{{ isEditMode ? 'Modifier le livre' : 'Ajouter un livre' }}</h1>
+                <h1 class="titre-form h3 mb-0 text-gray-800">{{ isEditMode ? 'Modifier la question' : 'Ajouter une question' }}</h1>
                 <a [routerLink]="['/questions']" class="btn btn-primary btn-sm shadow-sm">{{ 'Retour' }}</a>
             </div>
         </div>
         <div class="card-body">
-            <!-- Affichage des erreurs -->
-            <div *ngIf="errors.length > 0" class="alert alert-danger">
-                <ul>
-                    <li *ngFor="let error of errors">{{ error }}</li>
-                </ul>
-            </div>
-
+       
             <!-- Formulaire de création/modification de catégorie -->
             <form [formGroup]="questionForm" (ngSubmit)="onSubmit()">
                 <div class="form-group">
@@ -79,12 +73,13 @@
                       />
                       <div class="input-group-append">
                         <div class="input-group-text">
-                          <input
-                            type="radio"
-                            formControlName="correct_one"
-                            [value]="true"
-                          />
-                          {{ 'Correct' }}
+                            <input
+                                type="radio"
+                                [name]="'correct_answer'"
+                                [checked]="answer.get('correct_one')?.value"
+                                (change)="onRadioChange(i)"
+                            />
+                            {{ 'Correct' }}
                         </div>
                       </div>
 

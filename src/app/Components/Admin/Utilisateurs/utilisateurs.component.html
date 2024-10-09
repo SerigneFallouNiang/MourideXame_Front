@@ -41,12 +41,12 @@
         <div class="card-header py-3 d-flex justify-content-between align-items-center">
             <h6 class="titre-tableau m-0 font-weight-bold">Utilisateurs</h6>
             <div class="ml-auto">
-                <a routerLink="/add-questions" class="button-add btn btn-primary">
+                <!-- <a routerLink="/add-questions" class="button-add btn btn-primary">
                     <span class="icon text-white-50">
                         <i class="fa fa-plus"></i>
                     </span>
                     <span class="text-ajout">Ajouter</span>
-                </a>
+                </a> -->
             </div>
         </div>
         <div class="card-body">
@@ -86,13 +86,11 @@
                             </td> -->
                             <td>
                                 <div class="btn-group btn-group-sm">
-                                    <a [routerLink]="['/questionEdit', utilisateur.id]" class="">
+                                    <a class="">
                                         <!-- <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i> -->
                                         <i class="fa-solid fa-eye" style="color: #2E8B57;"></i>
                                     </a>
-                                    <!-- <button class="btn btn-danger" (click)="deleteQuestion(question.id?.toString())">
-                                        <i class="fa fa-trash"></i>
-                                    </button> -->
+                                  
                                 </div>
                             </td>
                         </tr>

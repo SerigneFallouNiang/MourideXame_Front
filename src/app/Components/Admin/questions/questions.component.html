@@ -74,13 +74,14 @@
                                 </ul>
                             </td>
                             <td>
+                                <!-- Button action  -->
                                 <div class="btn-group btn-group-sm">
-                                    <a [routerLink]="['/questionEdit', question.id]" class="button-edit btn btn-info">
+                                    <a [routerLink]="['/questionEdit', question.id]">
                                         <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
                                     </a>
-                                    <button class="btn btn-danger" (click)="deleteQuestion(question.id?.toString())">
-                                        <i class="fa fa-trash"></i>
-                                    </button>
+                                    <a (click)="deleteQuestion(question.id?.toString())">
+                                        <i class="fa fa-trash" style="color: red;margin-left: 15px;"></i>
+                                    </a>
                                 </div>
                             </td>
                         </tr>

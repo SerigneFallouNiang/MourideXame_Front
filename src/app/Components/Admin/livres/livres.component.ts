@@ -15,6 +15,12 @@ export class LivreAdminComponent implements OnInit {
   messageImage: string = "Aucune image pour ce livre";
   books: any[] = [];
 
+  pageBooks: any[] = [];
+
+  currentPage: number = 1;
+  itemsPerPage: number = 4;
+  totalItems: number = 0;
+
   constructor(private bookService: BookService) {}
 
   ngOnInit(): void {
@@ -27,7 +33,10 @@ export class LivreAdminComponent implements OnInit {
       (data: any) => {
         console.log('Réponse de l\'API:', data);
         // Récupération de la propriété 'Livres' de la réponse
-        this.books = data.Livres || []; // Utilise la clé 'Livres' retournée par l'API
+        this.books = data.Livres || [];
+        this.totalItems = this.books.length;
+        this.applyPagination();
+
         // Met à jour l'URL de l'image pour chaque livre
         this.books.forEach(livre => {
           if (livre.image) {
@@ -59,5 +68,32 @@ export class LivreAdminComponent implements OnInit {
     } else {
       console.error('ID de la catégorie est undefined');
     }
+}
+
+
+
+//pagination
+applyPagination() {
+  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  const endIndex = startIndex + this.itemsPerPage;
+  this.pageBooks = this.books.slice(startIndex, endIndex);
+}
+
+get totalPages(): number {
+  return Math.ceil(this.totalItems / this.itemsPerPage);
+}
+
+nextPage() {
+  if (this.currentPage < this.totalPages) {
+    this.currentPage++;
+    this.applyPagination();
+  }
+}
+
+prevPage() {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+    this.applyPagination();
+  }
 }
 }

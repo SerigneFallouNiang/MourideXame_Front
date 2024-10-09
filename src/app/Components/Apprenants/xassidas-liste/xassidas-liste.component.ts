@@ -6,7 +6,7 @@ import { BookService } from '../../../Services/book.service';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { FormsModule } from '@angular/forms';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-xassidas-liste',
@@ -53,6 +53,7 @@ searchTerm: string = '';
     private route: ActivatedRoute,
     private bookService: BookService,
     private router:Router,
+    public location:Location,
     private breakpointObserver: BreakpointObserver
   ) {}
 
@@ -154,6 +155,10 @@ searchTerm: string = '';
 onBookClick(bookId: number | string): void {
   const idAsString = bookId.toString();
   this.router.navigate(['/books', idAsString]);
+}
+ //fonction pour le retour précédé
+ goBack(): void {
+  this.location.back();
 }
 
 

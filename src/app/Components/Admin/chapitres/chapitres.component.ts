@@ -22,6 +22,12 @@ export class ChapitreAdminComponent implements OnInit {
   messageImage: string = "Aucune image pour ce livre";
   chapitres: any[] = [];
 
+  pageChapitres: any[] = [];
+
+  currentPage: number = 1;
+  itemsPerPage: number = 15;
+  totalItems: number = 0;
+
   constructor(
     private chapitreService: ChapitreService,
     private dialog: MatDialog,
@@ -29,13 +35,15 @@ export class ChapitreAdminComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.fetchLivre();
+    this.fetchChapitre();
   }
 
-  fetchLivre() {
+  fetchChapitre() {
     this.chapitreService.getAllChapters().subscribe(
       (data: any) => {
         this.chapitres = data.Chapitre || [];
+        this.totalItems = this.chapitres.length;
+        this.applyPagination();
         this.chapitres.forEach(chapitre => {
           if (chapitre.video) {
             chapitre.video = `${apiUrlStockage}/${chapitre.video}`;
@@ -79,4 +87,32 @@ export class ChapitreAdminComponent implements OnInit {
       }
     }
   }
+
+
+
+
+//pagination
+applyPagination() {
+  const startIndex = (this.currentPage - 1) * this.itemsPerPage;
+  const endIndex = startIndex + this.itemsPerPage;
+  this.pageChapitres = this.chapitres.slice(startIndex, endIndex);
+}
+
+get totalPages(): number {
+  return Math.ceil(this.totalItems / this.itemsPerPage);
+}
+
+nextPage() {
+  if (this.currentPage < this.totalPages) {
+    this.currentPage++;
+    this.applyPagination();
+  }
+}
+
+prevPage() {
+  if (this.currentPage > 1) {
+    this.currentPage--;
+    this.applyPagination();
+  }
+}
 }

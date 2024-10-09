@@ -25,8 +25,8 @@ export class CategoriesComponent {
     categorieObject:ModelCategorie = {};
 
     image:string = "";
-  imageLivre:string = "";
-  messageImage: string = "Aucune image pour ce categorie";
+    imageLivre:string = "";
+    messageImage: string = "Aucune image pour ce categorie";
 
 
 

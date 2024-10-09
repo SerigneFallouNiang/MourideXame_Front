@@ -76,9 +76,9 @@ export class AddRolesComponent implements OnInit {
         return;
       }
       // Vérification de la taille du fichier (par exemple, limite à 5MB)
-      const maxSize = 20 * 1024 * 1024; // 5MB en octets
+      const maxSize = 40 * 1024 * 1024; // 5MB en octets
       if (this.selectedFile.size > maxSize) {
-        this.toastr.error('La taille du fichier ne doit pas dépasser 20MB');
+        this.toastr.error('La taille du fichier ne doit pas dépasser 40MB');
         this.selectedFile = null;
         return;
       }

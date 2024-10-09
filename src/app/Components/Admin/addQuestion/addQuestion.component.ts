@@ -32,7 +32,7 @@ export class AddQuestionsComponent implements OnInit {
   ) {
     this.questionForm = this.fb.group({
       text: ['', [Validators.required, Validators.minLength(3)]],
-      points: [0, Validators.required], // Ajout des points
+      // points: [0, Validators.required], // Ajout des points
       answers: this.fb.array([]), // FormArray pour les options de réponses
     });
   }
@@ -58,40 +58,61 @@ export class AddQuestionsComponent implements OnInit {
       text: ['', Validators.required],
       correct_one: [false, Validators.required]
     }));
+
+    // if (this.answers().length === 0) {
+    //   newAnswerGroup.patchValue({ correct_one: true });
+    // }
+
+    // this.answers().push(newAnswerGroup);
   }
 
   // Supprimer une option
   removeOption(index: number): void {
     if (this.answers().length > 1) {
+      const removedControl = this.answers().at(index);
       this.answers().removeAt(index);
+
+      // If we removed the correct answer, set the first remaining answer as correct
+      if (removedControl.get('correct_one')?.value === true) {
+        this.answers().at(0).patchValue({ correct_one: true });
+      }
     } else {
       this.toastr.warning('Vous devez avoir au moins une option');
     }
   }
 
   // Charger une question à modifier (mode édition)
-  loadQuestion(): void {
-    this.questionService.getEditById(this.questionId!).subscribe({
-      next: (data: any) => {
-        this.questionForm.patchValue({
-          text: data.question.text,
-          points: data.question.points,
+// Charger une question à modifier (mode édition)
+loadQuestion(): void {
+  this.questionService.getEditById(this.questionId!).subscribe({
+    next: (data: any) => {
+      this.questionForm.patchValue({
+        text: data.question.text,
+      });
+      
+      // Charger les réponses
+      data.question.answers.forEach((answer: any) => {
+        this.addOption();
+        this.answers().at(-1)?.patchValue({
+          text: answer.text,
+          correct_one: answer.correct_one  // Sélectionne la bonne option
         });
-        // Charger les réponses
-        data.question.answers.forEach((answer: any) => {
-          this.addOption();
-          this.answers().at(-1)?.patchValue({
-            text: answer.text,
-            correct_one: answer.correct_one
-          });
-        });
-      },
-      error: (err) => {
-        this.handleErrors(err);
-        this.toastr.error('Erreur lors du chargement de la question');
-      }
-    });
-  }
+      });
+    },
+    error: (err) => {
+      this.handleErrors(err);
+      this.toastr.error('Erreur lors du chargement de la question');
+    }
+  });
+}
+
+onRadioChange(selectedIndex: number): void {
+  // Update all radio buttons, setting only the selected one to true
+  this.answers().controls.forEach((control, index) => {
+    control.patchValue({ correct_one: index === selectedIndex }, { emitEvent: false });
+  });
+}
+
 
   onSubmit(): void {
     if (this.questionForm.valid) {
@@ -133,6 +154,8 @@ export class AddQuestionsComponent implements OnInit {
     this.answers().clear();
     this.addOption(); // Réinitialiser avec une option initiale
   }
+
+  
 
   handleErrors(err: any): void {
     this.errors = err.error.errors ? Object.values(err.error.errors) : [err.error.message];

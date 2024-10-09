@@ -1,6 +1,9 @@
 import { CommonModule } from '@angular/common';
 import { Component, ElementRef, Renderer2, AfterViewInit } from '@angular/core';
-import { RouterModule, RouterOutlet } from '@angular/router';
+import { Router, RouterModule, RouterOutlet } from '@angular/router';
+import { apiUrlStockage } from '../../../Services/apiUrlStockage';
+import { UserModel } from '../../../Models/user.model';
+import { AuthService } from '../../../Services/auth.service';
 
 @Component({
   selector: 'app-sidebar-admin',
@@ -10,7 +13,13 @@ import { RouterModule, RouterOutlet } from '@angular/router';
   styleUrl: './sidebar-admin.component.css'
 })
 export class SidebarAdminComponent implements AfterViewInit {
-  constructor(private el: ElementRef, private renderer: Renderer2) {}
+  constructor(
+    private el: ElementRef, private renderer: Renderer2,
+    private router: Router,
+  private authService: AuthService
+) {
+  this.isBrowser = typeof window !== 'undefined' && typeof localStorage !== 'undefined';
+}
 
   ngAfterViewInit() {
     this.initSidebarEvents();
@@ -74,4 +83,77 @@ export class SidebarAdminComponent implements AfterViewInit {
       }
     }
   }
+
+
+
+  //fonction pour les utilisateurs
+
+
+messageImage: string = "Aucune image pour cette catégorie";
+loading: boolean = true;
+error: string | null = null;
+userConnected: UserModel | null = null;
+
+isBrowser: boolean;
+
+
+
+
+ngOnInit(): void {
+  this.loadUserInfo();
+}
+
+
+
+loadUserInfo() {
+  if (this.isBrowser) {
+  const authUser = localStorage.getItem("authUser");
+  if (authUser) {
+    this.userConnected = JSON.parse(authUser).user;
+  } else {
+    this.authService.getProfile().subscribe(
+      (user: UserModel) => {
+        this.userConnected = user;
+        localStorage.setItem("authUser", JSON.stringify({ user }));
+      },
+      error => {
+        console.error("Erreur lors de la récupération des informations de l'utilisateur", error);
+      }
+    );
+  }
+}else {
+  console.warn('localStorage n\'est pas disponible.');
+}
+}
+
+
+//Fonction de la déconnexion
+logout() {
+  if (confirm('Êtes-vous sûr de vouloir se déconnecter ?')) {
+  this.authService.logout();
+  localStorage.removeItem("authUser");
+  this.userConnected = null;
+  this.router.navigateByUrl("/login");
+  }
+}
+
+//fonction pour la modification du profil utilisateur
+editProfile() {
+  // Naviguer vers la page de modification du profil
+  this.router.navigateByUrl("/edit-profile");
+}
+//fonctio poir la redirection vers la page de connexion
+navigateToLogin() {
+  this.router.navigate(['/login']);
+}
+
+//fonctio poir la redirection vers la page d'accueil
+navigateToAccueil() {
+  this.router.navigate(['/accueil']);
+}
+
+ //fonctio poir la redirection vers la page historique
+ navigateToHistorique() {
+  this.router.navigate(['/historique']);
+}
 }

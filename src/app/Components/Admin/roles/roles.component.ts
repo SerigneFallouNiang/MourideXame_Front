@@ -24,7 +24,7 @@ export class Role implements OnInit {
 
   loadRoles(page: number = 1): void {
     this.categorieService.getCategorieAdmin().subscribe((data: any) => {
-      this.roles = data.data; // Accéder à l'array des données
+      this.roles = data.data; 
       this.currentPage = data.current_page; // Page actuelle
       this.totalPages = data.last_page; // Total des pages
     });

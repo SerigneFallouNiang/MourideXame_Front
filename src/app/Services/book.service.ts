@@ -130,4 +130,18 @@ export class BookService {
     }
     return this.http.get(`${apiUrl}/books/${bookId}`, { headers });
   }
+
+
+  countBooks(): Observable<any> {
+    const authUser = localStorage.getItem('authUser');
+    let headers = new HttpHeaders();
+    if (authUser) {
+      const parsedUser = JSON.parse(authUser);
+      const token = parsedUser.token;
+      if (token) {
+        headers = headers.set('Authorization', `Bearer ${token}`);
+      }
+    }
+    return this.http.get(`${apiUrl}/books/count`, { headers });
+  }
 }

@@ -12,12 +12,12 @@
       </div>
       <div class="sidebar-header">
         <div class="user-pic">
-          <img class="img-responsive img-rounded" src="https://raw.githubusercontent.com/azouaoui-med/pro-sidebar-template/gh-pages/src/img/user.jpg"
+          <img class="img-responsive img-rounded" src="https://img.freepik.com/vecteurs-libre/cercle-bleu-utilisateur-blanc_78370-4707.jpg?uid=R147170837&ga=GA1.2.1272467380.1720960746&semt=ais_hybrid"
             alt="User picture">
         </div>
         <div class="user-info">
-          <span class="user-name">Serigne Fallou
-            <strong>Niang</strong>
+          <span class="user-name">{{ userConnected?.name }}
+            <!-- <strong>Niang</strong> -->
           </span>
           <span class="user-role">Administrateur</span>
         </div>
@@ -25,25 +25,11 @@
   
       <div class="sidebar-menu">
         <ul>
-          <li class="sidebar-dropdown">
-            <a href="#">
+          <li>
+            <a routerLink="/dashbord-admin">
               <i class="fa fa-tachometer-alt"></i>
               <span>Dashboard</span>
             </a>
-            <div class="sidebar-submenu">
-              <ul>
-                <li>
-                  <a href="#">Dashboard 1
-                  </a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 2</a>
-                </li>
-                <li>
-                  <a href="#">Dashboard 3</a>
-                </li>
-              </ul>
-            </div>
           </li>
           <li class="sidebar-dropdown">
             <a href="#">
@@ -53,15 +39,10 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">Permissions
-
-                  </a>
+                  <a routerLink="/roles">Roles</a>
                 </li>
                 <li>
-                  <a href="#">Roles</a>
-                </li>
-                <li>
-                  <a href="#">Utilisateurs</a>
+                  <a routerLink="/utilisateurs">Utilisateurs</a>
                 </li>
               </ul>
             </div>
@@ -75,10 +56,10 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a href="#">Quizs</a>
+                  <a routerLink="/quiz-admin">Quizs</a>
                 </li>
                 <li>
-                  <a href="#">Questions</a>
+                  <a routerLink="/questions">Questions</a>
                 </li>
                 
               </ul>
@@ -97,6 +78,9 @@
                 <li>
                   <a routerLink="/livres">Livres</a>
                 </li>
+                <li>
+                  <a routerLink="/chapitres">Chapitres</a>
+                </li>
               </ul>
             </div>
           </li>
@@ -110,7 +94,7 @@
       <a href="#">
         <i class="fa fa-cog"></i>
       </a>
-      <a href="#">
+      <a (click)="logout()">
         <i class="fa-solid fa-right-from-bracket"></i>
       </a>
     </div>

@@ -3,18 +3,19 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { QuestionssService } from '../../../Services/Admin/questions.service';
 import { RolesService } from '../../../Services/Admin/roles.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-livres',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RouterLink, FormsModule],
   templateUrl: './utilisateurs.component.html',
   styleUrls: ['./utilisateurs.component.css']
 })
 export class UtilisateurComponent implements OnInit {
   messageImage: string = "Aucune image pour ce livre";
   utilisateurs: any[] = [];
-
+  roles: any[] = [];
    // Pour stocker les livres de la page actuelle
    pageQuestions: any[] = [];
 
@@ -26,8 +27,8 @@ export class UtilisateurComponent implements OnInit {
   constructor(private roleService: RolesService) {}
 
   ngOnInit(): void {
-    console.log("Chargement de la liste des livres");
     this.fetchUtilisateurs();
+    this.fetchRoles();
   }
 
   fetchUtilisateurs() {
@@ -50,7 +51,16 @@ export class UtilisateurComponent implements OnInit {
   }
 
 
-
+  fetchRoles() {
+    this.roleService.getAllRoles().subscribe(
+      (data: any) => {
+        this.roles = data.data || []; // Assurez-vous que la réponse est correcte
+      },
+      (error) => {
+        console.error('Erreur lors de la récupération des rôles:', error);
+      }
+    );
+  }
 //   deleteQuestion(questionId: string | undefined): void {
 //     if (questionId) {  // Vérifiez si l'ID n'est pas undefined
 //       if (confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')) {
@@ -94,4 +104,24 @@ export class UtilisateurComponent implements OnInit {
       this.applyPagination();
     }
   }
+
+   // Mettre à jour le rôle d'un utilisateur
+   updateRole(userId: string, selectedRoleId: string): void {
+    if (!userId || !selectedRoleId) {
+      console.error('UserId ou RoleId manquant');
+      return;
+    }
+
+    this.roleService.updateUserRole(userId, selectedRoleId).subscribe({
+      next: (response) => {
+        console.log('Rôle mis à jour avec succès', response);
+        // Optionnel : rafraîchir la liste des utilisateurs
+        this.fetchUtilisateurs();
+      },
+      error: (err) => {
+        console.error('Erreur lors de la mise à jour du rôle :', err);
+      }
+    });
+  }
 }
+  

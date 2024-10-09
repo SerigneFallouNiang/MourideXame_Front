@@ -39,8 +39,8 @@ export class AddChapitresComponent implements OnInit {
     this.bookForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(3)]],
       description: [''],
-      pdf: [null, Validators.required],
-      video: [null, Validators.required], 
+      pdf: [null],
+      video: [null], 
       book_id: [null, Validators.required] 
     });
   }
@@ -120,10 +120,10 @@ onVideoSelected(event: any): void {
 onFileSelected(event: any): void {
   const file = event.target.files[0];
   if (file && file.type === 'application/pdf') {
-    if (file.size <= 20 * 1024 * 1024) { // Vérification de la taille (20MB max)
+    if (file.size <= 40 * 1024 * 1024) { // Vérification de la taille (20MB max)
       this.bookForm.patchValue({ pdf: file });
     } else {
-      this.toastr.error('La taille du fichier PDF ne doit pas dépasser 20MB');
+      this.toastr.error('La taille du fichier PDF ne doit pas dépasser 40MB');
     }
   } else {
     this.toastr.error('Veuillez sélectionner un fichier PDF valide');

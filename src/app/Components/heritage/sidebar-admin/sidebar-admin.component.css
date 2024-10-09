@@ -41,6 +41,10 @@
 body {
   font-size: 0.9rem;
 }
+body {
+  font-family: 'Playfair Display', serif;
+}
+
 .page-wrapper .sidebar-wrapper,
 .sidebar-wrapper .sidebar-brand > a,
 .sidebar-wrapper .sidebar-dropdown > a:after,
@@ -243,7 +247,9 @@ body {
 }
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown > a:after {
-  font-family: "Font Awesome 5 Free";
+  /* font-family: Playfair Display; */
+    font-family: 'Playfair Display', serif;
+  
   font-weight: 900;
   content: "\f105";
   font-style: normal;
@@ -271,7 +277,9 @@ body {
 
 .sidebar-wrapper .sidebar-menu .sidebar-dropdown .sidebar-submenu li a:before {
   content: "\f111";
-  font-family: "Font Awesome 5 Free";
+  /* font-family: Playfair Display; */
+    font-family: 'Playfair Display', serif;
+  
   font-weight: 400;
   font-style: normal;
   display: inline-block;
