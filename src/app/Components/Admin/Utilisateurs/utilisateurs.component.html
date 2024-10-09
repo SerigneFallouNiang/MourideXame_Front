@@ -112,4 +112,8 @@
     </div>
 </div>
 
-<app-user-history-modal id="userHistoryModal"></app-user-history-modal>
+<app-user-history-modal
+    [isVisible]="isModalVisible"
+    [userId]="selectedUserId"
+    (closeModal)="hideModal()">
+</app-user-history-modal>
