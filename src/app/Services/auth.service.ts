@@ -15,12 +15,6 @@ export class AuthService {
         return this.http.post(`${apiUrl}/register`, data);
       }
 
-      // login(data: any) {
-      //   return this.http.post(`${apiUrl}/login`, data)
-      //     .pipe(tap((result) => {
-      //       localStorage.setItem('authUser', JSON.stringify(result));
-      //     }));
-      // }
       // Methode pour s'authetifier 
       login(identifiant:any){
         return this.http.post(`${apiUrl}/login`, identifiant);
@@ -31,10 +25,7 @@ export class AuthService {
         localStorage.removeItem('authUser');
       }
 
-       // Methode pour se deconnecter 
-  //   logout(){
-  //     return this.http.get(`${apiUrl}/logout`);
-  // }
+  
       isLoggedIn() {
         return localStorage.getItem('authUser') !== null;
       }
@@ -48,9 +39,21 @@ export class AuthService {
       //   return this.http.put<UserModel>(`${this.apiUrl}/update-profile`, userData);
       // }
 
-      updateProfile(userData: FormData) {
-        return this.http.post(`${apiUrl}/update-profile`, userData);
+      updateProfile(userData: FormData): Observable<any> {
+        const authUser = localStorage.getItem('authUser');
+        let headers = new HttpHeaders();
+        
+        if (authUser) {
+          const parsedUser = JSON.parse(authUser);
+          const token = parsedUser.token;
+          if (token) {
+            headers = headers.set('Authorization', `Bearer ${token}`);
+          }
+        }
+    
+        return this.http.post(`${apiUrl}/update-profile`, userData, { headers });
       }
+      
 
       setLanguage(language: string) {
         return this.http.post(`${apiUrl}/set-language`, { language });

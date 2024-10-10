@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+// import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { ChapitreService } from '../../../Services/chapitre.service';
-import { CommonModule } from '@angular/common';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar-apprenant.component';
 import { FormsModule } from '@angular/forms';
 import { Location } from '@angular/common';
 import { ChaptersListComponent } from '../../heritage/chapters-list/chapters-list.component';
 import { QuizzService } from '../../../Services/quizz.service';
+import { CommonModule } from '@angular/common';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-read-pdf',
@@ -145,7 +146,7 @@ export class ReadPDFComponent implements OnInit {
           console.log('Aucun quiz disponible pour ce chapitre');
         }
       },
-      (error) => {
+      (error:any) => {
         console.error('Erreur lors de la récupération du quiz:', error);
       }
     );

@@ -65,7 +65,7 @@ loadCategories() {
         console.log('Aucune catégorie trouvée dans la réponse.');
       }
     },
-    (error) => {
+    (error:any) => {
       console.error('Erreur lors de la récupération des catégories:', error);
     }
   );
@@ -87,7 +87,7 @@ loadCategories() {
            }
         });
      },
-     error: (err) => {
+     error: (err:any) => {
         this.handleErrors(err);
         this.toastr.error('Erreur lors du chargement du livre');
      }
@@ -139,7 +139,7 @@ loadCategories() {
             this.toastr.success('Catégorie modifiée avec succès');
             this.router.navigate(['/livres']);
           },
-          error: (err) => {
+          error: (err:any) => {
             this.handleErrors(err);
             this.toastr.error('Erreur lors de la modification de la catégorie');
           }
@@ -151,7 +151,7 @@ loadCategories() {
             this.resetForm();
             this.router.navigate(['/livres']);
           },
-          error: (err) => {
+          error: (err:any) => {
             this.handleErrors(err);
             this.toastr.error('Erreur lors de la création de la catégorie');
           }

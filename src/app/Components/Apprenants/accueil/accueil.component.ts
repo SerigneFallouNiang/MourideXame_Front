@@ -3,11 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { CategorieService } from '../../../Services/categorie.service';
 import { ModelCategorie } from '../../../Models/categorie.model';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
-import { CommonModule } from '@angular/common';
 import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar-apprenant.component';
 // import { Router } from 'express';
 import { Router, RouterModule } from '@angular/router';
 import { Location } from '@angular/common';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-accueil',
@@ -65,7 +65,7 @@ export class AccueilComponent implements OnInit{
         console.log('Aucune catégorie trouvée dans la réponse.');
       }
     },
-    (error) => {
+    (error:any) => {
       console.error('Erreur lors de la récupération des catégories:', error);
     }
   );

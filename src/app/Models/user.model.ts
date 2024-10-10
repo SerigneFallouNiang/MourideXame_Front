@@ -4,5 +4,6 @@ export interface UserModel {
     telephone?: string,
     email?: string,
     password?: string,
-    role?: string
+    role?: string,
+    locale?: string;
 }

@@ -6,11 +6,12 @@ import { ModelCategorie } from '../../../Models/categorie.model';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-navbar-apprenant',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './navbar-apprenant.component.html',
   styleUrl: './navbar-apprenant.component.css'
 })
@@ -21,10 +22,18 @@ tabCategorie: ModelCategorie[] = [];
   messageImage: string = "Aucune image pour cette catégorie";
   loading: boolean = true;
   error: string | null = null;
-  userConnected: UserModel | null = null;
+  userConnected: UserModel = {
+    name: '',
+    email: '',
+    telephone: '',
+    locale: ''
+  };
+  
 
   isBrowser: boolean;
 
+
+  showEditProfileModal: boolean = false;
 
   constructor(
     private categorieService: CategorieService,
@@ -38,29 +47,54 @@ tabCategorie: ModelCategorie[] = [];
     this.fetchCategorie();
     this.loadUserInfo();
   }
+// Ouvrir le modal de modification du profil
+openEditProfileModal() {
+  this.showEditProfileModal = true;
+}
+
+// Fermer le modal de modification du profil
+closeEditProfileModal() {
+  this.showEditProfileModal = false;
+}
+
+// Charger les informations de l'utilisateur
+loadUserInfo() {
+  const authUser = localStorage.getItem("authUser");
+  if (authUser) {
+    this.userConnected = JSON.parse(authUser).user;
+  }
+}
 
 
-
-  loadUserInfo() {
-    if (this.isBrowser) {
-    const authUser = localStorage.getItem("authUser");
-    if (authUser) {
-      this.userConnected = JSON.parse(authUser).user;
-    } else {
-      this.authService.getProfile().subscribe(
-        (user: UserModel) => {
-          this.userConnected = user;
-          localStorage.setItem("authUser", JSON.stringify({ user }));
-        },
-        error => {
-          console.error("Erreur lors de la récupération des informations de l'utilisateur", error);
-        }
-      );
+ // Mise à jour du profil
+ updateProfile() {
+  if (this.userConnected) {
+    const formData = new FormData();
+    if (this.userConnected.name) {
+      formData.append('name', this.userConnected.name);
     }
-  }else {
-    console.warn('localStorage n\'est pas disponible.');
+    if (this.userConnected.email) {
+      formData.append('email', this.userConnected.email);
+    }
+    if (this.userConnected.telephone) {
+      formData.append('telephone', this.userConnected.telephone);
+    }
+    if (this.userConnected.locale) {
+      formData.append('locale', this.userConnected.locale);
+    }
+
+    this.authService.updateProfile(formData).subscribe(
+      (response) => {
+        console.log('Profil mis à jour avec succès');
+        localStorage.setItem("authUser", JSON.stringify({ user: this.userConnected }));
+        this.closeEditProfileModal();
+      },
+      (error) => {
+        console.error("Erreur lors de la mise à jour du profil", error);
+      }
+    );
   }
-  }
+}
 
 
   fetchCategorie() {
@@ -100,12 +134,18 @@ tabCategorie: ModelCategorie[] = [];
   
 
 //Fonction de la déconnexion
-  logout() {
-    this.authService.logout();
-    localStorage.removeItem("authUser");
-    this.userConnected = null;
-    this.router.navigateByUrl("/login");
-  }
+logout() {
+  this.authService.logout();
+  localStorage.removeItem("authUser");
+  this.userConnected = {
+    name: '',
+    email: '',
+    telephone: '',
+    locale: ''
+  };
+  this.router.navigateByUrl("/login");
+}
+
 
   //fonction pour la modification du profil utilisateur
   editProfile() {

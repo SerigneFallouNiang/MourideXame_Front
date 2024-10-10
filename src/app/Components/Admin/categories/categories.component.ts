@@ -60,7 +60,7 @@ export class CategoriesComponent {
         console.log('Aucune catégorie trouvée dans la réponse.');
       }
     },
-    (error) => {
+    (error:any) => {
       console.error('Erreur lors de la récupération des catégories:', error);
     }
   );
@@ -75,7 +75,7 @@ deletecategorie(categoryId: string | undefined): void {
           this.tabCategorie = this.tabCategorie.filter(categorie => categorie.id?.toString() !== categoryId);
           console.log('Catégorie supprimée avec succès');
         },
-        error: (err) => {
+        error: (err:any) => {
           console.error('Erreur lors de la suppression de la catégorie :', err);
         }
       });

@@ -57,7 +57,7 @@
                 <span class="ms-2">{{ userConnected.name }}</span>
               </a>
               <ul class="dropdown-menu custom-dropdown">
-                <li><a class="dropdown-item" (click)="editProfile()">Modifier profil</a></li>
+                <li><a class="dropdown-item" (click)="openEditProfileModal()">Modifier profil</a></li>
                 <li><hr class="dropdown-divider"></li>
                 <li><a class="dropdown-item" (click)="logout()">Déconnexion</a></li>
               </ul>
@@ -73,7 +73,34 @@
     </div>
   </nav>
 
-  <!-- Bootstrap Bundle with Popper -->
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 
-<!-- fin du nav-bar  -->
+
+  <!-- Modal for editing profile -->
+<div *ngIf="showEditProfileModal" class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="closeEditProfileModal()">&times;</span>
+    <h2>Modifier le profil</h2>
+
+    <!-- Profile Form -->
+    <form (submit)="updateProfile()">
+      <label for="name">Nom</label>
+      <input type="text" [(ngModel)]="userConnected.name" id="name" name="name" required>
+
+      <label for="email">Email</label>
+      <input type="email" [(ngModel)]="userConnected.email" id="email" name="email" required>
+
+      <label for="telephone">Téléphone</label>
+      <input type="tel" [(ngModel)]="userConnected.telephone" id="telephone" name="telephone">
+
+      <label for="locale">Langue</label>
+      <select [(ngModel)]="userConnected.locale" id="locale" name="locale">
+        <option value="fr">Français</option>
+        <option value="en">Anglais</option>
+        <option value="ar">Arabe</option>
+        <option value="wo">Wolof</option>
+      </select>
+
+      <button type="submit">Enregistrer les modifications</button>
+    </form>
+  </div>
+</div>
