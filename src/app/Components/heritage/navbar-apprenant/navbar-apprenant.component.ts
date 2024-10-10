@@ -58,16 +58,19 @@ closeEditProfileModal() {
 }
 
 // Charger les informations de l'utilisateur
+// Charger les informations de l'utilisateur
 loadUserInfo() {
-  const authUser = localStorage.getItem("authUser");
-  if (authUser) {
-    this.userConnected = JSON.parse(authUser).user;
+  if (typeof window !== 'undefined' && localStorage.getItem('authUser')) {
+    const infos = JSON.parse(localStorage.getItem('authUser') || "{}");
+    if (infos && infos.user) {  // Vérifie que l'objet infos contient bien l'utilisateur
+      this.userConnected = infos.user;
+    }
   }
 }
 
 
- // Mise à jour du profil
- updateProfile() {
+
+updateProfile() {
   if (this.userConnected) {
     const formData = new FormData();
     if (this.userConnected.name) {
@@ -86,7 +89,16 @@ loadUserInfo() {
     this.authService.updateProfile(formData).subscribe(
       (response) => {
         console.log('Profil mis à jour avec succès');
-        localStorage.setItem("authUser", JSON.stringify({ user: this.userConnected }));
+
+        // Récupérer les informations existantes dans localStorage
+        const currentAuthUser = JSON.parse(localStorage.getItem("authUser") || "{}");
+
+        // Mettre à jour uniquement la partie utilisateur
+        currentAuthUser.user = this.userConnected;
+
+        // Remettre à jour l'objet dans le localStorage
+        localStorage.setItem("authUser", JSON.stringify(currentAuthUser));
+
         this.closeEditProfileModal();
       },
       (error) => {
@@ -95,6 +107,7 @@ loadUserInfo() {
     );
   }
 }
+
 
 
   fetchCategorie() {

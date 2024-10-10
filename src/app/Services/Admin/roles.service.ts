@@ -69,7 +69,14 @@ export class RolesService {
 
 
         //pour visualiser l'historie d'un utilisateur
+  // getUserHistory(userId: string): Observable<any> {
+  //   return this.http.get(`${apiUrl}/books/read-chapters/user/${userId}`);
+  // }
+  
   getUserHistory(userId: string): Observable<any> {
-    return this.http.get(`${apiUrl}/books/read-chapters/user/${userId}`);
+    const token = localStorage.getItem('authToken'); // Assurez-vous d'avoir le bon token
+    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+
+    return this.http.get(`${apiUrl}/books/read-chapters/user/${userId}`, { headers });
   }
 }

@@ -59,11 +59,6 @@ export class AddQuestionsComponent implements OnInit {
       correct_one: [false, Validators.required]
     }));
 
-    // if (this.answers().length === 0) {
-    //   newAnswerGroup.patchValue({ correct_one: true });
-    // }
-
-    // this.answers().push(newAnswerGroup);
   }
 
   // Supprimer une option

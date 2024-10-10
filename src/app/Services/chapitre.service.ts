@@ -20,10 +20,6 @@ export class ChapitreService {
     return this.http.get(`${apiUrl}/books/${bookId}/chapters`);
   }
 
-  // Methode pour marquer un chapitre comme lu
-  // markChapterAsRead(chapterId: string): Observable<any> {
-  //   return this.http.post(`${apiUrl}/chapters/${chapterId}/mark-read`, {});
-  // }
 
   markChapterAsRead(chapterId: number): Observable<any> {
     return this.http.post(`${apiUrl}/chapters/${chapterId}/mark-read`, {});

@@ -27,31 +27,22 @@ export class AuthService {
 
   
       isLoggedIn() {
-        return localStorage.getItem('authUser') !== null;
+        if (typeof window !== 'undefined') {
+          return localStorage.getItem('authUser') !== null;
+        }
+        return false; 
       }
+      
 
       // AuthService
       getProfile() {
         return this.http.get(`${apiUrl}/profile`);
       }
 
-      // updateProfile(userData: Partial<UserModel>): Observable<UserModel> {
-      //   return this.http.put<UserModel>(`${this.apiUrl}/update-profile`, userData);
-      // }
+  
 
       updateProfile(userData: FormData): Observable<any> {
-        const authUser = localStorage.getItem('authUser');
-        let headers = new HttpHeaders();
-        
-        if (authUser) {
-          const parsedUser = JSON.parse(authUser);
-          const token = parsedUser.token;
-          if (token) {
-            headers = headers.set('Authorization', `Bearer ${token}`);
-          }
-        }
-    
-        return this.http.post(`${apiUrl}/update-profile`, userData, { headers });
+        return this.http.post(`${apiUrl}/update-profile`, userData);
       }
       
 

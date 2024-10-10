@@ -10,18 +10,7 @@ export class BookService {
   constructor(private http: HttpClient) { }
 
   getBooksByCategory(categoryId: string): Observable<any> {
-    const authUser = localStorage.getItem('authUser'); 
-    let headers = new HttpHeaders();
-    
-    if (authUser) {
-      const parsedUser = JSON.parse(authUser); // Parse the stored JSON object
-      const token = parsedUser.token; // Extract the token
-      
-      if (token) {
-        headers = headers.set('Authorization', `Bearer ${token}`);
-      }
-    }
-    return this.http.get(`${apiUrl}/categories/${categoryId}/books`, { headers });
+    return this.http.get(`${apiUrl}/categories/${categoryId}/books`);
   }
 
   
@@ -46,68 +35,25 @@ export class BookService {
 
   getBookById(bookId: string): Observable<any> {
     const authUser = localStorage.getItem('authUser'); 
-    let headers = new HttpHeaders();
-    
-    if (authUser) {
-      const parsedUser = JSON.parse(authUser); // Parse the stored JSON object
-      const token = parsedUser.token; // Extract the token
-      
-      if (token) {
-        headers = headers.set('Authorization', `Bearer ${token}`);
-      }
-    }
-    return this.http.get(`${apiUrl}/books/${bookId}/chapters`, { headers });
+
+    return this.http.get(`${apiUrl}/books/${bookId}/chapters`);
   }
 
 
 
   getHistoryUser(): Observable<any> {
-    const authUser = localStorage.getItem('authUser'); 
-    let headers = new HttpHeaders();
-    
-    if (authUser) {
-      const parsedUser = JSON.parse(authUser);
-      const token = parsedUser.token;
-      
-      if (token) {
-        headers = headers.set('Authorization', `Bearer ${token}`);
-      }
-    }
-    return this.http.get(`${apiUrl}/books/read-chapters/user`, { headers });
+    return this.http.get(`${apiUrl}/books/read-chapters/user`);
   }
-
 
 
 
 
   createBook(bookData: FormData) {
-    const authUser = localStorage.getItem('authUser'); 
-    let headers = new HttpHeaders();
-    
-    if (authUser) {
-      const parsedUser = JSON.parse(authUser); // Parse the stored JSON object
-      const token = parsedUser.token; // Extract the token
-      
-      if (token) {
-        headers = headers.set('Authorization', `Bearer ${token}`);
-      }
-    }
-    return this.http.post(`${apiUrl}/books`, bookData, { headers });
+    return this.http.post(`${apiUrl}/books`, bookData);
   }
 
   updateBook(id: string, bookData: FormData) {
-    const authUser = localStorage.getItem('authUser'); 
-    let headers = new HttpHeaders();
-    
-    if (authUser) {
-      const parsedUser = JSON.parse(authUser); // Parse the stored JSON object
-      const token = parsedUser.token; // Extract the token
-      
-      if (token) {
-        headers = headers.set('Authorization', `Bearer ${token}`);
-      }
-    }
-    return this.http.post(`${apiUrl}/books/${id}`, bookData, { headers });
+    return this.http.post(`${apiUrl}/books/${id}`, bookData);
   }
 
   deleteBook(bookId: string) {
@@ -117,31 +63,11 @@ export class BookService {
 
 
   getEditById(bookId: string): Observable<any> {
-    const authUser = localStorage.getItem('authUser'); 
-    let headers = new HttpHeaders();
-    
-    if (authUser) {
-      const parsedUser = JSON.parse(authUser); // Parse the stored JSON object
-      const token = parsedUser.token; // Extract the token
-      
-      if (token) {
-        headers = headers.set('Authorization', `Bearer ${token}`);
-      }
-    }
-    return this.http.get(`${apiUrl}/books/${bookId}`, { headers });
+    return this.http.get(`${apiUrl}/books/${bookId}`);
   }
 
 
   countBooks(): Observable<any> {
-    const authUser = localStorage.getItem('authUser');
-    let headers = new HttpHeaders();
-    if (authUser) {
-      const parsedUser = JSON.parse(authUser);
-      const token = parsedUser.token;
-      if (token) {
-        headers = headers.set('Authorization', `Bearer ${token}`);
-      }
-    }
-    return this.http.get(`${apiUrl}/books/count`, { headers });
+    return this.http.get(`${apiUrl}/books/count`);
   }
 }
