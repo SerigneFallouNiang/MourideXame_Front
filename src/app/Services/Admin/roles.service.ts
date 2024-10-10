@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { apiUrl } from '../apiUrl';
 
 @Injectable({
@@ -74,9 +74,23 @@ export class RolesService {
   // }
   
   getUserHistory(userId: string): Observable<any> {
-    const token = localStorage.getItem('authToken'); // Assurez-vous d'avoir le bon token
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
-
-    return this.http.get(`${apiUrl}/books/read-chapters/user/${userId}`, { headers });
+    // Vérifiez si localStorage est disponible
+    if (typeof localStorage !== 'undefined') {
+      const token = localStorage.getItem('authToken'); // Assurez-vous d'avoir le bon token
+      if (token) {
+        const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
+        return this.http.get(`${apiUrl}/books/read-chapters/user/${userId}`, { headers });
+      } else {
+        console.error('Token non trouvé dans localStorage');
+        // Retourne une observable d'erreur
+        return throwError('Token non trouvé'); // Gérer selon votre besoin
+      }
+    } else {
+      console.error('localStorage n\'est pas défini');
+      // Retourne une observable d'erreur
+      return throwError('localStorage non disponible'); // Gérer selon votre besoin
+    }
   }
+  
+  
 }
