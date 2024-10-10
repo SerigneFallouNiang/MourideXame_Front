@@ -42,7 +42,6 @@ export class CategoriesComponent {
   console.log('Tentative de récupération des catégories...');
   this.categorieService.getAllCategorie().subscribe(
     (response: any) => {
-      console.log('Réponse de l\'API:', response);
       if (response['Catégorie']) {
         this.tabCategorie = response['Catégorie'].reverse();
   

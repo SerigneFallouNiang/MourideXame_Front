@@ -1,32 +1,41 @@
-import { HttpEvent, HttpHandlerFn, HttpHeaders, HttpRequest } from "@angular/common/http";
-import { Observable } from "rxjs";
+import { HttpInterceptorFn, HttpHandlerFn, HttpRequest, HttpHeaders } from '@angular/common/http';
+import { inject, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
-export function authInterceptor (req:HttpRequest<unknown>, next: HttpHandlerFn) : Observable<HttpEvent<unknown>>{
-    let token = "";
+export const authInterceptor: HttpInterceptorFn = (
+  req: HttpRequest<unknown>,
+  next: HttpHandlerFn
+) => {
+  const platformId = inject(PLATFORM_ID);
+  let token = "";
 
-    // Recuperation des infos de connexion de l'utilisateur au niveau du localstoge 
-    if(localStorage.getItem('infos_Connexion')){
-        const infos = JSON.parse(localStorage.getItem('infos_Connexion') || "");
-        if(infos){
-            token = infos.access_token;
-        }
+  // Vérifie si l'application s'exécute dans un navigateur
+  if (isPlatformBrowser(platformId)) {
+    // Récupération des informations de connexion depuis le localStorage (uniquement côté navigateur)
+    const storedData = localStorage.getItem('infos_Connexion');
+    if (storedData) {
+      const infos = JSON.parse(storedData || "");
+      if (infos && infos.access_token) {
+        token = infos.access_token;
+      }
     }
+  }
 
-    // S'il n'y a pas de token on retourne la requette en question 
-    if(!token){
-        return next(req);
-    }
+  // Si aucun token n'est trouvé, on renvoie la requête originale
+  if (!token) {
+    return next(req);
+  }
 
-    // Donnees a ajouter dans l'entete de la requete 
-    const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`
-    })
+  // Création des en-têtes avec le token d'authentification
+  const headers = new HttpHeaders({
+    Authorization: `Bearer ${token}`
+  });
 
-    // Clonage de la requete en y ajoutant le header 
-    const newReq = req.clone({
-        headers
-    })
+  // Clone la requête en ajoutant les en-têtes d'authentification
+  const newReq = req.clone({
+    headers
+  });
 
-    // On retourne maintenant la requete clonner 
-    return next(newReq);
-}
+  // Renvoie la requête modifiée
+  return next(newReq);
+};

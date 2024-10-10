@@ -12,16 +12,7 @@ export class QuizzesService {
 
 
   getAllQuiz(): Observable<any> {
-    const authUser = localStorage.getItem('authUser');
-    let headers = new HttpHeaders();
-    if (authUser) {
-      const parsedUser = JSON.parse(authUser);
-      const token = parsedUser.token;
-      if (token) {
-        headers = headers.set('Authorization', `Bearer ${token}`);
-      }
-    }
-    return this.http.get(`${apiUrl}/admin/quizzes`, { headers });
+    return this.http.get(`${apiUrl}/admin/quizzes`);
   }
 
 
@@ -29,21 +20,18 @@ export class QuizzesService {
   
     // Charger une question par ID
     getQuizById(id: string): Observable<any> {
-      const headers = this.getAuthHeaders();
-      return this.http.get(`${apiUrl}/quizzes/${id}`, { headers });
+      return this.http.get(`${apiUrl}/quizzes/${id}`);
     }
 
       // Créer une nouvelle quizz
       createQuiz(questionData: any): Observable<any> {
-        const headers = this.getAuthHeaders();
-        return this.http.post(`${apiUrl}/quizzes`, questionData, { headers });
+        return this.http.post(`${apiUrl}/quizzes`, questionData);
       }
   
   
       // Mettre à jour une quizz existante
       updateQuiz(id: string, questionData: any): Observable<any> {
-        const headers = this.getAuthHeaders();
-        return this.http.put(`${apiUrl}/quizzes/${id}`, questionData, { headers });
+        return this.http.put(`${apiUrl}/quizzes/${id}`, questionData);
       }
 
        // Method to submit quiz answers
@@ -56,17 +44,4 @@ export class QuizzesService {
     return this.http.get(`${apiUrl}/quiz/start/${chapterId}`);
   }
 
-        // Méthode pour récupérer les headers avec le token
-  private getAuthHeaders(): HttpHeaders {
-    const authUser = localStorage.getItem('authUser');
-    let headers = new HttpHeaders();
-    if (authUser) {
-      const parsedUser = JSON.parse(authUser);
-      const token = parsedUser.token;
-      if (token) {
-        headers = headers.set('Authorization', `Bearer ${token}`);
-      }
-    }
-    return headers;
-  }
 }

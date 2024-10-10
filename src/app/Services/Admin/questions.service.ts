@@ -27,27 +27,23 @@ export class QuestionssService {
 
     // Charger une question par ID
     getEditById(id: string): Observable<any> {
-      const headers = this.getAuthHeaders();
-      return this.http.get(`${apiUrl}/questions/${id}`, { headers });
+      return this.http.get(`${apiUrl}/questions/${id}`);
     }
 
 
     // Créer une nouvelle question
     createQuestion(questionData: any): Observable<any> {
-      const headers = this.getAuthHeaders();
-      return this.http.post(`${apiUrl}/questions`, questionData, { headers });
+      return this.http.post(`${apiUrl}/questions`, questionData);
     }
 
   // récupération des question et réponse par id 
     getChapitreAndAnswerbyId(id: string): Observable<any> {
-      const headers = this.getAuthHeaders();
-      return this.http.post(`${apiUrl}/questions/${id}`, {}, { headers });
+      return this.http.post(`${apiUrl}/questions/${id}`, {});
     }
 
     // Mettre à jour une question existante
     updateQuestion(id: string, questionData: any): Observable<any> {
-      const headers = this.getAuthHeaders();
-      return this.http.put(`${apiUrl}/questions/${id}`, questionData, { headers });
+      return this.http.put(`${apiUrl}/questions/${id}`, questionData);
     }
 
     deleteQuestion(questionId: string) {
@@ -58,20 +54,5 @@ export class QuestionssService {
     deleteAnswer(answerId: number): Observable<any> {
       return this.http.delete(`${apiUrl}/answers/${answerId}`);
     }
-
-     // Méthode pour récupérer les headers avec le token
-  private getAuthHeaders(): HttpHeaders {
-    const authUser = localStorage.getItem('authUser');
-    let headers = new HttpHeaders();
-    if (authUser) {
-      const parsedUser = JSON.parse(authUser);
-      const token = parsedUser.token;
-      if (token) {
-        headers = headers.set('Authorization', `Bearer ${token}`);
-      }
-    }
-    return headers;
-  }
-
 
 }

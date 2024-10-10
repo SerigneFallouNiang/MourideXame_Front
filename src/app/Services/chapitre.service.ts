@@ -17,8 +17,7 @@ export class ChapitreService {
 
   // Methode pour recuperer les chapitre d'une book
   getBooksByBook(bookId: string): Observable<any> {
-    const headers = this.getAuthHeaders();
-    return this.http.get(`${apiUrl}/books/${bookId}/chapters`, { headers });
+    return this.http.get(`${apiUrl}/books/${bookId}/chapters`);
   }
 
   // Methode pour marquer un chapitre comme lu
@@ -27,8 +26,7 @@ export class ChapitreService {
   // }
 
   markChapterAsRead(chapterId: number): Observable<any> {
-    const headers = this.getAuthHeaders();
-    return this.http.post(`${apiUrl}/chapters/${chapterId}/mark-read`, {}, { headers });
+    return this.http.post(`${apiUrl}/chapters/${chapterId}/mark-read`, {});
   }
 
 
@@ -40,34 +38,17 @@ export class ChapitreService {
 
   // Créer une nouvelle question
   createChapitre(chapitreData: any): Observable<any> {
-    const headers = this.getAuthHeaders();
-    return this.http.post(`${apiUrl}/chapters`, chapitreData, { headers });
+    return this.http.post(`${apiUrl}/chapters`, chapitreData);
   }
 
   // Mettre à jour une question existante
   updateChapitre(chapitreId: string, chapitreData: any): Observable<any> {
-    const headers = this.getAuthHeaders();
-    return this.http.post(`${apiUrl}/chapters/${chapitreId}`, chapitreData, { headers });
+    return this.http.post(`${apiUrl}/chapters/${chapitreId}`, chapitreData);
   }
 
   //edit chapiter
   getChapitreById(chapitreId: string): Observable<any> {
-    const headers = this.getAuthHeaders();
-    return this.http.get(`${apiUrl}/chapters/${chapitreId}`, { headers });
+    return this.http.get(`${apiUrl}/chapters/${chapitreId}`);
   }
 
-
-   // Méthode pour récupérer les headers avec le token
-private getAuthHeaders(): HttpHeaders {
-  const authUser = localStorage.getItem('authUser');
-  let headers = new HttpHeaders();
-  if (authUser) {
-    const parsedUser = JSON.parse(authUser);
-    const token = parsedUser.token;
-    if (token) {
-      headers = headers.set('Authorization', `Bearer ${token}`);
-    }
-  }
-  return headers;
-}
 }
