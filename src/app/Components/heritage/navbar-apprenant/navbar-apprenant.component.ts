@@ -22,15 +22,9 @@ tabCategorie: ModelCategorie[] = [];
   messageImage: string = "Aucune image pour cette catégorie";
   loading: boolean = true;
   error: string | null = null;
-  userConnected: UserModel = {
-    name: '',
-    email: '',
-    telephone: '',
-    locale: ''
-  };
+ userConnected: UserModel | null = null;
   
 
-  isBrowser: boolean;
 
 
   showEditProfileModal: boolean = false;
@@ -40,7 +34,6 @@ tabCategorie: ModelCategorie[] = [];
     private router: Router,
     private authService: AuthService
   ) {
-    this.isBrowser = typeof window !== 'undefined' && typeof localStorage !== 'undefined';
   }
 
   ngOnInit(): void {
@@ -62,9 +55,13 @@ closeEditProfileModal() {
 loadUserInfo() {
   if (typeof window !== 'undefined' && localStorage.getItem('authUser')) {
     const infos = JSON.parse(localStorage.getItem('authUser') || "{}");
-    if (infos && infos.user) {  // Vérifie que l'objet infos contient bien l'utilisateur
+    if (infos && infos.user) {
       this.userConnected = infos.user;
+    } else {
+      this.userConnected = null;
     }
+  } else {
+    this.userConnected = null;
   }
 }
 

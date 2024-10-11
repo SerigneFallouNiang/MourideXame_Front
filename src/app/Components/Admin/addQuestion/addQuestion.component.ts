@@ -32,7 +32,6 @@ export class AddQuestionsComponent implements OnInit {
   ) {
     this.questionForm = this.fb.group({
       text: ['', [Validators.required, Validators.minLength(3)]],
-      // points: [0, Validators.required], // Ajout des points
       answers: this.fb.array([]), // FormArray pour les options de réponses
     });
   }
