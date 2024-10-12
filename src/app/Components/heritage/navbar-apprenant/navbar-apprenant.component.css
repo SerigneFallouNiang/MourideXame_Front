@@ -374,3 +374,130 @@ body {
   cursor: pointer;
 }
 
+
+
+
+
+
+/* Existing styles remain unchanged */
+
+/* Mobile-specific styles */
+@media (max-width: 48rem) {
+  .offcanvas-start {
+    width: 80%; /* Increase width for better readability */
+    max-width: 20rem; /* Set a maximum width */
+  }
+
+  .offcanvas-body {
+    padding: 1rem;
+  }
+
+  .navbar-nav {
+    width: 100%;
+  }
+
+  .navbar-nav .nav-item {
+    margin-bottom: 1.25rem;
+    width: 100%;
+  }
+
+  .navbar-nav .nav-link {
+    font-size: 1.25rem;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .navbar-nav .nav-link:hover,
+  .navbar-nav .nav-link:focus {
+    background-color: rgba(255, 210, 51, 0.1);
+  }
+
+  .navbar-nav .nav-item:not(:last-child)::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 0.0625rem;
+    background: #e0e0e0;
+    margin-top: 1.25rem;
+  }
+
+  .dropdown-menu {
+    border: none;
+    background-color: transparent;
+    padding: 0;
+    margin-top: 0.5rem;
+  }
+
+  .dropdown-item {
+    color: #000;
+    padding: 0.75rem 1rem;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .dropdown-item:hover,
+  .dropdown-item:focus {
+    background-color: rgba(255, 210, 51, 0.1);
+  }
+
+  .connexion {
+    width: 100%;
+    height: auto;
+    padding: 0.75rem 1rem;
+    margin-top: 1.5rem;
+    font-size: 1.25rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FFD233;
+    color: #2E8B57;
+    border-radius: 0.5rem;
+    transition: background-color 0.3s ease;
+  }
+
+  .connexion:hover,
+  .connexion:focus {
+    background-color: #ffc700;
+  }
+
+  .connexion svg {
+    margin-right: 0.75rem;
+  }
+
+  .offcanvas-header {
+    padding: 1rem;
+  }
+
+  .offcanvas-title img {
+    width: 4rem;
+    height: 4rem;
+  }
+
+  .nom-profil {
+    font-size: 1.5rem;
+    margin-top: 0.5rem;
+  }
+
+  .offcanvas-footer {
+    margin-top: 2rem;
+    padding: 0 1rem;
+  }
+
+  .offcanvas-footer h2 {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    font-size: 1.25rem;
+    background-color: #2E8B57;
+    color: #FFF;
+    border-radius: 0.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+
+  .offcanvas-footer h2:hover,
+  .offcanvas-footer h2:focus {
+    background-color: #256f46;
+  }
+}

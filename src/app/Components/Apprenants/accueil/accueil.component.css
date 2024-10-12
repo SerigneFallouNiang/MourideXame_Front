@@ -3,7 +3,7 @@
       /* bg de image  du contenu */
       body {
         /* background: url(../../../../assets/images/mosqué.jpg) lightgray 50% / cover no-repeat; */
-        background-image: linear-gradient(rgba(183, 191, 153, 0.7), rgba(183, 191, 153, 0.7)), url(../../../../assets/images/mosqué.jpg);
+        background-image: linear-gradient(rgba(125, 143, 105, 0.4), rgba(125, 143, 105, 0.4)), url(../../../../assets/images/mosqué.jpg);
         margin: 0;
         padding: 0;
         width: 100%;
@@ -496,6 +496,10 @@
         .main-image{
         margin-top: 95px;
       }
+
+      .pr-mobile{
+        display: none;
+      }
       }
       
       
@@ -512,11 +516,17 @@
       
             /* Media Queries pour les appareils mobiles */
             @media screen and (max-width: 768px) {
-        
+        .pr-web{
+          display: none;
+        }
+
+        .pr-mobile{
+          display: block;
+          margin-top: 40px;
+        }
         /* bg de image  du contenu */
       body {
       /* background: url(../../../../assets/images/mosqué.jpg) lightgray 50% / cover no-repeat; */
-      background-image: linear-gradient(rgba(183, 191, 153, 0.7), rgba(183, 191, 153, 0.7)), url(../../../../assets/images/mosqué.jpg);
       margin: 0;
       padding: 0;
       width: 100%;
@@ -541,6 +551,7 @@
           flex-shrink: 0;
       
           margin-right: 0px;
+          margin-bottom: 30px;
         }
       
       
@@ -595,7 +606,7 @@
       /* Ajustement pour les SVG dans wave-top et wave-bottom */
       .wave-container svg {
       width: 100%; /* S'assurer que les SVG occupent la largeur complète */
-      height: 400px;
+      height: 295px;
       display: block; /* Supprime les espaces blancs inattendus */
       }
       
@@ -648,11 +659,21 @@
       }
       /* svg controlle quotes  */
       
-      .image-contenu img{
+      /* .image-contenu img{
       display: none;
-      }
+      } */
       
-      
+      .image-contenu img{
+        width: 90px;
+        height: 180px;
+        flex-shrink: 0;
+        border-radius: 25px;
+      /* background: url("../../../../assets/images/xassida-removebg.png") lightgray 50% / cover no-repeat; */
+        }
+
+        .titre-contenu-main{
+          display: none;
+        }
       }
       
       
@@ -694,3 +715,5 @@
         margin: auto;
         border-radius: 5px;
       }
+
+     
