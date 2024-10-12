@@ -1,24 +1,18 @@
     <style>
-        .wave-shape {
+       .wave-shape {
     background-color: #4caf50;
-    height: 150px;
-    border-radius: 30px 30px 50% 50% / 30px 30px 25% 25%;
+    height: 9.375rem; /* 150px / 16 = 9.375rem */
+    border-radius: 1.875rem 1.875rem 3.125rem 3.125rem / 1.875rem 1.875rem 1.5625rem 1.5625rem; /* Conversion des pixels en rem */
 }
-        /* .wave-container{
-            overflow: hidden; 
-            position: relative;
-            width: 100%;
-            height: 300px;
-        } */
 
-        /* Wave container to hold the SVG */
+/* Wave container to hold the SVG */
 .wave-container {
     overflow: hidden; 
     position: relative;
     width: 100%;
-    height: 300px;
-    margin-top: -10px;
-    border-radius: 30px 30px 0 0 / 15px 15px 0 0;
+    height: 18.75rem; /* 300px / 16 = 18.75rem */
+    margin-top: -0.625rem; 
+    border-radius: 1.875rem 1.875rem 0 0 / 0.9375rem 0.9375rem 0 0; /* Conversion des pixels en rem */
 }
 
 .wave-top,
@@ -35,7 +29,7 @@
 }
 
 .wave-bottom {
-    top: -5px;
+    top: -0.3125rem; 
     z-index: 0;
 }
 
