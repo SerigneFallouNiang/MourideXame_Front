@@ -1,0 +1,111 @@
+<style>
+    .titre-tableau{
+        color: #2E8B57;
+font-family: Inter;
+font-size: 18px;
+font-style: normal;
+font-weight: 700;
+line-height: normal;
+    }
+    .text-ajout{
+        color: #FFF;
+        font-family: Lato;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .button-add{
+        background-color: #2E8B57;
+        border: #2E8B57;
+    }
+    .button-edit{
+        background-color: #FFD233;
+        border: #FFD233;
+    }
+    a {
+        cursor: pointer;
+    }
+</style>
+
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="card">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="titre-tableau m-0 font-weight-bold ">Catégories</h6>
+            <div class="ml-auto">
+                <a routerLink="/ajouterCategorie" class="button-add btn btn-primary">
+                    <span class="icon text-white-50">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                    <span class="text-ajout" >Ajouter Categorie</span>
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Categories</th>
+                            <th>Descriptions</th>
+                            <th>Images</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let categorie of tabCategorie; let i = index">
+                            <!-- Calculer le numéro de ligne -->
+                            <!-- <td>{{ (currentPage - 1) * 5 + i + 1 }}</td>  -->
+                            <td>{{ categorie.id }}</td> 
+                            <td>{{ categorie.name }}</td>
+                            <td>{{ categorie.description }}</td>
+                            <td>
+                                <img [src]="categorie.image" alt="Image du livre" style="max-width: 100px; max-height: 100px;">
+                              </td>
+                            <td>
+                                <!-- <div class="btn-group btn-group-sm">
+                                    <a [routerLink]="['/categorieEdit', categorie.id]" class="button-edit btn btn-info">
+                                        <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
+                                    </a>
+ 
+                                    <button (click)="deletecategorie(categorie.id?.toString())" class="btn btn-danger">
+                                        <i class="fa fa-trash"></i>
+                                      </button>
+                                      
+                                </div> -->
+                                <div class="btn-group btn-group-sm">
+                                    <a [routerLink]="['/categorieEdit', categorie.id]" class="">
+                                        <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
+                                    </a>
+ 
+                                    <a (click)="deletecategorie(categorie.id?.toString())" >
+                                        <i class="fa fa-trash" style="color: red;margin-left: 15px;"></i>
+                                    </a>
+
+                                    <!-- <a>
+                                        <i class="fa-solid fa-eye" style="color: #000;margin-left: 15px;"></i>
+                                    </a> -->
+                                      
+                                </div>
+                            </td>
+                        </tr>
+                        <!-- <tr *ngIf="categories.length === 0">
+                            <td colspan="4" class="text-center">Data Empty</td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+            <!-- Pagination -->
+            <!-- <div class="pagination">
+                <button (click)="changePage(currentPage - 1)" [disabled]="currentPage === 1">Previous</button>
+                <span>Page {{ currentPage }} of {{ totalPages }}</span>
+                <button (click)="changePage(currentPage + 1)" [disabled]="currentPage === totalPages">Next</button>
+            </div> -->
+        </div>
+    </div>
+</div>
+
+<!-- la section html des formulaire  pour l'ajout et de la  modification  -->

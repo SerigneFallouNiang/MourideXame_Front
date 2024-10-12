@@ -1,14 +1,49 @@
-<!DOCTYPE html>
-<html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Formulaire de Connexion</title>
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css"
-            rel="stylesheet">
+    <style>
+       .wave-shape {
+    background-color: #4caf50;
+    height: 9.375rem; /* 150px / 16 = 9.375rem */
+    border-radius: 1.875rem 1.875rem 3.125rem 3.125rem / 1.875rem 1.875rem 1.5625rem 1.5625rem; /* Conversion des pixels en rem */
+}
 
-    </head>
+/* Wave container to hold the SVG */
+.wave-container {
+    overflow: hidden; 
+    position: relative;
+    width: 100%;
+    height: 18.75rem; /* 300px / 16 = 18.75rem */
+    margin-top: -0.625rem; 
+    border-radius: 1.875rem 1.875rem 0 0 / 0.9375rem 0.9375rem 0 0; /* Conversion des pixels en rem */
+}
+
+.wave-top,
+.wave-bottom {
+    position: absolute;
+    left: 0;
+    width: 100%; /* Assurez-vous que les vagues s'étendent sur toute la largeur */
+    height: auto; /* Pour préserver les proportions */
+}
+
+.wave-top {
+    top: 0;
+    z-index: 1;
+}
+
+.wave-bottom {
+    top: -0.3125rem; 
+    z-index: 0;
+}
+
+/* Ajustement pour les SVG dans wave-top et wave-bottom */
+.wave-container svg {
+    width: 100%; /* S'assurer que les SVG occupent la largeur complète */
+    height: auto;
+    display: block; /* Supprime les espaces blancs inattendus */
+}
+
+
+
+
+    </style>
     <body>
         <div class="container">
             <div class="login-card">
@@ -20,36 +55,58 @@
                     </div> -->
                     <div class="wave-container">
                         <div class="wave-top">
-                            <svg width="558" height="278" viewBox="0 0 558 278"
+                            <!-- <svg width="558" height="278" viewBox="0 0 558 278"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M-120 -65C-120 -68.866 -116.866 -72 -113 -72H560C563.866 -72 567 -68.866 567 -65V235.095C567 239.67 560.677 240.871 558.999 236.615C520.847 139.85 404.466 101.138 315.954 155.77L197.364 228.966C105.359 279.552 -3.02844 291.33 -103.752 261.689L-119.197 257.144C-119.673 257.004 -120 256.567 -120 256.071V-65Z"
                                     fill="#2E8B57" />
-                            </svg>
+                            </svg> -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="558" height="151" viewBox="0 0 558 151" fill="none">
+                                <path d="M-120 -100C-120 -103.866 -116.866 -107 -113 -107H570C573.866 -107 577 -103.866 577 -100V118.061C577 122.397 571.216 123.871 569.141 120.063V120.063C527.063 42.8299 432.676 10.9291 352.37 46.7992L201.984 113.973V113.973C106.893 151.808 2.7239 160.623 -97.373 139.306L-118.792 134.745C-119.496 134.595 -120 133.973 -120 133.252V-100Z" fill="#2E8B57"/>
+                              </svg>
                         </div>
                         <div class="wave-bottom">
-                            <svg width="558" height="574" viewBox="0 0 558 574"
+                            <!-- <svg width="558" height="574" viewBox="0 0 558 574"
                                 fill="none" xmlns="http://www.w3.org/2000/svg">
                                 <path
                                     d="M106.438 -219.541C108.37 -222.889 112.652 -224.037 116 -222.104L802.938 174.5C806.286 176.433 807.433 180.714 805.5 184.062L581.881 571.381C579.05 576.284 571.537 573.354 572.773 567.829C603.112 432.234 488.81 308.019 351.165 327L210.255 346.432C81.9471 356.964 -43.4257 304.213 -125.607 205.117L-132.871 196.358C-133.159 196.012 -133.2 195.523 -132.975 195.133L106.438 -219.541Z"
                                     fill="#B7BF99" />
-                            </svg>
+                            </svg> -->
+                            <svg xmlns="http://www.w3.org/2000/svg" width="558" height="454" viewBox="0 0 558 454" fill="none">
+                                <path d="M68.7418 -297.035C70.6748 -300.383 74.956 -301.53 78.304 -299.597L796.135 114.843C799.483 116.776 800.63 121.057 798.697 124.405L610.362 450.611C607.544 455.493 600.058 452.854 600.924 447.284V447.284C620.723 319.884 519.437 206.035 390.598 210.871L221.446 217.221V217.221C92.2678 215.514 -30.6946 161.488 -119.325 67.4955L-132.526 53.4967C-132.935 53.0626 -133.011 52.4115 -132.713 51.8949L68.7418 -297.035Z" fill="#B7BF99"/>
+                              </svg>
                         </div>
                     </div>
                     <div class="formulaire">
                         <h2 class="text-connexion mb-4">Connexion</h2>
+
+                         <!-- Afficher le message d'erreur si errorMessage est non vide -->
+                        <div *ngIf="errorMessage" class="alert alert-danger" role="alert">
+                            {{ errorMessage }}
+                        </div>
+
+
                         <form  [formGroup]="loginForm" (ngSubmit)="onSubmit()">
                             <div class="mb-3">
                                 <label for="email" class="form-label">Email</label>
                                   
                                 <input type="email" class="form-control" id="email" formControlName="email"  placeholder="Email" required>
-                                    
+                                <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched" class="text-danger">
+                                    Veuillez entrer un email valide.
+                                </div>
                             </div>
                             <div class="mb-3">
                                 <label for="password" class="form-label">Mot de passe</label>
-                                    
-                                <input type="password" class="form-control"  id="password" formControlName="password" placeholder="Mot de passe"  required>
-                                   
+                                <div class="input-group">
+                                    <input [type]="showPassword ? 'text' : 'password'" class="form-control" id="password" formControlName="password" placeholder="Mot de passe" required>
+                                    <button class="btn btn-outline-secondary" type="button" (click)="togglePasswordVisibility()">
+                                        <i class="fa" [ngClass]="{'fa-eye-slash': showPassword, 'fa-eye': !showPassword}"></i>
+                                    </button>
+                                </div>
+                                <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched" class="text-danger">
+                                    Le mot de passe est requis.
+                                </div>
+                                
                             </div>
                             <div class="mb-3">
                                 <a href="#"  class="password-forget text-decoration-none">mot de passe oublié?</a>
@@ -60,43 +117,12 @@
                                 
                         </form>
 
-                        <!-- <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-                            <div class="mb-3">
-                              <label for="email">Email address</label>
-                              <input type="email" formControlName="email" class="form-control" id="email" placeholder="Email">
-                              <div *ngIf="loginForm.controls['email'].invalid && loginForm.controls['email'].touched">
-                                <small class="text-danger">Please enter a valid email</small>
-                              </div>
-                            </div>
-                            
-                            <div class="mb-3">
-                              <label for="password">Password</label>
-                              <input type="password" formControlName="password" class="form-control" id="password" autocomplete="email" placeholder="Mot de passe">
-                              <div *ngIf="loginForm.controls['password'].invalid && loginForm.controls['password'].touched">
-                                <small class="text-danger">Password is required</small>
-                              </div>
-                            </div>
-                          
-                            <button  class="btn btn-custom">Connexion</button>
-                          </form> -->
-
-
-
-                        <p class="nouveauCompte mt-3 text-end">Nouveau compte?
-                            <a href="#" class="text-decoration-none">
+                        <p class="nouveauCompte mt-3 text-end">Pas de compte?
+                            <a class="text-decoration-none"   routerLink="/register">
                                 Inscription</a></p>
                     </div>
 
-                    <div class="wave-footer">
-                        <svg width="558" height="162" viewBox="0 0 558 162"
-                            fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M565.239 352.224C564.962 356.08 561.61 358.981 557.754 358.703L-97.0183 311.521C-100.874 311.243 -103.775 307.892 -103.497 304.036L-81.928 4.70951C-81.6053 0.231284 -75.32 -0.473918 -74.0129 3.82144C-44.0516 102.283 68.4665 148.758 159.179 100.14L277.44 36.757C370.462 -7.16188 477.371 -11.2429 573.47 25.4567L587.634 30.8659C588.075 31.034 588.353 31.4708 588.319 31.9408L565.239 352.224Z"
-                                fill="#2E8B57" />
-                        </svg>
-                    </div>
                 </div>
             </div>
         </div>
     </body>
-</html>

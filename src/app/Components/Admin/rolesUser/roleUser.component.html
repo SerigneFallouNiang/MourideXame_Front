@@ -1,0 +1,85 @@
+<style>
+    .titre-tableau{
+        color: #2E8B57;
+        font-family: Inter;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+    .text-ajout{
+        color: #FFF;
+        font-family: Lato;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+    }
+
+    .button-add{
+        background-color: #2E8B57;
+        border: #2E8B57;
+    }
+    .button-edit{
+        background-color: #FFD233;
+        border: #FFD233;
+    }
+    a i {
+        cursor: pointer;
+    }
+</style>
+<div class="container-fluid">
+    <div class="card">
+        <div class="card-header py-3 d-flex justify-content-between align-items-center">
+            <h6 class="titre-tableau m-0 font-weight-bold">Rôles</h6>
+            <div class="ml-auto">
+                <a routerLink="/add-roles" class="button-add btn btn-primary">
+                    <span class="icon text-white-50">
+                        <i class="fa fa-plus"></i>
+                    </span>
+                    <span class="text-ajout">Ajouter</span>
+                </a>
+            </div>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-striped table-hover">
+                    <thead>
+                        <tr>
+                            <th>id</th>
+                            <th>Nom</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let role of pageRoles; let i = index">
+                            <td>{{ role.id }}</td> 
+                            <td>{{ role.name }}</td>
+                            <td>
+                                <div class="btn-group btn-group-sm">
+                                    <a [routerLink]="['/rolesEdit', role.id]">
+                                        <i class="fa fa-pencil-alt" style="color: #2E8B57;"></i>
+                                    </a>
+                                    <a (click)="deleteRole(role.id?.toString())">
+                                        <i class="fa fa-trash" style="color: red;margin-left: 15px;"></i>
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="pagination-container">
+                <div class="d-flex align-items-center justify-content-end mt-5">
+                    <i class="fa-solid fa-chevron-left" (click)="prevPage()" [class.disabled]="currentPage === 1" style="cursor: pointer; color: #FFD233; font-size: 32px;"></i>
+                    <div class="icone d-flex align-items-center justify-content-center" style="background-color: #FFF; padding: 10px; border-radius: 5px; margin: 0 10px;">
+                        <span>{{currentPage}} / {{totalPages}}</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-right" (click)="nextPage()" [class.disabled]="currentPage === totalPages" style="cursor: pointer; color: #FFD233; font-size: 32px;"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- la section html des formulaire  pour l'ajout et de la  modification  -->

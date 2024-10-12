@@ -1,0 +1,116 @@
+.modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1000;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .modal-overlay.show {
+    display: flex;
+  }
+  
+  .modal-dialog {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+  
+  .modal-content {
+    padding: 0;
+  }
+  
+  .modal-header {
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e9ecef;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .modal-title {
+    margin: 0;
+    font-size: 1.25rem;
+    color: #333;
+  }
+  
+  .close {
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #6c757d;
+  }
+  
+  .modal-body {
+    padding: 1.5rem;
+  }
+  
+  .section-title {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+    color: #495057;
+  }
+  
+  .question-list {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .question-item {
+    margin-bottom: 1.5rem;
+    background-color: #f8f9fa;
+    border-radius: 4px;
+    padding: 1rem;
+  }
+  
+  .question-text {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #495057;
+  }
+  
+  .question-number {
+    color: #2E8B57;
+    margin-right: 0.5rem;
+  }
+  
+  .answer-list {
+    list-style-type: none;
+    padding-left: 1.5rem;
+  }
+  
+  .answer-item {
+    margin-bottom: 0.25rem;
+    color: #6c757d;
+  }
+  
+  .modal-footer {
+    border-top: 1px solid #e9ecef;
+    padding: 1rem;
+    text-align: right;
+  }
+  
+  .btn-primary {
+    background-color: #2E8B57;
+    border: none;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .btn-primary:hover {
+    background-color: #2E8B57;
+  }

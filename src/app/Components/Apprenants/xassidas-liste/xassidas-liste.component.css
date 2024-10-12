@@ -1,189 +1,508 @@
-.offcanvas-start {
-    width: 250px; /* Ajustez cette largeur si nécessaire */
+.recherche {
+  width: 16.625rem; /* 266px */
+  height: 3.125rem; /* 50px */
+  flex-shrink: 0;
+  border-radius: 0.625rem; /* 10px */
+  border: 0.125rem solid var(--griy, #D9D9D9); /* 2px */
+  background: #FFF;
+}
+
+.listes {
+  width: 100%; /* 100% remains the same */
+  height: auto; /* auto remains the same */
+  flex-shrink: 0;
+  border-radius: 0.625rem; /* 10px */
+  border: 0.0625rem solid var(--griy, #D9D9D9); /* 1px */
+  background: #FFF;
+  margin-top: 0.625rem; /* 10px */
+}
+
+
+.listes li {
+/* background-color: #ccc; */
+background-color: #FFD233;
+border-radius: .5em;
+transition: all .2s;
+}
+
+.listes ul li a {
+  color: #2E8B57;
+
+  /* H1,H2,H3 : titre */
+  font-family: "Playfair Display";
+  font-size: 1.125rem; /* 18px */
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+  text-decoration: none;
+}
+
+.listes li + li {
+  margin-top: 1rem; /* 1em */
+}
+
+.listes li > a {
+  display: block;
+  padding: 0.5rem; /* 0.5em */
+}
+
+
+.listes ul:has(li:hover) > li:not(:hover) {
+opacity: .5;
+}
+.titre-h2 {
+  color: #2E8B57;
+
+  /* H1,H2,H3 : titre */
+  font-family: "Playfair Display";
+  font-size: 1.125rem; /* 18px */
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.card-xassidas .card {
+  position: relative;
+  overflow: hidden;
+  border: none;
+  border-radius: 0.625rem; /* 10px */
+  box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.1); /* 0 4px 8px */
+}
+
+.card-xassidas .card-img-top {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease-in-out;
+}
+
+.card-xassidas .card:hover .card-img-top {
+  transform: scale(1.1);
+}
+
+.card-xassidas .card-body {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8);
+  padding: 0.9375rem; /* 15px */
+  text-align: center;
+  transition: opacity 0.3s ease-in-out;
+}
+
+.card-xassidas .card:hover .card-body {
+  opacity: 1;
+}
+
+.card-title {
+  font-family: "Playfair Display", serif;
+  font-weight: 700;
+}
+
+.card-text {
+  font-family: "Playfair Display", serif;
+}
+
+.liste-xassidas {
+  display: flex;
+  width: 100%;
+  justify-content: space-around;
+}
+
+
+/* card 3D book  */
+
+.book-card {
+  width: 12.5rem; /* 200px */
+  padding: 0.625rem; /* 10px */
+  border-radius: 0.3125rem; /* 5px */
+  background-color: #2E8B57;
+  /* box-shadow:
+      0 0.1875rem 0.375rem rgba(0, 0, 0, 0.16),
+      0 0.1875rem 0.375rem rgba(0, 0, 0, 0.23); */
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 0.0625rem 0.25rem; /* Adjusted for rem */
+}
+
+.book-card__cover {
+  position: relative;
+  width: 9.375rem; /* 150px */
+  height: 12.5rem; /* 200px */
+  margin: 0 auto 0.5rem auto; /* 8px */
+  perspective: 1000px;
+}
+
+.book-card__book {
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all 250ms ease;
+}
+
+.book-card__book-front {
+  position: absolute;
+  height: 100%;
+}
+
+.book-card__book-back {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  transform: translateZ(-2.5rem); /* -40px */
+}
+
+.book-card__book-side {
+  position: absolute;
+  top: 0.3125rem; /* 5px */
+  bottom: 0.125rem; /* 2px */
+  right: -1.8125rem; /* -29px */
+  width: 2.5rem; /* 40px */
+  background-size: 0.3125rem; /* 5px */
+  background-color: #e1e1e1;
+  background-image: linear-gradient(to right, #ccc 35%, #e1e1e1 35%);
+  opacity: 0;
+  transform: rotate3d(0, 1, 0, 90deg);
+}
+
+.book-card__img {
+  width: 100%;
+  height: 100%;
+  background-color: #e1e1e1;
+}
+
+.book-card__title {
+  /* font-size: 1.5em; */
+  margin-bottom: 0.5rem; /* 8px */
+  color: #FFD233;
+
+  /* Paragraphe description */
+  font-family: "Open Sans";
+  font-size: 1.125rem; /* 18px */
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.book-card__author {
+  color: #FFF;
+  font-size: 1rem; /* 16px */
+}
+
+.book-card:hover .book-card__book {
+  transform: rotate3d(0, -1, 0, 30deg) translate(-0.9375rem, -1.875rem); /* -15px, -30px */
+}
+
+.book-card:hover .book-card__book-back {
+  box-shadow: 0.3125rem 0.625rem 0.9375rem rgba(0, 0, 0, 0.35); /* 5px 10px 15px */
+}
+
+.book-card:hover .book-card__book-side {
+  opacity: 1;
+}
+
+
+.cards-nav {
+  display: none;
+}
+
+.categorie-titre {
+  display: none;
+}
+
+/* rechercher un livre */
+.search {
+  width: 100%;
+  position: relative;
+  display: flex;
+}
+
+.searchTerm {
+  width: 100%;
+  border: 0.1875rem solid #FFD233; /* 3px */
+  border-right: none;
+  padding: 0.3125rem; /* 5px */
+  height: 100%;
+  border-radius: 0.3125rem 0 0 0.3125rem; /* 5px */
+  outline: none;
+  color: #9DBFAF;
+  font-family: "Playfair Display";
+  font-size: 1.125rem; /* 18px */
+  font-style: normal;
+  font-weight: 400;
+}
+
+.searchTerm:focus {
+  color: #2E8B57;
+  font-family: "Playfair Display";
+  font-size: 1.125rem; /* 18px */
+  font-style: normal;
+  font-weight: 400;
+}
+
+.searchButton {
+  width: 2.5rem; /* 40px */
+  height: 2.25rem; /* 36px */
+  border: 0.0625rem solid #FFD233; /* 1px */
+  background: #FFD233;
+  text-align: center;
+  color: #2E8B57;
+  border-radius: 0 0.3125rem 0.3125rem 0; /* 5px */
+  cursor: pointer;
+  font-size: 1.25rem; /* 20px */
+}
+
+
+@media (max-width: 48rem) { /* 768px */
+  .categorieName {
+      display: none;
   }
 
-  /* Couleur de fond pour la navbar */
-  .navbar {
-    background-color: #2E8B57;
-    border-bottom: 2px solid #FFF;
-    background: #2E8B57;
+  .raccourcis a svg {
+      /* margin-bottom: 1.875rem; /* 30px */
+      display: none;
   }
 
-  /* Texte blanc pour les liens et le nom de la marque dans la navbar */
-  .navbar .nav-link,
-  .navbar .navbar-brand {
-    color: #fff;
+  .container-all {
+      margin-top: 5rem; /* 80px */
   }
 
-  /* Icône du toggle (menu burger) en blanc sans encadrement */
-  .navbar-toggler {
-    background: none; /* Supprime le fond et la bordure */
-    border: none;     /* Supprime la bordure */
+  .listes ul {
+      padding: 1rem; /* 1em */
+      margin: auto;
+      border-radius: 1rem; /* 1em */
+      background-color: #2E8B57;
+
+      list-style: none;
+      max-width: 30rem; /* 30em */
+
+      /* Ajout de la hauteur maximale et du défilement vertical */
+      max-height: 25rem; /* 400px */
+      overflow-y: auto;
   }
 
-  .navbar-toggler-icon {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3E%3Cpath stroke='rgba%28255, 255, 255, 1%29' stroke-width='2' linecap='round' linejoin='round' d='M4 7h22M4 15h22M4 23h22'/%3E%3C/svg%3E");
-  }
-
-  .navbar-nav {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-  }
-
-  .navbar-nav .nav-item {
-    margin-left: 15px;
-  }
-
-  .navbar-nav .nav-item:last-child {
-    margin-right: 0; /* Supprime la marge à droite du dernier élément */
-  }
-
-  .connexion {
-    width: 120.921px;
-    height: 31.333px;
-    border-radius: 5px;
-    background: #D9D9D9;
-    box-shadow: 0px 4px 4px 0px rgba(46, 139, 87, 0.25);
-    color: #2E8B57;
-    font-family: "Playfair Display";
-    font-size: 18px;
-    font-weight: 400;
-    border: none;
-  }
-  .connexion svg {
-    display: none;
-    }
- 
-
-
-  .offcanvas-footer h2 {
-    display: none;
-  }
-
-
-  /* Alignement total à droite en mode bureau */
-  @media (min-width: 992px) {
-    .offcanvas-body {
+  .container-button-return-toggle {
       display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-    }
+      justify-content: space-between;
+      align-items: center;
+      padding-left: 1.25rem; /* 20px */
+      padding-right: 1.25rem; /* 20px */
   }
 
-  /* Alignement de la liste à droite en mode mobile */
-  @media (max-width: 991px) {
-
-    .connexion svg {
-    display: block;
-    margin-right: 10px;
-    }
-
-    .offcanvas-footer h2 {
-    display: flex;
+  .titre-h2 {
+      display: none;
   }
-    .navbar-nav {
-      flex-direction: column;
-      align-items: flex-start;
-    }
 
-    .navbar-nav .nav-item {
-      margin-left: 0;
-      margin-bottom: 15px;
-    }
+  .retourButton {
+      width: 1.302rem; /* 20.833px */
+      height: 1.107rem; /* 17.708px */
+      flex-shrink: 0;
+      fill: #2E8B57;
+      stroke-width: 0.130rem; /* 2.083px */
+      stroke: #2E8B57;
+  }
 
-    .container-fluid img {
+  .list-card-toggle {
+      width: 1.563rem; /* 25px */
+      height: 1.563rem; /* 25px */
+      flex-shrink: 0;
+      fill: #2E8B57;
+  }
+
+  .raccourcis {
+      /* margin: 0.625rem; /* 10px */
+      /* margin-top: 3.125rem; /* 50px */
+      width: 100%;
+  }
+}
+
+
+       
+
+@media (max-width: 62rem) { /* 991px */
+  .container-all {
+      margin-top: 5rem; /* 80px */
+  }
+
+  .categorie-mobile {
+      color: #2E8B57;
+      /* H1,H2,H3 : titre */
+      font-family: "Playfair Display";
+      font-size: 1.125rem; /* 18px */
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+  }
+
+  .retourButton {
+      width: 1.302rem; /* 20.833px */
+      height: 1.107rem; /* 17.708px */
+      flex-shrink: 0;
+      fill: #2E8B57;
+      stroke-width: 0.130rem; /* 2.083px */
+      stroke: #2E8B57;
+  }
+
+  .book-card {
+      width: 10rem; /* 160px */
+      padding: 0.625rem; /* 10px */
+      border-radius: 0.3125rem; /* 5px */
+      background-color: #2E8B57;
+      box-shadow:
+          0 0.1875rem 0.375rem rgba(0, 0, 0, 0.16),
+          0 0.1875rem 0.375rem rgba(0, 0, 0, 0.23);
+  }
+
+  .book-card__cover {
+      position: relative;
+      width: 8.75rem; /* 140px */
+      height: 12.5rem; /* 200px */
+      margin: 0 auto 0.5rem auto; /* 8px */
+      perspective: 1000px;
+  }
+
+  /* button de navigation entre les livres  */
+  .cards-nav {
+      display: flex;
+      width: 10.3125rem; /* 165px */
+      height: 3rem; /* 48px */
+      justify-content: center;
+      align-items: center;
+      flex-shrink: 0;
+      box-shadow: 0px 0.25rem 0.25rem 0px rgba(0, 0, 0, 0.25) inset;
+      border: none;
+      margin: 0.3125rem; /* 5px */
+      border-radius: 0.3125rem; /* 5px */
+      background: #FFF;
+
+      /* format ecriture  */
+      color: #2E8B57;
+      font-family: Lato;
+      font-size: 1.125rem; /* 18px */
+      font-style: normal;
+      font-weight: 700;
+      line-height: normal;
+  }
+
+  .cards-nav:hover {
+      color: #fff;
+      background: #2E8B57;
+  }
+
+  .button-nav-listes {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+  }
+
+  .categorie-titre {
+      text-align: center;
+      color: #2E8B57;
+
+      /* H1,H2,H3 : titre */
+      font-family: "Playfair Display";
+      font-size: 1.5625rem; /* 25px */
+      font-style: normal;
+      font-weight: 400;
+      line-height: normal;
+  }
+}
+
+@media (min-width: 62.0625rem) { /* 993px */
+  .raccourcis {
+      position: fixed;
+      left: 1.25rem; /* 20px */
+      top: 11.25rem; /* 180px */
+  }
+
+  .buttonRetournRaccoursis {
+      position: fixed;
+      left: 1.25rem; /* 20px */
+      top: 7.5rem; /* 120px */
+  }
+
+  .card-xassidas {
       display: block;
-      max-width: 100%;
-      height: auto;
-    }
-
-    .navbar-brand img {
-        display: none;
-    }
-
-    .navbar-nav .nav-link {
-        color: #000;
-        /* Button text */
-        font-family: Lato;
-        font-size: 18px;
-        font-style: normal;
-        font-weight: 400;
-        line-height: normal;
-    }
-
-    .offcanvas-title img {
-        width: 60px;
-        height: 60px;
-        flex-shrink: 0;
-        border-radius: 60px;
-    }
-
-   .nom-profil{
-    color: #000;
-
-    /* H1,H2,H3 : titre */
-    font-family: "Playfair Display";
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-   }
-
-   .offcanvas-footer{
-    margin-top: 30px;
-    width: 220px;
-    height: 41px;
-    flex-shrink: 0;
-    border-radius: 5px;
-    background: #2E8B57;
-    color: #FFF;
-
-    /* Button text */
-    font-family: Lato;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    text-align: center;
-    justify-content: center;
-    display: flex;
-    align-items: center;
-   }
-
-   .connexion{
-    background-color: white;
-    color: #000;
-
-    display: flex;
-
-
-    /* Button text */
-    font-family: Lato;
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-    box-shadow: 0px 0px 0px 0px rgba(46, 139, 87, 0.25);
-
-    margin-top: 35px;
-   }
-
-    /* Ajout d'un trait horizontal sous chaque élément de la liste en mode mobile */
-.navbar-nav .nav-item {
-position: relative;
-}
-
-.navbar-nav .nav-item:not(:last-child)::after {
-content: "";
-display: block;
-width: 210px;
-height: 1px;
-background: #ddd; /* Couleur de la ligne horizontale */
-position: absolute;
-bottom: 0;
-left: 0;
-/* margin: 10px 0; */
-margin-top: 15px;
-}
+      margin-left: 21.875rem; /* 350px */
   }
+
+  .retourButton a svg {
+      display: none;
+  }
+
+  .categorieName {
+      text-align: center;
+      color: #2E8B57;
+  }
+
+  .listes ul {
+      padding: 1rem; /* 1em */
+      margin: auto;
+      border-radius: 1rem; /* 1em */
+      background-color: #2E8B57;
+
+      list-style: none;
+      max-width: 20rem; /* 20em */
+
+      /* Ajout de la hauteur maximale et du défilement vertical */
+      max-height: 25rem; /* 400px */
+      overflow-y: auto;
+  }
+
+  .categorie-mobile {
+      display: none;
+  }
+
+  .container {
+      margin: 0;
+      padding: 0.3125rem; /* 5px */
+  }
+
+  .list-card-toggle {
+      display: none;
+  }
+
+  .container-all {
+      margin-top: 6.25rem; /* 100px */
+      overflow-x: hidden;
+  }
+
+  .retourButton {
+      /* width: 20.833px; */
+      height: 1.107rem; /* 17.708px */
+      flex-shrink: 0;
+      fill: #2E8B57;
+      stroke-width: 0.130rem; /* 2.083px */
+      stroke: #2E8B57;
+      margin-left: 3.125rem; /* 50px */
+      /* margin-top: 20px; */
+      margin-bottom: 0.625rem; /* 10px */
+  }
+}
+
+.raccourcis a svg {
+  margin-bottom: 1.25rem; /* 20px */
+}
+
+.categorieName {
+  text-align: center;
+  color: #2E8B57;
+}
+
+/* cursor pointer of the card and the link */
+a {
+  cursor: pointer;
+}
+
+.col {
+  cursor: pointer;
+}
+
+.paginate-icone {
+  margin-top: 12.5rem; /* 200px */
+}
+
+.pagination-container {
+  position: fixed;
+  bottom: 1.25rem; /* 20px */
+  right: 1.25rem; /* 20px */
+}

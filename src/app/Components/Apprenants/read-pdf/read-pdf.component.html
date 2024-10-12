@@ -14,7 +14,7 @@
    }
 
    .listes{
-    width: 265px;
+    width: 100%;
     height: auto;
     flex-shrink: 0;
 
@@ -41,22 +41,52 @@
   margin: auto;
   border-radius: 1em;
   /* background-color: #2E8B57; */
-  background-color: rgba(46, 139, 87, 0.5);
 
   list-style: none;
-  max-width: 20em;
+  /* max-width: 30em; */
 
    /* Ajout de la hauteur maximale et du défilement vertical */
-   max-height: 500px; /* Vous pouvez ajuster cette hauteur selon vos besoins */
+   max-height: 70vh; 
   overflow-y: auto;
 }
 
-.listes li {
-  background-color: #ccc;
-  border-radius: .5em;
+/* .listes li {
   transition: all .2s;
+  border-bottom: 2px solid #FFD233;
+} */
+/* .selected-chapter {
+  transition: all .2s;
+  border-bottom: 2px solid #FFD233; 
 }
 
+.lu-chapter {
+  border-bottom: 2px solid #2E8B57; 
+} */
+
+/* chapitre terminer ou lu  */
+.chapter {
+  border-bottom: 2px solid #cccccc;
+}
+
+.selected-chapter {
+  transition: all 0.2s;
+  border-bottom: 2px solid #2E8B57; 
+}
+
+.lu-chapter {
+  border-bottom: 2px solid #FFD233;
+}
+/* Chapitre réussi (vert) */
+.chapitre-terminer {
+  transition: all 0.2s;
+  border-bottom: 2px solid #2E8B57; 
+}
+
+/* Chapitre échoué (rouge) */
+.chapitre-fausser {
+  transition: all 0.2s;
+  border-bottom: 2px solid #df2d0e; 
+}
 .listes ul li a {
   color: #2E8B57;
 
@@ -81,9 +111,9 @@ text-decoration: none;
   background-color: #eee;
 }
 
-.listes ul:has(li:hover) > li:not(:hover) {
+/* .listes ul:has(li:hover) > li:not(:hover) {
   opacity: .5;
-}
+} */
 
    .titre-h2{
     color: #2E8B57;
@@ -95,9 +125,9 @@ text-decoration: none;
     font-weight: 400;
     line-height: normal;
    }
-.raccourcis{
+/* .raccourcis{
    margin: 20px;
-}
+} */
 
 .liste-xassidas{
   display: flex;
@@ -106,9 +136,7 @@ text-decoration: none;
 }
       
 
-        .categorie-titre{
-        display: none;
-        }
+       
 
 
         /* rechercher un livre  */
@@ -120,26 +148,34 @@ text-decoration: none;
 
           .searchTerm {
             width: 100%;
-            border: 3px solid #2E8B57;
+            border: 3px solid #FFD233;
             border-right: none;
             padding: 5px;
             height: 100%;
             border-radius: 5px 0 0 5px;
             outline: none;
             color: #9DBFAF;
+            font-family: "Playfair Display";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
           }
 
           .searchTerm:focus{
-            color: #00B4CC;
+            color: #2E8B57;
+            font-family: "Playfair Display";
+            font-size: 18px;
+            font-style: normal;
+            font-weight: 400;
           }
 
           .searchButton {
             width: 40px;
             height: 36px;
-            border: 1px solid #2E8B57;
-            background: #2E8B57;
+            border: 1px solid #FFD233;
+            background: #FFD233;
             text-align: center;
-            color: #fff;
+            color: #2E8B57;
             border-radius: 0 5px 5px 0;
             cursor: pointer;
             font-size: 20px;
@@ -153,12 +189,20 @@ text-decoration: none;
             margin-bottom: 30px;
           }
           .video-cours iframe {
-            width: 986px;
-            height: 390px;
+            width:100%;
+            height:60vh;
             flex-shrink: 0;
-            border-radius: 15px;
+            border-radius: 5px;
           }
 
+          .fichier-cours iframe {
+            width: 100%;
+            height: 80vh;
+            flex-shrink: 0;
+            border-radius: 5px;
+            background-color: #2E8B57;
+          }
+ 
           .titre-chapitre{
             color: #2E8B57;
             font-family: "Playfair Display";
@@ -203,14 +247,102 @@ text-decoration: none;
             display: none;
           }
 
+          /* //responsive en version mobile  */
+          @media (max-width: 768px) {
+
+          
+            .raccourcis{
+              /* display: none; */
+              width: 100%;
+              display: block;
+              height: 100vh;
+          position: fixed;
+              left:0;
+              top: 17%;
+            }
+
+           
+
+            .raccourcis{
+             display: block;
+            }
+
+            /* .card-xassidas{
+              display: none;
+            } */
+
+            .all-container{
+            margin-top: 80px;
+            overflow: hidden;
+            }
+
+            .categorie-titre{
+            text-align: center;
+            }
+
+            .card-xassidas {
+                height: 76vh;
+                /* overflow-y:auto; */
+                /* margin-left: 28%; */
+                position: fixed;
+                left: 0px;
+                top: 150px;
+                padding: 5px;
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+
+            /* css responsive de la partie cours  */
+  
+    .categorie-titre{
+      position: fixed;
+            left: 35%;
+            top: 4.875rem;
+            text-align: center;
+            color: #2E8B57;
+    }
+
+    .buttonRetournRaccoursis{
+      position: fixed;
+            left: 1.5%;
+            top: 4.875rem;
+            text-align: center;
+            color: #2E8B57;
+            cursor: pointer;
+    }
+
+    .mobile-return-btn{
+      position: fixed;
+            left: 85%;
+            top: 4.875rem;
+            text-align: center;
+            color: #2E8B57;
+            cursor: pointer;
+    }
+
+          }
+
+
+      
+
         @media (max-width: 991px) {
+
+     .retourButton{
+        width: 20.833px;
+        height: 17.708px;
+        flex-shrink: 0;
+        fill: #2E8B57;
+        stroke-width: 2.083px;
+        stroke: #2E8B57;
+        margin-left: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        
+     }
             .button-retour-chapitre{
             display: block;
           }
 
-        .raccourcis{
-          display: none;
-        }
 
         /* Partie video d'un cours  */
         .card-xassidas{
@@ -218,9 +350,11 @@ text-decoration: none;
 
             margin-bottom: 30px;
           }
-          .video-cours iframe {
+      
+
+          .fichier-cours iframe {
             width: 100%;
-            height: 260px;
+            height: 100vh;
             flex-shrink: 0;
             border-radius: 5px;
           }
@@ -325,132 +459,218 @@ text-decoration: none;
          margin: 0;
          padding: 0;
         }
+
+        .container .retourButton {
+            display: none;
+          }
      }
+
+     @media (min-width: 968px) {
+         
+         .all-container{
+         margin-top: 200px;
+         overflow: hidden;
+        }
+
+
+     .iframe-custom {
+  /* border: 3px solid green;  */
+  border-radius: 5px; 
+  background-color: #2E8B57;
+}
+
+ul li a {
+  cursor: pointer;
+}
+
+.raccourcis {
+      height: 100vh;
+        position: fixed;
+            left: 20px;
+            top: 180px;
+      
+    }
+    .card-xassidas {
+      height: 76vh;
+      /* overflow-y:auto; */
+      /* margin-left: 28%; */
+      position: fixed;
+            left: 28%;
+            top: 180px;
+            overflow-y: auto;
+            overflow-x: hidden;
+    }
+    .categorie-titre{
+      position: fixed;
+            left: 50%;
+            top: 6.875rem;
+            text-align: center;
+            color: #2E8B57;
+    }
+
+    .buttonRetournRaccoursis{
+      position: fixed;
+            left: 1.5%;
+            top: 6.875rem;
+            text-align: center;
+            color: #2E8B57;
+            cursor: pointer;
+    }
+
+    
+
+     }
+
+
+    
     </style>
   
-    <nav class="navbar navbar-expand-lg">
-      <div class="container-fluid">
-        <!-- Bouton du menu toggle placé à gauche avec icône blanche sans encadrement -->
-        <button class="navbar-toggler me-2" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-        <!-- Logo à gauche -->
-        <a class="navbar-brand" href="#">
-          <img src="../../../../assets/images/logo.png" alt="logo" class="img-fluid">
-        </a>
+     <!-- heritage du navbar start  -->
+     <app-navbar-apprenant></app-navbar-apprenant>
+     <!-- heritage du navbar end  -->
 
-        <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-          <div class="offcanvas-header">
-            <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-                <img src="../../../../assets/images/logo.png" alt="profil">
-            </h5>
-            <!-- <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button> -->
-             <p class="nom-profil">Serigne Fallou Niang</p>
-          </div>
-          <div class="offcanvas-body">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Accueil</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">Xam-xam</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Xassida</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Coran</a>
-              </li>
-              <li class="nav-item">
-                <button class="connexion">
-                    <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M2.44444 22C1.77222 22 1.19696 21.7609 0.718667 21.2826C0.24037 20.8043 0.000814815 20.2286 0 19.5556V2.44444C0 1.77222 0.239556 1.19696 0.718667 0.718667C1.19778 0.24037 1.77304 0.000814815 2.44444 0H11V2.44444H2.44444V19.5556H11V22H2.44444ZM15.8889 17.1111L14.2083 15.3389L17.325 12.2222H7.33333V9.77778H17.325L14.2083 6.66111L15.8889 4.88889L22 11L15.8889 17.1111Z" fill="#FFD233"/>
-                      </svg>
-                      Connexion</button>
-              </li>
-            </ul>
 
-            <div class="offcanvas-footer">
-               <h2 class="" data-bs-dismiss="offcanvas" >Fermer</h2>
-              </div>
+<section class="all-container container-fluid">
 
-          </div>
-        </div>
-      </div>
-    </nav>
+  <a  class="buttonRetournRaccoursis"  (click)="goBack()">
+    <svg xmlns="http://www.w3.org/2000/svg" width="27" height="24" viewBox="0 0 24 21" fill="none">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M22.8333 19.6229C20.2847 16.5118 18.0215 14.7465 16.0437 14.3271C14.066 13.9076 12.183 13.8443 10.3948 14.137V19.7083L2 10.6172L10.3948 2V7.29531C13.7014 7.32135 16.5125 8.50764 18.8281 10.8542C21.1434 13.2007 22.4785 16.1236 22.8333 19.6229Z" fill="#2E8B57" stroke="#2E8B57" stroke-width="2.08333" stroke-linejoin="round"/>
+    </svg>
+  </a>
+  <h1 class="categorie-titre">{{ bookName }}</h1>
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    <a *ngIf="showChapterContent && isMobile" (click)="returnToList()" class="mobile-return-btn">
+<!-- retourn -->
+<i class="fa-solid fa-arrow-rotate-left fa-2xl" style="color: #2E8B57;"></i>
+    </a>
+    
 
-<!-- fin du nav-bar  -->
 
-<h1 class="categorie-titre">Xassidas</h1>
-<div class="button-nav-listes">
-  <button class="button-retour-chapitre" id="cartes" ><i class="fa-solid fa-arrow-left-long fa-2xl" style="color: #fff;"></i></button>
-</div>
-<section class="liste-xassidas">
-    <div  class="raccourcis">
-      <h2 class="titre-h2">Xassida</h2>
-      <!-- <input type="text" class="recherche"> -->
+<section class="liste-xassidas row" *ngIf="chapters.length > 0">
+
+    <div  class="col-3 bg-light raccourcis" [class.hidden-mobile]="showChapterContent && isMobile">
        <div class="wrap">
    <div class="search">
-      <input type="text" class="searchTerm" placeholder="Rechercher un livre">
+      <input type="text" class="searchTerm" placeholder="Rechercher un chapitre"  [(ngModel)]="searchTerm"  (input)="searchBooks()">
       <button type="submit" class="searchButton">
         <i class="fa fa-search"></i>
      </button>
    </div>
 </div>
       <div class="listes">
-        <!-- <ul>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-          <li>Alhamdou lilahi lazi youdiaassi</li>
-        </ul> -->
-
-        <!-- //Liste raccourcis  -->
         <ul>
-          <li><a href="#">Touhfatou moutadarihine</a></li>
-          <li><a href="#">Matlaboul chifa</a></li>
-          <li><a href="#">Mafatihoul Bichri</a></li>
-          <li><a href="#">Mawahibou</a></li>
-          <li><a href="#">Massalikoul djinane</a></li>
-          <li><a href="#">link 4</a></li>
-          <li><a href="#">link 4</a></li>
-          <li><a href="#">link 4</a></li>
-          <li><a href="#">link 4</a></li>
-          <li><a href="#">link 4</a></li>
+          @if (chapters.length > 0 && chapters[0].Fichier) {
+            <li>
+              <a (click)="selectFichier(chapters[0].Fichier)">Document PDF</a>
+            </li>
+          }
+          <li *ngFor="let chapter of filteredChapiters" [ngClass]="{'selected-chapter': chapter.isSelected, 'lu-chapter': chapter.lue, 'chapter': !chapter.lue,'chapitre-terminer': chapter.terminer == 1, 'chapitre-fausser': chapter.terminer == 2}">
+            <a (click)="selectChapter(chapter)">{{ chapter['Titre du chapitre'] }}</a>
+          </li>
         </ul>
       </div>
     </div>
-    <div   class="card-xassidas mt-5">
- 
-        <div class="container">
-   
-            <div class="video-cours">
-                <iframe  src="https://www.youtube.com/embed/ZS0C5EwWIE4" 
-                    title="YouTube video player" 
-                    frameborder="0" 
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                    allowfullscreen>
-                </iframe>
-            </div>
-            
+    <!-- <app-chapters-list [bookId]="selectedChapter" (chapterSelected)="selectChapter($event)"></app-chapters-list> -->
 
-                <div class="description-chapitre">
-                    <h2 class="titre-chapitre">PREAMBULE</h2>
-                    <p class="description-chapitre">
-                        Le Lorem Ipsum est simplement du faux texte employé dans la composition et la mise en page avant impression. Le Lorem Ipsum est le faux texte standard de l'imprimerie depuis les années 1500, quand un imprimeur anonyme assembla ensemble des morceaux de texte pour réaliser un livre spécimen de polices de texte. Il n'a pas fait que survivre cinq siècles, mais s'est aussi adapté à la bureautique informatique, sans que son contenu n'en soit modifié. Il a été popularisé dans les années 1960 grâce à la vente de feuilles Letraset contenant des passages du Lorem Ipsum, et, plus récemment, par son inclusion dans des applications de mise en page de texte, comme Aldus PageMaker.
-Pourquoi l'utiliser?
 
-On sait depuis longtemps que travailler avec du texte lisible et contenant du sens est source de distractions, et empêche de se concentrer sur la mise en page elle-même. L'avantage du Lorem Ipsum sur un texte générique comme 'Du texte. Du texte. Du texte.' est qu'il possède une distribution de lettres plus ou moins normale, et en tout cas comparable avec celle du français standard. De nombreuses suites logicielles de mise en page ou éditeurs de sites Web ont fait du Lorem Ipsum leur faux texte par défaut, et une recherche pour 'Lorem Ipsum' vous conduira vers de nombreux sites qui n'en sont encore qu'à leur phase de construction. Plusieurs versions sont apparues avec le temps, parfois par accident, souvent intentionnellement (histoire d'y rajouter de petits clins d'oeil, voire des phrases embarassantes).
 
-                    </p>
-                </div>
-                <button class="button-quiz">Commencer le Quiz</button>
-        </div>
+
+@if(selectedFichier) {
+  <div class="col-12 col-md-8 bg-white card-xassidas"  [class.visible-mobile]="showChapterContent && isMobile">
+      <div class="container">
+        <div class="fichier-cours" >
+        <iframe [src]="pdfUrl" class="iframe-custom"></iframe>
     </div>
+  </div>
+</div>
+} @else if (selectedChapter) {
+  <div class="col-12 col-md-8 bg-white card-xassidas"  [class.visible-mobile]="showChapterContent && isMobile">
+    <div class="container">
+      <div class="video-cours" *ngIf="selectedChapter.Video">
+        <iframe 
+          [src]="sanitizer.bypassSecurityTrustResourceUrl(selectedChapter.Video)"
+          title="video player" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="description-chapitre">
+        <h2 class="titre-chapitre">{{ selectedChapter['Titre du chapitre'] }}</h2>
+        <p class="description-chapitre">
+          {{ selectedChapter.Description }}
+        </p>
+      </div>
+      <!-- <button class="button-quiz"  (click)="startQuiz(selectedChapter.id!)">Commencer le Quiz</button> -->
+      <button class="button-quiz" *ngIf="selectedChapter?.id" (click)="checkAndStartQuiz(selectedChapter.id)">
+        Commencer le Quiz
+      </button>
+      
+    </div>
+  </div>
+} @else if(selectedQuiz){
+  <div class="col-12 col-md-8 bg-white card-xassidas" [class.visible-mobile]="showChapterContent && isMobile">
+    <div class="container">
+  <div class="description-chapitre">
+    <!-- <h2 class="titre-chapitre">PREAMBULE</h2> -->
+    <div id="bordure">
+        <header>
+          <h1 class="titre-chapitre">{{ quiz.title }}</h1>
+        </header>
+        
+        <div class="container" *ngIf="quiz">
+          <!-- <h2>{{ quiz.title }}</h2> -->
+          <form #quizForm="ngForm" (ngSubmit)="submitQuiz()">
+            <div *ngFor="let question of questions">
+              <h3 class="titre-question">{{ question.text }}</h3>
+              <div *ngFor="let answer of question.answers">
+                <input type="radio" [name]="'q' + question.id" [value]="answer.id" (change)="selectAnswer(question.id, answer.id)" class="input-reponse">
+                {{ answer.text }}
+              </div>
+        
+              <!-- After submitting the quiz, show the results -->
+              <div *ngIf="submitted">
+                <p *ngIf="question.is_correct; else wrongAnswer">
+                  ✅ Correct! La bonne réponse est :{{ question.correctAnswer.text }}
+                </p>
+                <ng-template #wrongAnswer>
+                  ❌ Incorrect. La réponse correcte était : {{ question.correctAnswer.text }}
+                </ng-template>
+              </div>
+            </div>
+                <!-- Afficher le bouton "Soumettre le quiz" avant la soumission -->
+              <!-- <input *ngIf="!submitted" type="submit" value="Soumettre le quiz"> -->
+                <!-- Afficher le bouton "Soumettre le quiz" avant la soumission -->
+                <div *ngIf="errorMessage" class="alert alert-danger mt-3">
+                  {{ errorMessage }}
+                </div>
+                
+                <input *ngIf="!submitted" type="submit" value="Soumettre le quiz">
+
+             <!-- Afficher le bouton "Retour au cours" après la soumission -->
+              <button *ngIf="submitted" class="retourQuiz" (click)="goToCourse()">Retour au cours</button>
+          </form>
+
+            <!-- Afficher un message d'erreur si toutes les questions ne sont pas répondues -->
+    
+        
+         <!-- Afficher le résultat final après la soumission du quiz -->
+          <div *ngIf="submitted">
+            <h3>Score: {{ score }}%</h3>
+            <p *ngIf="isPassed">Tu as réussi !🎉</p>
+            <p *ngIf="!isPassed">Tu n'as pas réussi. Réessaie !</p>
+          </div>
+        </div>
+        
+        
+        <!-- fin test quiz  -->
+      </div>
+</div>
+</div>
+</div>
+}
+   
 </section>
 
 
-
+</section>

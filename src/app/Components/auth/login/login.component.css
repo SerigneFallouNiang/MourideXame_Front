@@ -1,362 +1,155 @@
 body {
-    background-color: #1e5631;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    /* background: var(--vert-secondaire, rgba(46, 139, 87, 0.50)); */
-  
+  background-color: #1e5631;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
+
 .login-card {
-    /* background-color: white; */
-    display: flex;
-    justify-content: center; /* Centrage horizontal */
-    align-items: center;     /* Centrage vertical */
-    border-radius: 15px;
-    padding: 2rem;
-    width: 100%;
-    max-width: 957px;
-    width: 957px;
-    height: 848px;
-    flex-shrink: 0;
-    border-radius: 15px;
-    text-align: left;
-    /* background: url('../../../../assets/images/fond-form.png') lightgray 50% / cover no-repeat; */
-    /* background-image: linear-gradient(rgba(76, 175, 80, 0.7), rgba(76, 175, 80, 0.7)), url('../../../../assets/images/fond-form.png'); */
-    background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
+  display: flex;
+  justify-content: center; 
+  align-items: center;  
+  border-radius: 0.9375rem; /* 15px */
+  padding: 2rem;
+  width: 100%;
+  margin: 0 auto;
+  max-width: 59.8125rem; /* 957px */
+  height: 44.17%;
+  flex-shrink: 0;
+  text-align: left;
+  background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
 }
+
 .wave-shape {
-    background-color: #4caf50;
-    height: 150px;
-    border-radius: 15px 15px 50% 50% / 15px 15px 25% 25%;
-}
-.btn-custom {
-    background-color: #4caf50;
-    border: none;
-    color: white;
-}
-.btn-custom:hover {
-    background-color: #45a049;
+  background-color: #4caf50;
+  height: 9.375rem; /* 150px */
+  border-radius: 0.9375rem 0.9375rem 3.125rem 3.125rem / 0.9375rem 0.9375rem 1.5625rem 1.5625rem; /* 15px, 15px, 50%, 50% / 15px, 15px, 25%, 25% */
 }
 
-.form-login{
-    width: 558px;
-    height: 780px;
-    flex-shrink: 0;
-    border-radius: 30px;
-    background: #FFF;
-    box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.30);
-    /* text-align: center; */
-}
-/* Wave container to hold the SVG */
-.wave-container {
-border-radius: 30px 30px 0 0;
-overflow: hidden; 
-position: relative;
-width: 100%;
-height: 450px;
+.form-login {
+  width: 34.875rem; /* 558px */
+  height: 48.75rem; /* 780px */
+  flex-shrink: 0;
+  border-radius: 1.875rem; /* 30px */
+  background: #FFF;
+  box-shadow: 0.625rem 0.625rem 2.5rem rgba(0, 0, 0, 0.30); /* 10px, 10px, 40px */
 }
 
-.wave-top, .wave-bottom {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-}
-.wave-top {
-z-index: 1; 
-}
-
-.wave-bottom {
-z-index: 0; 
-top: 13px;
-}
 .formulaire {
-margin-top: -100px;
-padding: 25px;
-display: flex;
-flex-direction: column;
-
+  /* margin-top: -6.25rem;  */
+  padding: 1.5625rem; /* 25px */
+  display: flex;
+  flex-direction: column;
 }
 
 .text-connexion {
-color: #2E8B57;
-font-family: "Playfair Display";
-font-size: 36px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-text-align: left; 
+  color: #2E8B57;
+  font-family: "Playfair Display";
+  font-size: 2.25rem; /* 36px */
+  font-weight: 700;
+  line-height: normal;
+  text-align: left;
 }
 
 label {
-color: #2E8B57;
-font-family: Lato;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  color: #2E8B57;
+  font-family: Lato;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 400;
+  line-height: normal;
 }
 
 input {
-border-radius: 10px;
-border: 1px solid #2E8B57;
-background: rgba(47, 128, 237, 0.00);
+  border-radius: 0.625rem; /* 10px */
+  border: 1px solid #2E8B57;
+  background: rgba(47, 128, 237, 0.00);
 }
 
 button[type="submit"] {
-width: 201.836px;
-height: 60px;
-flex-shrink: 0;
-border-radius: 7px;
-border: 1px solid #2E8B57;
-background: rgba(47, 128, 237, 0.00); /* Fond transparent */
-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-color: #2E8B57;
-text-align: center;
-font-family: Lato;
-font-size: 24px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+  width: 12.61475rem; /* 201.836px */
+  height: 3.75rem; /* 60px */
+  border-radius: 0.4375rem; /* 7px */
+  border: 1px solid #2E8B57;
+  background: rgba(47, 128, 237, 0.00); 
+  box-shadow: 0 0.25rem 0.25rem rgba(0, 0, 0, 0.25); /* 0px 4px 4px */
+  color: #2E8B57;
+  font-family: Lato;
+  font-size: 1.5rem; /* 24px */
 }
+
 .wave-footer {
-border-radius:0 0 30px 30px ;
-overflow: hidden; 
-position: relative;
-width: 100%;
-height: 130px;
-top: -130px;
-z-index: 0; 
+  border-radius: 0 0 1.875rem 1.875rem; /* 30px */
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+  height: 8.125rem; /* 130px */
+  top: -8.125rem; /* -130px */
 }
-.nouveauCompte{
-z-index: 1; 
-float: right;
-color: #FFF;
-font-family: Lato;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+
+.nouveauCompte {
+  z-index: 1;
+  float: right;
+  color: #2E8B57;
+  font-family: Lato;
+  font-size: 1rem; /* 16px */
+  font-weight: 400;
 }
 
 .nouveauCompte a {
-z-index: 1; 
-float: right;
-color: #FFF;
-font-family: Lato;
-font-size: 16px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-margin-left: 5px;
+  font-size: 1rem; /* 16px */
+  font-weight: 700;
+  margin-left: 0.3125rem; /* 5px */
 }
 
-.password-forget{
-color: #B7BF99;
-font-family: Lato;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
+.password-forget {
+  color: #B7BF99;
+  font-family: Lato;
+  font-size: 0.875rem; /* 14px */
+  font-weight: 400;
 }
 
 
-.btn-custom {
-    background-color: #4caf50;
-    border: none;
-    color: white;
-}
-.btn-custom:hover {
-    background-color: #45a049;
-}
-
-
-/* Media Queries pour les appareils mobiles */
+/* Media Queries (Mobile) */
 @media screen and (max-width: 768px) {
-body {
-    background-color: #1e5631;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 100%;
-    overflow-x: hidden;
-    overflow-y: hidden;
-    /* height: 100vh; */
-    /* background: var(--vert-secondaire, rgba(46, 139, 87, 0.50)); */
   
-}
-.login-card {
-    /* background-color: white; */
-    display: flex;
-    justify-content: center; /* Centrage horizontal */
-    align-items: center;     /* Centrage vertical */
-    border-radius: 15px;
-    padding: 2rem;
-    width: 100%;
-    max-width: 957px;
-    width: 957px;
-    height: 848px;
-    flex-shrink: 0;
-    border-radius: 15px;
-    text-align: left;
-    /* background: url('../../../../assets/images/fond-form.png') lightgray 50% / cover no-repeat; */
-    /* background-image: linear-gradient(rgba(76, 175, 80, 0.7), rgba(76, 175, 80, 0.7)), url('../../../../assets/images/fond-form.png'); */
-    background-image: linear-gradient(rgba(30, 86, 49, 0.2), rgba(30, 86, 49, 0.2)), url('../../../../assets/images/fond-form.png');
-}
-.wave-shape {
-    background-color: #4caf50;
-    height: 150px;
-    border-radius: 15px 15px 50% 50% / 15px 15px 25% 25%;
-}
-.btn-custom {
-    background-color: #4caf50;
-    border: none;
-    color: white;
-}
-.btn-custom:hover {
-    background-color: #45a049;
+  .login-card {
+      max-width: 59.8125rem; /* 957px */
+      /* height: 53rem; */
+      height: 100vh;
+
+  }
+
+  .form-login {
+      width: 25.6875rem; /* 411px */
+  }
+
+  button[type="submit"] {
+      width: 9rem; /* 144px */
+      height: 3.75rem; /* 60px */
+  }
+
+  .wave-footer {
+      height: 8.125rem; /* 130px */
+      top: -6.25rem; /* -100px */
+  }
 }
 
-.form-login{
-    width: 411px;
-    /* height: 823px; */
-    flex-shrink: 0;
-    border-radius: 30px;
-    background: #FFF;
-    box-shadow: 10px 10px 40px 0px rgba(0, 0, 0, 0.30);
-    overflow: hidden;
-    /* text-align: center; */
-}
-/* Wave container to hold the SVG */
-.wave-container {
-border-radius: 30px 30px 0 0;
-overflow: hidden; 
-position: relative;
-width: 100%;
-height: 450px;
+
+/* Media Queries (MacBook Air)  */
+@media screen and (min-width: 1025px) and (max-width: 1440px) {
+  .login-card {
+      width: 75%;
+      max-width: 56.25rem; /* 900px */
+  }
+
+  .form-login {
+      width: 28.125rem; /* 450px */
+  }
+
+  button[type="submit"] {
+      width: 8.125rem; /* 130px */
+      height: 3.4375rem; /* 55px */
+  }
 }
 
-.wave-top, .wave-bottom {
-position: absolute;
-top: 0;
-left: 0;
-width: 100%;
-}
-.wave-top {
-z-index: 1; 
-}
-.wave-top  svg {
-z-index: 1; 
-width: 411px;
-height: 230px;
-flex-shrink: 0;
-}
-
-.wave-bottom  svg{
-z-index: 0; 
-width: 411px;
-height: 480px;
-flex-shrink: 0;
-}
-
-.wave-bottom {
-z-index: 0; 
-}
-.formulaire {
-margin-top: -180px;
-padding: 40px;
-display: flex;
-flex-direction: column;
-
-}
-
-.text-connexion {
-color: #2E8B57;
-font-family: "Playfair Display";
-font-size: 36px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-text-align: left; 
-}
-
-label {
-color: #2E8B57;
-font-family: Lato;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
-
-input {
-border-radius: 10px;
-border: 1px solid #2E8B57;
-background: rgba(47, 128, 237, 0.00);
-}
-
-button[type="submit"] {
-width: 144px;
-height: 60px;
-flex-shrink: 0;
-border-radius: 7px;
-border: 1px solid #2E8B57;
-background: rgba(47, 128, 237, 0.00); /* Fond transparent */
-box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-color: #2E8B57;
-text-align: center;
-font-family: Lato;
-font-size: 24px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
-.wave-footer {
-border-radius:0 0 30px 30px ;
-overflow: hidden; 
-position: relative;
-width: 100%;
-height: 130px;
-top: -100px;
-z-index: 0; 
-}
-
-.wave-footer svg {
-width: 411px;
-height: 140px;
-z-index: 0; 
-}
-
-.nouveauCompte{
-z-index: 1; 
-float: right;
-color: #FFF;
-font-family: Lato;
-font-size: 16px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
-
-.nouveauCompte a {
-z-index: 1; 
-float: right;
-color: #FFF;
-font-family: Lato;
-font-size: 16px;
-font-style: normal;
-font-weight: 700;
-line-height: normal;
-margin-left: 5px;
-}
-
-.password-forget{
-color: #B7BF99;
-font-family: Lato;
-font-size: 14px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-}
-}
