@@ -249,6 +249,8 @@ text-decoration: none;
 
           /* //responsive en version mobile  */
           @media (max-width: 768px) {
+
+          
             .raccourcis{
               /* display: none; */
               width: 100%;
@@ -259,8 +261,10 @@ text-decoration: none;
               top: 17%;
             }
 
-            .card-xassidas {
-              display: none;
+           
+
+            .raccourcis{
+             display: block;
             }
 
             /* .card-xassidas{
@@ -307,6 +311,14 @@ text-decoration: none;
             cursor: pointer;
     }
 
+    .mobile-return-btn{
+      position: fixed;
+            left: 85%;
+            top: 4.875rem;
+            text-align: center;
+            color: #2E8B57;
+            cursor: pointer;
+    }
 
           }
 
@@ -342,7 +354,7 @@ text-decoration: none;
 
           .fichier-cours iframe {
             width: 100%;
-            height: 100%;
+            height: 100vh;
             flex-shrink: 0;
             border-radius: 5px;
           }
@@ -505,6 +517,8 @@ ul li a {
             cursor: pointer;
     }
 
+    
+
      }
 
 
@@ -523,11 +537,18 @@ ul li a {
       <path fill-rule="evenodd" clip-rule="evenodd" d="M22.8333 19.6229C20.2847 16.5118 18.0215 14.7465 16.0437 14.3271C14.066 13.9076 12.183 13.8443 10.3948 14.137V19.7083L2 10.6172L10.3948 2V7.29531C13.7014 7.32135 16.5125 8.50764 18.8281 10.8542C21.1434 13.2007 22.4785 16.1236 22.8333 19.6229Z" fill="#2E8B57" stroke="#2E8B57" stroke-width="2.08333" stroke-linejoin="round"/>
     </svg>
   </a>
-<h1 class="categorie-titre">{{ bookName }}</h1>
+  <h1 class="categorie-titre">{{ bookName }}</h1>
+
+    <a *ngIf="showChapterContent && isMobile" (click)="returnToList()" class="mobile-return-btn">
+<!-- retourn -->
+<i class="fa-solid fa-arrow-rotate-left fa-2xl" style="color: #2E8B57;"></i>
+    </a>
+    
+
 
 <section class="liste-xassidas row" *ngIf="chapters.length > 0">
 
-    <div  class="col-3 bg-light raccourcis">
+    <div  class="col-3 bg-light raccourcis" [class.hidden-mobile]="showChapterContent && isMobile">
        <div class="wrap">
    <div class="search">
       <input type="text" class="searchTerm" placeholder="Rechercher un chapitre"  [(ngModel)]="searchTerm"  (input)="searchBooks()">
@@ -551,9 +572,11 @@ ul li a {
     </div>
     <!-- <app-chapters-list [bookId]="selectedChapter" (chapterSelected)="selectChapter($event)"></app-chapters-list> -->
 
- 
+
+
+
 @if(selectedFichier) {
-  <div class="col-12 col-md-8 bg-white card-xassidas">
+  <div class="col-12 col-md-8 bg-white card-xassidas"  [class.visible-mobile]="showChapterContent && isMobile">
       <div class="container">
         <div class="fichier-cours" >
         <iframe [src]="pdfUrl" class="iframe-custom"></iframe>
@@ -561,7 +584,7 @@ ul li a {
   </div>
 </div>
 } @else if (selectedChapter) {
-  <div class="col-12 col-md-8 bg-white card-xassidas">
+  <div class="col-12 col-md-8 bg-white card-xassidas"  [class.visible-mobile]="showChapterContent && isMobile">
     <div class="container">
       <div class="video-cours" *ngIf="selectedChapter.Video">
         <iframe 
@@ -586,7 +609,7 @@ ul li a {
     </div>
   </div>
 } @else if(selectedQuiz){
-  <div class="col-12 col-md-8 bg-white card-xassidas">
+  <div class="col-12 col-md-8 bg-white card-xassidas" [class.visible-mobile]="showChapterContent && isMobile">
     <div class="container">
   <div class="description-chapitre">
     <!-- <h2 class="titre-chapitre">PREAMBULE</h2> -->

@@ -9,7 +9,7 @@ import { Location } from '@angular/common';
 import { ChaptersListComponent } from '../../heritage/chapters-list/chapters-list.component';
 import { QuizzService } from '../../../Services/quizz.service';
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-read-pdf',
@@ -31,6 +31,15 @@ export class ReadPDFComponent implements OnInit {
   pdfUrl: SafeResourceUrl | null = null;
   bookId: any;
   errorMessage: string = '';
+
+  isMobile: boolean = false;
+  showChapterContent: boolean = false;
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkIfMobile();
+  }
+
 
   constructor(
     private route: ActivatedRoute,
@@ -58,7 +67,15 @@ export class ReadPDFComponent implements OnInit {
         console.error('Aucun ID de chapitre trouvé');
       }
     });
+
+    this.checkIfMobile();
   }
+
+
+  checkIfMobile() {
+    this.isMobile = window.innerWidth <= 768;
+  }
+
 
   loadChapters(bookId: string) {
     this.chapitreService.getBooksByBook(bookId).subscribe(
@@ -91,8 +108,10 @@ export class ReadPDFComponent implements OnInit {
         //   // this.selectChapter(this.chapters[0]);
         //   this.selectedFichier();
         // }
-        if (this.chapters.length > 0 && this.chapters[0].Fichier) {
+        if (this.chapters.length < 2 && this.chapters[0].Fichier) {
           this.selectFichier(this.chapters[0].Fichier);
+        }else{
+
         }
       },
       error => {
@@ -115,6 +134,10 @@ export class ReadPDFComponent implements OnInit {
     // this.selectedChapter = chapter;
     console.log('Selected chapter:', this.selectedChapter); 
 
+    if (this.isMobile) {
+      this.showChapterContent = true;
+    }
+
       // Vérifier si le chapitre est déjà marqué comme lu
   if (chapter.lue) {
     console.log('Ce chapitre a déjà été lu.');
@@ -131,6 +154,10 @@ export class ReadPDFComponent implements OnInit {
           console.error('Erreur lors de la mise à jour du chapitre:', error);
         }
       );
+    }
+
+    if (this.isMobile) {
+      this.showChapterContent = true;
     }
   }
 
@@ -164,7 +191,24 @@ export class ReadPDFComponent implements OnInit {
     this.selectedFichier = fichier;
     // Sanitize the URL to prevent XSS attacks
     this.pdfUrl = this.sanitizer.bypassSecurityTrustResourceUrl(fichier);
+
+    if (this.isMobile) {
+      this.showChapterContent = true;
+    }
   }
+
+  returnToList() {
+    this.resetSelection(); // Reset the selection
+    this.showChapterContent = false; // Ensure the chapter content is hidden
+    if (this.bookId) {
+      // Navigate to the list of chapters with the book ID
+      this.router.navigate(['/books', this.bookId]);
+    } else {
+      // Fallback if no book ID
+      this.router.navigate(['/books']);
+    }
+  }
+  
 
 
   selectQuiz(fichier: string) {
@@ -191,14 +235,9 @@ export class ReadPDFComponent implements OnInit {
   
   //fonction pour le retour précédé
   goBack(): void {
-    if (this.bookId) {
-      // Navigue vers la page des livres avec l'ID du livre
-      this.router.navigate(['/books', this.bookId]);
-    } else {
-      // Fallback vers la page des livres si pas d'ID
-      this.router.navigate(['/books']);
-    }
+    this.location.back();
   }
+  
 
 // information de la soumission d'un quiz 
 quiz: any;

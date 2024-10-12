@@ -1,12 +1,12 @@
-import { CommonModule } from '@angular/common';
-import { Component, NgModule, OnInit } from '@angular/core';
+import { CommonModule, Location } from '@angular/common';
+import { Component, NgModule, OnInit, PLATFORM_ID, Inject } from '@angular/core';
 import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar-apprenant.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../../Services/book.service';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { FormsModule } from '@angular/forms';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Location } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-xassidas-liste',
@@ -48,13 +48,13 @@ searchTerm: string = '';
     }
   }
 
-
   constructor(
     private route: ActivatedRoute,
     private bookService: BookService,
-    private router:Router,
-    public location:Location,
-    private breakpointObserver: BreakpointObserver
+    private router: Router,
+    public location: Location,
+    private breakpointObserver: BreakpointObserver,
+    @Inject(PLATFORM_ID) private platformId: Object
   ) {}
 
   ngOnInit() {
@@ -62,34 +62,35 @@ searchTerm: string = '';
       const categoryId = params['id'];
       this.loadBooks(categoryId);
       this.filteredBooks = this.books;
-      //pour suivre la taille de l'ecran s'il est desktop
-    
     });
 
-    //manipulation de l'affichage en mode mobile
     this.breakpointObserver.observe([Breakpoints.Handset])
-    .subscribe(result => {
-      this.isMobile = result.matches;
-    });
-    this.checkIfDesktop();
-    window.addEventListener('resize', () => this.checkIfDesktop());
-    //nombreElementPagination
-    this.paginateNomber();
-    window.addEventListener('resize', () => this.paginateNomber());
+      .subscribe(result => {
+        this.isMobile = result.matches;
+      });
+
+    if (isPlatformBrowser(this.platformId)) {
+      this.checkIfDesktop();
+      window.addEventListener('resize', () => this.checkIfDesktop());
+      this.paginateNomber();
+      window.addEventListener('resize', () => this.paginateNomber());
+    }
   }
 
   checkIfDesktop() {
-    this.isDesktop = window.innerWidth > 1024;
+    if (isPlatformBrowser(this.platformId)) {
+      this.isDesktop = window.innerWidth > 1024;
+    }
   }
 
   paginateNomber() {
-    //   this.isDesktop = window.innerWidth > 1024;
-    //  this.itemsPerPage = 10;
+    if (isPlatformBrowser(this.platformId)) {
       const isLargeScreen = window.innerWidth > 1400;
       this.isPaginate = isLargeScreen;
       this.itemsPerPage = isLargeScreen ? 10 : 8;
-      this.applyPagination(); 
+      this.applyPagination();
     }
+  }
 
 
   loadBooks(categoryId: string) {

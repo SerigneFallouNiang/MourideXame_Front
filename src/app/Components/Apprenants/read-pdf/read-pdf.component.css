@@ -237,4 +237,77 @@
          margin: 0;
          padding: 0;
         }
+
+        .retourButton a svg {
+          display: none;
+      }
+
+      .categorie-mobile {
+        display: none;
+    }
+
+    .list-card-toggle {
+      display: none;
+  }
      }
+
+
+
+
+
+
+
+
+
+
+     @media (max-width: 768px) {
+
+      .list-card-toggle {
+        width: 1.563rem; /* 25px */
+        height: 1.563rem; /* 25px */
+        flex-shrink: 0;
+        fill: #2E8B57;
+    }
+      .hidden-mobile {
+        display: none !important;
+      }
+    
+      .visible-mobile {
+        display: block !important;
+      }
+    
+      .mobile-return-btn {
+        position: fixed;
+        top: 10px;
+        left: 10px;
+        z-index: 1000;
+      }
+    
+      .card-xassidas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        overflow-y: auto;
+      }
+/* button de retour  */
+      .container-button-return-toggle {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-left: 1.25rem; /* 20px */
+        padding-right: 1.25rem; /* 20px */
+    }
+
+
+    .retourButton {
+      width: 1.302rem; /* 20.833px */
+      height: 1.107rem; /* 17.708px */
+      flex-shrink: 0;
+      fill: #2E8B57;
+      stroke-width: 0.130rem; /* 2.083px */
+      stroke: #2E8B57;
+  }
+
+    }
