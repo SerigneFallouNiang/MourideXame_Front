@@ -8,11 +8,12 @@ import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar
 import { Router, RouterModule } from '@angular/router';
 import { Location } from '@angular/common';
 import { CommonModule } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-accueil',
   standalone: true,
-  imports: [FormsModule,CommonModule,NavbarApprenantComponent,RouterModule],
+  imports: [FormsModule,CommonModule,NavbarApprenantComponent,RouterModule,TranslateModule],
   templateUrl: './accueil.component.html',
   styleUrl: './accueil.component.css'
 })

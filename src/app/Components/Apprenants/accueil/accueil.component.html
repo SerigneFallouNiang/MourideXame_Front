@@ -20,12 +20,12 @@
 <!-- section du contenu  -->
  <div class="contenu-livre-text">
       <div class="context-contenu">
-        <h1 class="titre-contenu-main">À Propos de MourideXam</h1>
+        <h1 class="titre-contenu-main">{{ 'ABOUT_TITLE' | translate }}</h1>
         <p class="pr-mobile">
-          Cette plateforme vous accompagne dans l'apprentissage des enseignements de Cheikh Ahmadou Bamba Mbacké. Les cours sont structurés en classes et validés par des quiz pour renforcer vos connaissances. 
+          {{ 'ABOUT_DESCRIPTION_SHORT' | translate }}
         </p>
         <p class="pr-web">
-          Cette plateforme vous accompagne dans l'apprentissage des enseignements de Cheikh Ahmadou Bamba Mbacké. Les cours sont structurés en classes et validés par des quiz pour renforcer vos connaissances. Chaque apprenant dispose d'un compte personnel pour suivre sa progression. Les cartes ci-dessous présentent les différentes catégories de livres, vous permettant d'accéder aux ouvrages classés par thème.
+          {{ 'ABOUT_DESCRIPTION_LONG' | translate }}
         </p>
       </div>
        <div class="image-contenu">
@@ -34,7 +34,7 @@
        </div>
  </div>
  <div class="text-categorie">
- <h1 class="categorie-accueil">Catégories d'œuvres</h1>
+ <h1 class="categorie-accueil">{{ 'CATEGORIES_TITLE' | translate }}</h1>
 </div>
 </section>
 
@@ -75,9 +75,9 @@
               <!-- <span class="hidden-link-text">LOGO</span>
               <h1>LOGO</h1> -->
               <img src="../../../../assets/images/logo.png" alt="logo" class="img-fluid">
-              <h2 class="apropos-footer">À propos</h2>
+              <h2 class="apropos-footer">{{ 'ABOUT' | translate }}</h2>
               <p class="p-apropos-footer">
-                MouridXam est une plateforme dédiée à la diffusion des enseignements de Cheikh Ahmadou Bamba Mbacké, visant à rendre accessibles ses écrits à tous les musulmans. Notre mission est de créer une expérience d'apprentissage interactive et structurée pour tous, quel que soit leur niveau de connaissance ou leur situation géographique.
+                {{ 'ABOUT_DESCRIPTION' | translate }}
               </p>
             </a>
           </div>
@@ -86,7 +86,7 @@
         </div>
         <div class="footer-content-column">
           <div class="footer-menu">
-            <h2 class="footer-menu-name"> Liens vers les réseaux sociaux :</h2>
+            <h2 class="footer-menu-name"> {{ 'SOCIAL_MEDIA_LINKS' | translate }} :</h2>
             <ul id="menu-company" class="footer-menu-list">
               <li class="menu-item menu-item-type-post_type menu-item-object-page">
                 <a href="#">Youtube</a>
@@ -101,13 +101,13 @@
         </div>
         <div class="footer-content-column">
           <div class="footer-menu">
-            <h2 class="footer-menu-name"> Contact</h2>
+            <h2 class="footer-menu-name"> {{ 'CONTACT' | translate }}</h2>
             <ul id="menu-quick-links" class="footer-menu-list">
               <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                <a target="_blank" rel="noopener noreferrer" href="#">{{'Email : mouridEdu@gmail.com'}} </a>
+                <a target="_blank" rel="noopener noreferrer" href="#">{{ 'EMAIL' | translate }} </a>
               </li>
               <li class="menu-item menu-item-type-custom menu-item-object-custom">
-                <a target="_blank" rel="noopener noreferrer" href="#">Tél : +221 76 614 99 38</a>
+                <a target="_blank" rel="noopener noreferrer" href="#">{{ 'PHONE' | translate }}</a>
               </li>
             </ul>
           </div>

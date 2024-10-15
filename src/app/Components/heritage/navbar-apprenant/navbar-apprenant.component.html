@@ -25,15 +25,28 @@
 
         <div class="offcanvas-body">
           <ul class="navbar-nav">
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" id="languageDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  <span><i class="fa-solid fa-globe fa-xl" style="color: #FFD233;"></i></span> {{ 'Langues' | translate }}
+              </a>
+              <ul class="dropdown-menu custom-dropdown fade" aria-labelledby="languageDropdown">
+                  <li><a class="dropdown-item" (click)="useLanguage('wo')" routerLinkActive="active-link">{{ 'Wolof' | translate }}</a></li>
+                  <li><a class="dropdown-item" (click)="useLanguage('fr')" routerLinkActive="active-link">{{ 'Français' | translate }}</a></li>
+                  <li><a class="dropdown-item" (click)="useLanguage('en')" routerLinkActive="active-link">{{ 'English' | translate }}</a></li>
+                  <li><a class="dropdown-item" (click)="useLanguage('ar')" routerLinkActive="active-link">{{ 'العربية' | translate }}</a></li>
+              </ul>
+          </li>
+          
+            
             <li class="nav-item">
-              <a class="nav-link active"  (click)="navigateToAccueil()" routerLink="/accueil" routerLinkActive="active-link" aria-current="page">Accueil</a>
+              <a class="nav-link active"  (click)="navigateToAccueil()" routerLink="/accueil" routerLinkActive="active-link" aria-current="page">{{ 'Accueil' | translate }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page"  (click)="navigateToHistorique()" routerLinkActive="active-link">Historique</a>
+              <a class="nav-link active" aria-current="page"  (click)="navigateToHistorique()" routerLinkActive="active-link">{{ 'Historique' | translate }}</a>
             </li>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-               Catégories
+                {{ 'Catégories' | translate }}
               </a>
               <ul class="dropdown-menu custom-dropdown fade">
                 <li><a (click)="onCategoryClick(categorie.id!)"  class="dropdown-item"  *ngFor="let categorie of tabCategorie; trackBy: trackByCategorieId" routerLinkActive="active-link">{{categorie.name}}</a></li>
@@ -44,7 +57,7 @@
                   <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
                       <path d="M2.44444 22C1.77222 22 1.19696 21.7609 0.718667 21.2826C0.24037 20.8043 0.000814815 20.2286 0 19.5556V2.44444C0 1.77222 0.239556 1.19696 0.718667 0.718667C1.19778 0.24037 1.77304 0.000814815 2.44444 0H11V2.44444H2.44444V19.5556H11V22H2.44444ZM15.8889 17.1111L14.2083 15.3389L17.325 12.2222H7.33333V9.77778H17.325L14.2083 6.66111L15.8889 4.88889L22 11L15.8889 17.1111Z" fill="#FFD233"/>
                     </svg>
-                    Connexion
+                    {{ 'Connexion' | translate }}
               </button>
             </li>
             <li class="nav-item dropdown connexionIcone" *ngIf="userConnected">
@@ -63,9 +76,9 @@
                 <span class="ms-2">{{ userConnected.name }}</span>
               </a>
               <ul class="dropdown-menu custom-dropdown">
-                <li><a class="dropdown-item" (click)="openEditProfileModal()">Modifier profil</a></li>
+                <li><a class="dropdown-item" (click)="openEditProfileModal()">{{ 'Modifier profil' | translate }}</a></li>
                 <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" (click)="logout()">Déconnexion</a></li>
+                <li><a class="dropdown-item" (click)="logout()">{{ 'Déconnexion' | translate }}</a></li>
               </ul>
             </li>
           </ul>

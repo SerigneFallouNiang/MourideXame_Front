@@ -34,7 +34,7 @@
 <h1 class="categorie-titre">Xassidas</h1>
 <section class="liste-xassidas">
    <!--  section liste livre  -->
-    <div *ngIf="isListView"  class="raccourcis">
+    <div  *ngIf="(isDesktop && isListView) || (!isDesktop && !isListView)"   class="raccourcis">
       <!-- <h2 class="titre-h2">Xassidaaaa</h2> -->
       <a (click)="goToAccueil()" class="buttonRetournRaccoursis">
         <svg xmlns="http://www.w3.org/2000/svg" width="27" height="24" viewBox="0 0 24 21" fill="none">
@@ -60,7 +60,7 @@
     <!-- fin section liste livre  -->
 
     <!--  section card livre  -->
-    <div  *ngIf="(isDesktop && isListView) || (!isDesktop && !isListView)"  class="card-xassidas">
+    <div *ngIf="isListView" class="card-xassidas">
       <h1 class="categorieName">{{categoryName}}</h1>
 
   <div class="container container-fluid px-4">
