@@ -6,12 +6,12 @@ import { BookService } from '../../../Services/book.service';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { FormsModule } from '@angular/forms';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-xassidas-liste',
   standalone: true,
-  imports: [CommonModule,NavbarApprenantComponent,FormsModule],
+  imports: [CommonModule,NavbarApprenantComponent,FormsModule, TranslateModule],
   templateUrl: './historique.component.html',
   styleUrl: './historique.component.css'
 })
@@ -53,8 +53,15 @@ searchTerm: string = '';
     private route: ActivatedRoute,
     private bookService: BookService,
     private router:Router,
-    private breakpointObserver: BreakpointObserver
-  ) {}
+    private breakpointObserver: BreakpointObserver,
+    private translate: TranslateService
+  ) {
+
+  }
+
+  useLanguage(language: string): void {
+    this.translate.use(language);
+  }
 
   ngOnInit() {
     // this.route.params.subscribe(params => {

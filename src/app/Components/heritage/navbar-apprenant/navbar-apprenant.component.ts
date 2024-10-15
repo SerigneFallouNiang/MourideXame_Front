@@ -7,11 +7,12 @@ import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { TranslateModule, TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-navbar-apprenant',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule,TranslateModule],
   templateUrl: './navbar-apprenant.component.html',
   styleUrl: './navbar-apprenant.component.css'
 })
@@ -32,8 +33,14 @@ tabCategorie: ModelCategorie[] = [];
   constructor(
     private categorieService: CategorieService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService,
+    private translate: TranslateService
   ) {
+  }
+
+
+  useLanguage(language: string): void {
+    this.translate.use(language);
   }
 
   ngOnInit(): void {
@@ -52,11 +59,13 @@ closeEditProfileModal() {
 
 // Charger les informations de l'utilisateur
 // Charger les informations de l'utilisateur
-loadUserInfo() {
+ // Charger les informations de l'utilisateur
+ loadUserInfo() {
   if (typeof window !== 'undefined' && localStorage.getItem('authUser')) {
     const infos = JSON.parse(localStorage.getItem('authUser') || "{}");
     if (infos && infos.user) {
       this.userConnected = infos.user;
+      this.useLanguage(this.userConnected?.locale!);
     } else {
       this.userConnected = null;
     }

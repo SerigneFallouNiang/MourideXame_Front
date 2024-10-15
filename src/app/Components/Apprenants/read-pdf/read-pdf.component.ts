@@ -1,5 +1,5 @@
 // import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { ChapitreService } from '../../../Services/chapitre.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
@@ -14,7 +14,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 @Component({
   selector: 'app-read-pdf',
   standalone: true,
-  imports: [CommonModule,NavbarApprenantComponent,FormsModule,ChaptersListComponent],
+  imports: [CommonModule,NavbarApprenantComponent,FormsModule,ChaptersListComponent, RouterLink],
   templateUrl: './read-pdf.component.html',
   styleUrl: './read-pdf.component.css'
 })
@@ -220,9 +220,9 @@ export class ReadPDFComponent implements OnInit {
 // si aucun fichier n'est selectionner par un utilisateur 
   resetSelection() {
     this.selectedFichier = false;
-    this.selectedChapter = null;
-    this.selectedQuiz = null;
-    this.pdfUrl = null;
+    this.selectedChapter = false;
+    this.selectedQuiz = false;
+    this.pdfUrl = false;
   }
 
    // Fonction de recherche pour filtrer les chapitre
@@ -235,6 +235,9 @@ export class ReadPDFComponent implements OnInit {
   
   //fonction pour le retour précédé
   goBack(): void {
+    
+    this.resetSelection();
+    this.showChapterContent = false;
     this.location.back();
   }
   
