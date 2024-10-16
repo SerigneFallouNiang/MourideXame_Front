@@ -1,6 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { apiUrl } from './apiUrl';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +18,10 @@ export class QuizzService {
 
   submitQuizz(quizId: string | null, answers: any) {
     return this.http.post(`${apiUrl}/quiz/submit/${quizId}`, { answers });
+  }
+
+  getPassedQuiz(quizId: string): Observable<any> {
+    return this.http.get(`${apiUrl}/quiz/passed/${quizId}`);
   }
   
 }

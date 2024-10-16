@@ -664,10 +664,44 @@ ul li a {
         
         
         <!-- fin test quiz  -->
+
+  <!-- Affichage des résultats du quiz passé -->
+  <div *ngIf="passedQuizResult">
+    <h2>Résultats du quiz précédent</h2>
+    <p>Score: {{ passedQuizResult.score }}%</p>
+    <p>Statut: {{ passedQuizResult.is_passed ? 'Réussi' : 'Échoué' }}</p>
+    
+    <div *ngFor="let result of passedQuizResult.detailedResults">
+      <h3>{{ result.question.text }}</h3>
+      <ul>
+        <li *ngFor="let answer of result.answers" 
+            [ngClass]="{
+              'correct': answer.is_correct,
+              'incorrect': !answer.is_correct && answer.user_selected,
+              'selected': answer.user_selected
+            }">
+          {{ answer.text }}
+          <span *ngIf="answer.user_selected"> (Votre réponse)</span>
+          <span *ngIf="answer.is_correct"> (Bonne réponse)</span>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- Bouton pour recharger le quiz passé -->
+  <button *ngIf="!passedQuizResult" (click)="loadPassedQuizResult(quiz.id)">Voir les résultats précédents</button>
+  
+  <!-- Bouton pour revenir au quiz actuel -->
+  <button *ngIf="passedQuizResult" (click)="passedQuizResult = null">Retour au quiz actuel</button>
+<!-- </div>
+</div> -->
       </div>
 </div>
 </div>
 </div>
+
+
+
 }
    
 </section>

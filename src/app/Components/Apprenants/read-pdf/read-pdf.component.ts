@@ -31,6 +31,8 @@ export class ReadPDFComponent implements OnInit {
   pdfUrl: SafeResourceUrl | null = null;
   bookId: any;
   errorMessage: string = '';
+  passedQuizResult: any = null;
+
 
   isMobile: boolean = false;
   showChapterContent: boolean = false;
@@ -364,5 +366,19 @@ selectAnswer(questionId: number, answerId: number) {
       } else {
         console.error('No quiz selected or invalid quiz ID');
       }
+    }
+
+
+
+    // pour récupérer les information d un quiz déja passer 
+    loadPassedQuizResult(quizId: string) {
+      this.quizzservice.getPassedQuiz(quizId).subscribe(
+        (result: any) => {
+          this.passedQuizResult = result;
+        },
+        (error: any) => {
+          console.error('Error loading passed quiz result', error);
+        }
+      );
     }
 }
