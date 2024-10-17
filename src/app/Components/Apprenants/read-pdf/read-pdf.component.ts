@@ -10,6 +10,7 @@ import { ChaptersListComponent } from '../../heritage/chapters-list/chapters-lis
 import { QuizzService } from '../../../Services/quizz.service';
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
+import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({
   selector: 'app-read-pdf',
@@ -318,9 +319,9 @@ selectAnswer(questionId: number, answerId: number) {
       this.location.back();
     }
 
-    submitQuiz() {
-   
 
+    //pour soumettre le quiz
+    submitQuiz() {
       if (this.selectedQuiz && this.selectedQuiz.id) {
         this.quizzservice.submitQuizz(this.selectedQuiz.id, this.selectedAnswers)
           .subscribe(
@@ -359,10 +360,22 @@ selectAnswer(questionId: number, answerId: number) {
               this.submitted = true;
               this.errorMessage = '';
             },
-            (error: { error: any }) => {
+            //pour récupérer l'erreur depuis l'api
+            (error: HttpErrorResponse) => {
               console.error('Error submitting quiz', error);
+              if(error.status === 403 && error.error && error.message){
+                this.errorMessage = error.error.message;
+              }else{
+                this.errorMessage = 'Une erreur est survenue lors de la soumission du quiz.';
+              }
+               // Faire disparaître le message d'erreur après 5 secondes
+              setTimeout(()=>{
+                this.errorMessage = '';
+              },5000);
             }
           );
+
+          
       } else {
         console.error('No quiz selected or invalid quiz ID');
       }
