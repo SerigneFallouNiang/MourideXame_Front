@@ -26,7 +26,7 @@ export class SignupComponent {
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required, Validators.minLength(4)]),
     password_confirmation: new FormControl('', [Validators.required]),
-    telephone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{10,15}$')]),
+    telephone: new FormControl('', [Validators.required, Validators.pattern('^[0-9]{9,15}$')]),
     locale: new FormControl('fr', [Validators.required]) 
   })
 

@@ -10,15 +10,9 @@
       </a>
 
       <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-        <!-- <div class="offcanvas-header">
-          <h5 class="offcanvas-title" id="offcanvasNavbarLabel">
-              <img src="../../../../assets/images/logo.png" alt="profil">
-          </h5>
-           <p class="nom-profil">Serigne Fallou Niang</p>
-        </div> -->
+
         <div class="offcanvas-header">
           <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close">
-            <!-- <i id="menu-icon" class="fas fa-bars"></i> -->
           </button>
         </div>
 
@@ -30,26 +24,26 @@
                   <span><i class="fa-solid fa-globe fa-xl" style="color: #FFD233;"></i></span> {{ 'Langues' | translate }}
               </a>
               <ul class="dropdown-menu custom-dropdown fade" aria-labelledby="languageDropdown">
-                  <li><a class="dropdown-item" (click)="useLanguage('wo')" routerLinkActive="active-link">{{ 'Wolof' | translate }}</a></li>
-                  <li><a class="dropdown-item" (click)="useLanguage('fr')" routerLinkActive="active-link">{{ 'Français' | translate }}</a></li>
-                  <li><a class="dropdown-item" (click)="useLanguage('en')" routerLinkActive="active-link">{{ 'English' | translate }}</a></li>
-                  <li><a class="dropdown-item" (click)="useLanguage('ar')" routerLinkActive="active-link">{{ 'العربية' | translate }}</a></li>
+                  <li><a class="dropdown-item" (click)="useLanguage('wo')" [class.active-link]="userConnected?.locale === 'wo'">{{ 'Wolof' | translate }}</a></li>
+                  <li><a class="dropdown-item" (click)="useLanguage('fr')" [class.active-link]="userConnected?.locale === 'fr'">{{ 'Français' | translate }}</a></li>
+                  <li><a class="dropdown-item" (click)="useLanguage('en')" [class.active-link]="userConnected?.locale === 'en'">{{ 'English' | translate }}</a></li>
+                  <li><a class="dropdown-item" (click)="useLanguage('ar')" [class.active-link]="userConnected?.locale === 'ar'">{{ 'العربية' | translate }}</a></li>
               </ul>
           </li>
           
             
             <li class="nav-item">
-              <a class="nav-link active"  (click)="navigateToAccueil()" routerLink="/accueil" routerLinkActive="active-link" aria-current="page">{{ 'Accueil' | translate }}</a>
+              <a class="nav-link active" (click)="navigateToAccueil()" routerLink="/accueil" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}" >{{ 'Accueil' | translate }}</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link active" aria-current="page"  (click)="navigateToHistorique()" routerLinkActive="active-link">{{ 'Historique' | translate }}</a>
+              <a class="nav-link active" aria-current="page"   routerLink="/historique"  routerLinkActive="active-link"  [routerLinkActiveOptions]="{exact: true}">{{ 'Historique' | translate }}</a>
             </li>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <a class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">
                 {{ 'Catégories' | translate }}
               </a>
               <ul class="dropdown-menu custom-dropdown fade">
-                <li><a (click)="onCategoryClick(categorie.id!)"  class="dropdown-item"  *ngFor="let categorie of tabCategorie; trackBy: trackByCategorieId" routerLinkActive="active-link">{{categorie.name}}</a></li>
+                <li><a  [routerLink]="['/category', categorie.id!]"  class="dropdown-item"  *ngFor="let categorie of tabCategorie; trackBy: trackByCategorieId" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">{{categorie.name}}</a></li>
               </ul>
             </li>
             <li class="nav-item" *ngIf="!userConnected">
@@ -83,10 +77,6 @@
             </li>
           </ul>
 
-          <!-- <div class="offcanvas-footer">
-             <h2 class="" data-bs-dismiss="offcanvas" >Fermer</h2>
-            </div> -->
-
         </div>
       </div>
     </div>
@@ -94,30 +84,41 @@
 
 
 
-  <!-- Modal de modification de profile -->
-  <div *ngIf="showEditProfileModal && userConnected" class="modal">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h2>Modifier le profil</h2>
-        <button class="close-button" (click)="closeEditProfileModal()">&times;</button>
-      </div>
-      <div class="modal-body">
-        <!-- Profile Form -->
-        <form (ngSubmit)="updateProfile()">
-          <div class="form-group">
-            <label for="name">Nom</label>
+
+  <!-- Modal de modification de profil amélioré -->
+<div *ngIf="showEditProfileModal && userConnected" class="modal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2>Modifier le profil</h2>
+      <button class="close-button" (click)="closeEditProfileModal()">&times;</button>
+    </div>
+    <div class="modal-body">
+      <form (ngSubmit)="updateProfile()" class="profile-form">
+        <div class="form-group">
+          <label for="name">Nom</label>
+          <div class="input-container">
+            <i class="fa fa-user icon"></i>
             <input type="text" [(ngModel)]="userConnected.name" id="name" name="name" required>
           </div>
-          <div class="form-group">
-            <label for="email">Email</label>
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <div class="input-container">
+            <i class="fa fa-envelope icon"></i>
             <input type="email" [(ngModel)]="userConnected.email" id="email" name="email" required>
           </div>
-          <div class="form-group">
-            <label for="telephone">Téléphone</label>
+        </div>
+        <div class="form-group">
+          <label for="telephone">Téléphone</label>
+          <div class="input-container">
+            <i class="fa fa-phone icon"></i>
             <input type="tel" [(ngModel)]="userConnected.telephone" id="telephone" name="telephone">
           </div>
-          <div class="form-group">
-            <label for="locale">Langue</label>
+        </div>
+        <div class="form-group">
+          <label for="locale">Langue</label>
+          <div class="input-container">
+            <i class="fa fa-globe icon"></i>
             <select [(ngModel)]="userConnected.locale" id="locale" name="locale">
               <option value="fr">Français</option>
               <option value="en">Anglais</option>
@@ -125,11 +126,12 @@
               <option value="wo">Wolof</option>
             </select>
           </div>
-          <div class="form-actions">
-            <button type="submit" class="btn-primary">Enregistrer les modifications</button>
-            <button type="button" class="btn-secondary" (click)="closeEditProfileModal()">Annuler</button>
-          </div>
-        </form>
-      </div>
+        </div>
+        <div class="form-actions">
+          <button type="submit" class="btn btn-primary">Enregistrer les modifications</button>
+          <button type="button" class="btn btn-secondary" (click)="closeEditProfileModal()">Annuler</button>
+        </div>
+      </form>
     </div>
   </div>
+</div>

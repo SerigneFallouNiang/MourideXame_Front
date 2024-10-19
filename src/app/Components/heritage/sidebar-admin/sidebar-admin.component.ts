@@ -21,6 +21,11 @@ export class SidebarAdminComponent implements AfterViewInit {
   this.isBrowser = typeof window !== 'undefined' && typeof localStorage !== 'undefined';
 }
 
+ // Add this method to check if a route is active
+ isRouteActive(route: string): boolean {
+  return this.router.isActive(route, true);
+}
+
   ngAfterViewInit() {
     this.initSidebarEvents();
   }

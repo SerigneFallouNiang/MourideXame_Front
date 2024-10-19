@@ -475,6 +475,14 @@ body {
     background: #FFD233;
 }
 
+.nav-link.active-link {
+  color: #2E8B57 !important;
+}
+
+ .nav-link:hover {
+  color: #2E8B57 !important;
+}
+
 .chiller-theme .sidebar-wrapper .sidebar-menu .header-menu span {
     color: #6c7b88;
 }

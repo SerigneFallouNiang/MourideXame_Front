@@ -50,10 +50,10 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a routerLink="/roles">Roles</a>
+                  <a class="nav-link active"  routerLink="/roles" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Roles</a>
                 </li>
                 <li>
-                  <a routerLink="/utilisateurs">Utilisateurs</a>
+                  <a class="nav-link active"  routerLink="/utilisateurs" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Utilisateurs</a>
                 </li>
               </ul>
             </div>
@@ -67,10 +67,10 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a routerLink="/quiz-admin">Quizs</a>
+                  <a class="nav-link active" routerLink="/quiz-admin" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Quizs</a>
                 </li>
                 <li>
-                  <a routerLink="/questions">Questions</a>
+                  <a class="nav-link active" routerLink="/questions" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Questions</a>
                 </li>
                 
               </ul>
@@ -84,13 +84,13 @@
             <div class="sidebar-submenu">
               <ul>
                 <li>
-                  <a routerLink="/categories">Categories</a>
+                  <a class="nav-link active" routerLink="/categories" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Categories</a>
                 </li>
                 <li>
-                  <a routerLink="/livres">Livres</a>
+                  <a class="nav-link active" routerLink="/livres" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Livres</a>
                 </li>
                 <li>
-                  <a routerLink="/chapitres">Chapitres</a>
+                  <a class="nav-link active" routerLink="/chapitres" routerLinkActive="active-link" [routerLinkActiveOptions]="{exact: true}">Chapitres</a>
                 </li>
               </ul>
             </div>
@@ -102,7 +102,7 @@
     <!-- sidebar-content  -->
     <div class="sidebar-footer">
 
-      <a href="#">
+      <a>
         <i class="fa fa-cog"></i>
       </a>
       <a (click)="logout()">
