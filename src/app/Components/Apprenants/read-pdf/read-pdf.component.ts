@@ -34,7 +34,6 @@ export class ReadPDFComponent implements OnInit {
   errorMessage: string = '';
   passedQuizResult: any = null;
 
-
   isMobile: boolean = false;
   showChapterContent: boolean = false;
 
@@ -321,7 +320,80 @@ selectAnswer(questionId: number, answerId: number) {
 
 
     //pour soumettre le quiz
+    // submitQuiz() {
+    //   if (this.selectedQuiz && this.selectedQuiz.id) {
+    //     this.quizzservice.submitQuizz(this.selectedQuiz.id, this.selectedAnswers)
+    //       .subscribe(
+    //         (response: any) => {
+    //           console.log('Quiz submitted successfully', response);
+    //           this.score = response.score;
+    //           this.isPassed = response.isPassed;
+              
+    //           this.questions.forEach((question, index) => {
+    //             const result = response.detailedResults.find((r: any) => r.question.id === question.id);
+    //             if (result) {
+    //               question.is_correct = result.is_correct;
+    //               question.correctAnswer = result.answers.find((ans: any) => ans.is_correct);
+    //             }   // Vérifie si toutes les questions ont une réponse
+    //             if (Object.keys(this.selectedAnswers).length !== this.questions.length) {
+    //               this.errorMessage = 'Veuillez répondre à toutes les questions avant de soumettre le quiz.';
+    //               return; // Stopper la soumission
+    //             }
+    //           });
+              
+
+
+    //           // Vérifie si toutes les questions ont une réponse
+    //           if (Object.keys(this.selectedAnswers).length !== this.questions.length) {
+    //             this.errorMessage = 'Veuillez répondre à toutes les questions avant de soumettre le quiz.';
+              
+    //             // Faire disparaître le message d'erreur après 2 secondes
+    //             setTimeout(() => {
+    //               this.errorMessage = ''; // Réinitialiser le message d'erreur
+    //             }, 3000); // 2000 millisecondes = 2 secondes
+              
+    //             return; // Stopper la soumission
+    //           }
+              
+
+    //           this.submitted = true;
+    //           this.errorMessage = '';
+    //         },
+    //         //pour récupérer l'erreur depuis l'api
+    //         (error: HttpErrorResponse) => {
+    //           console.error('Error submitting quiz', error);
+    //           if(error.status === 403 && error.error && error.message){
+    //             this.errorMessage = error.error.message;
+    //           }else{
+    //             this.errorMessage = 'Une erreur est survenue lors de la soumission du quiz.';
+    //           }
+    //            // Faire disparaître le message d'erreur après 5 secondes
+    //           setTimeout(()=>{
+    //             this.errorMessage = '';
+    //           },5000);
+    //         }
+    //       );
+
+          
+    //   } else {
+    //     console.error('No quiz selected or invalid quiz ID');
+    //   }
+    // }
+
     submitQuiz() {
+      // Vérification en premier avant toute soumission
+      if (Object.keys(this.selectedAnswers).length !== this.questions.length) {
+        this.errorMessage = 'Veuillez répondre à toutes les questions avant de soumettre le quiz.';
+        
+        // Faire disparaître le message d'erreur après 3 secondes
+        setTimeout(() => {
+          this.errorMessage = '';
+        }, 3000);
+        
+        return; // Stopper la soumission
+      }
+    
+      // Si toutes les questions sont répondues, continuer avec la soumission
       if (this.selectedQuiz && this.selectedQuiz.id) {
         this.quizzservice.submitQuizz(this.selectedQuiz.id, this.selectedAnswers)
           .subscribe(
@@ -335,47 +407,24 @@ selectAnswer(questionId: number, answerId: number) {
                 if (result) {
                   question.is_correct = result.is_correct;
                   question.correctAnswer = result.answers.find((ans: any) => ans.is_correct);
-                }   // Vérifie si toutes les questions ont une réponse
-                if (Object.keys(this.selectedAnswers).length !== this.questions.length) {
-                  this.errorMessage = 'Veuillez répondre à toutes les questions avant de soumettre le quiz.';
-                  return; // Stopper la soumission
                 }
               });
-              
-
-
-              // Vérifie si toutes les questions ont une réponse
-              if (Object.keys(this.selectedAnswers).length !== this.questions.length) {
-                this.errorMessage = 'Veuillez répondre à toutes les questions avant de soumettre le quiz.';
-              
-                // Faire disparaître le message d'erreur après 2 secondes
-                setTimeout(() => {
-                  this.errorMessage = ''; // Réinitialiser le message d'erreur
-                }, 3000); // 2000 millisecondes = 2 secondes
-              
-                return; // Stopper la soumission
-              }
-              
-
+    
               this.submitted = true;
               this.errorMessage = '';
             },
-            //pour récupérer l'erreur depuis l'api
             (error: HttpErrorResponse) => {
               console.error('Error submitting quiz', error);
               if(error.status === 403 && error.error && error.message){
                 this.errorMessage = error.error.message;
-              }else{
+              } else {
                 this.errorMessage = 'Une erreur est survenue lors de la soumission du quiz.';
               }
-               // Faire disparaître le message d'erreur après 5 secondes
-              setTimeout(()=>{
+              setTimeout(() => {
                 this.errorMessage = '';
-              },5000);
+              }, 5000);
             }
           );
-
-          
       } else {
         console.error('No quiz selected or invalid quiz ID');
       }
@@ -394,4 +443,5 @@ selectAnswer(questionId: number, answerId: number) {
         }
       );
     }
+  
 }

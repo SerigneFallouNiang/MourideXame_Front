@@ -42,7 +42,7 @@
           overflow: hidden; 
           position: relative;
           width: 100%;
-          height: 43.75rem;
+          height: 40.75rem;
       }
       
       .wave-top,
@@ -89,7 +89,7 @@
         bottom: 0;
         left: 0;
         right: 0;
-        background: rgba(255, 255, 255, 0.8);
+        background: rgba(255, 255, 255, 0.7);
         padding: 0.9375rem;
         text-align: center;
         transition: opacity 0.3s ease-in-out;
@@ -549,9 +549,14 @@
       margin-top: 5.9375rem; /* 95px */
   }
 
-  .pr-mobile {
-      display: none;
-  }
+
+}
+
+  @media (min-width: 1200px) {
+
+    .pr-mobile {
+        display: none;
+    }
 }
 
 /* fin du footer */
@@ -569,14 +574,6 @@
 /* Media Queries pour les appareils mobiles */
 @media screen and (max-width: 48rem) { /* 768px */
 
-  .pr-web {
-      display: none;
-  }
-
-  .pr-mobile {
-      display: block;
-      margin-top: 2.5rem; /* 40px */
-  }
 
   /* bg de image du contenu */
   body {
@@ -723,7 +720,36 @@
   }
 }
 
-      
+ 
+@media screen and (max-width: 1300px) { /* 768px */
+
+  .pr-web {
+      display: none;
+  }
+
+  .pr-mobile {
+      display: block;
+      margin-top: 2.5rem; /* 40px */
+  }
+}
+
+@media (min-width: 768px) and (max-width: 1300px) {
+  .image-contenu img{
+    width: 20.8125rem;
+    height: 25.75rem;
+    flex-shrink: 0;
+    border-radius: 1.5625rem;
+  /* background: url("../../../../assets/images/xassida-removebg.png") lightgray 50% / cover no-repeat; */
+    }
+
+    .wave-container {
+      overflow: hidden; 
+      position: relative;
+      width: 100%;
+      height: 25.75rem;
+  }
+}
+
       /* _____________________________________________fin_partie_responsive___________________________________________________________ */
      
      
