@@ -33,6 +33,8 @@ messageImage: string = "Aucune image pour ce categorie";
 // Variable pour le terme de recherche
 searchTerm: string = ''; 
 
+showEmptyHistoryAlert: boolean = false;
+
  // Pagination variables
  currentPage: number = 1;
  itemsPerPage: number = 8;
@@ -105,22 +107,52 @@ searchTerm: string = '';
         this.books = data.books;
         this.filteredBooks = this.books;
         this.totalItems = this.books.length;
-        this.applyPagination();
-
-        // Mettre à jour les images des livres
-        this.books.forEach(book => {
-          if (book.image) {
-            book.image = `${apiUrlStockage}/${book.image}`;
-          } else {
-            this.messageImage = "Aucune image disponible";
-          }
-        });
+        
+        // Vérifier si l'historique est vide
+        if (!this.books || this.books.length === 0) {
+          this.showEmptyHistoryAlert = true;
+        } else {
+          this.showEmptyHistoryAlert = false;
+          // Mettre à jour les images des livres
+          this.books.forEach(book => {
+            if (book.image) {
+              book.image = `${apiUrlStockage}/${book.image}`;
+            } else {
+              this.messageImage = "Aucune image disponible";
+            }
+          });
+          this.applyPagination();
+        }
       },
       error => {
         console.error('Erreur lors de la récupération des livres:', error);
+        this.showEmptyHistoryAlert = true;
       }
     );
   }
+
+  // loadBooks() {
+  //   this.bookService.getHistoryUser().subscribe(
+  //     (data: any) => {
+  //       this.books = data.books;
+  //       this.filteredBooks = this.books;
+  //       this.totalItems = this.books.length;
+  //       this.applyPagination();
+
+  //       // Mettre à jour les images des livres
+  //       this.books.forEach(book => {
+  //         if (book.image) {
+  //           book.image = `${apiUrlStockage}/${book.image}`;
+  //         } else {
+  //           this.messageImage = "Aucune image disponible";
+  //         }
+  //       });
+  //     },
+  //     error => {
+  //       console.error('Erreur lors de la récupération des livres:', error);
+  //     }
+  //   );
+  // }
 
   //les methode de la pagination
   applyPagination() {

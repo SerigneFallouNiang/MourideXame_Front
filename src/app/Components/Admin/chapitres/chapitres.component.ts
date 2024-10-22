@@ -21,6 +21,7 @@ import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 export class ChapitreAdminComponent implements OnInit {
   messageImage: string = "Aucune image pour ce livre";
   chapitres: any[] = [];
+  videoUrl: string | null = null;
 
   pageChapitres: any[] = [];
 
@@ -44,13 +45,10 @@ export class ChapitreAdminComponent implements OnInit {
         this.chapitres = data.Chapitre || [];
         this.totalItems = this.chapitres.length;
         this.applyPagination();
-        this.chapitres.forEach(chapitre => {
-          if (chapitre.video) {
-            chapitre.video = `${apiUrlStockage}/${chapitre.video}`;
-          } else {
-            chapitre.video = this.messageImage;
-          }
-        });
+   
+        if (data.Chapitre.video_path) {
+          this.videoUrl = `${apiUrlStockage}/${data.Chapitre.video_path}`;
+         }
       },
       error => {
         console.error('Erreur lors de la récupération des chapitres:', error);

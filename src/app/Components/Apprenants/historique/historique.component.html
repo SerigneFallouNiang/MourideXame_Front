@@ -526,6 +526,7 @@ text-decoration: none;
     <app-navbar-apprenant></app-navbar-apprenant>
     <!-- heritage du navbar end  -->
 <section class="container-all">
+
   <div class="container-button-return-toggle">
 
   <div class="retourButton">
@@ -549,8 +550,9 @@ text-decoration: none;
     </svg>
   </button>
 </div>
+
 <h1 class="categorie-titre">Xassidas</h1>
-<section class="liste-xassidas">
+<section class="liste-xassidas" *ngIf="!showEmptyHistoryAlert">
    <!--  section liste livre  -->
     <div *ngIf="isListView"  class="raccourcis">
       <!-- <h2 class="titre-h2">Xassidaaaa</h2> -->
@@ -631,5 +633,22 @@ text-decoration: none;
   </div>
 </section>
 
+  
 </section>
 
+  <!-- Alerte pour historique vide -->
+  <div *ngIf="showEmptyHistoryAlert" class="alert alert-info" 
+  style="
+    margin: 20px;
+    padding: 20px;
+    background-color: #FFD233;
+    color: #2E8B57;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Playfair Display';
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+<h4 style="margin-bottom: 10px; font-weight: bold;">Aucun historique de lecture disponible</h4>
+<p style="font-size: 16px;">Pour avoir accès à votre historique de lecture, commencez par passer les quiz disponibles et lisez des livres !</p>
+</div>
+
+<!-- fin message alert  -->
