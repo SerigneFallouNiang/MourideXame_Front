@@ -111,32 +111,6 @@ export class UtilisateurComponent implements OnInit {
       this.applyPagination();
     }
   }
-  // updateRole(userId: string, selectedRoleId: string) {
-  //   if (!userId || !selectedRoleId) {
-  //     console.error('UserId ou RoleId manquant');
-  //     return;
-  //   }
-
-  //   this.roleService.updateUserRole(userId, selectedRoleId).subscribe({
-  //     next: (response) => {
-  //       console.log('Rôle mis à jour avec succès', response);
-  //       // Update the local user data with the new role
-  //       const user = this.utilisateurs.find(u => u.id === userId);
-  //       if (user && response.user.roles) {
-  //         user.roles = response.user.roles;
-  //       }
-  //     },
-  //     error: (err) => {
-  //       console.error('Erreur lors de la mise à jour du rôle :', err);
-  //       // Reset the select to the previous value in case of error
-  //       const user = this.utilisateurs.find(u => u.id === userId);
-  //       if (user) {
-  //         user.selectedRoleId = user.roles[0]?.id;
-  //       }
-  //     }
-  //   });
-  // }
-
   updateRole(userId: string, selectedRoleId: string) {
     if (!userId || !selectedRoleId) {
       console.error('UserId ou RoleId manquant');
@@ -146,21 +120,15 @@ export class UtilisateurComponent implements OnInit {
     this.roleService.updateUserRole(userId, selectedRoleId).subscribe({
       next: (response) => {
         console.log('Rôle mis à jour avec succès', response);
-        
-        // Mettre à jour l'interface utilisateur
-        const userIndex = this.utilisateurs.findIndex(u => u.id === userId);
-        if (userIndex !== -1 && response.user?.roles) {
-          this.utilisateurs[userIndex].roles = response.user.roles;
-          // Mettre à jour également pageQuestions si nécessaire
-          const pageUserIndex = this.pageQuestions.findIndex(u => u.id === userId);
-          if (pageUserIndex !== -1) {
-            this.pageQuestions[pageUserIndex].roles = response.user.roles;
-          }
+        // Update the local user data with the new role
+        const user = this.utilisateurs.find(u => u.id === userId);
+        if (user && response.user.roles) {
+          user.roles = response.user.roles;
         }
       },
       error: (err) => {
         console.error('Erreur lors de la mise à jour du rôle :', err);
-        // Réinitialiser la sélection en cas d'erreur
+        // Reset the select to the previous value in case of error
         const user = this.utilisateurs.find(u => u.id === userId);
         if (user) {
           user.selectedRoleId = user.roles[0]?.id;
