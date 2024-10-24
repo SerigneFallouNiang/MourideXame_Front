@@ -11,11 +11,12 @@ import { QuizzService } from '../../../Services/quizz.service';
 import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-read-pdf',
   standalone: true,
-  imports: [CommonModule,NavbarApprenantComponent,FormsModule,ChaptersListComponent, RouterLink],
+  imports: [CommonModule,NavbarApprenantComponent,FormsModule,ChaptersListComponent, RouterLink, TranslateModule],
   templateUrl: './read-pdf.component.html',
   styleUrl: './read-pdf.component.css'
 })

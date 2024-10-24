@@ -16,5 +16,14 @@
     "SOCIAL_MEDIA_LINKS": "روابط إلى الشبكات الاجتماعية:",
     "CONTACT": "اتصال",
     "EMAIL": "بريد إلكتروني : mouridEdu@gmail.com",
-    "PHONE": "هاتف:+221 76 614 99 38"
+    "PHONE": "هاتف:+221 76 614 99 38",
+    "READING_HISTORY_UNAVAILABLE_TITLE": "سجل القراءة الخاص بك غير متوفر حاليا.",
+    "READING_HISTORY_UNAVAILABLE_DESCRIPTION": "للوصول إلى سجل القراءة الخاص بك، أكمل الاختبارات المقدمة في نهاية كل فصل من الكتاب!",
+     "PLACEHOLDER_SEARCH_BOOK": "ابحث عن كتاب",
+     "PDF_DOCUMENT": "وثيقة PDF",
+     "SEE_PREVIOUS_RESULTS": "عرض النتائج السابقة",
+    "RETAKE_QUIZ": "إعادة الاختبار",
+    "VIEW_QUIZ": "عرض الاختبار",
+    "PREVIOUS_QUIZ_RESULTS": "نتائج المسابقة السابقة"
+
 }

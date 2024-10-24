@@ -30,7 +30,7 @@
     <div  class="col-3 bg-light raccourcis" [class.hidden-mobile]="showChapterContent && isMobile">
        <div class="wrap">
    <div class="search">
-      <input type="text" class="searchTerm" placeholder="Rechercher un chapitre"  [(ngModel)]="searchTerm"  (input)="searchBooks()">
+      <input type="text" class="searchTerm" placeholder="{{ 'PLACEHOLDER_SEARCH_BOOK' | translate }}"  [(ngModel)]="searchTerm"  (input)="searchBooks()">
       <button type="submit" class="searchButton">
         <i class="fa fa-search"></i>
      </button>
@@ -40,7 +40,7 @@
         <ul>
           @if (chapters.length > 0 && chapters[0].Fichier) {
             <li>
-              <a (click)="selectFichier(chapters[0].Fichier)">Document PDF</a>
+              <a (click)="selectFichier(chapters[0].Fichier)">{{ 'PDF_DOCUMENT' | translate }}</a>
             </li>
           }
           <li *ngFor="let chapter of filteredChapiters" [ngClass]="{'selected-chapter': chapter.isSelected, 'lu-chapter': chapter.lue, 'chapter': !chapter.lue,'chapitre-terminer': chapter.terminer == 1, 'chapitre-fausser': chapter.terminer == 2}">
@@ -82,7 +82,7 @@
       </div>
       <!-- <button class="button-quiz"  (click)="startQuiz(selectedChapter.id!)">Commencer le Quiz</button> -->
       <button class="button-quiz" *ngIf="selectedChapter?.id" (click)="checkAndStartQuiz(selectedChapter.id)">
-        Voir Quiz
+        {{ 'VIEW_QUIZ' | translate }}
       </button>
       
     </div>
@@ -99,7 +99,7 @@
 
          <!-- Affichage des résultats du quiz passé -->
   <div *ngIf="passedQuizResult">
-    <h2>Résultats du quiz précédent</h2>
+    <h2>{{ 'PREVIOUS_QUIZ_RESULTS' | translate }}</h2>
     <h3>Score: {{ passedQuizResult.score }}%</h3>
     <p>Statut: {{ passedQuizResult.is_passed ? "Tu as réussi !🎉" : "Tu n'as pas réussi. Réessaie !" }}</p>
     
@@ -126,13 +126,13 @@
   <button *ngIf="hasPassedQuiz && !passedQuizResult" 
   (click)="loadPassedQuizResult(quiz.id)" 
   class="btn btn-success mb-3 mt-3">
-Voir les résultats précédents
+  {{ 'SEE_PREVIOUS_RESULTS' | translate }}
 </button>
 
 
 <div class="d-flex justify-content-center">
   <!-- Bouton pour revenir au quiz actuel -->
-  <button *ngIf="passedQuizResult" (click)="passedQuizResult = null" class="btn btn-warning mb-3">Refaire le Quiz</button>
+  <button *ngIf="passedQuizResult" (click)="passedQuizResult = null" class="btn btn-warning mb-3"> {{ 'RETAKE_QUIZ' | translate }}</button>
 </div>
 
         
