@@ -37,6 +37,8 @@ export class ReadPDFComponent implements OnInit {
   isMobile: boolean = false;
   showChapterContent: boolean = false;
 
+  hasPassedQuiz: boolean = false;
+
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.checkIfMobile();
@@ -65,6 +67,7 @@ export class ReadPDFComponent implements OnInit {
       const chapterId = params['id'];
       if (chapterId) {
         this.startQuiz(chapterId);
+        this.checkForPreviousQuiz();
       } else {
         console.error('Aucun ID de chapitre trouvé');
       }
@@ -77,6 +80,22 @@ export class ReadPDFComponent implements OnInit {
   checkIfMobile() {
     this.isMobile = window.innerWidth <= 768;
   }
+//fonction pour vérifier déja l'existance du quiz déja passer
+checkForPreviousQuiz() {
+  if (this.selectedQuiz && this.selectedQuiz.id) {
+    this.quizzservice.getPassedQuiz(this.selectedQuiz.id).subscribe(
+      (result: any) => {
+        this.hasPassedQuiz = result !== null && Object.keys(result).length > 0;
+      },
+      (error: any) => {
+        console.error('Error checking for passed quiz:', error);
+        this.hasPassedQuiz = false;
+      }
+    );
+  }
+}
+
+
 
 
   loadChapters(bookId: string) {
@@ -280,6 +299,7 @@ quiz: any;
     this.score = 0;
     this.isPassed = false;
     this.selectedAnswers = [];
+    this.hasPassedQuiz = false;
   
     if (chapterId) {
       this.quizzservice.getQuizz(chapterId).subscribe(
@@ -287,6 +307,8 @@ quiz: any;
           this.quiz = data.quiz;
           this.questions = data.questions;
           this.selectedQuiz = this.quiz;
+
+          this.checkForPreviousQuiz();
         },
         (error) => {
           console.error('Erreur lors de la récupération du quiz:', error);
@@ -433,15 +455,28 @@ selectAnswer(questionId: number, answerId: number) {
 
 
     // pour récupérer les information d un quiz déja passer 
+    // loadPassedQuizResult(quizId: string) {
+    //   this.quizzservice.getPassedQuiz(quizId).subscribe(
+    //     (result: any) => {
+    //       this.passedQuizResult = result;
+    //     },
+    //     (error: any) => {
+    //       console.error('Error loading passed quiz result', error);
+    //     }
+    //   );
+    // }
     loadPassedQuizResult(quizId: string) {
-      this.quizzservice.getPassedQuiz(quizId).subscribe(
-        (result: any) => {
-          this.passedQuizResult = result;
-        },
-        (error: any) => {
-          console.error('Error loading passed quiz result', error);
-        }
-      );
+      if (this.hasPassedQuiz) {
+        this.quizzservice.getPassedQuiz(quizId).subscribe(
+          (result: any) => {
+            this.passedQuizResult = result;
+          },
+          (error: any) => {
+            console.error('Error loading passed quiz result', error);
+            this.passedQuizResult = null;
+          }
+        );
+      }
     }
   
 }

@@ -122,7 +122,13 @@
   </div>
 
   <!-- Bouton pour recharger le quiz passé -->
-  <button *ngIf="!passedQuizResult" (click)="loadPassedQuizResult(quiz.id)" class="btn btn-success mb-3 mt-3">Voir les résultats précédents</button>
+  <!-- <button *ngIf="!passedQuizResult" (click)="loadPassedQuizResult(quiz.id)" class="btn btn-success mb-3 mt-3">Voir les résultats précédents</button> -->
+  <button *ngIf="hasPassedQuiz && !passedQuizResult" 
+  (click)="loadPassedQuizResult(quiz.id)" 
+  class="btn btn-success mb-3 mt-3">
+Voir les résultats précédents
+</button>
+
 
 <div class="d-flex justify-content-center">
   <!-- Bouton pour revenir au quiz actuel -->
