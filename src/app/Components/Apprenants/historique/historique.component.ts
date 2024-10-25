@@ -1,5 +1,5 @@
-import { CommonModule } from '@angular/common';
-import { Component, NgModule, OnInit } from '@angular/core';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { Component, Inject, NgModule, OnInit, PLATFORM_ID } from '@angular/core';
 import { NavbarApprenantComponent } from '../../heritage/navbar-apprenant/navbar-apprenant.component';
 import { ActivatedRoute, Router } from '@angular/router';
 import { BookService } from '../../../Services/book.service';
@@ -52,6 +52,7 @@ showEmptyHistoryAlert: boolean = false;
 
 
   constructor(
+    @Inject(PLATFORM_ID) private platformId: Object,
     private route: ActivatedRoute,
     private bookService: BookService,
     private router:Router,
@@ -79,16 +80,20 @@ showEmptyHistoryAlert: boolean = false;
     .subscribe(result => {
       this.isMobile = result.matches;
     });
+    if (isPlatformBrowser(this.platformId)) {
     this.checkIfDesktop();
     window.addEventListener('resize', () => this.checkIfDesktop());
     //nombreElementPagination
     this.paginateNomber();
     window.addEventListener('resize', () => this.paginateNomber());
   }
+}
 
   checkIfDesktop() {
+    if (isPlatformBrowser(this.platformId)) {
     this.isDesktop = window.innerWidth > 1024;
   }
+}
 
   paginateNomber() {
     //   this.isDesktop = window.innerWidth > 1024;
@@ -131,6 +136,12 @@ showEmptyHistoryAlert: boolean = false;
     );
   }
 
+  ngOnDestroy() {
+    if (isPlatformBrowser(this.platformId)) {
+      window.removeEventListener('resize', () => this.checkIfDesktop());
+      window.removeEventListener('resize', () => this.paginateNomber());
+    }
+  }
   // loadBooks() {
   //   this.bookService.getHistoryUser().subscribe(
   //     (data: any) => {
