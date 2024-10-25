@@ -1,9 +1,10 @@
 body {
     background-color: #1e5631;
-    display: flex;
-    justify-content: center;
+    /* display: flex; */
+    /* justify-content: center;
     align-items: center;
-    /* height: 100vh; */
+    text-align: center; */
+   
 }
 
 .login-card {

@@ -111,9 +111,7 @@ export class UtilisateurComponent implements OnInit {
       this.applyPagination();
     }
   }
-
-   // Mettre à jour le rôle d'un utilisateur
-   updateRole(userId: string, selectedRoleId: string): void {
+  updateRole(userId: string, selectedRoleId: string) {
     if (!userId || !selectedRoleId) {
       console.error('UserId ou RoleId manquant');
       return;
@@ -122,14 +120,41 @@ export class UtilisateurComponent implements OnInit {
     this.roleService.updateUserRole(userId, selectedRoleId).subscribe({
       next: (response) => {
         console.log('Rôle mis à jour avec succès', response);
-        // Optionnel : rafraîchir la liste des utilisateurs
-        this.fetchUtilisateurs();
+        // Update the local user data with the new role
+        const user = this.utilisateurs.find(u => u.id === userId);
+        if (user && response.user.roles) {
+          user.roles = response.user.roles;
+        }
       },
       error: (err) => {
         console.error('Erreur lors de la mise à jour du rôle :', err);
+        // Reset the select to the previous value in case of error
+        const user = this.utilisateurs.find(u => u.id === userId);
+        if (user) {
+          user.selectedRoleId = user.roles[0]?.id;
+        }
       }
     });
   }
+
+   // Mettre à jour le rôle d'un utilisateur
+  //  updateRole(userId: string, selectedRoleId: string): void {
+  //   if (!userId || !selectedRoleId) {
+  //     console.error('UserId ou RoleId manquant');
+  //     return;
+  //   }
+
+  //   this.roleService.updateUserRole(userId, selectedRoleId).subscribe({
+  //     next: (response) => {
+  //       console.log('Rôle mis à jour avec succès', response);
+  //       // Optionnel : rafraîchir la liste des utilisateurs
+  //       this.fetchUtilisateurs();
+  //     },
+  //     error: (err) => {
+  //       console.error('Erreur lors de la mise à jour du rôle :', err);
+  //     }
+  //   });
+  // }
 
 //popup détail utilisateur
 showUserHistory(userId: string) {

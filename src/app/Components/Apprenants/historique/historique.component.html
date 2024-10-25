@@ -1,531 +1,10 @@
-    <style>
-   .recherche{
-        width: 266px;
-        height: 50px;
-        flex-shrink: 0;
-        border-radius: 10px;
-        border: 2px solid var(--griy, #D9D9D9);
-        background: #FFF;
-   }
-
-   .listes{
-    width: 100%;
-    height: auto;
-    flex-shrink: 0;
-
-    border-radius: 10px;
-    border: 1px solid var(--griy, #D9D9D9);
-    background: #FFF;
-    margin-top: 10px;
-   }
-
-   /* listes de raccourcis  */
-   /* .listes ul li {
-    color: #000;
-    font-family: "Playfair Display";
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 30px;
-    text-decoration: none;
-    list-style: none;
-   } */
-
- 
-
-.listes li {
-  /* background-color: #ccc; */
-  background-color: #FFD233;
-  border-radius: .5em;
-  transition: all .2s;
-}
-
-.listes ul li a {
-  color: #2E8B57;
-
-/* H1,H2,H3 : titre */
-font-family: "Playfair Display";
-font-size: 18px;
-font-style: normal;
-font-weight: 400;
-line-height: normal;
-text-decoration: none;
-}
-.listes li + li {
-  margin-top: 1em;
-}
-
-.listes li > a {
-  display: block;
-  padding: .5em;
-}
-
-.listes ul > li:hover {
-  background-color: #eee;
-}
-
-.listes ul:has(li:hover) > li:not(:hover) {
-  opacity: .5;
-}
-
-   .titre-h2{
-    color: #2E8B57;
-
-    /* H1,H2,H3 : titre */
-    font-family: "Playfair Display";
-    font-size: 18px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: normal;
-   }
-
-.card-xassidas .card {
-  position: relative;
-  overflow: hidden;
-  border: none;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.card-xassidas .card-img-top {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.3s ease-in-out;
-}
-
-.card-xassidas .card:hover .card-img-top {
-  transform: scale(1.1);
-}
-
-.card-xassidas .card-body {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background: rgba(255, 255, 255, 0.8);
-  padding: 15px;
-  text-align: center;
-  transition: opacity 0.3s ease-in-out;
-}
-
-.card-xassidas .card:hover .card-body {
-  opacity: 1;
-}
-
-.card-title {
-  font-family: "Playfair Display", serif;
-  font-weight: 700;
-}
-
-.card-text {
-  font-family: "Playfair Display", serif;
-}
-
-.liste-xassidas{
-  display: flex;
-  width: 100%;
-  justify-content: space-around;
-}
-
-/* card 3D book  */
-
-        .book-card {
-            width: 200px;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #2E8B57;
-            /* box-shadow:
-                0 3px 6px rgba(0, 0, 0, 0.16),
-                0 3px 6px rgba(0, 0, 0, 0.23); */
-                box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-                
-        }
-        .book-card__cover {
-            position: relative;
-            width: 150px;
-            height: 200px;
-            margin: 0 auto 8px auto;
-            perspective: 1000px;
-        }
-        .book-card__book {
-            height: 100%;
-            transform-style: preserve-3d;
-            transition: all 250ms ease;
-        }
-        .book-card__book-front {
-            position: absolute;
-            height: 100%;
-        }
-        .book-card__book-back {
-            position: absolute;
-            top: 0;
-            height: 100%;
-            width: 100%;
-            transform: translateZ(-40px);
-        }
-        .book-card__book-side {
-            position: absolute;
-            top: 5px;
-            bottom: 2px;
-            right: -29px;
-            width: 40px;
-            background-size: 5px;
-            background-color: #e1e1e1;
-            background-image: linear-gradient(to right, #ccc 35%, #e1e1e1 35%);
-            opacity: 0;
-            transform: rotate3d(0, 1, 0, 90deg);
-        }
-        .book-card__img {
-            width: 100%;
-            height: 100%;
-            background-color: #e1e1e1;
-        }
-        .book-card__title {
-            /* font-size: 1.5em; */
-            margin-bottom: 8px;
-            color: #FFD233;
-
-            /* Paragraphe description */
-            font-family: "Open Sans";
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 400;
-            line-height: normal;
-        }
-        .book-card__author {
-            color: #FFF;
-            font-size: 1em;
-        }
-        .book-card:hover .book-card__book {
-            transform: rotate3d(0, -1, 0, 30deg) translate(-15px, -30px);
-        }
-        .book-card:hover .book-card__book-back {
-            box-shadow: 5px 10px 15px rgba(0, 0, 0, 0.35);
-        }
-        .book-card:hover .book-card__book-side {
-            opacity: 1;
-        }
-
-
-        .cards-nav{
-          display: none;
-        }
-
-        .categorie-titre{
-        display: none;
-        }
-
-
-        /* rechercher un livre  */
-        .search {
-            width: 100%;
-            position: relative;
-            display: flex;
-          }
-
-          .searchTerm {
-            width: 100%;
-            border: 3px solid #FFD233;
-            border-right: none;
-            padding: 5px;
-            height: 100%;
-            border-radius: 5px 0 0 5px;
-            outline: none;
-            color: #9DBFAF;
-            font-family: "Playfair Display";
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 400;
-          }
-
-          .searchTerm:focus{
-            color: #2E8B57;
-            font-family: "Playfair Display";
-            font-size: 18px;
-            font-style: normal;
-            font-weight: 400;
-          }
-
-          .searchButton {
-            width: 40px;
-            height: 36px;
-            border: 1px solid #FFD233;
-            background: #FFD233;
-            text-align: center;
-            color: #2E8B57;
-            border-radius: 0 5px 5px 0;
-            cursor: pointer;
-            font-size: 20px;
-          }
-
-
-        @media (max-width: 768px) {
-          .categorieName{
-            display: none;
-          }
-
-          .raccourcis a svg{
-      /* margin-bottom: 30px; */
-      display: none;
-    }
-          .container-all{
-      margin-top: 80px;
-     }
-
-     .listes ul {
-  padding: 1em;
-  margin: auto;
-  border-radius: 1em;
-  /* background-color: #2E8B57; */
-  /* background-color: rgba(46, 139, 87, 0.5); */
-  background-color: #2E8B57;
-
-  list-style: none;
-  max-width: 30em;
-
-   /* Ajout de la hauteur maximale et du défilement vertical */
-   max-height: 400px; /* Vous pouvez ajuster cette hauteur selon vos besoins */
-  overflow-y: auto;
-}
-     .container-button-return-toggle{
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding-left: 20px;
-      padding-right: 20px;
-     }
-      
-     .titre-h2{
-      display: none;
-     }
-     .retourButton{
-        width: 20.833px;
-        height: 17.708px;
-        flex-shrink: 0;
-        fill: #2E8B57;
-        stroke-width: 2.083px;
-        stroke: #2E8B57;
-     }
-
-     .list-card-toggle{
-      /* margin-right: 20px; */
-        width: 25px;
-        height: 25px;
-        flex-shrink: 0;
-        fill: #2E8B57;
-     }
-
-     .raccourcis{
-        /* margin: 10px; */
-        /* margin-top: 50px; */
-        width: 100%;
-      }
-      
-    }
-
-          
-
-        @media (max-width: 991px) {
-          .container-all{
-      margin-top: 80px;
-     }
-
-     .categorie-mobile{
-          color: #2E8B57;
-          /* H1,H2,H3 : titre */
-          font-family: "Playfair Display";
-          font-size: 25px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
-         }
-   
-      
-     .retourButton{
-        width: 20.833px;
-        height: 17.708px;
-        flex-shrink: 0;
-        fill: #2E8B57;
-        stroke-width: 2.083px;
-        stroke: #2E8B57;
-     }
-
-            .book-card {
-            width: 160px;
-            padding: 10px;
-            border-radius: 5px;
-            background-color: #2E8B57;
-            box-shadow:
-                0 3px 6px rgba(0, 0, 0, 0.16),
-                0 3px 6px rgba(0, 0, 0, 0.23);
-        }
-
-        .book-card__cover {
-            position: relative;
-            width: 140px;
-            height: 200px;
-            margin: 0 auto 8px auto;
-            perspective: 1000px;
-        }
-        /* .raccourcis{
-          display: none;
-        } */
-
-
-          /* button de navigation entre les livres  */
-          .cards-nav{
-          display: flex;
-          width: 165px;
-          height: 48px;
-          justify-content: center;
-          align-items: center;
-          flex-shrink: 0;
-          box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25) inset;
-          border: none;
-          margin: 5px;
-          border-radius: 5px;
-          background: #FFF;
-
-          /* format ecriture  */
-          color: #2E8B57;
-          font-family: Lato;
-          font-size: 18px;
-          font-style: normal;
-          font-weight: 700;
-          line-height: normal;
-        }
-
-
-        .cards-nav:hover {
-          color: #fff;
-          background: #2E8B57;
-        }
-        .button-nav-listes{
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-        }
-
-        .categorie-titre{
-          text-align: center;
-          color: #2E8B57;
-
-          /* H1,H2,H3 : titre */
-          font-family: "Playfair Display";
-          font-size: 25px;
-          font-style: normal;
-          font-weight: 400;
-          line-height: normal;
-        }
-
-
-        }
-
-       
-       
-
-
-        @media (min-width: 993px) {
-
-          .raccourcis{
-            position: fixed;
-            left: 20px;
-            top: 180px;
-          }
-
-          .buttonRetournRaccoursis{
-            position: fixed;
-            left: 20px;
-            top: 120px;
-          }
-
-          .card-xassidas{
-            display: block;
-            margin-left: 350px;
-          }
-          .retourButton a svg {
-            display: none;
-          }
-          .categorieName{
-            text-align: center;
-            color: #2E8B57;
-          }
-
-          .listes ul {
-  padding: 1em;
-  margin: auto;
-  border-radius: 1em;
-  /* background-color: rgba(46, 139, 87, 0.5); */
-  background-color: #2E8B57;
-
-  list-style: none;
-  max-width: 20em;
-
-   /* Ajout de la hauteur maximale et du défilement vertical */
-   max-height: 400px; /* Vous pouvez ajuster cette hauteur selon vos besoins */
-  overflow-y: auto;
-}
-         .categorie-mobile{
-          display: none;
-         }
-         .container{
-         margin: 0;
-         padding: 5px;
-        }
-        .list-card-toggle{
-          display: none;
-        }
-
-        .container-all{
-            margin-top: 100px;
-            overflow-x: hidden;
-          }
-
-        .retourButton{
-        /* width: 20.833px; */
-        height: 17.708px;
-        flex-shrink: 0;
-        fill: #2E8B57;
-        stroke-width: 2.083px;
-        stroke: #2E8B57;
-        margin-left: 50px;
-        /* margin-top: 20px; */
-        margin-bottom: 10px;
-        
-     }
-     }
-
-    .raccourcis a svg{
-      margin-bottom: 20px;
-    }
-    .categorieName{
-            text-align: center;
-            color: #2E8B57;
-          }
-          /* cursor pointer of the card et the link  */
-   a{
-    cursor: pointer;
-   }
-   .col{
-    cursor: pointer;
-   }
-
-   .paginate-icone{
-    margin-top: 200px;
-   }
-
-   .pagination-container {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-}
-    </style>
+  
   
     <!-- heritage du navbar start  -->
     <app-navbar-apprenant></app-navbar-apprenant>
     <!-- heritage du navbar end  -->
 <section class="container-all">
+
   <div class="container-button-return-toggle">
 
   <div class="retourButton">
@@ -549,8 +28,9 @@ text-decoration: none;
     </svg>
   </button>
 </div>
+
 <h1 class="categorie-titre">Xassidas</h1>
-<section class="liste-xassidas">
+<section class="liste-xassidas" *ngIf="!showEmptyHistoryAlert">
    <!--  section liste livre  -->
     <div *ngIf="isListView"  class="raccourcis">
       <!-- <h2 class="titre-h2">Xassidaaaa</h2> -->
@@ -561,7 +41,7 @@ text-decoration: none;
       </a>
        <div class="wrap">
    <div class="search">
-      <input type="text" class="searchTerm" placeholder="Rechercher un livre" [(ngModel)]="searchTerm"  (input)="searchBooks()">
+      <input type="text" class="searchTerm" placeholder="{{ 'PLACEHOLDER_SEARCH_BOOK' | translate }}" [(ngModel)]="searchTerm"  (input)="searchBooks()">
      
       <button type="submit" class="searchButton">
         <i class="fa fa-search"></i>
@@ -602,6 +82,7 @@ text-decoration: none;
                 </div>
                 <div>
                   <div class="book-card__title">{{ book.title }}</div>
+                  <div class="book-card__title">{{ book.progress }}%</div>
                   <div class="book-card__author">{{ book.description }}</div>
                 </div>
               </div>
@@ -630,12 +111,22 @@ text-decoration: none;
   </div>
 </section>
 
+  
 </section>
 
+  <!-- Alerte pour historique vide -->
+  <div *ngIf="showEmptyHistoryAlert" class="alert alert-info" 
+  style="
+    margin: 20px;
+    padding: 20px;
+    background-color: #FFD233;
+    color: #2E8B57;
+    border-radius: 10px;
+    text-align: center;
+    font-family: 'Playfair Display';
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+<h4 style="margin-bottom: 10px; font-weight: bold;">{{ 'READING_HISTORY_UNAVAILABLE_TITLE' | translate }}</h4>
+<p style="font-size: 16px;">{{ 'READING_HISTORY_UNAVAILABLE_DESCRIPTION' | translate }}</p>
+</div>
 
-
-
-
-<h1>{{ 'HELLO' | translate }}</h1>
-    <button (click)="useLanguage('en')">English</button>
-    <button (click)="useLanguage('fr')">Français</button>
+<!-- fin message alert  -->

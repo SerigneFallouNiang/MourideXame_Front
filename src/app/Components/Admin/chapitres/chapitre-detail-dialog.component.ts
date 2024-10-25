@@ -1,7 +1,9 @@
+// chapitre-detail-dialog.component.ts
 import { Component, Inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatDialogModule, MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 
 @Component({
   selector: 'app-chapitre-detail-dialog',
@@ -11,10 +13,10 @@ import { MatButtonModule } from '@angular/material/button';
     <h2 mat-dialog-title>{{ data.title }}</h2>
     <mat-dialog-content>
       <p><strong>Description:</strong> {{ data.description }}</p>
-      <div *ngIf="data.video">
+      <div *ngIf="videoUrl">
         <p><strong>Vidéo:</strong></p>
         <video controls width="100%">
-          <source [src]="data.video" type="video/mp4">
+          <source [src]="videoUrl" type="video/mp4">
           Votre navigateur ne supporte pas la vidéo.
         </video>
       </div>
@@ -24,11 +26,18 @@ import { MatButtonModule } from '@angular/material/button';
     </mat-dialog-actions>
   `
 })
-export class ChapitreDetailDialogComponent {
+export class ChapitreDetailDialogComponent { // Ajout du mot-clé 'export'
+  videoUrl: string | null = null; // Ajout de la propriété videoUrl
+
   constructor(
     @Inject(MAT_DIALOG_DATA) public data: any,
     private dialogRef: MatDialogRef<ChapitreDetailDialogComponent>
-  ) {}
+  ) {
+    // Initialiser videoUrl si data contient un video_path
+    if (data.video_path) {
+      this.videoUrl = `${apiUrlStockage}/${data.video_path}`;
+    }
+  }
 
   closeDialog(): void {
     this.dialogRef.close();

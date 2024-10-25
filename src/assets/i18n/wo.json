@@ -16,5 +16,14 @@
     "SOCIAL_MEDIA_LINKS": "Lëkkalekaay yi ci reso sosio yi:",
     "CONTACT": "Jokkalante",
     "EMAIL": "E-mail  : mouridEdu@gmail.com",
-    "PHONE": "Telefon : +221 76 614 99 38"
+    "PHONE": "Telefon : +221 76 614 99 38",
+    "READING_HISTORY_UNAVAILABLE_TITLE": "Sa jaar-jaaru jàng amul fi mu nekk.",
+    "READING_HISTORY_UNAVAILABLE_DESCRIPTION": "Soo bëggee gis jaar-jaaru jàng, defal quiz yi ñu la jox ci njeexitalu chapitre bu nekk ci téere yi!",
+    "PLACEHOLDER_SEARCH_BOOK": "Seetal téere",
+    "PDF_DOCUMENT": "Këyitu PDF",
+    "SEE_PREVIOUS_RESULTS": "Xoolal njariñ yi njëkk",
+    "RETAKE_QUIZ": "Defaat quiz bi",
+    "VIEW_QUIZ": "Xoolal quiz bi",
+    "PREVIOUS_QUIZ_RESULTS": "Resultaa yi njëkk"
+
 }

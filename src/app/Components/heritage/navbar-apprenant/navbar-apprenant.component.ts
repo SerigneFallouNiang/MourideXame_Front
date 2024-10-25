@@ -4,7 +4,7 @@ import { UserModel } from '../../../Models/user.model';
 import { CategorieService } from '../../../Services/categorie.service';
 import { ModelCategorie } from '../../../Models/categorie.model';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -12,7 +12,7 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-navbar-apprenant',
   standalone: true,
-  imports: [CommonModule, FormsModule,TranslateModule],
+  imports: [CommonModule, FormsModule,TranslateModule, RouterModule],
   templateUrl: './navbar-apprenant.component.html',
   styleUrl: './navbar-apprenant.component.css'
 })
@@ -25,10 +25,8 @@ tabCategorie: ModelCategorie[] = [];
   error: string | null = null;
  userConnected: UserModel | null = null;
   
-
-
-
   showEditProfileModal: boolean = false;
+
 
   constructor(
     private categorieService: CategorieService,
@@ -37,6 +35,11 @@ tabCategorie: ModelCategorie[] = [];
     private translate: TranslateService
   ) {
   }
+
+ // Add this method to check if a route is active
+ isRouteActive(route: string): boolean {
+  return this.router.isActive(route, true);
+}
 
 
   useLanguage(language: string): void {
@@ -57,10 +60,9 @@ closeEditProfileModal() {
   this.showEditProfileModal = false;
 }
 
-// Charger les informations de l'utilisateur
-// Charger les informations de l'utilisateur
- // Charger les informations de l'utilisateur
- loadUserInfo() {
+
+  // Charger les informations de l'utilisateur
+  loadUserInfo() {
   if (typeof window !== 'undefined' && localStorage.getItem('authUser')) {
     const infos = JSON.parse(localStorage.getItem('authUser') || "{}");
     if (infos && infos.user) {
@@ -72,7 +74,7 @@ closeEditProfileModal() {
   } else {
     this.userConnected = null;
   }
-}
+  }
 
 
 
@@ -182,7 +184,7 @@ logout() {
   }
 
    //fonctio poir la redirection vers la page historique
-   navigateToHistorique() {
-    this.router.navigate(['/historique']);
-  }
+  //  navigateToHistorique() {
+  //   this.router.navigate(['/historique']);
+  // }
 }

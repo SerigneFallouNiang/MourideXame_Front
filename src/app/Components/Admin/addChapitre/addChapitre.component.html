@@ -71,13 +71,13 @@
                   </div>
 
                 <div class="mb-3">
-                    <label for="category_id" class="form-label">Sélectionner une catégorie</label>
+                    <label for="category_id" class="form-label">Sélectionner un livre</label>
                     <select class="form-select form-select-sm" formControlName="book_id">
                         <option value="" disabled selected>Sélectionner une catégorie</option>
                         <option *ngFor="let book of books" [value]="book.id">{{ book.title }}</option>
                     </select>
                     <div class="invalid-feedback" *ngIf="bookForm.get('book_id')?.invalid && bookForm.get('book_id')?.touched">
-                        Veuillez sélectionner une catégorie.
+                        Veuillez sélectionner un livre.
                     </div>
                 </div>
 

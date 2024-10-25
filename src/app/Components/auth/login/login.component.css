@@ -1,9 +1,9 @@
 body {
   background-color: #1e5631;
-  display: flex;
+  /* display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: hidden; */
 }
 
 .login-card {
