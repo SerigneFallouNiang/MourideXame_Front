@@ -35,6 +35,11 @@ export class ReadPDFComponent implements OnInit {
   errorMessage: string = '';
   passedQuizResult: any = null;
 
+  disponibliteQuizResult: string | null = null;
+  showAlert: boolean = false;
+  alertType: 'info' | 'error' = 'info';
+  // errorMessage: string = '';
+
   isMobile: boolean = false;
   showChapterContent: boolean = false;
 
@@ -67,7 +72,7 @@ export class ReadPDFComponent implements OnInit {
     this.route.params.subscribe(params => {
       const chapterId = params['id'];
       if (chapterId) {
-        this.startQuiz(chapterId);
+        // this.startQuiz(chapterId);
         this.checkForPreviousQuiz();
       } else {
         console.error('Aucun ID de chapitre trouvé');
@@ -191,6 +196,8 @@ checkForPreviousQuiz() {
         if (quizData && quizData.quiz) {
           this.selectedQuiz = quizData.quiz;
           this.questions = quizData.questions;
+           // Vérifier la disponibilité du quiz
+           this.QuizTimeDisponible(quizData.quiz.id);
         } else {
           console.log('Aucun quiz disponible pour ce chapitre');
         }
@@ -455,17 +462,57 @@ selectAnswer(questionId: number, answerId: number) {
 
 
 
-    // pour récupérer les information d un quiz déja passer 
-    // loadPassedQuizResult(quizId: string) {
-    //   this.quizzservice.getPassedQuiz(quizId).subscribe(
+    // pour la disponiblité du quiz en fonction du temps
+    // QuizTimeDisponible(quizId: string) {
+    //   this.quizzservice.getLastAttempt(quizId).subscribe(
     //     (result: any) => {
-    //       this.passedQuizResult = result;
+    //       this.disponibliteQuizResult = result;
     //     },
-    //     (error: any) => {
-    //       console.error('Error loading passed quiz result', error);
-    //     }
+    //     (error: HttpErrorResponse) => {
+    //           console.error('Error submitting quiz', error);
+    //           if(error.status === 403 && error.error && error.message){
+    //             this.errorMessage = error.error.message;
+    //           } else {
+    //             this.errorMessage = 'Une erreur est survenue lors de la soumission du quiz.';
+    //           }
+    //           setTimeout(() => {
+    //             this.errorMessage = '';
+    //           }, 5000);
+    //         }
     //   );
     // }
+    // pour la disponibilité du quiz en fonction du temps
+// Mise à jour de la méthode QuizTimeDisponible
+QuizTimeDisponible(quizId: string) {
+  this.showAlert = false;
+  this.disponibliteQuizResult = null;
+  this.errorMessage = '';
+
+  this.quizzservice.getLastAttempt(quizId).subscribe({
+    next: (response: any) => {
+      if (response && response.message) {
+        this.disponibliteQuizResult = response.message;
+        this.showAlert = true;
+        this.alertType = 'info';
+      }
+    },
+    error: (error: HttpErrorResponse) => {
+      if (error.status === 403 && error.error?.message) {
+        this.errorMessage = error.error.message;
+        this.showAlert = true;
+        this.alertType = 'info';
+      } else {
+        this.errorMessage = 'Une erreur est survenue lors de la vérification de la disponibilité du quiz.';
+        this.showAlert = true;
+        this.alertType = 'error';
+      }
+    }
+  });
+}
+
+
+
+//vérification du quiz déja passer
     loadPassedQuizResult(quizId: string) {
       if (this.hasPassedQuiz) {
         this.quizzservice.getPassedQuiz(quizId).subscribe(
