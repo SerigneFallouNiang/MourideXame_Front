@@ -14,8 +14,8 @@ export class AppComponent {
   title = 'MourideXam';
 
   constructor(private translate: TranslateService) {
-    translate.setDefaultLang('en');
-    translate.use('en');
+    translate.setDefaultLang('fr');
+    translate.use('fr');
   }
 
   useLanguage(language: string): void {
