@@ -139,21 +139,6 @@
         
         <div class="container" *ngIf="quiz">
           <!-- Alerte pour disponibilité du quiz -->
-<!-- <div *ngIf="disponibliteQuizResult || errorMessage" class="alert" 
-[ngClass]="alertType === 'info' ? 'alert-info' : 'alert-danger'"
-style="
-  margin: 20px;
-  padding: 20px;
-  background-color: #FFD233;
-  color: #2E8B57;
-  border-radius: 10px;
-  text-align: center;
-  font-family: 'Playfair Display';
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-<h4 style="margin-bottom: 10px; font-weight: bold;">🕰️ {{ alertType === 'info' ? disponibliteQuizResult : errorMessage }}</h4>
-<p *ngIf="alertType === 'info'" style="font-size: 16px;">{{ 'READING_HISTORY_UNAVAILABLE_DESCRIPTION' | translate }}</p>
-</div> -->
-  <!-- Alerte pour disponibilité du quiz -->
   <div *ngIf="showAlert" 
        class="alert" 
        [ngClass]="{
@@ -161,9 +146,9 @@ style="
          'alert-danger': alertType === 'error'
        }"
        style="
-         margin: 20px;
-         padding: 20px;
-         border-radius: 10px;
+         margin: 0.3125rem;
+         padding: 0.3125rem;
+         border-radius: 0.625rem;
          text-align: center;
          font-family: 'Playfair Display';
          box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
