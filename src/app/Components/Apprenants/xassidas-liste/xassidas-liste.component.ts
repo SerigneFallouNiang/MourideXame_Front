@@ -7,11 +7,12 @@ import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { FormsModule } from '@angular/forms';
 import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
 import { isPlatformBrowser } from '@angular/common';
+import { TranslateModule } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-xassidas-liste',
   standalone: true,
-  imports: [CommonModule,NavbarApprenantComponent,FormsModule],
+  imports: [CommonModule,NavbarApprenantComponent,FormsModule, TranslateModule],
   templateUrl: './xassidas-liste.component.html',
   styleUrl: './xassidas-liste.component.css'
 })

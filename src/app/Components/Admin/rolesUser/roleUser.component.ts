@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { RolesService } from '../../../Services/Admin/roles.service'; // Import du service
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-roles',
@@ -18,7 +19,7 @@ export class RoleUserComponent {
   itemsPerPage: number = 6;
   totalItems: number = 0;
 
-  constructor(private rolesService: RolesService) {}
+  constructor(private rolesService: RolesService, private toastr: ToastrService) {}
 
   ngOnInit(): void {
     this.fetchRoles();
@@ -52,6 +53,7 @@ export class RoleUserComponent {
           },
           error: (err) => {
             console.error('Erreur lors de la suppression du rôle :', err);
+            this.toastr.warning("Vous n'êtes pas autorisé à supprimer ce rôle");
           }
         });
       }

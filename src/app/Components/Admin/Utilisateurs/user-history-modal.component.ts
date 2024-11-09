@@ -2,9 +2,17 @@ import { Component, Input, Output, EventEmitter, OnChanges, SimpleChanges } from
 import { CommonModule } from '@angular/common';
 import { RolesService } from '../../../Services/Admin/roles.service';
 
-interface Book {
+ interface Book {
+  id: number;
   title: string;
+  image: string;
   description: string;
+  category_id: number;
+  created_at: string;
+  updated_at: string;
+  total_chapters: number;
+  completed_chapters: number;
+  progress: number;  // Ajout de la propriété progress qui manquait
 }
 
 @Component({
@@ -38,6 +46,7 @@ interface Book {
                   </div>
                   <div class="book-description">
                     {{ book.description }}
+                    <div style="color:#4caf50;font-weight:bold">{{ book.progress }}%</div>
                   </div>
                 </li>
               </ul>
@@ -45,7 +54,7 @@ interface Book {
             </ng-template>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary" (click)="onClose()">Fermer</button>
+            <button type="button" class="btn btn-success" (click)="onClose()">Fermer</button>
           </div>
         </div>
       </div>

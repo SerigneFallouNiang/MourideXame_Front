@@ -55,7 +55,7 @@
 
 
 @if(selectedFichier) {
-  <div class="col-12 col-md-8 bg-white card-xassidas"  [class.visible-mobile]="showChapterContent && isMobile">
+  <div class="col-12 col-md-12 bg-white card-xassidas"  [class.visible-mobile]="showChapterContent && isMobile">
       <div class="container">
         <div class="fichier-cours" >
         <iframe [src]="pdfUrl" class="iframe-custom"></iframe>
@@ -63,7 +63,7 @@
   </div>
 </div>
 } @else if (selectedChapter) {
-  <div class="col-12 col-md-8 bg-white card-xassidas"  [class.visible-mobile]="showChapterContent && isMobile">
+  <div class="col-12 col-md-12 bg-white card-xassidas"  [class.visible-mobile]="showChapterContent && isMobile">
     <div class="container">
       <div class="video-cours" *ngIf="selectedChapter.Video">
         <iframe 
@@ -88,7 +88,7 @@
     </div>
   </div>
 } @else if(selectedQuiz){
-  <div class="col-12 col-md-8 bg-white card-xassidas" [class.visible-mobile]="showChapterContent && isMobile">
+  <div class="col-12 col-md-12 bg-white card-xassidas" [class.visible-mobile]="showChapterContent && isMobile">
     <div class="container">
   <div class="description-chapitre">
     <!-- <h2 class="titre-chapitre">PREAMBULE</h2> -->
