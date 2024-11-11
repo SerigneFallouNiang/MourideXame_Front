@@ -55,7 +55,7 @@
 
 
 @if(selectedFichier) {
-  <div class="col-12 col-md-8 bg-white card-xassidas"  [class.visible-mobile]="showChapterContent && isMobile">
+  <div class="col-12 col-md-12 bg-white card-xassidas"  [class.visible-mobile]="showChapterContent && isMobile">
       <div class="container">
         <div class="fichier-cours" >
         <iframe [src]="pdfUrl" class="iframe-custom"></iframe>
@@ -63,7 +63,7 @@
   </div>
 </div>
 } @else if (selectedChapter) {
-  <div class="col-12 col-md-8 bg-white card-xassidas"  [class.visible-mobile]="showChapterContent && isMobile">
+  <div class="col-12 col-md-12 bg-white card-xassidas"  [class.visible-mobile]="showChapterContent && isMobile">
     <div class="container">
       <div class="video-cours" *ngIf="selectedChapter.Video">
         <iframe 
@@ -88,7 +88,7 @@
     </div>
   </div>
 } @else if(selectedQuiz){
-  <div class="col-12 col-md-8 bg-white card-xassidas" [class.visible-mobile]="showChapterContent && isMobile">
+  <div class="col-12 col-md-12 bg-white card-xassidas" [class.visible-mobile]="showChapterContent && isMobile">
     <div class="container">
   <div class="description-chapitre">
     <!-- <h2 class="titre-chapitre">PREAMBULE</h2> -->
@@ -135,8 +135,33 @@
   <button *ngIf="passedQuizResult" (click)="passedQuizResult = null" class="btn btn-warning mb-3"> {{ 'RETAKE_QUIZ' | translate }}</button>
 </div>
 
+
         
         <div class="container" *ngIf="quiz">
+          <!-- Alerte pour disponibilité du quiz -->
+  <div *ngIf="showAlert" 
+       class="alert" 
+       [ngClass]="{
+         'alert-info': alertType === 'info',
+         'alert-danger': alertType === 'error'
+       }"
+       style="
+         margin: 0.3125rem;
+         padding: 0.3125rem;
+         border-radius: 0.625rem;
+         text-align: center;
+         font-family: 'Playfair Display';
+         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+    
+    <h4 style="margin-bottom: 10px; font-weight: bold;">
+      🕰️ {{ disponibliteQuizResult}}
+    </h4>
+    
+    <p *ngIf="alertType === 'info'" style="font-size: 16px;">
+      Profitez de ce temps pour réviser le chapitre. Vous pourrez retenter le quiz dès que le délai sera écoulé.
+    </p>
+  </div>
+
           <!-- <h2>{{ quiz.title }}</h2> -->
           <form #quizForm="ngForm" (ngSubmit)="submitQuiz()">
             <div *ngFor="let question of questions">

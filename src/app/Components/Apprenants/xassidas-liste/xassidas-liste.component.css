@@ -314,7 +314,69 @@ opacity: .5;
       width: 100%;
   }
 }
+/* Tablette Breakpoint - 768px à 991px */
+@media (min-width: 48rem) and (max-width: 61.9375rem) {
+  .categorieName {
+    display: none;
+}
 
+.raccourcis a svg {
+    /* margin-bottom: 1.875rem; /* 30px */
+    display: none;
+}
+
+.container-all {
+    margin-top: 5rem; /* 80px */
+}
+
+.listes ul {
+    padding: 1rem; /* 1em */
+    margin: auto;
+    border-radius: 1rem; /* 1em */
+    background-color: #2E8B57;
+
+    list-style: none;
+    max-width: 30rem; /* 30em */
+
+    /* Ajout de la hauteur maximale et du défilement vertical */
+    max-height: 25rem; /* 400px */
+    overflow-y: auto;
+}
+
+.container-button-return-toggle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 1.25rem; /* 20px */
+    padding-right: 1.25rem; /* 20px */
+}
+
+.titre-h2 {
+    display: none;
+}
+
+.retourButton {
+    width: 1.302rem; /* 20.833px */
+    height: 1.107rem; /* 17.708px */
+    flex-shrink: 0;
+    fill: #2E8B57;
+    stroke-width: 0.130rem; /* 2.083px */
+    stroke: #2E8B57;
+}
+
+.list-card-toggle {
+    width: 1.563rem; /* 25px */
+    height: 1.563rem; /* 25px */
+    flex-shrink: 0;
+    fill: #2E8B57;
+}
+
+.raccourcis {
+    /* margin: 0.625rem; /* 10px */
+    /* margin-top: 3.125rem; /* 50px */
+    width: 100%;
+}
+}
 
        
 

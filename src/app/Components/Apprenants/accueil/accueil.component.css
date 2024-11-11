@@ -34,6 +34,8 @@
           width: 100%;
           overflow: hidden;
           position: relative;
+          margin-top: 5.9375rem; 
+          
       }
       
       
@@ -194,9 +196,11 @@
       
       
       .footer {
-          background-color: #2E8B57;
-          color: #fff;
-      }
+        background-color: #2E8B57;
+        color: #fff;
+        height: auto;
+        min-height: 450px;
+    }
       .footer-wave-svg {
         background-color: transparent;
         display: block;
@@ -545,9 +549,7 @@
 }
 
 @media (min-width: 768px) {
-  .main-image {
-      margin-top: 5.9375rem; /* 95px */
-  }
+
 
 
 }
@@ -594,6 +596,11 @@
   * {
       box-sizing: border-box; /* Pour un meilleur contrôle de la mise en page */
   }
+
+  .main-image {
+    margin-top:0; 
+    
+}
 
   .col {
       width: 25rem; /* 400px */
@@ -752,4 +759,172 @@
 
       /* _____________________________________________fin_partie_responsive___________________________________________________________ */
      
-     
+     /* Media Query spécifique pour les tablettes */
+@media (min-width: 768px) and (max-width: 1200px) {
+
+  .image-contenu img{
+    width: 15.8125rem;
+    height: 20.75rem;
+    flex-shrink: 0;
+    border-radius: 1.5625rem;
+  /* background: url("../../../../assets/images/xassida-removebg.png") lightgray 50% / cover no-repeat; */
+    }
+
+    /* Wave container to hold the SVG */
+  .wave-container {
+      overflow: hidden; 
+      position: relative;
+      height: 20.75rem; /* 300px */
+  }
+
+  .wave-top,
+  .wave-bottom {
+      position: absolute;
+      left: 0;
+      width: 100%; /* Assurez-vous que les vagues s'étendent sur toute la largeur */
+      height: auto; /* Pour préserver les proportions */
+  }
+
+  .wave-top {
+      top:-80px ;
+      z-index: 1;
+      width: 40.625rem; /* 650px */
+      height: 30.0625rem; /* 401px */
+      flex-shrink: 0;
+
+  }
+
+ 
+
+  .wave-bottom {
+      top: 80; /* 5px */
+      z-index: 0;
+      width: 40.625rem; /* 530px */
+      transform: rotate(30deg);
+      flex-shrink: 0;
+  }
+
+  /* Ajustement pour les SVG dans wave-top et wave-bottom */
+  .wave-container svg {
+      width: 100%; /* S'assurer que les SVG occupent la largeur complète */
+      height: 25.4375rem; /* 295px */
+      display: block; /* Supprime les espaces blancs inattendus */
+  }
+
+
+  /* Contenu du texte et image */
+  .contenu-livre-text {
+      flex-direction: row;
+      padding-top: 2rem;
+      top: 0.5rem;
+      gap: 2rem;
+  }
+
+  /* Ajustement du titre */
+  .titre-contenu-main {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+      display: block;
+      margin-top: 0px;
+  }
+
+  /* Ajustement du paragraphe */
+  .context-contenu p {
+      width: 90%; /* Largeur relative */
+      height: auto;
+      font-size: 1.25rem;
+      line-height: 2rem;
+      margin: 0 auto;
+  }
+
+  .image-contenu img {
+    width: 8.625rem; /* 90px */
+    height: 14.25rem; /* 180px */
+    flex-shrink: 0;
+    border-radius: 1.5625rem; /* 25px */
+    /* margin-top: 50px; */
+}
+
+  /* Ajustements des catégories */
+  .col {
+      width: 20rem;
+      height: 15rem;
+      margin: 1rem;
+  }
+
+  /* Ajustement des cartes */
+  .card-xassidas {
+      padding: 1rem;
+  }
+
+  .card-xassidas .card-body {
+      padding: 0.75rem;
+  }
+
+  .card-title {
+      font-size: 1rem;
+  }
+
+  /* Ajustement de l'entête des catégories */
+  .categorie-accueil {
+      font-size: 1.75rem;
+  }
+
+  .text-categorie {
+      width: 15rem;
+  }
+
+  /* Ajustements du footer pour tablette */
+  .footer-content {
+      padding: 2rem 1rem;
+  }
+
+  .footer-content-column {
+      width: 50%;
+      margin-bottom: 2rem;
+  }
+
+  .footer-menu {
+      margin-top: 1.5rem;
+  }
+
+  .footer-social-links {
+      position: relative;
+      margin: 2rem auto;
+      right: auto;
+  }
+
+  .p-apropos-footer {
+      font-size: 1rem;
+      margin: 1rem 0;
+  }
+
+  .apropos-footer {
+      font-size: 1.25rem;
+  }
+
+  /* Ajustements des vagues */
+  .wave-top {
+      width: 100%;
+      height: auto;
+  }
+
+  
+  .wave-bottom {
+      width: 100%;
+      height: auto;
+      top: -60px;
+      transform: rotate(0);
+  }
+  
+}
+
+
+/* pour les mini tablettes */
+@media (min-width: 768px) and (max-width: 780px) {
+
+  .main-image {
+     margin-top: 0.7375rem; 
+ }
+
+}

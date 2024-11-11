@@ -42,8 +42,21 @@ tabCategorie: ModelCategorie[] = [];
 }
 
 
+  // useLanguage(language: string): void {
+  //   this.translate.use(language);
+  //    // Sauvegarder la nouvelle langue sélectionnée
+  //    localStorage.setItem('selectedLanguage', language);
+  // }
   useLanguage(language: string): void {
-    this.translate.use(language);
+    console.log('Changing language to:', language); // Log pour déboguer
+    
+    try {
+      this.translate.use(language);
+      localStorage.setItem('selectedLanguage', language);
+      console.log('Language saved in localStorage:', localStorage.getItem('selectedLanguage')); // Vérifier si sauvegardé
+    } catch (error) {
+      console.error('Error saving language:', error);
+    }
   }
 
   ngOnInit(): void {
