@@ -44,6 +44,7 @@ export class ReadPDFComponent implements OnInit {
   showChapterContent: boolean = false;
 
   hasPassedQuiz: boolean = false;
+  safeVideoUrl: SafeResourceUrl = ''; 
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -149,6 +150,11 @@ checkForPreviousQuiz() {
 
   // affichageage du chapitre selectionner 
   selectChapter(chapter: any) {
+
+    this.selectedChapter = chapter;
+    if (this.selectedChapter && this.selectedChapter.Lien) {
+      this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.getEmbedUrl(this.selectedChapter.Lien));
+    }
     // Réinitialiser l'état sélectionné pour tous les chapitres
   this.chapters.forEach(chap => chap.isSelected = false);
 
@@ -527,4 +533,24 @@ QuizTimeDisponible(quizId: string) {
       }
     }
   
+
+
+
+    // selectChapter(chapter: any) {
+    //   this.selectedChapter = chapter;
+    //   if (this.selectedChapter && this.selectedChapter.Lien) {
+    //     this.safeVideoUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.getEmbedUrl(this.selectedChapter.Lien));
+    //   }
+    // }
+    
+    private getEmbedUrl(url: string): string {
+      const videoId = this.extractVideoId(url);
+      return `https://www.youtube.com/embed/${videoId}`;
+    }
+    
+    private extractVideoId(url: string): string {
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? match[2] : '';
+    }
 }

@@ -67,7 +67,7 @@
     <div class="container">
       <div class="video-cours" *ngIf="selectedChapter.Lien">
         <iframe 
-          [src]="sanitizer.bypassSecurityTrustResourceUrl(selectedChapter.Lien)"
+          [src]="safeVideoUrl"
           title="video player" 
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
