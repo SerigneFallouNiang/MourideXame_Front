@@ -65,9 +65,9 @@
 } @else if (selectedChapter) {
   <div class="col-12 col-md-12 bg-white card-xassidas"  [class.visible-mobile]="showChapterContent && isMobile">
     <div class="container">
-      <div class="video-cours" *ngIf="selectedChapter.Video">
+      <div class="video-cours" *ngIf="selectedChapter.Lien">
         <iframe 
-          [src]="sanitizer.bypassSecurityTrustResourceUrl(selectedChapter.Video)"
+          [src]="sanitizer.bypassSecurityTrustResourceUrl(selectedChapter.Lien)"
           title="video player" 
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 

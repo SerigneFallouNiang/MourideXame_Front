@@ -95,7 +95,8 @@ export class AddUserRoleComponent implements OnInit {
             this.router.navigate(['/roles']);
           },
           error: (err) => {
-            this.toastr.error('Erreur lors de la modification du rôle');
+            // this.toastr.error('Erreur lors de la modification du rôle');
+            this.toastr.warning("Vous n'avez pas les permissions nécessaires pour modifier ce rôle.");
             console.error('Erreur de modification:', err);
           }
         });
