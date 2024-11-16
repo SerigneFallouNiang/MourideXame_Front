@@ -4,6 +4,7 @@ import { RouterLink } from '@angular/router';
 import { CategorieService } from '../../../Services/categorie.service';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { ModelCategorie } from '../../../Models/categorie.model';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-categories',
@@ -67,22 +68,38 @@ export class CategoriesComponent {
 }
 
 
+
 deletecategorie(categoryId: string | undefined): void {
-  if (categoryId) {  // Vérifiez si l'ID n'est pas undefined
-    if (confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')) {
+  if (!categoryId) {
+    console.error('ID de la catégorie est undefined');
+    return;
+  }
+
+  Swal.fire({
+    title: 'Êtes-vous sûr ?',
+    text: "Cette action est irréversible !",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Oui, supprimer',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if (result.isConfirmed) {
       this.categorieService.deleteCategorie(categoryId).subscribe({
         next: () => {
           this.tabCategorie = this.tabCategorie.filter(categorie => categorie.id?.toString() !== categoryId);
-          console.log('Catégorie supprimée avec succès');
+          Swal.fire('Supprimé !', 'La catégorie a été supprimée avec succès.', 'success');
         },
-        error: (err:any) => {
+        error: (err: any) => {
           console.error('Erreur lors de la suppression de la catégorie :', err);
+          Swal.fire('Erreur', 'Une erreur est survenue lors de la suppression.', 'error');
         }
       });
+    } else {
+      console.log('Suppression annulée');
     }
-  } else {
-    console.error('ID de la catégorie est undefined');
-  }
+  });
 }
 
 

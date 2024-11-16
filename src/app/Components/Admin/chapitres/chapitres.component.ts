@@ -6,6 +6,7 @@ import { ChapitreService } from '../../../Services/chapitre.service';
 import { ToastrService } from 'ngx-toastr';
 import { ChapitreDetailDialogComponent } from './chapitre-detail-dialog.component';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-livres',
@@ -69,13 +70,29 @@ export class ChapitreAdminComponent implements OnInit {
     });
   }
 
+
+
   deleteChapitre(livreId: string | undefined): void {
-    if (livreId) {
-      if (confirm('Êtes-vous sûr de vouloir supprimer ce chapitre ?')) {
+    if (!livreId) return;
+  
+    Swal.fire({
+      title: 'Êtes-vous sûr ?',
+      text: "Cette action est irréversible !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
         this.chapitreService.deleteChapitre(livreId).subscribe({
           next: () => {
             this.chapitres = this.chapitres.filter(chapitre => chapitre.id?.toString() !== livreId);
             this.toastr.success('Chapitre supprimé avec succès');
+            this.totalItems = this.chapitres.length;
+            this.applyPagination();
+            Swal.fire('Supprimé !', 'Le chapitre a été supprimé.', 'success');
           },
           error: (err) => {
             console.error('Erreur lors de la suppression du chapitre:', err);
@@ -83,7 +100,7 @@ export class ChapitreAdminComponent implements OnInit {
           }
         });
       }
-    }
+    });
   }
 
 

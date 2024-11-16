@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { QuestionssService } from '../../../Services/Admin/questions.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-livres',
@@ -40,40 +41,65 @@ export class QuestionComponent implements OnInit {
     );
   }
 
+
+
   deleteQuestion(questionId: string | undefined): void {
     if (!questionId) {
       console.error('ID de la question est undefined');
       return;
     }
-
-    if (confirm('Êtes-vous sûr de vouloir supprimer cette question ?')) {
-      this.questionService.deleteQuestion(questionId).subscribe({
-        next: () => {
-          // Mettre à jour la liste principale
-          this.questions = this.questions.filter(question => 
-            question.id?.toString() !== questionId
-          );
-          
-          // Mettre à jour le nombre total d'éléments
-          this.totalItems = this.questions.length;
-          
-          // Ajuster la page courante si nécessaire
-          const maxPage = Math.ceil(this.totalItems / this.itemsPerPage);
-          if (this.currentPage > maxPage && maxPage > 0) {
-            this.currentPage = maxPage;
+  
+    Swal.fire({
+      title: 'Êtes-vous sûr ?',
+      text: "Cette action est irréversible !",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Oui, supprimer',
+      cancelButtonText: 'Annuler'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        this.questionService.deleteQuestion(questionId).subscribe({
+          next: () => {
+            // Mettre à jour la liste principale
+            this.questions = this.questions.filter(question => 
+              question.id?.toString() !== questionId
+            );
+            
+            // Mettre à jour le nombre total d'éléments
+            this.totalItems = this.questions.length;
+            
+            // Ajuster la page courante si nécessaire
+            const maxPage = Math.ceil(this.totalItems / this.itemsPerPage);
+            if (this.currentPage > maxPage && maxPage > 0) {
+              this.currentPage = maxPage;
+            }
+            
+            // Réappliquer la pagination
+            this.applyPagination();
+            
+            Swal.fire(
+              'Supprimé !',
+              'La question a été supprimée avec succès.',
+              'success'
+            );
+          },
+          error: (err) => {
+            console.error('Erreur lors de la suppression de la question :', err);
+            Swal.fire(
+              'Erreur',
+              'Une erreur est survenue lors de la suppression.',
+              'error'
+            );
           }
-          
-          // Réappliquer la pagination
-          this.applyPagination();
-          
-          console.log('Question supprimée avec succès');
-        },
-        error: (err) => {
-          console.error('Erreur lors de la suppression de la question :', err);
-        }
-      });
-    }
+        });
+      } else {
+        console.log('Suppression annulée par l\'utilisateur');
+      }
+    });
   }
+
 
   applyPagination() {
     const startIndex = (this.currentPage - 1) * this.itemsPerPage;
