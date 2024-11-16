@@ -45,7 +45,7 @@ export class LoginComponent {
             // Redirection en fonction du rôle
             if (roles.includes('apprenant')) {
               this.router.navigate(['/accueil']);
-            } else if (roles.includes('admin')) {
+            } else if (roles.includes('admin') || roles.includes('superadmin')) {
               this.router.navigate(['/dashbord-admin']);
             } else {
               this.router.navigate(['/accueil']);  // Par défaut, si aucun rôle spécifique

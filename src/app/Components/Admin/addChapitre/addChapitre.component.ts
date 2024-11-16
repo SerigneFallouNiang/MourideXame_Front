@@ -41,7 +41,9 @@ export class AddChapitresComponent implements OnInit {
       description: [''],
       pdf: [null],
       video: [null], 
-      book_id: [null, Validators.required] 
+      book_id: [null, Validators.required],
+      lien: ['']
+
     });
   }
 
@@ -82,6 +84,7 @@ loadChapitre(): void {
         setTimeout(() => {
            this.bookForm.patchValue({
               title: data.Chapitre.title,
+              lien: data.Chapitre.lien,
               description: data.Chapitre.description,
               book_id: data.Chapitre.book_id,
               video: data.Chapitre.video_path,
@@ -137,12 +140,15 @@ onFileSelected(event: any): void {
     this.selectedFile = null;
   }
 
+
+
   onSubmit(): void {
     if (this.bookForm.valid) {
       const formData = new FormData();
       formData.append('title', this.bookForm.get('title')?.value);
       formData.append('description', this.bookForm.get('description')?.value);
       formData.append('book_id', this.bookForm.get('book_id')?.value);
+      formData.append('lien', this.bookForm.get('lien')?.value);
   
       // Ajouter les fichiers PDF et vidéo au formData si présents
       const filePath = this.bookForm.get('pdf')?.value;

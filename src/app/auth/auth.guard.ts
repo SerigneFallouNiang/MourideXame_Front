@@ -19,7 +19,7 @@ export const authGuard: CanActivateFn = (route, state) => {
 
 
   // Vérifier si l'utilisateur a le rôle admin
-  if (!token || !user || !user.roles.some((role: any) => role.name === "admin")) {
+  if (!token || !user || !user.roles.some((role: any) => role.name === "admin" || role.name === "superadmin")) {
     router.navigateByUrl("/login");
     return false;
   }

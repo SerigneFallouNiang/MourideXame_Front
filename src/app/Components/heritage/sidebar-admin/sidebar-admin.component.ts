@@ -4,6 +4,7 @@ import { Router, RouterModule, RouterOutlet } from '@angular/router';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
 import { UserModel } from '../../../Models/user.model';
 import { AuthService } from '../../../Services/auth.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-sidebar-admin',
@@ -134,13 +135,40 @@ loadUserInfo() {
 
 //Fonction de la déconnexion
 logout() {
-  if (confirm('Êtes-vous sûr de vouloir se déconnecter ?')) {
-  this.authService.logout();
-  localStorage.removeItem("authUser");
-  this.userConnected = null;
-  this.router.navigateByUrl("/login");
-  }
+  Swal.fire({
+    title: 'Êtes-vous sûr de vouloir vous déconnecter ?',
+    text: "Vous devrez vous reconnecter pour accéder à votre compte.",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Oui, déconnecter',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.authService.logout();
+      localStorage.removeItem("authUser");
+      this.userConnected = null;
+      this.router.navigateByUrl("/login");
+      
+      Swal.fire(
+        'Déconnecté !',
+        'Vous avez été déconnecté avec succès.',
+        'success'
+      );
+    } else {
+      console.log('Déconnexion annulée par l\'utilisateur');
+    }
+  });
 }
+// logout() {
+//   if (confirm('Êtes-vous sûr de vouloir se déconnecter ?')) {
+//   this.authService.logout();
+//   localStorage.removeItem("authUser");
+//   this.userConnected = null;
+//   this.router.navigateByUrl("/login");
+//   }
+// }
 
 //fonction pour la modification du profil utilisateur
 editProfile() {

@@ -47,7 +47,17 @@
                     <textarea class="form-control" id="description" placeholder="Description" formControlName="description"></textarea>
                 </div>
 
-                <div class="mb-3">
+                <div class="mb-3 mt-3">
+                    <label for="lien" class="form-label">Lien YouTube</label>
+                    <input class="form-control" id="lien" placeholder="Lien YouTube" formControlName="lien">
+                    <div *ngIf="bookForm.get('lien')?.invalid && bookForm.get('lien')?.touched" class="invalid-feedback">
+                      Le lien YouTube est requis.
+                    </div>
+                  </div>
+
+              
+
+                <!-- <div class="mb-3">
                     <label for="video" class="form-label">Vidéo</label>
                     <input type="file" class="form-control" id="video" (change)="onVideoSelected($event)" />
                     <div *ngIf="videoUrl" class="mt-3">
@@ -56,7 +66,7 @@
                     <div *ngIf="bookForm.get('video')?.invalid && bookForm.get('video')?.touched" class="invalid-feedback">
                       La vidéo est obligatoire.
                     </div>
-                  </div>
+                  </div> -->
 
                   <div class="mb-3">
                     <label for="pdf" class="form-label">Fichier PDF</label>

@@ -79,6 +79,12 @@
                     </div>
                     <div class="formulaire">
                         <h2 class="text-connexion mb-4">Inscription</h2>
+
+                        <!-- message d'erreur  du backend  -->
+                        <div *ngIf="errorMessage" class="alert alert-danger">
+                            {{ errorMessage }}
+                        </div>
+
                         <form  [formGroup]="signupForm" (ngSubmit)="onSubmit()" >
 
 

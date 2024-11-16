@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterLink } from '@angular/router';
 import { BookService } from '../../../Services/book.service';
 import { apiUrlStockage } from '../../../Services/apiUrlStockage';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-livres',
@@ -52,24 +53,42 @@ export class LivreAdminComponent implements OnInit {
     );
   }
 
-  deleteBook(livreId: string | undefined): void {
-    if (livreId) {  // Vérifiez si l'ID n'est pas undefined
-      if (confirm('Êtes-vous sûr de vouloir supprimer cette catégorie ?')) {
-        this.bookService.deleteBook(livreId).subscribe({
-          next: () => {
-            this.books = this.books.filter(livre => livre.id?.toString() !== livreId);
-            console.log('Catégorie supprimée avec succès');
-          },
-          error: (err) => {
-            console.error('Erreur lors de la suppression de la catégorie :', err);
-          }
-        });
-      }
-    } else {
-      console.error('ID de la catégorie est undefined');
-    }
-}
 
+
+deleteBook(livreId: string | undefined): void {
+  if (!livreId) {
+    console.error('ID du livre est undefined');
+    return;
+  }
+
+  Swal.fire({
+    title: 'Êtes-vous sûr ?',
+    text: "Cette action est irréversible !",
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Oui, supprimer',
+    cancelButtonText: 'Annuler'
+  }).then((result) => {
+    if (result.isConfirmed) {
+      this.bookService.deleteBook(livreId).subscribe({
+        next: () => {
+          this.books = this.books.filter(livre => livre.id?.toString() !== livreId);
+          this.totalItems = this.books.length;
+          this.applyPagination();
+          Swal.fire('Supprimé !', 'Le livre a été supprimé avec succès.', 'success');
+        },
+        error: (err) => {
+          console.error('Erreur lors de la suppression du livre :', err);
+          Swal.fire('Erreur', 'Une erreur est survenue lors de la suppression.', 'error');
+        }
+      });
+    } else {
+      console.log('Suppression annulée par l\'utilisateur');
+    }
+  });
+}
 
 
 //pagination

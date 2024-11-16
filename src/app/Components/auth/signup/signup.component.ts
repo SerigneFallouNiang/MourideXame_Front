@@ -19,6 +19,7 @@ export class SignupComponent {
   router  =  inject(Router);
   showPassword = false;
   showConfirmPassword = false;
+  errorMessage: string = '';
 
   // Fonction d'inscription 
   public signupForm = new FormGroup({
@@ -31,19 +32,40 @@ export class SignupComponent {
   })
 
 
-  public onSubmit() {
+  // public onSubmit() {
+  //   if (this.signupForm.valid) {
+  //     console.log(this.signupForm.value);
+  //     this.authService.signup(this.signupForm.value)
+  //       .subscribe({
+  //         next: (data: any) => {
+  //           console.log(data);
+  //           this.router.navigate(['/login']);
+  //         },
+  //         error: (err) => console.log(err)
+  //       });
+  //   }else {
+  //     this.signupForm.markAllAsTouched();  // This will mark all fields as touched to show errors
+  //   }
+  // }
+  onSubmit() {
     if (this.signupForm.valid) {
-      console.log(this.signupForm.value);
       this.authService.signup(this.signupForm.value)
         .subscribe({
           next: (data: any) => {
             console.log(data);
             this.router.navigate(['/login']);
           },
-          error: (err) => console.log(err)
+          error: (err) => {
+            console.log(err);
+            if (err.error && err.error.message) {
+              this.errorMessage = err.error.message;
+            } else {
+              this.errorMessage = 'Une erreur est survenue lors de l\'inscription.';
+            }
+          }
         });
-    }else {
-      this.signupForm.markAllAsTouched();  // This will mark all fields as touched to show errors
+    } else {
+      this.signupForm.markAllAsTouched();
     }
   }
 
