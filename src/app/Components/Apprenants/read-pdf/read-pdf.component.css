@@ -836,4 +836,53 @@ ul li a {
 
 
     
+  /* ______________________________________________________________________________________________________________ */
+  /* style audio  */
+
+  .audio-player-wrapper {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background-color: #f0f0f0;
+    border-radius: 5px;
+    cursor: pointer;
+  }
   
+  .custom-audio-player {
+    opacity: 0;
+    position: absolute;
+  }
+  
+  .audio-controls {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    padding: 0 15px;
+  }
+  
+  .play-pause-btn {
+    background: none;
+    border: none;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: #2E8B57;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 10px;
+  }
+  
+  .progress-bar {
+    flex-grow: 1;
+    height: 5px;
+    background-color: #ddd;
+    border-radius: 3px;
+  }
+  
+  .progress {
+    height: 100%;
+    background-color: #2E8B57;
+    border-radius: 3px;
+  }
