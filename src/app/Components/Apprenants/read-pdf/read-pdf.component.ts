@@ -47,6 +47,13 @@ export class ReadPDFComponent implements OnInit {
   hasPassedQuiz: boolean = false;
   safeVideoUrl: SafeResourceUrl = ''; 
 
+  // ________________________audio style_______________________
+  isReading = false;
+  readingProgress = 0;
+  progressInterval: any;
+
+
+
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.checkIfMobile();
@@ -357,66 +364,6 @@ selectAnswer(questionId: number, answerId: number) {
     }
 
 
-    //pour soumettre le quiz
-    // submitQuiz() {
-    //   if (this.selectedQuiz && this.selectedQuiz.id) {
-    //     this.quizzservice.submitQuizz(this.selectedQuiz.id, this.selectedAnswers)
-    //       .subscribe(
-    //         (response: any) => {
-    //           console.log('Quiz submitted successfully', response);
-    //           this.score = response.score;
-    //           this.isPassed = response.isPassed;
-              
-    //           this.questions.forEach((question, index) => {
-    //             const result = response.detailedResults.find((r: any) => r.question.id === question.id);
-    //             if (result) {
-    //               question.is_correct = result.is_correct;
-    //               question.correctAnswer = result.answers.find((ans: any) => ans.is_correct);
-    //             }   // Vérifie si toutes les questions ont une réponse
-    //             if (Object.keys(this.selectedAnswers).length !== this.questions.length) {
-    //               this.errorMessage = 'Veuillez répondre à toutes les questions avant de soumettre le quiz.';
-    //               return; // Stopper la soumission
-    //             }
-    //           });
-              
-
-
-    //           // Vérifie si toutes les questions ont une réponse
-    //           if (Object.keys(this.selectedAnswers).length !== this.questions.length) {
-    //             this.errorMessage = 'Veuillez répondre à toutes les questions avant de soumettre le quiz.';
-              
-    //             // Faire disparaître le message d'erreur après 2 secondes
-    //             setTimeout(() => {
-    //               this.errorMessage = ''; // Réinitialiser le message d'erreur
-    //             }, 3000); // 2000 millisecondes = 2 secondes
-              
-    //             return; // Stopper la soumission
-    //           }
-              
-
-    //           this.submitted = true;
-    //           this.errorMessage = '';
-    //         },
-    //         //pour récupérer l'erreur depuis l'api
-    //         (error: HttpErrorResponse) => {
-    //           console.error('Error submitting quiz', error);
-    //           if(error.status === 403 && error.error && error.message){
-    //             this.errorMessage = error.error.message;
-    //           }else{
-    //             this.errorMessage = 'Une erreur est survenue lors de la soumission du quiz.';
-    //           }
-    //            // Faire disparaître le message d'erreur après 5 secondes
-    //           setTimeout(()=>{
-    //             this.errorMessage = '';
-    //           },5000);
-    //         }
-    //       );
-
-          
-    //   } else {
-    //     console.error('No quiz selected or invalid quiz ID');
-    //   }
-    // }
 
     submitQuiz() {
       // Vérification en premier avant toute soumission
@@ -558,21 +505,65 @@ QuizTimeDisponible(quizId: string) {
 
 
     // lire les chapitre en audio
+    
     // Méthode pour lire la description du chapitre
-  readChapterDescription(): void {
-    if (this.selectedChapter && this.selectedChapter.Description) {
-      this.textToSpeechService.readText(this.selectedChapter.Description);  // Utilisation du service
+  // readChapterDescription(): void {
+  //   if (this.selectedChapter && this.selectedChapter.Description) {
+  //     this.textToSpeechService.readText(this.selectedChapter.Description);  // Utilisation du service
+  //   }
+  // }
+
+  // // Méthode pour arrêter la lecture
+  // stopReading(): void {
+  //   this.textToSpeechService.stopReading();  // Appel du service pour arrêter la lecture
+  // }
+
+
+// ________________________style audio ___________________________________
+toggleTextToSpeech(): void {
+  if (this.isReading) {
+    this.stopReading();
+  } else {
+    this.startReading();
+  }
+}
+
+startReading(): void {
+  if (this.selectedChapter && this.selectedChapter.Description) {
+    this.isReading = true;
+    this.readingProgress = 0;
+    
+    // Estimate reading time (approximately 15 characters per second)
+    const text = this.selectedChapter.Description;
+    const estimatedDuration = (text.length / 15) * 1000; // in milliseconds
+    
+    // Start TTS
+    this.textToSpeechService.readText(text);
+    
+    // Set up progress bar update
+    this.progressInterval = setInterval(() => {
+      this.readingProgress += (100 / (estimatedDuration / 100));
+      if (this.readingProgress >= 100) {
+        this.stopReading();
+      }
+    }, 100);
+    
+    // Listen for the end of speech if supported
+    if ('speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance();
+      utterance.onend = () => {
+        this.stopReading();
+      };
     }
   }
+}
 
-  // Méthode pour arrêter la lecture
-  stopReading(): void {
-    this.textToSpeechService.stopReading();  // Appel du service pour arrêter la lecture
+stopReading(): void {
+  this.textToSpeechService.stopReading();
+  this.isReading = false;
+  this.readingProgress = 0;
+  if (this.progressInterval) {
+    clearInterval(this.progressInterval);
   }
-
-  // Sélection du chapitre et affichage du contenu
-  // selectChapter(chapter: any): void {
-  //   this.selectedChapter = chapter;
-  //   // Autres logiques de sélection...
-  // }
+}
 }

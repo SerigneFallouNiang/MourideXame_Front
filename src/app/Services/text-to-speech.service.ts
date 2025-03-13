@@ -1,32 +1,66 @@
-import { Injectable } from '@angular/core';
+import { Injectable, EventEmitter } from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TextToSpeechService {
-
+  onSpeechStart = new EventEmitter<void>();
+  onSpeechEnd = new EventEmitter<void>();
+  onSpeechPause = new EventEmitter<void>();
+  private utterance: SpeechSynthesisUtterance | null = null;
+  
   constructor() { }
-
+  
   // Fonction pour lire un texte
   readText(text: string): void {
     // Vérifier si SpeechSynthesis est disponible
     if ('speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(text);
+      // Si déjà en lecture, arrêter d'abord
+      this.stopReading();
       
-      // Optionnel : Vous pouvez configurer la voix, la vitesse, etc.
-      utterance.rate = 1; // Vitesse de lecture (1 est la normale)
-      utterance.pitch = 1; // Tonalité de la voix (1 est la normale)
-      utterance.volume = 1; // Volume (entre 0 et 1)
-
+      this.utterance = new SpeechSynthesisUtterance(text);
+      
+      // Configurer la voix
+      this.utterance.rate = 1; // Vitesse de lecture
+      this.utterance.pitch = 1; // Tonalité
+      this.utterance.volume = 1; // Volume
+      
+      // Définir la langue (français par défaut basé sur votre interface)
+      this.utterance.lang = 'fr-FR';
+      
+      // Ajouter des événements
+      this.utterance.onstart = () => this.onSpeechStart.emit();
+      this.utterance.onend = () => this.onSpeechEnd.emit();
+      this.utterance.onpause = () => this.onSpeechPause.emit();
+      
       // Lire le texte
-      window.speechSynthesis.speak(utterance);
+      window.speechSynthesis.speak(this.utterance);
     } else {
       console.warn('Text-to-Speech n\'est pas supporté sur ce navigateur');
     }
   }
-
+  
   // Fonction pour arrêter la lecture en cours
   stopReading(): void {
-    window.speechSynthesis.cancel();
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+      this.utterance = null;
+    }
+  }
+  
+  // Fonction pour mettre en pause/reprendre la lecture
+  togglePause(): void {
+    if ('speechSynthesis' in window) {
+      if (window.speechSynthesis.paused) {
+        window.speechSynthesis.resume();
+      } else {
+        window.speechSynthesis.pause();
+      }
+    }
+  }
+  
+  // Vérifier si la lecture est en cours
+  isReading(): boolean {
+    return 'speechSynthesis' in window && window.speechSynthesis.speaking;
   }
 }

@@ -76,13 +76,27 @@
       </div>
       <div class="description-chapitre">
         <h2 class="titre-chapitre">{{ selectedChapter['Titre du chapitre'] }}</h2>
-        <audio src=""></audio>
+        <!-- audio teste  -->
+            <div class="card-body">
+              <div class="audio-player-wrapper" (click)="toggleTextToSpeech()">
+                <audio class="w-100 custom-audio-player">
+                  <source src="assets/audio/silent-1sec.mp3" type="audio/mpeg" />
+                  Audio not supported
+                </audio>
+                <div class="audio-controls">
+                  <button class="play-pause-btn">
+                    <i [class]="isReading ? 'fas fa-pause' : 'fas fa-play'"></i>
+                  </button>
+                  <div class="progress-bar">
+                    <div class="progress" [style.width.%]="readingProgress"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+        <!-- audio teste  -->
         <p class="description-chapitre">
           {{ selectedChapter.Description }}
         </p>
-        <!-- Boutons pour le Text-to-Speech -->
-      <button (click)="readChapterDescription()">Lire le chapitre</button>
-      <button (click)="stopReading()">Arrêter la lecture</button>
 
       </div>
       <!-- <button class="button-quiz"  (click)="startQuiz(selectedChapter.id!)">Commencer le Quiz</button> -->
