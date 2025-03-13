@@ -80,6 +80,10 @@
         <p class="description-chapitre">
           {{ selectedChapter.Description }}
         </p>
+        <!-- Boutons pour le Text-to-Speech -->
+      <button (click)="readChapterDescription()">Lire le chapitre</button>
+      <button (click)="stopReading()">Arrêter la lecture</button>
+
       </div>
       <!-- <button class="button-quiz"  (click)="startQuiz(selectedChapter.id!)">Commencer le Quiz</button> -->
       <button class="button-quiz" *ngIf="selectedChapter?.id" (click)="checkAndStartQuiz(selectedChapter.id)">

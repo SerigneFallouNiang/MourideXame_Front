@@ -12,6 +12,7 @@ import { CommonModule } from '@angular/common';
 import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { TranslateModule } from '@ngx-translate/core';
+import { TextToSpeechService } from '../../../Services/text-to-speech.service';
 
 @Component({
   selector: 'app-read-pdf',
@@ -59,6 +60,7 @@ export class ReadPDFComponent implements OnInit {
     public location:Location,
     private router: Router,
     private quizzservice: QuizzService,
+    private textToSpeechService: TextToSpeechService,
   ) {}
 
 
@@ -553,4 +555,24 @@ QuizTimeDisponible(quizId: string) {
       const match = url.match(regExp);
       return (match && match[2].length === 11) ? match[2] : '';
     }
+
+
+    // lire les chapitre en audio
+    // Méthode pour lire la description du chapitre
+  readChapterDescription(): void {
+    if (this.selectedChapter && this.selectedChapter.Description) {
+      this.textToSpeechService.readText(this.selectedChapter.Description);  // Utilisation du service
+    }
+  }
+
+  // Méthode pour arrêter la lecture
+  stopReading(): void {
+    this.textToSpeechService.stopReading();  // Appel du service pour arrêter la lecture
+  }
+
+  // Sélection du chapitre et affichage du contenu
+  // selectChapter(chapter: any): void {
+  //   this.selectedChapter = chapter;
+  //   // Autres logiques de sélection...
+  // }
 }
